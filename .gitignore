@@ -3,6 +3,12 @@
 ##
 ## Get latest from https://github.com/github/gitignore/blob/master/VisualStudio.gitignore
 
+# Ignore folder named `dist`
+dist/
+
+# Ignore file named `package-lock.json`
+package-lock.json
+
 # User-specific files
 *.suo
 *.user
