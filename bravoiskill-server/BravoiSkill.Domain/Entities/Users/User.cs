@@ -15,6 +15,5 @@ namespace BravoiSkill.Domain.Entities.Users
         public DateTime DateOfBirth { get; set; }
         public int ProfileId { get; set; }
         public Profile Profile { get; set; }
-        
     }
 }

@@ -12,8 +12,6 @@ namespace BravoiSkill.Domain.Entities.Users
             var errors = new List<string>();
             if (string.IsNullOrWhiteSpace(Description))
                 errors.Add("Description must be provided");
-
-
             return errors.ToArray();
         }
     }
