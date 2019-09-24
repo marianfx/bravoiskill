@@ -19,7 +19,7 @@ namespace BravoiSkill.Domain.Entities.Users
         public string Photo { get; set; }
         public int ProfileId { get; set; }
         public Profile Profile { get; set; }
-        public string BadgeId { get; set; }
+        public int BadgeId { get; set; }
         public Badge Badge { get; set; }
     }
 }
