@@ -11,24 +11,18 @@ namespace BravoiSkill.API.Controllers
     public class UsersController : ControllerBase
     {
         private BravoiSkillDbContext _context;
-
         public UsersController(BravoiSkillDbContext context)
         {
             _context = context;
         }
 
         // GET api/users
-        [HttpGet]
+       [HttpGet]
         public IEnumerable<User> Get()
         {
             return GetListOfUsers() // build query
                 .ToList(); // execute
         }
-
-        /// <summary>
-        ///     The method builds a query that selects the user with UserId = 1
-        /// </summary>
-        /// <returns></returns>
         public IQueryable<User> GetListOfUsers()
         {
             var rez = from us in _context.Users

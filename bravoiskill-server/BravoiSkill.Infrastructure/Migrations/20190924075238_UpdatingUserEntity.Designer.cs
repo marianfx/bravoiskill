@@ -4,14 +4,16 @@ using BravoiSkill.Infrastructure.Database;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace BravoiSkill.Infrastructure.Migrations
 {
     [DbContext(typeof(BravoiSkillDbContext))]
-    partial class BravoiSkillDbContextModelSnapshot : ModelSnapshot
+    [Migration("20190924075238_UpdatingUserEntity")]
+    partial class UpdatingUserEntity
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -30,7 +32,7 @@ namespace BravoiSkill.Infrastructure.Migrations
 
                     b.HasKey("BadgeId");
 
-                    b.ToTable("Badges");
+                    b.ToTable("Badge");
                 });
 
             modelBuilder.Entity("BravoiSkill.Domain.Entities.Users.Profile", b =>
