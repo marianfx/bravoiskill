@@ -13,7 +13,6 @@ namespace BravoiSkill.API
 {
     public class Program
     {
-
         public static void Main(string[] args)
         {
             CreateWebHostBuilder(args).Build().Run();
@@ -23,5 +22,4 @@ namespace BravoiSkill.API
             WebHost.CreateDefaultBuilder(args)
                 .UseStartup<Startup>();
     }
-
 }

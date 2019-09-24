@@ -7,13 +7,10 @@ namespace BravoiSkill.Infrastructure.Database
     {
         public DbSet<User> Users { get; set; }
         public DbSet<Profile> Profiles { get; set; }
-
         public DbSet<Badge> Badges { get; set; }
 
-        public BravoiSkillDbContext(DbContextOptions<BravoiSkillDbContext> es) : base(es)
-        {
+        public BravoiSkillDbContext(DbContextOptions<BravoiSkillDbContext> es) : base(es) { }
 
-        }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);

@@ -6,7 +6,7 @@ import { User } from './models/user.interface';
 
 @Injectable()
 export class UserService {
-  constructor(public http: HttpClient) {}
+  constructor(public http: HttpClient) { }
 
   getUser(): Observable<User[]> {
     console.log(environment.AppRoot);
