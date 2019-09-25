@@ -15,6 +15,8 @@ namespace BravoiSkill.Domain.Entities.Users
         public DateTime DateOfBirth { get; set; }
         [Required]
         public string Email { get; set; }
+        [Required]
+        public string Password { get; set; }
         public string Skype { get; set; }
         public string Photo { get; set; }
         [Required]
