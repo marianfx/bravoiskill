@@ -9,6 +9,15 @@ dist/
 # Ignore file named `package-lock.json`
 package-lock.json
 
+# Ignore file named `appsettings.json`
+appsettings.json
+
+# Ignore file named `BravoiSkill.API.csproj`
+BravoiSkill.API.csproj
+
+# Ignore file named `libman.json`
+libman.json
+
 # User-specific files
 *.suo
 *.user
