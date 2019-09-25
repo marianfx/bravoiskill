@@ -1,0 +1,7 @@
+.bg-image {
+    height: 40em;
+    background-size: cover;
+    width: auto;
+    background-image: url('../assets/images/bubble-background.jpeg');
+    background-position: 50% 50%;
+}
