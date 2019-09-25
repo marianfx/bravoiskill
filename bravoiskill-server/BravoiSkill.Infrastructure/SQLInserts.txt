@@ -4,16 +4,19 @@
 ,('Guest')
 ;
 
-INSERT INTO BravoiSkill.dbo.Users (FirstName,LastName,DateOfBirth,ProfileId,BadgeId,BadgeId1,Email,Photo,Skype) VALUES 
-('Andrei','Leahu','1996-11-29 00:00:00.000',1,NULL,NULL,'andrei_lh@yahoo.com',NULL,NULL)
-,('Lidia-Gabriela','Burca','1998-06-10 00:00:00.000',1,NULL,NULL,'lidia_burca@yahoo.com',NULL,NULL)
-,('Olimpia','Ticlos','1997-06-10 00:00:00.000',1,NULL,NULL,'olimpia_ticlos@yahoo.com',NULL,NULL)
-,('Guest','GUEST','1997-06-10 00:00:00.000',3,NULL,NULL,'guest@yahoo.com',NULL,NULL)
-,('User','USER','1997-06-10 00:00:00.000',2,NULL,NULL,'user@yahoo.com',NULL,NULL)
-,('User','USER','1997-06-10 00:00:00.000',2,NULL,NULL,'user@yahoo.com',NULL,NULL)
+INSERT INTO BravoiSkill.dbo.Badges (Description) VALUES 
+('Incepator')
+,('Expert')
 ;
 
-
+INSERT INTO BravoiSkill.dbo.Users (FirstName,LastName,DateOfBirth,ProfileId,BadgeId,Email,Photo,Skype) VALUES 
+('Andrei','Leahu','1996-11-29 00:00:00.000',1,1,'andrei_lh@yahoo.com',NULL,NULL)
+,('Lidia-Gabriela','Burca','1998-06-10 00:00:00.000',1,1,'lidia_burca@yahoo.com',NULL,NULL)
+,('Olimpia','Ticlos','1997-06-10 00:00:00.000',1,2,'olimpia_ticlos@yahoo.com',NULL,NULL)
+,('Guest','GUEST','1997-06-10 00:00:00.000',3,2,'guest@yahoo.com',NULL,NULL)
+,('User','USER','1997-06-10 00:00:00.000',2,2,'user@yahoo.com',NULL,NULL)
+,('User','USER','1997-06-10 00:00:00.000',2,1,'user@yahoo.com',NULL,NULL)
+;
 
 
 
