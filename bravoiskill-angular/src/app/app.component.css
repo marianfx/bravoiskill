@@ -1,7 +1,22 @@
 .bg-image {
-    height: 40em;
     background-size: cover;
-    width: auto;
+    background-repeat: no-repeat;
     background-image: url('../assets/images/bubble-background.jpeg');
-    background-position: 50% 50%;
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    max-width: 100%;
+    max-height: 100%;
+    margin: auto;
+}
+
+app-footer{
+  position: absolute;
+  bottom: 0;
+  background-color: white;
+  width: 100%;
+  height: 100px;
+  border-top: 1px solid #AD5CAD;
 }

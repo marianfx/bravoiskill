@@ -13,7 +13,7 @@ export class AppComponent implements OnInit {
   users: User[];
 
   constructor(public uService: UserService) { }
-  
+
   ngOnInit() {
     this.uService.getUser().subscribe((data) => {
       console.log(data);
