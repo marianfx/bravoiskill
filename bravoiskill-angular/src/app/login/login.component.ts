@@ -10,7 +10,8 @@ import { AuthenticationService } from '../auth/service/authentication.service';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
-
+    focus;
+    focus1;
     loginForm: FormGroup;
     loading = false;
     submitted = false;
