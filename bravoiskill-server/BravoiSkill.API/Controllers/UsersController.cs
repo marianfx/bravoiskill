@@ -1,39 +1,44 @@
 ﻿using BravoiSkill.Domain.Entities.Users;
+using BravoiSkill.Application.DTO.Users;
 using BravoiSkill.Infrastructure.Database;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
 using System.Linq;
+using BravoiSkill.Application.Services.Interfaces;
 
 namespace BravoiSkill.API.Controllers
 {
-    [Route("api/[controller]")]
+    [Authorize]
     [ApiController]
+    [Route("api/[controller]")]
     public class UsersController : ControllerBase
     {
-        private BravoiSkillDbContext _context;
-        public UsersController(BravoiSkillDbContext context)
+        private IUserService _userService;
+
+        public UsersController(IUserService userService)
         {
-            _context = context;
+            _userService = userService;
+        }
+        [AllowAnonymous]
+        [HttpPost("authenticate")]
+        public IActionResult Authenticate([FromBody]Application.DTO.Users.User userParam)
+        {
+            var user = _userService.Authenticate(userParam.Email, userParam.Password);
+
+            if (user == null)
+                return BadRequest(new { message = "Username or password is incorrect" });
+            return Ok(user);
         }
 
         // GET api/users
         [HttpGet]
-        public IEnumerable<User> Get()
+        public IActionResult GetAll()
         {
-            return GetListOfUsers() // build query
-                .ToList(); // execute
+            var users = _userService.GetAll();
+            return Ok(users);
         }
 
-        /// <summary>
-        ///     The method builds a query that selects the user with UserId = 1
-        /// </summary>
-        /// <returns></returns>
-        public IQueryable<User> GetListOfUsers()
-        {
-            var rez = from us in _context.Users
-                      where us.UserId == 1
-                      select us;
-            return rez;
-        }
+   
     }
 }

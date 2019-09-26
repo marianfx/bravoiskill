@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace BravoiSkill.Domain.Entities.Users
+namespace BravoiSkill.Application.DTO.Users
 {
     public class Profile
     {
