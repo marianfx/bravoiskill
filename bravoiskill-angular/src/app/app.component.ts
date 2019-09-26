@@ -1,24 +1,21 @@
 import { Component, OnInit } from '@angular/core';
-import { UserService } from './user.service';
-import { User } from './models/user.interface';
+
+import { Router } from '@angular/router';
+import { AuthenticationService } from './auth/service/authentication.service';
+import { User } from './auth/models/user';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent implements OnInit {
+export class AppComponent {
   title = 'BravoiSkill';
   values: any;
-  users: User[];
+  currentUser: User;
 
-  constructor(public uService: UserService) { }
+  constructor(){}
 
-  ngOnInit() {
-    this.uService.getUser().subscribe((data) => {
-      console.log(data);
-      this.users = data;
-    });
-  }
+
 
 }

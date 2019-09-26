@@ -5,27 +5,35 @@
                 <h3>Sign In</h3>
             </div>
             <div class="card-body">
-                <form>
+                <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
                     <div class="input-group form-group">
+                        <div *ngIf="submitted && f.email.errors" class="invalid-feedback">
+                            <div *ngIf="f.email.errors.required">Username is required</div>
+                        </div>
                         <div class="input-group-prepend">
                             <span class="input-group-text"><i class="fa fa-user"></i></span>
                         </div>
                         <label for="email"></label>
-                        <input type="email" class="form-control" id="email" placeholder="email">
+                        <input type="email"  formControlName="email" class="form-control" id="email" placeholder="email" [ngClass]="{ 'is-invalid': submitted && f.email.errors }">
                     </div>
                     <div class="input-group form-group">
+                        <div *ngIf="submitted && f.password.errors" class="invalid-feedback">
+                            <div *ngIf="f.password.errors.required">Password is required</div>
+                        </div>
                         <div class="input-group-prepend">
                             <span class="input-group-text"><i class="fa fa-key"></i></span>
                         </div>
                         <label for="pass"></label>
-                        <input type="password" class="form-control" id="pass" placeholder="password">
+                        <input type="password" class="form-control" id="pass" placeholder="password" formControlName="password" [ngClass]="{ 'is-invalid': submitted && f.password.errors }">
                     </div>
                     <div class="row align-items-center remember">
                         <input type="checkbox">Remember Me
                     </div>
-                    <div class="form-group">
-                        <button type="submit" class="btn float-right my-primary-btn">Login</button>
-                    </div>
+                    <button [disabled]="loading" class="btn float-right my-primary-btn">
+                        <span *ngIf="loading" class="spinner-border spinner-border-sm mr-1"></span>
+                        Login
+                    </button>
+                    <div *ngIf="error" class="alert alert-danger mt-3 mb-0">{{error}}</div>
                 </form>
             </div>
         </div>
