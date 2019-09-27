@@ -7,21 +7,20 @@ import { AuthGuard } from './auth/auth.guard';
 
 const routes: Routes = [
   { path: '', component: HomeComponent, canActivate: [AuthGuard] },
-    { path: 'login', component: LoginComponent },
-
-    // otherwise redirect to home
-    { path: '**', redirectTo: '' }
+  { path: 'login', component: LoginComponent },
+  { path: '**', redirectTo: '' }
 ];
 
-// @NgModule({
-//   imports: [
-//     CommonModule,
-//     RouterModule.forRoot(routes, {
-//       useHash: true
-//     })
-//   ],
-//   exports: [
-//     RouterModule
-//   ]
-// })
-export const AppRoutingModule = RouterModule.forRoot(routes);
+@NgModule({
+  imports: [
+    CommonModule,
+    RouterModule.forRoot(routes, {
+      useHash: true
+    })
+  ],
+  exports: [
+    RouterModule
+  ]
+})
+export class AppRoutingModule { }
+

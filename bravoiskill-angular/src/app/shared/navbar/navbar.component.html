@@ -74,6 +74,9 @@
             <a [routerLink]="['/register']" class="dropdown-item">Register</a>
           </div>
         </li>
+        <li class="nav-item">
+          <a class="nav-link" *ngIf="currentUser" (click)="logout()">Logout</a>
+        </li>
       </ul>
       <ul class="navbar-nav align-items-lg-center ml-lg-auto">
         <li class="nav-item">

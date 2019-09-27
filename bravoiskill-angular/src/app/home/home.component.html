@@ -1,10 +1,30 @@
-<div class="card mt-5">
-    <h4 class="card-header">You're logged in with Angular 8 & JWT!!</h4>
-    <div class="card-body">
-        <h6>Users from secure api end point</h6>
-        <div *ngIf="loading" class="spinner-border spinner-border-sm"></div>
-        <ul *ngIf="users">
-            <li *ngFor="let user of users">{{user.firstName}} {{user.lastName}}</li>
-        </ul>
+<main>
+  <section class="section section-shaped section-lg">
+    <div class="shape shape-style-1 bg-gradient-default">
+      <span></span>
+      <span></span>
+      <span></span>
+      <span></span>
+      <span></span>
+      <span></span>
+      <span></span>
+      <span></span>
     </div>
-</div>
+    <div class="container pt-lg-md">
+      <div class="row justify-content-center">
+        <div class="col-lg-9">
+          <h4 class="card-header">
+            You're logged in with Angular 8 & JWT!!
+          </h4>
+          <div class="card-body">
+            <ul *ngIf="users">
+              <li *ngFor="let user of users">
+                {{ user.firstName }} {{ user.lastName }}
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
