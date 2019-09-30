@@ -13,7 +13,7 @@ using System.Text;
 
 namespace BravoiSkill.Application.Services.Implementations
 {
-    class UserService : IUserService
+    public class UserService : IUserService
     {
         private IUserRepository _userRepository;
         private IMapper _mapper;
@@ -30,9 +30,11 @@ namespace BravoiSkill.Application.Services.Implementations
 
         public User Authenticate(string email, string password)
         {
-            var user = GetAll().SingleOrDefault(x => x.Email == email && x.Password == password);
+            var user = GetAll()
+                .FirstOrDefault(x => x.Email == email && x.Password == password);
+            // almost always use FirstOrDefault, SingleOrDefault is kk
 
-            if (user == null)
+            if (user == null) 
                 return null;
             //succesfull authentification => generate jwt token
             var tokenHandler = new JwtSecurityTokenHandler();
@@ -41,14 +43,15 @@ namespace BravoiSkill.Application.Services.Implementations
             {
                 Subject = new ClaimsIdentity(new Claim[]
                 {
-                    new Claim(ClaimTypes.Name, user.UserId.ToString())
+                    new Claim(ClaimTypes.Name, user.Email.ToString())
                 }),
-                Expires = DateTime.UtcNow.AddHours(3),
+                Expires = DateTime.UtcNow.AddHours(24),
                 SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(key), SecurityAlgorithms.HmacSha256Signature)
             };
             var token = tokenHandler.CreateToken(tokenDescriptor);
             user.Token = tokenHandler.WriteToken(token);
 
+            
             //remove password before returning
             user.Password = null;
 
@@ -57,10 +60,10 @@ namespace BravoiSkill.Application.Services.Implementations
 
         public IEnumerable<User> GetAll()
         {
-            //return users without password
+            //return users with password
             var usersDb = _userRepository.GetListOfUsers();
             var usersDto = usersDb
-                .Select(userDb => _mapper.Map<User>(usersDb))
+                .Select(userDb => _mapper.Map<User>(userDb))
                 .ToList();
 
             return usersDto;

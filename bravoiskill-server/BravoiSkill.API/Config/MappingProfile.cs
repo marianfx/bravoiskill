@@ -8,12 +8,12 @@ namespace BravoiSkill.API.Config
     {
         public MappingProfile()
         {
-
+            AddMappings();
         }
 
         public void AddMappings()
         {
-            CreateMap<DomainEntities.Users.User, App.Users.User>()
+            CreateMap<App.Users.User, DomainEntities.Users.User>()
                 .ReverseMap();
         }
     }

@@ -1,4 +1,5 @@
-﻿using BravoiSkill.Infrastructure.Database;
+﻿using BravoiSkill.Domain.Interfaces.Repositories.Users;
+using BravoiSkill.Infrastructure.Database;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -6,7 +7,7 @@ using System.Text;
 
 namespace BravoiSkill.Infrastructure.Repositories.Users
 {
-    public class UserRepository
+    public class UserRepository : IUserRepository
     {
         private BravoiSkillDbContext _context;
         public UserRepository(BravoiSkillDbContext context)
