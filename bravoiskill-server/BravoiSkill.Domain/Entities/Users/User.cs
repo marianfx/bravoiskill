@@ -34,5 +34,6 @@ namespace BravoiSkill.Domain.Entities.Users
         public Badge Badge { get; set; }
 
         public ICollection<UserSkill> UserSkills { get; set; }
+        public ICollection<UserBadge> UserBadges { get; set; }
     }
 }

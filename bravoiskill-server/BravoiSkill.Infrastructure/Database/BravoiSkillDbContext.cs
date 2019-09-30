@@ -12,6 +12,7 @@ namespace BravoiSkill.Infrastructure.Database
         public DbSet<Skill> Skill { get; set; }
         public DbSet<SkillCategory> SkillCategory { get; set; }
         public DbSet<UserSkill> UserSkill { get; set; }
+        public DbSet<UserBadge> UserBadge { get; set; }
 
         public BravoiSkillDbContext(DbContextOptions<BravoiSkillDbContext> es) : base(es) { }
 
@@ -30,7 +31,16 @@ namespace BravoiSkill.Infrastructure.Database
                 .WithMany(s => s.SkillUsers)
                 .HasForeignKey(us => us.SkillId);
 
-            
+            modelBuilder.Entity<UserBadge>()
+                .HasKey(ub => new { ub.UserId, ub.BadgeId });
+            modelBuilder.Entity<UserBadge>()
+                .HasOne(ub => ub.User)
+                .WithMany(u => u.UserBadges)
+                .HasForeignKey(ub => ub.UserId);
+            modelBuilder.Entity<UserBadge>()
+                .HasOne(ub => ub.Badge)
+                .WithMany(b => b.BadgeUsers)
+                .HasForeignKey(ub => ub.BadgeId);
         }
     }
 }
