@@ -1,4 +1,12 @@
 export interface User {
-  firstName: string;
-  lastName: string;
+  userId;
+  firstName;
+  lastName;
+  dateOfBirth;
+  email;
+  password;
+  skype;
+  photo;
+  profileId;
+  badgeId;
 }

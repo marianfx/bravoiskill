@@ -15,6 +15,9 @@ import { RouterModule } from '@angular/router';
 import { NavbarComponent } from './shared/navbar/navbar.component';
 import { FooterComponent } from './shared/footer/footer.component';
 import { UserService } from './auth/service/user.service';
+import { UsersTableComponent } from './users-table/users-table.component';
+// import { ServiceComponent } from './users-table/service/service.component';
+import {TableModule} from 'primeng/table';
 
 @NgModule({
   declarations: [
@@ -23,6 +26,8 @@ import { UserService } from './auth/service/user.service';
     FooterComponent,
     LoginComponent,
     HomeComponent,
+    UsersTableComponent,
+   // ServiceComponent,
   ],
   imports: [
     BrowserModule,
@@ -34,6 +39,7 @@ import { UserService } from './auth/service/user.service';
     BrowserModule,
     HttpClientModule,
     ReactiveFormsModule,
+    TableModule
   ],
   providers: [
     UserService,
