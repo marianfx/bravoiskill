@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
 using System.Linq;
 using BravoiSkill.Application.Services.Interfaces;
+using System.Threading.Tasks;
 
 namespace BravoiSkill.API.Controllers
 {
@@ -39,6 +40,12 @@ namespace BravoiSkill.API.Controllers
             return Ok(users);
         }
 
-   
+        // POST api/users
+        [HttpPost]
+        public IActionResult Create(Application.DTO.Users.User user)
+        {
+            _userService.Create(user);
+            return Ok();
+        }
     }
-}
+    }

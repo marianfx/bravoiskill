@@ -9,5 +9,7 @@ namespace BravoiSkill.Application.Services.Interfaces
     {
         User Authenticate(string email, string password);
         IEnumerable<User> GetAll();
+
+        void Create(User user);
     }   
 }

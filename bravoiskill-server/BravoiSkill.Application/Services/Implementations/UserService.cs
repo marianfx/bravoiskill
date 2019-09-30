@@ -69,6 +69,12 @@ namespace BravoiSkill.Application.Services.Implementations
             return usersDto;
         }
 
+        public void Create(User user)
+        {
+            var userEntity = _mapper.Map<Domain.Entities.Users.User>(user);
+            _userRepository.Create(userEntity);
+        }
+
     }
 }
 
