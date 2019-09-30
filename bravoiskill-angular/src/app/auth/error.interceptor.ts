@@ -17,7 +17,7 @@ export class ErrorInterceptor implements HttpInterceptor {
                 //location.reload(true);
             }
 
-            const error = err.error.message || err.statusText;
+            const error = err.error ? err.error.message || err.statusText : 'Unknown error. Cannot continue';
             return throwError(error);
         }))
     }

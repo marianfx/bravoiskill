@@ -9,7 +9,7 @@ import { environment } from 'src/environments/environment';
 export class UserService {
     constructor(private http: HttpClient) { }
 
-    getAll() {
+    getAllUsers() {
         return this.http.get<User[]>(`${environment.AppRoot}/users`);
     }
 }

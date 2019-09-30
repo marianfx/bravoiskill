@@ -7,6 +7,7 @@ import { Subscription } from 'rxjs';
 import 'rxjs/add/operator/filter';
 import { DOCUMENT } from '@angular/common';
 import { LocationStrategy, PlatformLocation, Location } from '@angular/common';
+import { UserService } from './auth/service/user.service';
 
 var didScroll;
 var lastScrollTop = 0;
@@ -25,14 +26,19 @@ export class AppComponent implements OnInit  {
   values: any;
   currentUser: User;
 
-  constructor(private renderer : Renderer, private router: Router, @Inject(DOCUMENT,) private document: any, private element : ElementRef, public location: Location){}
+  constructor(private renderer : Renderer, private router: Router,
+              @Inject(DOCUMENT,) private document: any, private element : ElementRef,
+              public location: Location, private uService: UserService){}
+
+
   @HostListener('window:scroll', ['$event'])
   hasScrolled() {
 
       var st = window.pageYOffset;
       // Make sure they scroll more than delta
-      if(Math.abs(lastScrollTop - st) <= delta)
-          return;
+      if(Math.abs(lastScrollTop - st) <= delta){
+        return;
+      }
 
       var navbar = document.getElementsByTagName('nav')[0];
 
