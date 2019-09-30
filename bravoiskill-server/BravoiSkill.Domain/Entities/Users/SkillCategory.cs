@@ -6,6 +6,10 @@ namespace BravoiSkill.Domain.Entities.Users
     {
         [Key]
         public int CategoryId { get; set; }
+        [Required]
         public string Description { get; set; }
+        [Required]
+        public int ParentId { get; set; }
+        public SkillCategory Skill_Category { get; set; }
     }
 }
