@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
 namespace BravoiSkill.Domain.Entities.Users
@@ -19,13 +20,19 @@ namespace BravoiSkill.Domain.Entities.Users
         public string Password { get; set; }
         public string Skype { get; set; }
         public string Photo { get; set; }
+
         [Required]
         public int DepartmentId { get; set; }
         public Department Department { get; set; }
+
         [Required]
         public int ProfileId { get; set; }
         public Profile Profile { get; set; }
+
+        [Required]
         public int BadgeId { get; set; }
         public Badge Badge { get; set; }
+
+        public ICollection<UserSkill> UserSkills { get; set; }
     }
 }
