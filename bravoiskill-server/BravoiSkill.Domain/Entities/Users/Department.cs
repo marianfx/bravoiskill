@@ -2,10 +2,10 @@
 
 namespace BravoiSkill.Domain.Entities.Users
 {
-    public class Badge
+    public class Department
     {
         [Key]
-        public int BadgeId { get; set; }
+        public int DepartmentId { get; set; }
         [Required]
         public string Description { get; set; }
     }

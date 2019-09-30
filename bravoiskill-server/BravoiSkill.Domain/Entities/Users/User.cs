@@ -20,6 +20,9 @@ namespace BravoiSkill.Domain.Entities.Users
         public string Skype { get; set; }
         public string Photo { get; set; }
         [Required]
+        public int DepartmentId { get; set; }
+        public Department Department { get; set; }
+        [Required]
         public int ProfileId { get; set; }
         public Profile Profile { get; set; }
         public int BadgeId { get; set; }

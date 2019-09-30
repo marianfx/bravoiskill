@@ -8,6 +8,7 @@ namespace BravoiSkill.Infrastructure.Database
         public DbSet<User> Users { get; set; }
         public DbSet<Profile> Profiles { get; set; }
         public DbSet<Badge> Badges { get; set; }
+        public DbSet<Department> Department { get; set; }
 
         public BravoiSkillDbContext(DbContextOptions<BravoiSkillDbContext> es) : base(es) { }
 
