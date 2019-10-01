@@ -2,11 +2,10 @@
 
 namespace BravoiSkill.Domain.Entities.Users
 {
-    public class Profile
+    public class SkillLargeCategory
     {
         [Key]
-        public int ProfileId { get; set; }
-        [Required]
+        public int LargeCategoryId { get; set; }
         public string Description { get; set; }
     }
 }

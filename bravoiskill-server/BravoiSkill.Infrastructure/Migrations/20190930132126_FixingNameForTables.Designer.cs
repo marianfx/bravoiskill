@@ -4,14 +4,16 @@ using BravoiSkill.Infrastructure.Database;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace BravoiSkill.Infrastructure.Migrations
 {
     [DbContext(typeof(BravoiSkillDbContext))]
-    partial class BravoiSkillDbContextModelSnapshot : ModelSnapshot
+    [Migration("20190930132126_FixingNameForTables")]
+    partial class FixingNameForTables
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -25,8 +27,7 @@ namespace BravoiSkill.Infrastructure.Migrations
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<string>("Description")
-                        .IsRequired();
+                    b.Property<string>("Description");
 
                     b.HasKey("BadgeId");
 
@@ -53,8 +54,7 @@ namespace BravoiSkill.Infrastructure.Migrations
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<string>("Description")
-                        .IsRequired();
+                    b.Property<string>("Description");
 
                     b.HasKey("ProfileId");
 
@@ -69,8 +69,7 @@ namespace BravoiSkill.Infrastructure.Migrations
 
                     b.Property<int>("CategoryId");
 
-                    b.Property<string>("Description")
-                        .IsRequired();
+                    b.Property<string>("Description");
 
                     b.HasKey("SkillId");
 
@@ -85,16 +84,9 @@ namespace BravoiSkill.Infrastructure.Migrations
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<string>("Description")
-                        .IsRequired();
-
-                    b.Property<int>("ParentId");
-
-                    b.Property<int?>("Skill_CategoryCategoryId");
+                    b.Property<string>("Description");
 
                     b.HasKey("CategoryId");
-
-                    b.HasIndex("Skill_CategoryCategoryId");
 
                     b.ToTable("SkillCategories");
                 });
@@ -104,8 +96,6 @@ namespace BravoiSkill.Infrastructure.Migrations
                     b.Property<int>("UserId")
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<int>("BadgeId");
 
                     b.Property<DateTime>("DateOfBirth");
 
@@ -130,8 +120,6 @@ namespace BravoiSkill.Infrastructure.Migrations
                     b.Property<string>("Skype");
 
                     b.HasKey("UserId");
-
-                    b.HasIndex("BadgeId");
 
                     b.HasIndex("DepartmentId");
 
@@ -159,6 +147,8 @@ namespace BravoiSkill.Infrastructure.Migrations
 
                     b.Property<int>("SkillId");
 
+                    b.Property<int>("Points");
+
                     b.HasKey("UserId", "SkillId");
 
                     b.HasIndex("SkillId");
@@ -168,26 +158,14 @@ namespace BravoiSkill.Infrastructure.Migrations
 
             modelBuilder.Entity("BravoiSkill.Domain.Entities.Users.Skill", b =>
                 {
-                    b.HasOne("BravoiSkill.Domain.Entities.Users.SkillCategory", "Skill_Category")
+                    b.HasOne("BravoiSkill.Domain.Entities.Users.SkillCategory", "SkillCategory")
                         .WithMany()
                         .HasForeignKey("CategoryId")
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 
-            modelBuilder.Entity("BravoiSkill.Domain.Entities.Users.SkillCategory", b =>
-                {
-                    b.HasOne("BravoiSkill.Domain.Entities.Users.SkillCategory", "Skill_Category")
-                        .WithMany()
-                        .HasForeignKey("Skill_CategoryCategoryId");
-                });
-
             modelBuilder.Entity("BravoiSkill.Domain.Entities.Users.User", b =>
                 {
-                    b.HasOne("BravoiSkill.Domain.Entities.Users.Badge", "Badge")
-                        .WithMany()
-                        .HasForeignKey("BadgeId")
-                        .OnDelete(DeleteBehavior.Cascade);
-
                     b.HasOne("BravoiSkill.Domain.Entities.Users.Department", "Department")
                         .WithMany()
                         .HasForeignKey("DepartmentId")
