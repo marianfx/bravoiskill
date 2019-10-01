@@ -1,8 +1,22 @@
-<p-table [value]="users">
-  <ng-template pTemplate="header">
+<p-table #tt [value]="users" [columns]="cols" [paginator]="true" [rows]="10">
+  <ng-template pTemplate="caption">
+      <i class="fa fa-search" style="margin:4px 4px 0 0"></i>
+      <input type="text" pInputText size="50" placeholder="Global Filter" (input)="tt.filterGlobal($event.target.value, 'contains')" style="width:auto">
+  </ng-template>
+  <ng-template pTemplate="header" let-colums>
       <tr>
           <th *ngFor="let col of cols">
               {{col.header}}
+          </th>
+      </tr>
+      <tr>
+          <th *ngFor="let col of cols" [ngSwitch]="col.field" >
+              <input *ngSwitchCase="'userId'" pInputText type="text" style="width:100%" (input)="tt.filter($event.target.value, col.field, col.filterMatchMode)">
+              <input *ngSwitchCase="'firstName'" pInputText type="text" style="width:100%" (input)="tt.filter($event.target.value, col.field, col.filterMatchMode)">
+              <input *ngSwitchCase="'lastName'" pInputText type="text" style="width:100%"(input)="tt.filter($event.target.value, col.field, col.filterMatchMode)">
+              <input *ngSwitchCase="'dateOfBirth'" pInputText type="text" style="width:100%" (input)="tt.filter($event.target.value, col.field, col.filterMatchMode)">
+              <input *ngSwitchCase="'email'" pInputText type="text" style="width:100%" (input)="tt.filter($event.target.value, col.field, col.filterMatchMode)">
+              <input *ngSwitchCase="'skype'" pInputText type="text" style="width:100%" (input)="tt.filter($event.target.value, col.field, col.filterMatchMode)">
           </th>
       </tr>
   </ng-template>
