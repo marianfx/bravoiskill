@@ -41,6 +41,11 @@ namespace BravoiSkill.Infrastructure.Database
                 .HasOne(ub => ub.Badge)
                 .WithMany(b => b.BadgeUsers)
                 .HasForeignKey(ub => ub.BadgeId).OnDelete(DeleteBehavior.Restrict);
+
+            modelBuilder.Entity<SkillCategory>()
+                .HasOne(p => p.Parent)
+                .WithMany(p => p.Children)
+                .HasForeignKey(p => p.ParentId);
         }
     }
 }

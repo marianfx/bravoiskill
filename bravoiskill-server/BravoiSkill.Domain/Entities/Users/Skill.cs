@@ -11,7 +11,7 @@ namespace BravoiSkill.Domain.Entities.Users
         public string Description { get; set; }
         [Required]
         public int CategoryId { get; set; }
-        public SkillCategory Skill_Category { get; set; }
+        public SkillCategory SkillCategory { get; set; }
 
         public ICollection<UserSkill> SkillUsers { get; set; }
     }

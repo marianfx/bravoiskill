@@ -2,7 +2,6 @@
 using BravoiSkill.Application.DTO.Users;
 using BravoiSkill.Application.Services.Interfaces;
 using BravoiSkill.Domain.Interfaces.Repositories.Users;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
 using System;

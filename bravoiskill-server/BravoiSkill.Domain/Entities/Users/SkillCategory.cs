@@ -1,4 +1,6 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace BravoiSkill.Domain.Entities.Users
 {
@@ -8,8 +10,10 @@ namespace BravoiSkill.Domain.Entities.Users
         public int CategoryId { get; set; }
         [Required]
         public string Description { get; set; }
-        [Required]
-        public int ParentId { get; set; }
-        public SkillCategory Skill_Category { get; set; }
+
+        public int? ParentId { get; set; }
+        public SkillCategory Parent { get; set; }
+
+        public ICollection<SkillCategory> Children { get; set; }
     }
 }

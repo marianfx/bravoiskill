@@ -19,7 +19,7 @@ INSERT INTO BravoiSkill.dbo.Profiles (Description) VALUES
 
 INSERT INTO BravoiSkill.dbo.SkillCategories (Description, ParentId) VALUES 
 ('Personal',NULL),
-('Job-related/Professional',NULL)
+('Job-related/Professional',NULL),
 ('Human Relations',1),('Character',1),
 ('Web - Front-End',2),('Web - Back-End',2),('Desktop/Mobile',2),('Databases',2),('Q&A',2),('UI/UX',2),('Business Analysis',2),('Sales',2),('Management',2),('Digital',2)
 ;
