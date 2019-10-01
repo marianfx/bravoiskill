@@ -1,0 +1,10 @@
+.add-button{
+  font-size: 50px;
+  color: #1a174d;
+  float: right;
+}
+
+.add-button:hover{
+  color: #525f7f;
+  cursor: pointer;
+}

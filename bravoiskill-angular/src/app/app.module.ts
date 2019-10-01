@@ -18,6 +18,8 @@ import { UserService } from './auth/service/user.service';
 import { UsersTableComponent } from './users-table/users-table.component';
 // import { ServiceComponent } from './users-table/service/service.component';
 import {TableModule} from 'primeng/table';
+import {NgModalsComponent, NgModalsDirective } from 'ng-modals';
+import { AddUserComponent } from './users-table/add-user/add-user.component';
 
 @NgModule({
   declarations: [
@@ -27,6 +29,9 @@ import {TableModule} from 'primeng/table';
     LoginComponent,
     HomeComponent,
     UsersTableComponent,
+    AddUserComponent,
+    NgModalsComponent,
+    NgModalsDirective
    // ServiceComponent,
   ],
   imports: [
@@ -41,6 +46,7 @@ import {TableModule} from 'primeng/table';
     ReactiveFormsModule,
     TableModule
   ],
+  exports: [AddUserComponent],
   providers: [
     UserService,
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
