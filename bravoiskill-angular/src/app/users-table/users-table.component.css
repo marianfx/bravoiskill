@@ -1,0 +1,16 @@
+label {
+    font-weight: bold;
+    margin-top: .25em;
+    display: block;
+}
+
+input {
+    width: 100%;
+    padding: 0.429em;
+    border: 1px solid #a6a6a6;
+    border-radius: 3px;
+}
+
+input:hover {
+    border-color: #212121;
+}

@@ -17,7 +17,10 @@ import { FooterComponent } from './shared/footer/footer.component';
 import { UserService } from './auth/service/user.service';
 import { UsersTableComponent } from './users-table/users-table.component';
 import { TableModule } from 'primeng/table';
+import {DialogModule} from 'primeng/dialog';
+import {ButtonModule} from 'primeng/button';
 import {AccordionModule} from 'primeng/accordion';
+import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 
 @NgModule({
   declarations: [
@@ -38,8 +41,11 @@ import {AccordionModule} from 'primeng/accordion';
     BrowserModule,
     HttpClientModule,
     ReactiveFormsModule,
+    ButtonModule,
     TableModule,
-    AccordionModule
+    DialogModule,
+    AccordionModule,
+    BrowserAnimationsModule
   ],
   exports: [],
   providers: [

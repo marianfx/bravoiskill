@@ -1,14 +1,18 @@
 import { Component, OnInit } from '@angular/core';
-import { TableModule } from 'primeng/table';
 import { User } from '../auth/models/user';
 import { HttpClient } from '@angular/common/http';
 import { UserService } from '../auth/service/user.service';
+
 @Component({
   selector: 'app-users-table',
   templateUrl: './users-table.component.html',
   styleUrls: ['./users-table.component.css']
 })
 export class UsersTableComponent implements OnInit {
+  displayDialog: boolean;
+  user: User = {} as User;
+  selectedUser: User;
+  newUser: boolean;
   users: User[];
   cols: any[];
 
@@ -16,6 +20,7 @@ export class UsersTableComponent implements OnInit {
 
   ngOnInit() {
     this.uService.getAllUsers().subscribe(users => (this.users = users));
+    
     this.cols = [
       { field: 'userId', header: 'Id' },
       { field: 'firstName', header: 'First Name' },
@@ -24,5 +29,23 @@ export class UsersTableComponent implements OnInit {
       { field: 'email', header: 'Email' },
       { field: 'skype', header: 'Skype' }
     ];
+  }
+
+  showDialogToAdd() {
+    this.newUser = true;
+    this.user = {} as User;
+    this.displayDialog = true;
+  }
+
+  save() {
+    let users = [...this.users];
+    if (this.newUser)
+      users.push(this.user);
+    else
+      users[this.users.indexOf(this.selectedUser)] = this.user;
+
+    this.users = users;
+    this.user = null;
+    this.displayDialog = false;
   }
 }
