@@ -20,6 +20,7 @@ import { UsersTableComponent } from './users-table/users-table.component';
 import {TableModule} from 'primeng/table';
 import {NgModalsComponent, NgModalsDirective } from 'ng-modals';
 import { AddUserComponent } from './users-table/add-user/add-user.component';
+import {AccordionModule} from 'primeng/accordion';
 
 @NgModule({
   declarations: [
@@ -44,7 +45,8 @@ import { AddUserComponent } from './users-table/add-user/add-user.component';
     BrowserModule,
     HttpClientModule,
     ReactiveFormsModule,
-    TableModule
+    TableModule,
+    AccordionModule
   ],
   exports: [AddUserComponent],
   providers: [
