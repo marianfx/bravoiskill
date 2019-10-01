@@ -1,5 +1,5 @@
 <div class="content-section implementation">
-    <p-table #tt [value]="users" [columns]="cols" [paginator]="true" [rows]="10" selectionMode="single"
+    <p-table #tt [value]="users" [columns]="cols" [paginator]="true" [rows]="10" selectionMode="single" sortMode="multiple"
         [(selection)]="selectedUser" (onRowSelect)="onRowSelect($event)">
         <ng-template pTemplate="caption">
             <i class="fa fa-search" style="margin:4px 4px 0 0"></i>
