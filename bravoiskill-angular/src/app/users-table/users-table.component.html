@@ -2,8 +2,6 @@
   <ng-template pTemplate="caption">
       <i class="fa fa-search" style="margin:4px 4px 0 0"></i>
       <input type="text" pInputText size="50" placeholder="Global Filter" (input)="tt.filterGlobal($event.target.value, 'contains')" style="width:auto">
-      <i class="add-button fa fa-plus-circle" (click)="toggleModal()"></i>
-      <!-- <ng-modals [options]="modalOptions" [status]="isModalOpen" (close)="toggleModal()"></ng-modals> -->
   </ng-template>
   <ng-template pTemplate="header" let-colums>
       <tr>

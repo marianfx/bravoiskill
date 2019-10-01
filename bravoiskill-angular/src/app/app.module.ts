@@ -16,10 +16,7 @@ import { NavbarComponent } from './shared/navbar/navbar.component';
 import { FooterComponent } from './shared/footer/footer.component';
 import { UserService } from './auth/service/user.service';
 import { UsersTableComponent } from './users-table/users-table.component';
-// import { ServiceComponent } from './users-table/service/service.component';
-import {TableModule} from 'primeng/table';
-import {NgModalsComponent, NgModalsDirective } from 'ng-modals';
-import { AddUserComponent } from './users-table/add-user/add-user.component';
+import { TableModule } from 'primeng/table';
 import {AccordionModule} from 'primeng/accordion';
 
 @NgModule({
@@ -29,11 +26,7 @@ import {AccordionModule} from 'primeng/accordion';
     FooterComponent,
     LoginComponent,
     HomeComponent,
-    UsersTableComponent,
-    AddUserComponent,
-    NgModalsComponent,
-    NgModalsDirective
-   // ServiceComponent,
+    UsersTableComponent
   ],
   imports: [
     BrowserModule,
@@ -48,7 +41,7 @@ import {AccordionModule} from 'primeng/accordion';
     TableModule,
     AccordionModule
   ],
-  exports: [AddUserComponent],
+  exports: [],
   providers: [
     UserService,
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },

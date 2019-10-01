@@ -3,7 +3,6 @@ import { TableModule } from 'primeng/table';
 import { User } from '../auth/models/user';
 import { HttpClient } from '@angular/common/http';
 import { UserService } from '../auth/service/user.service';
-import { AddUserComponent } from './add-user/add-user.component';
 @Component({
   selector: 'app-users-table',
   templateUrl: './users-table.component.html',
@@ -12,13 +11,6 @@ import { AddUserComponent } from './add-user/add-user.component';
 export class UsersTableComponent implements OnInit {
   users: User[];
   cols: any[];
-
-  public isModalOpen = false;
-  public modalOptions = {
-    width: '70',
-    height: '70',
-    component: AddUserComponent
-  };
 
   constructor(private uService: UserService) {}
 
@@ -32,8 +24,5 @@ export class UsersTableComponent implements OnInit {
       { field: 'email', header: 'Email' },
       { field: 'skype', header: 'Skype' }
     ];
-  }
-  toggleModal() {
-    this.isModalOpen = !this.isModalOpen;
   }
 }
