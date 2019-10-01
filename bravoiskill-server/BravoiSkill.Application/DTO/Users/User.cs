@@ -1,10 +1,10 @@
-﻿using System;
+﻿using BravoiSkill.Application.DTO.Shared;
+using System;
 using System.Collections.Generic;
-using System.Text;
 
 namespace BravoiSkill.Application.DTO.Users
 {
-    public class User
+    public class User: BaseDto
     {
         public int UserId { get; set; }
         public string FirstName { get; set; }
@@ -17,5 +17,14 @@ namespace BravoiSkill.Application.DTO.Users
         public int ProfileId { get; set; }
         public int BadgeId { get; set; }
         public string Token { get; set; }
+
+        public override IList<string> Validate()
+        {
+            Errors = new List<string>();
+            if (string.IsNullOrWhiteSpace(FirstName))
+                Errors.Add(nameof(FirstName) + " cannot be empty");
+
+            return Errors;
+        }
     }
 }

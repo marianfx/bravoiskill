@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace BravoiSkill.Application.Services.Interfaces
 {
@@ -11,5 +12,7 @@ namespace BravoiSkill.Application.Services.Interfaces
         IEnumerable<User> GetAll();
 
         void Create(User user);
+
+        Task Edit(int id, User user);
     }   
 }

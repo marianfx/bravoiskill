@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace BravoiSkill.Domain.Interfaces.Repositories.Users
 {
@@ -14,5 +15,9 @@ namespace BravoiSkill.Domain.Interfaces.Repositories.Users
         /// <returns>The newly created user</returns>
         IQueryable<Domain.Entities.Users.User> GetListOfUsers();
         User Create(Entities.Users.User user);
+
+        User Update(User user);
+
+        Task<User> GetUserById(int Id);
     }
 }

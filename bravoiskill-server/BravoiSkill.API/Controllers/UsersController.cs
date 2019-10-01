@@ -26,7 +26,7 @@ namespace BravoiSkill.API.Controllers
         public IActionResult Authenticate([FromBody]Application.DTO.Users.User userParam)
         {
             var user = _userService.Authenticate(userParam.Email, userParam.Password);
-            
+
             if (user == null)
                 return BadRequest(new { message = "Username or password is incorrect" });
             return Ok(user);
@@ -47,5 +47,15 @@ namespace BravoiSkill.API.Controllers
             _userService.Create(user);
             return Ok();
         }
+
+        [HttpPut("{id}")]
+        // PUT api/users/id
+        public async Task<IActionResult> Edit(int id, [FromBody]Application.DTO.Users.User user)
+        {
+            // _userService.Edit(id, user).GetAwaiter().GetResult(); // varianta transforma async in sync
+            await _userService.Edit(id, user); // varianta cu async
+            return Ok();
+
+        }
     }
-    }
+}

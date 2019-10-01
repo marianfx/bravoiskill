@@ -2,6 +2,7 @@
 using BravoiSkill.Application.DTO.Users;
 using BravoiSkill.Application.Services.Interfaces;
 using BravoiSkill.Domain.Interfaces.Repositories.Users;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
 using System;
@@ -10,6 +11,7 @@ using System.IdentityModel.Tokens.Jwt;
 using System.Linq;
 using System.Security.Claims;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace BravoiSkill.Application.Services.Implementations
 {
@@ -73,6 +75,23 @@ namespace BravoiSkill.Application.Services.Implementations
         {
             var userEntity = _mapper.Map<Domain.Entities.Users.User>(user);
             _userRepository.Create(userEntity);
+        }
+
+        public async Task Edit(int id, User user)
+        {
+            user.Validate();
+            if (user.HasErrors)
+                throw new Exception(user.Errors[0]);
+
+            var userEntity = await _userRepository.GetUserById(id);
+            if (userEntity == null)
+                throw new Exception("User does not exist in database");
+            user.UserId = userEntity.UserId;
+            user.ProfileId = userEntity.ProfileId;
+            user.BadgeId = userEntity.BadgeId;
+
+            _mapper.Map<User, Domain.Entities.Users.User>(user, userEntity);
+            _userRepository.Update(userEntity);
         }
 
     }
