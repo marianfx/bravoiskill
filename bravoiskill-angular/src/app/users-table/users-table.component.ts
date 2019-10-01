@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { User } from '../auth/models/user';
 import { HttpClient } from '@angular/common/http';
 import { UserService } from '../auth/service/user.service';
+import { MessageService } from 'primeng/api';
 
 @Component({
   selector: 'app-users-table',
@@ -15,11 +16,17 @@ export class UsersTableComponent implements OnInit {
   newUser: boolean;
   users: User[];
   cols: any[];
+  users1: User[];
+  users2: User[];
+  clonedUsers: { [s: string]: User; } = {};
 
-  constructor(private uService: UserService) {}
+  constructor(private uService: UserService, 
+              private messageService: MessageService) { }
 
   ngOnInit() {
     this.uService.getAllUsers().subscribe(users => (this.users = users));
+    this.uService.getAllUsers().subscribe(users => (this.users1 = users));
+    this.uService.getAllUsers().subscribe(users => (this.users2 = users));
     
     this.cols = [
       { field: 'userId', header: 'Id' },
@@ -47,5 +54,24 @@ export class UsersTableComponent implements OnInit {
     this.users = users;
     this.user = null;
     this.displayDialog = false;
+  }
+
+  onRowEditInit(user: User) {
+    this.clonedUsers[user.id] = { ...user };
+  }
+
+  onRowEditSave(user: User) {
+    if (user.id > 0) {
+      delete this.clonedUsers[user.id];
+      this.messageService.add({ severity: 'success', summary: 'Success', detail: 'User is updated' });
+    }
+    else {
+      this.messageService.add({ severity: 'error', summary: 'Error', detail: 'Year is required' });
+    }
+  }
+
+  onRowEditCancel(user: User, index: number) {
+    this.users2[index] = this.clonedUsers[user.id];
+    delete this.clonedUsers[user.id];
   }
 }

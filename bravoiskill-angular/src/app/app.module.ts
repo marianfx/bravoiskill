@@ -21,6 +21,8 @@ import {DialogModule} from 'primeng/dialog';
 import {ButtonModule} from 'primeng/button';
 import {AccordionModule} from 'primeng/accordion';
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
+import {MessagesModule} from 'primeng/messages';
+import {MessageModule} from 'primeng/message';
 
 @NgModule({
   declarations: [
@@ -45,7 +47,9 @@ import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
     TableModule,
     DialogModule,
     AccordionModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    MessagesModule,
+    MessageModule
   ],
   exports: [],
   providers: [

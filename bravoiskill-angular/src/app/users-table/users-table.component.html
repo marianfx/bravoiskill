@@ -30,15 +30,26 @@
                 <input *ngSwitchCase="'skype'" pInputText type="text" style="width:100%"
                     (input)="tt.filter($event.target.value, col.field, col.filterMatchMode)">
             </th>
+            <th style="width:8em"></th>
         </tr>
     </ng-template>
     <ng-template pTemplate="body" let-user>
-        <tr>
+        <tr [pEditableRow]="rowData">
             <td *ngFor="let col of cols">
-                <div [ngSwitch]="col.field">
-                    <div *ngSwitchCase="'dateOfBirth'">{{user[col.field] | date: 'd MMMM y'}}</div>
-                    <div *ngSwitchDefault>{{user[col.field]}}</div>
-                </div>
+                <p-cellEditor>
+                    <div [ngSwitch]="col.field">
+                        <div *ngSwitchCase="'dateOfBirth'">{{user[col.field] | date: 'd MMMM y'}}</div>
+                        <div *ngSwitchDefault>{{user[col.field]}}</div>
+                    </div>
+                </p-cellEditor>
+            </td>
+            <td style="text-align:center">
+                <button *ngIf="!editing" pButton type="button" pInitEditableRow icon="pi pi-pencil" class="ui-button-info"
+                    (click)="onRowEditInit(rowData)"></button>
+                <button *ngIf="editing" pButton type="button" pSaveEditableRow icon="pi pi-check" class="ui-button-success"
+                    style="margin-right: .5em" (click)="onRowEditSave(rowData)"></button>
+                <button *ngIf="editing" pButton type="button" pCancelEditableRow icon="pi pi-times" class="ui-button-danger"
+                    (click)="onRowEditCancel(rowData, ri)"></button>
             </td>
         </tr>
     </ng-template>
