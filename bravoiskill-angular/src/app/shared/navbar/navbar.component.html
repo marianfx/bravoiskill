@@ -82,18 +82,10 @@
           </div>
         </li>
         <li class="nav-item">
-          <a class="nav-link" *ngIf="currentUser" (click)="logout()">Logout</a>
+          <a class="nav-link" *ngIf="currentUser" (click)="logout()"  style="cursor: pointer" >Logout</a>
         </li>
-        <li class="nav-item dropdown">
-          <a class="nav-link no-caret" data-toggle="dropdown" role="button" *ngIf="currentUser">
-            <i class="ni ni-collection d-lg-none"></i>
-            <span class="nav-link-inner--text">Tables</span>
-          </a>
-          <div class="dropdown-menu">
-            <a [routerLink]="['/aUsers']" class="dropdown-item">Users</a>
-            <a [routerLink]="['/aDepartments']" class="dropdown-item">Departments</a>
-            <a [routerLink]="['/aSkills']" class="dropdown-item">Skills</a>
-          </div>
+        <li class="nav-item">
+          <a class="nav-link" *ngIf="currentUser" style="cursor: pointer" >Tables</a>
         </li>
       </ul>
     </div>

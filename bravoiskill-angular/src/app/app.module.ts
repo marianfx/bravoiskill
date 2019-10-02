@@ -22,7 +22,7 @@ import { ButtonModule } from 'primeng/button';
 import { AccordionModule } from 'primeng/accordion';
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import {CalendarModule} from 'primeng/calendar';
-
+import { TabMenuModule } from 'primeng/tabmenu';
 
 @NgModule({
   declarations: [
@@ -48,7 +48,8 @@ import {CalendarModule} from 'primeng/calendar';
     DialogModule,
     AccordionModule,
     BrowserAnimationsModule,
-    CalendarModule
+    CalendarModule,
+    TabMenuModule
   ],
   exports: [],
   providers: [

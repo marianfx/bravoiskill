@@ -1,58 +1,90 @@
 <div class="content-section implementation">
-    <p-table #tt [value]="users" [columns]="cols" [paginator]="true" [rows]="10" selectionMode="single" sortMode="multiple"
-        [(selection)]="selectedUser" (onRowSelect)="onRowSelect($event)">
-        <ng-template pTemplate="caption">
-            <i class="fa fa-search" style="margin:4px 4px 0 0"></i>
-            <input type="text" pInputText size="50" placeholder="Global Filter"
-                (input)="tt.filterGlobal($event.target.value, 'contains')" style="width:auto">
-        </ng-template>
-        <ng-template pTemplate="header" let-colums>
-            <tr>
-                <th *ngFor="let col of cols" [pSortableColumn]="col.field">
-                    {{col.header}}
-                    <p-sortIcon [field]="col.field" ariaLabel="Activate to sort"
-                        ariaLabelDesc="Activate to sort in descending order"
-                        ariaLabelAsc="Activate to sort in ascending order">
-                    </p-sortIcon>
-                </th>
-            </tr>
-            <tr>
-                <th *ngFor="let col of cols" [ngSwitch]="col.field">
-                    <input *ngSwitchCase="'userId'" pInputText type="text" style="width:100%"
-                        (input)="tt.filter($event.target.value, col.field, col.filterMatchMode)">
-                    <input *ngSwitchCase="'firstName'" pInputText type="text" style="width:100%"
-                        (input)="tt.filter($event.target.value, col.field, col.filterMatchMode)">
-                    <input *ngSwitchCase="'lastName'" pInputText type="text" style="width:100%"
-                        (input)="tt.filter($event.target.value, col.field, col.filterMatchMode)">
-                    <input *ngSwitchCase="'dateOfBirth'" pInputText type="text" style="width:100%"
-                        (input)="tt.filter($event.target.value, col.field, col.filterMatchMode)">
-                    <input *ngSwitchCase="'email'" pInputText type="text" style="width:100%"
-                        (input)="tt.filter($event.target.value, col.field, col.filterMatchMode)">
-                    <input *ngSwitchCase="'skype'" pInputText type="text" style="width:100%"
-                        (input)="tt.filter($event.target.value, col.field, col.filterMatchMode)">
-                </th>
-            </tr>
-        </ng-template>
-        <ng-template pTemplate="body" let-user let-rowData let-columns="cols">
-            <tr [pSelectableRow]="rowData">
-                <td *ngFor="let col of cols">
-                    <div [ngSwitch]="col.field">
-                        <div *ngSwitchCase="'dateOfBirth'">{{user[col.field] | date: 'dd MMM y'}}</div>
-                        <div *ngSwitchDefault>{{user[col.field]}}</div>
-                    </div>
-                </td>
-            </tr>
-        </ng-template>
-        <ng-template pTemplate="summary" let-rowData>
-            <div style="text-align:left">
-                <button type="button" pButton icon="fa fa-plus" (click)="showDialogToAdd()" label="Add"></button>
-            </div>
-        </ng-template>
-    </p-table>
+    <ngb-tabset [justify]="'center'" class="custom-tab-content flex-column flex-md-row" type="pills">
+        <!-- Users -->
+        <ngb-tab>
+            <ng-template ngbTabTitle>
+                <i class="fa fa-user"></i> Users
+            </ng-template>
+            <ng-template ngbTabContent>
+                <p-table #tt [value]="users" [columns]="cols" [paginator]="true" [rows]="10" selectionMode="single"
+                    sortMode="multiple" [(selection)]="selectedUser" (onRowSelect)="onRowSelect($event)">
+                    <ng-template pTemplate="caption">
+                        <i class="fa fa-search" style="margin:4px 4px 0 0"></i>
+                        <input type="text" pInputText size="50" placeholder="Global Filter"
+                            (input)="tt.filterGlobal($event.target.value, 'contains')" style="width:auto">
+                    </ng-template>
+                    <ng-template pTemplate="header" let-colums>
+                        <tr>
+                            <th *ngFor="let col of cols" [pSortableColumn]="col.field">
+                                {{col.header}}
+                                <p-sortIcon [field]="col.field" ariaLabel="Activate to sort"
+                                    ariaLabelDesc="Activate to sort in descending order"
+                                    ariaLabelAsc="Activate to sort in ascending order">
+                                </p-sortIcon>
+                            </th>
+                        </tr>
+                        <tr>
+                            <th *ngFor="let col of cols" [ngSwitch]="col.field">
+                                <input *ngSwitchCase="'userId'" pInputText type="text" style="width:100%"
+                                    (input)="tt.filter($event.target.value, col.field, col.filterMatchMode)">
+                                <input *ngSwitchCase="'firstName'" pInputText type="text" style="width:100%"
+                                    (input)="tt.filter($event.target.value, col.field, col.filterMatchMode)">
+                                <input *ngSwitchCase="'lastName'" pInputText type="text" style="width:100%"
+                                    (input)="tt.filter($event.target.value, col.field, col.filterMatchMode)">
+                                <input *ngSwitchCase="'dateOfBirth'" pInputText type="text" style="width:100%"
+                                    (input)="tt.filter($event.target.value, col.field, col.filterMatchMode)">
+                                <input *ngSwitchCase="'email'" pInputText type="text" style="width:100%"
+                                    (input)="tt.filter($event.target.value, col.field, col.filterMatchMode)">
+                                <input *ngSwitchCase="'skype'" pInputText type="text" style="width:100%"
+                                    (input)="tt.filter($event.target.value, col.field, col.filterMatchMode)">
+                            </th>
+                        </tr>
+                    </ng-template>
+                    <ng-template pTemplate="body" let-user let-rowData let-columns="cols">
+                        <tr [pSelectableRow]="rowData">
+                            <td *ngFor="let col of cols">
+                                <div [ngSwitch]="col.field">
+                                    <div *ngSwitchCase="'dateOfBirth'">{{user[col.field] | date: 'dd MMM y'}}</div>
+                                    <div *ngSwitchDefault>{{user[col.field]}}</div>
+                                </div>
+                            </td>
+                        </tr>
+                    </ng-template>
+                    <ng-template pTemplate="summary" let-rowData>
+                        <div style="text-align:left">
+                            <button type="button" pButton icon="fa fa-plus" (click)="showDialogToAdd()"
+                                label="Add"></button>
+                        </div>
+                    </ng-template>
+                </p-table>
+            </ng-template>
+        </ngb-tab>
+
+        <!-- Departments -->
+        <ngb-tab>
+            <ng-template ngbTabTitle>
+                <i class="fa fa-users"></i> Departments
+            </ng-template>
+            <ng-template ngbTabContent>
+                <p class="description">Departments table!</p>
+            </ng-template>
+        </ngb-tab>
+
+        <!-- Skills -->
+        <ngb-tab>
+            <ng-template ngbTabTitle>
+                <i class="fa fa-cogs"></i> Skills
+            </ng-template>
+            <ng-template ngbTabContent>
+                <p class="description">Skills table!</p>
+            </ng-template>
+        </ngb-tab>
+    </ngb-tabset>
 </div>
 
+<!-- Dialog pt Add -->
 <p-dialog header="User Details" [(visible)]="displayDialog" [responsive]="true" showEffect="fade" [modal]="true"
-    [style]="{width: '60%'}">
+    [style]="{'max-width': '400px'}">
     <div class="ui-g ui-fluid" *ngIf="user">
         <div class="ui-g-12" *ngIf="user.userId">
             <div class="ui-g-4">
@@ -83,11 +115,13 @@
                 <label for="dateOfBirth">Date of birth</label>
             </div>
             <div class="ui-g-8" *ngIf="user.dateOfBirth != null">
-                <input id="dateOfBirth" [(ngModel)]="user.dateOfBirth" dateFormat="dd.mm.yy" showTime="true" [style]="{width: '50%', height: '100%'}"/>
+                <input id="dateOfBirth" [(ngModel)]="user.dateOfBirth" dateFormat="dd.mm.yy" showTime="true"
+                    [style]="{width: '50%', height: '100%'}" />
             </div>
             <div class="ui-g-8" *ngIf="user.dateOfBirth == null">
-              <p-calendar id="dateOfBirth" [(ngModel)]="user.dateOfBirth" dateFormat="dd.mm.yy" showTime="false" [style]="{width: '50%', height: '100%'}" [showIcon]="true"></p-calendar>
-          </div>
+                <p-calendar id="dateOfBirth" [(ngModel)]="user.dateOfBirth" dateFormat="dd.mm.yy" showTime="false"
+                    [style]="{width: '50%', height: '100%'}" [showIcon]="true"></p-calendar>
+            </div>
         </div>
         <div class="ui-g-12">
             <div class="ui-g-4">
@@ -108,8 +142,78 @@
     </div>
     <p-footer>
         <div class="ui-dialog-buttonpane ui-helper-clearfix">
-            <button type="button" pButton icon="fa fa-close" (click)="delete()" label="Delete"></button>
-            <button type="button" pButton icon="fa fa-check" (click)="save()" label="Save"></button>
+            <button type="button" class="ui-button-danger" pButton icon="fa fa-close" (click)="delete()"
+                label="Cancel"></button>
+            <button type="button" class="ui-button-success" pButton icon="fa fa-check" (click)="save()"
+                label="Add"></button>
         </div>
     </p-footer>
 </p-dialog>
+
+<!-- Dialog pt Edit -->
+<!-- <p-dialog header="User Details" [(visible)]="displayDialog" [responsive]="true" showEffect="fade" [modal]="true"
+    [style]="{'max-width': '500px'}">
+    <div class="ui-g ui-fluid" *ngIf="user">
+        <div class="ui-g-12" *ngIf="user.userId">
+            <div class="ui-g-4">
+                <label for="id">User Id</label>
+            </div>
+            <div class="ui-g-8">
+                <input readonly pInputText id="userId" [(ngModel)]="user.userId" />
+            </div>
+        </div>
+        <div class="ui-g-12">
+            <div class="ui-g-4">
+                <label for="firstName">First Name</label>
+            </div>
+            <div class="ui-g-8">
+                <input pInputText id="firstName" [(ngModel)]="user.firstName" />
+            </div>
+        </div>
+        <div class="ui-g-12">
+            <div class="ui-g-4">
+                <label for="lastName">Last Name</label>
+            </div>
+            <div class="ui-g-8">
+                <input pInputText id="lastName" [(ngModel)]="user.lastName" />
+            </div>
+        </div>
+        <div class="ui-g-12">
+            <div class="ui-g-4">
+                <label for="dateOfBirth">Date of birth</label>
+            </div>
+            <div class="ui-g-8" *ngIf="user.dateOfBirth != null">
+                <input id="dateOfBirth" [(ngModel)]="user.dateOfBirth" dateFormat="dd.mm.yy" showTime="true"
+                    [style]="{width: '100%', height: '100%'}" />
+            </div>
+            <div class="ui-g-8" *ngIf="user.dateOfBirth == null">
+                <p-calendar id="dateOfBirth" [(ngModel)]="user.dateOfBirth" dateFormat="dd.mm.yy" showTime="false"
+                    [style]="{width: '100%', height: '100%'}" [showIcon]="true"></p-calendar>
+            </div>
+        </div>
+        <div class="ui-g-12">
+            <div class="ui-g-4">
+                <label for="email">Email</label>
+            </div>
+            <div class="ui-g-8">
+                <input pInputText id="email" [(ngModel)]="user.email" />
+            </div>
+        </div>
+        <div class="ui-g-12">
+            <div class="ui-g-4">
+                <label for="skype">Skype</label>
+            </div>
+            <div class="ui-g-8">
+                <input pInputText id="skype" [(ngModel)]="user.skype" />
+            </div>
+        </div>
+    </div>
+    <p-footer>
+        <div class="ui-dialog-buttonpane ui-helper-clearfix">
+            <button type="button" class="ui-button-danger" pButton icon="fa fa-close" (click)="delete()"
+                label="Delete"></button>
+            <button type="button" class="ui-button-success" pButton icon="fa fa-check" (click)="save()"
+                label="Save"></button>
+        </div>
+    </p-footer>
+</p-dialog> -->

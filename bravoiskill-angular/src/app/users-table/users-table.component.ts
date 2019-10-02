@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { User } from '../auth/models/user';
 import { UserService } from '../auth/service/user.service';
+import { MenuItem } from 'primeng/api';
+
 
 @Component({
   selector: 'app-users-table',
@@ -14,11 +16,21 @@ export class UsersTableComponent implements OnInit {
   newUser: boolean;
   users: User[];
   cols: any[];
+  items: MenuItem[];
+
+  activeItem: MenuItem;
 
   constructor(private uService: UserService) { }
 
   ngOnInit() {
     this.uService.getAllUsers().subscribe(users => (this.users = users));
+
+    this.items = [
+      { label: 'Users', icon: 'fa fa-fw fa-user' },
+      { label: 'Departments', icon: 'fa fa-fw fa-users' },
+      { label: 'Skills', icon: 'fa fa-fw fa-cogs' }
+    ];
+    this.activeItem = this.items[0];
 
     this.cols = [
       { field: 'userId', header: 'Id' },

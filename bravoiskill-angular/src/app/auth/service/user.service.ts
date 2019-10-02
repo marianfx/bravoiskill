@@ -11,4 +11,8 @@ export class UserService {
     return this.http
       .get<User[]>(`${environment.AppRoot}/users`);
   }
+
+  // postUser() {
+  //   this.http.post(`${environment.AppRoot}/users`);
+  // }
 }
