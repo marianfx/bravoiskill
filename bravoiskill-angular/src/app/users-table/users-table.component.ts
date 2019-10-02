@@ -1,8 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { User } from '../auth/models/user';
-import { HttpClient } from '@angular/common/http';
 import { UserService } from '../auth/service/user.service';
-import { MessageService } from 'primeng/api';
 
 @Component({
   selector: 'app-users-table',
@@ -16,18 +14,12 @@ export class UsersTableComponent implements OnInit {
   newUser: boolean;
   users: User[];
   cols: any[];
-  users1: User[];
-  users2: User[];
-  clonedUsers: { [s: string]: User; } = {};
 
-  constructor(private uService: UserService, 
-              private messageService: MessageService) { }
+  constructor(private uService: UserService) { }
 
   ngOnInit() {
     this.uService.getAllUsers().subscribe(users => (this.users = users));
-    this.uService.getAllUsers().subscribe(users => (this.users1 = users));
-    this.uService.getAllUsers().subscribe(users => (this.users2 = users));
-    
+
     this.cols = [
       { field: 'userId', header: 'Id' },
       { field: 'firstName', header: 'First Name' },
@@ -56,22 +48,24 @@ export class UsersTableComponent implements OnInit {
     this.displayDialog = false;
   }
 
-  onRowEditInit(user: User) {
-    this.clonedUsers[user.id] = { ...user };
+  delete() {
+    let index = this.users.indexOf(this.selectedUser);
+    this.users = this.users.filter((val, i) => i != index);
+    this.user = null;
+    this.displayDialog = false;
   }
 
-  onRowEditSave(user: User) {
-    if (user.id > 0) {
-      delete this.clonedUsers[user.id];
-      this.messageService.add({ severity: 'success', summary: 'Success', detail: 'User is updated' });
-    }
-    else {
-      this.messageService.add({ severity: 'error', summary: 'Error', detail: 'Year is required' });
-    }
+  onRowSelect(event) {
+    this.newUser = false;
+    this.user = this.cloneCar(event.data);
+    this.displayDialog = true;
   }
 
-  onRowEditCancel(user: User, index: number) {
-    this.users2[index] = this.clonedUsers[user.id];
-    delete this.clonedUsers[user.id];
+  cloneCar(c: User): User {
+    let user = {} as User;
+    for (let prop in c) {
+      user[prop] = c[prop];
+    }
+    return user;
   }
 }

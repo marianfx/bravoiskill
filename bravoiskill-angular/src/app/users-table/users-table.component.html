@@ -1,64 +1,55 @@
-<p-table #tt [value]="users" [columns]="cols" [paginator]="true" [rows]="10" selectionMode="single"
-    [(selection)]="selectedUser">
-    <ng-template pTemplate="caption">
-        <i class="fa fa-search" style="margin:4px 4px 0 0"></i>
-        <input type="text" pInputText size="50" placeholder="Global Filter"
-            (input)="tt.filterGlobal($event.target.value, 'contains')" style="width:auto">
-    </ng-template>
-    <ng-template pTemplate="header" let-colums>
-        <tr>
-            <th *ngFor="let col of cols" [pSortableColumn]="col.field">
-                {{col.header}}
-                <p-sortIcon [field]="col.field" ariaLabel="Activate to sort"
-                    ariaLabelDesc="Activate to sort in descending order"
-                    ariaLabelAsc="Activate to sort in ascending order">
-                </p-sortIcon>
-            </th>
-        </tr>
-        <tr>
-            <th *ngFor="let col of cols" [ngSwitch]="col.field">
-                <input *ngSwitchCase="'userId'" pInputText type="text" style="width:100%"
-                    (input)="tt.filter($event.target.value, col.field, col.filterMatchMode)">
-                <input *ngSwitchCase="'firstName'" pInputText type="text" style="width:100%"
-                    (input)="tt.filter($event.target.value, col.field, col.filterMatchMode)">
-                <input *ngSwitchCase="'lastName'" pInputText type="text" style="width:100%"
-                    (input)="tt.filter($event.target.value, col.field, col.filterMatchMode)">
-                <input *ngSwitchCase="'dateOfBirth'" pInputText type="text" style="width:100%"
-                    (input)="tt.filter($event.target.value, col.field, col.filterMatchMode)">
-                <input *ngSwitchCase="'email'" pInputText type="text" style="width:100%"
-                    (input)="tt.filter($event.target.value, col.field, col.filterMatchMode)">
-                <input *ngSwitchCase="'skype'" pInputText type="text" style="width:100%"
-                    (input)="tt.filter($event.target.value, col.field, col.filterMatchMode)">
-            </th>
-            <th style="width:8em"></th>
-        </tr>
-    </ng-template>
-    <ng-template pTemplate="body" let-user>
-        <tr [pEditableRow]="rowData">
-            <td *ngFor="let col of cols">
-                <p-cellEditor>
+<div class="content-section implementation">
+    <p-table #tt [value]="users" [columns]="cols" [paginator]="true" [rows]="10" selectionMode="single"
+        [(selection)]="selectedUser" (onRowSelect)="onRowSelect($event)">
+        <ng-template pTemplate="caption">
+            <i class="fa fa-search" style="margin:4px 4px 0 0"></i>
+            <input type="text" pInputText size="50" placeholder="Global Filter"
+                (input)="tt.filterGlobal($event.target.value, 'contains')" style="width:auto">
+        </ng-template>
+        <ng-template pTemplate="header" let-colums>
+            <tr>
+                <th *ngFor="let col of cols" [pSortableColumn]="col.field">
+                    {{col.header}}
+                    <p-sortIcon [field]="col.field" ariaLabel="Activate to sort"
+                        ariaLabelDesc="Activate to sort in descending order"
+                        ariaLabelAsc="Activate to sort in ascending order">
+                    </p-sortIcon>
+                </th>
+            </tr>
+            <tr>
+                <th *ngFor="let col of cols" [ngSwitch]="col.field">
+                    <input *ngSwitchCase="'userId'" pInputText type="text" style="width:100%"
+                        (input)="tt.filter($event.target.value, col.field, col.filterMatchMode)">
+                    <input *ngSwitchCase="'firstName'" pInputText type="text" style="width:100%"
+                        (input)="tt.filter($event.target.value, col.field, col.filterMatchMode)">
+                    <input *ngSwitchCase="'lastName'" pInputText type="text" style="width:100%"
+                        (input)="tt.filter($event.target.value, col.field, col.filterMatchMode)">
+                    <input *ngSwitchCase="'dateOfBirth'" pInputText type="text" style="width:100%"
+                        (input)="tt.filter($event.target.value, col.field, col.filterMatchMode)">
+                    <input *ngSwitchCase="'email'" pInputText type="text" style="width:100%"
+                        (input)="tt.filter($event.target.value, col.field, col.filterMatchMode)">
+                    <input *ngSwitchCase="'skype'" pInputText type="text" style="width:100%"
+                        (input)="tt.filter($event.target.value, col.field, col.filterMatchMode)">
+                </th>
+            </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-user let-rowData let-columns="cols">
+            <tr [pSelectableRow]="rowData">
+                <td *ngFor="let col of cols">
                     <div [ngSwitch]="col.field">
-                        <div *ngSwitchCase="'dateOfBirth'">{{user[col.field] | date: 'd MMMM y'}}</div>
+                        <div *ngSwitchCase="'dateOfBirth'">{{user[col.field] | date: 'dd MMM y'}}</div>
                         <div *ngSwitchDefault>{{user[col.field]}}</div>
                     </div>
-                </p-cellEditor>
-            </td>
-            <td style="text-align:center">
-                <button *ngIf="!editing" pButton type="button" pInitEditableRow icon="pi pi-pencil" class="ui-button-info"
-                    (click)="onRowEditInit(rowData)"></button>
-                <button *ngIf="editing" pButton type="button" pSaveEditableRow icon="pi pi-check" class="ui-button-success"
-                    style="margin-right: .5em" (click)="onRowEditSave(rowData)"></button>
-                <button *ngIf="editing" pButton type="button" pCancelEditableRow icon="pi pi-times" class="ui-button-danger"
-                    (click)="onRowEditCancel(rowData, ri)"></button>
-            </td>
-        </tr>
-    </ng-template>
-    <ng-template pTemplate="summary" let-rowData>
-        <div style="text-align:left">
-            <button type="button" pButton icon="fa fa-plus" (click)="showDialogToAdd()" label="Add"></button>
-        </div>
-    </ng-template>
-</p-table>
+                </td>
+            </tr>
+        </ng-template>
+        <ng-template pTemplate="summary" let-rowData>
+            <div style="text-align:left">
+                <button type="button" pButton icon="fa fa-plus" (click)="showDialogToAdd()" label="Add"></button>
+            </div>
+        </ng-template>
+    </p-table>
+</div>
 
 <p-dialog header="User Details" [(visible)]="displayDialog" [responsive]="true" showEffect="fade" [modal]="true"
     [style]="{width: '400px'}">
@@ -114,6 +105,7 @@
     </div>
     <p-footer>
         <div class="ui-dialog-buttonpane ui-helper-clearfix">
+            <button type="button" pButton icon="fa fa-close" (click)="delete()" label="Delete"></button>
             <button type="button" pButton icon="fa fa-check" (click)="save()" label="Save"></button>
         </div>
     </p-footer>

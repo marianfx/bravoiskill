@@ -14,3 +14,8 @@ input {
 input:hover {
     border-color: #212121;
 }
+
+.content-section {
+    display: block;
+    padding: 30px;
+}
