@@ -70,6 +70,12 @@ namespace BravoiSkill.Application.Services.Implementations
             return usersDto;
         }
 
+        public User GetById(int id)
+        {
+            var userDb = _userRepository.GetUserById(id);
+            return _mapper.Map<User>(userDb);
+        }
+
         public void Create(User user)
         {
             var userEntity = _mapper.Map<Domain.Entities.Users.User>(user);
@@ -82,7 +88,7 @@ namespace BravoiSkill.Application.Services.Implementations
             if (user.HasErrors)
                 throw new Exception(user.Errors[0]);
 
-            var userEntity = await _userRepository.GetUserById(id);
+            var userEntity = _userRepository.GetUserById(id);
             if (userEntity == null)
                 throw new Exception("User does not exist in database");
             user.UserId = userEntity.UserId;

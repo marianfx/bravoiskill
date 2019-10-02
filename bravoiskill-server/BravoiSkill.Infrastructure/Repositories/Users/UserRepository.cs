@@ -23,6 +23,14 @@ namespace BravoiSkill.Infrastructure.Repositories.Users
             return rez;
         }
 
+        public User GetUserById(int id)
+        {
+            var rez = from us in _context.Users
+                      where us.UserId == id
+                      select us;
+            return rez.FirstOrDefault();
+        }
+
         public User Create(User user)
         {
             _context.Set<User>().Add(user);
@@ -35,10 +43,6 @@ namespace BravoiSkill.Infrastructure.Repositories.Users
             _context.Entry(user).State = EntityState.Modified;
             _context.SaveChanges();
             return user;
-        }
-        public async Task<User> GetUserById(int Id)
-        {
-            return await _context.Set<User>().SingleOrDefaultAsync(p => p.UserId == Id);
         }
 
     }

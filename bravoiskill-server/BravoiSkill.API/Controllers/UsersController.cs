@@ -40,9 +40,17 @@ namespace BravoiSkill.API.Controllers
             return Ok(users);
         }
 
+        // GET api/users/:id
+        [HttpGet("{id}")]
+        public IActionResult Get(int id)
+        {
+            var user = _userService.GetById(id);
+            return Ok(user);
+        }
+
         // POST api/users
         [HttpPost]
-        public IActionResult Create(Application.DTO.Users.User user)
+        public IActionResult Create([FromBody]Application.DTO.Users.User user)
         {
             _userService.Create(user);
             return Ok();
