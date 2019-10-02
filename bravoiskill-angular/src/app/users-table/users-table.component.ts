@@ -57,15 +57,17 @@ export class UsersTableComponent implements OnInit {
 
   onRowSelect(event) {
     this.newUser = false;
-    this.user = this.cloneCar(event.data);
+    this.user = this.cloneUser(event.data);
     this.displayDialog = true;
   }
 
-  cloneCar(c: User): User {
+  cloneUser(c: User): User {
     let user = {} as User;
     for (let prop in c) {
       user[prop] = c[prop];
     }
+    console.log(user);
+    console.log(c);
     return user;
   }
 }
