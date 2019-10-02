@@ -11,6 +11,7 @@ import { MenuItem } from 'primeng/api';
 })
 export class UsersTableComponent implements OnInit {
   displayDialog: boolean;
+  displayDialog1: boolean;
   user: User = {} as User;
   selectedUser: User;
   newUser: boolean;
@@ -48,29 +49,42 @@ export class UsersTableComponent implements OnInit {
     this.displayDialog = true;
   }
 
+  showDialogToEdit() {
+    this.newUser = true;
+    this.user = {} as User;
+    this.displayDialog1 = true;
+  }
+
   save() {
     let users = [...this.users];
     if (this.newUser)
       users.push(this.user);
     else
       users[this.users.indexOf(this.selectedUser)] = this.user;
-
     this.users = users;
     this.user = null;
     this.displayDialog = false;
   }
 
-  delete() {
+  close() {
     let index = this.users.indexOf(this.selectedUser);
     this.users = this.users.filter((val, i) => i != index);
     this.user = null;
     this.displayDialog = false;
   }
 
-  onRowSelect(event) {
+  delete() {
+
+  }
+
+  saveEdit() {
+
+  }
+
+  onEditSelect(event) {
     this.newUser = false;
     this.user = this.cloneUser(event.data);
-    this.displayDialog = true;
+    this.displayDialog1 = true;
   }
 
   cloneUser(c: User): User {

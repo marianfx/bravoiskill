@@ -6,8 +6,8 @@
                 <i class="fa fa-user"></i> Users
             </ng-template>
             <ng-template ngbTabContent>
-                <p-table #tt [value]="users" [columns]="cols" [paginator]="true" [rows]="10" selectionMode="single"
-                    sortMode="multiple" [(selection)]="selectedUser" (onRowSelect)="onRowSelect($event)">
+                <p-table #tt [value]="users" [columns]="cols" [paginator]="true" [rows]="10"
+                    sortMode="multiple" [(selection)]="selectedUser">
                     <ng-template pTemplate="caption">
                         <i class="fa fa-search" style="margin:4px 4px 0 0"></i>
                         <input type="text" pInputText size="50" placeholder="Global Filter"
@@ -22,6 +22,7 @@
                                     ariaLabelAsc="Activate to sort in ascending order">
                                 </p-sortIcon>
                             </th>
+                            <th>Actions</th>
                         </tr>
                         <tr>
                             <th *ngFor="let col of cols" [ngSwitch]="col.field">
@@ -38,6 +39,7 @@
                                 <input *ngSwitchCase="'skype'" pInputText type="text" style="width:100%"
                                     (input)="tt.filter($event.target.value, col.field, col.filterMatchMode)">
                             </th>
+                            <th></th>
                         </tr>
                     </ng-template>
                     <ng-template pTemplate="body" let-user let-rowData let-columns="cols">
@@ -47,6 +49,14 @@
                                     <div *ngSwitchCase="'dateOfBirth'">{{user[col.field] | date: 'dd MMM y'}}</div>
                                     <div *ngSwitchDefault>{{user[col.field]}}</div>
                                 </div>
+                            </td>
+                            <td>
+                                <button type="button" class="ui-button-danger" pButton icon="fa fa-trash"
+                                    (click)="delete()"></button>
+                                <button type="button" class="ui-button-success" pButton icon="fa fa-pencil" 
+                                    (click)="onEditSelect($event)"></button>
+                                    <!-- "showDialogToAdd()" -->
+                                    <!-- "onRowSelect($event)" -->
                             </td>
                         </tr>
                     </ng-template>
@@ -83,17 +93,9 @@
 </div>
 
 <!-- Dialog pt Add -->
-<p-dialog header="User Details" [(visible)]="displayDialog" [responsive]="true" showEffect="fade" [modal]="true"
-    [style]="{'max-width': '400px'}">
+<p-dialog header="Add User" [(visible)]="displayDialog" [responsive]="true" showEffect="fade" [modal]="true"
+    [style]="{'max-width': '500px'}">
     <div class="ui-g ui-fluid" *ngIf="user">
-        <div class="ui-g-12" *ngIf="user.userId">
-            <div class="ui-g-4">
-                <label for="id">User Id</label>
-            </div>
-            <div class="ui-g-8">
-                <input readonly pInputText id="userId" [(ngModel)]="user.userId" />
-            </div>
-        </div>
         <div class="ui-g-12">
             <div class="ui-g-4">
                 <label for="firstName">First Name</label>
@@ -116,11 +118,11 @@
             </div>
             <div class="ui-g-8" *ngIf="user.dateOfBirth != null">
                 <input id="dateOfBirth" [(ngModel)]="user.dateOfBirth" dateFormat="dd.mm.yy" showTime="true"
-                    [style]="{width: '50%', height: '100%'}" />
+                    [style]="{width: '100%', height: '100%'}" />
             </div>
             <div class="ui-g-8" *ngIf="user.dateOfBirth == null">
                 <p-calendar id="dateOfBirth" [(ngModel)]="user.dateOfBirth" dateFormat="dd.mm.yy" showTime="false"
-                    [style]="{width: '50%', height: '100%'}" [showIcon]="true"></p-calendar>
+                    [style]="{width: '100%', height: '100%'}" [showIcon]="true"></p-calendar>
             </div>
         </div>
         <div class="ui-g-12">
@@ -142,19 +144,19 @@
     </div>
     <p-footer>
         <div class="ui-dialog-buttonpane ui-helper-clearfix">
-            <button type="button" class="ui-button-danger" pButton icon="fa fa-close" (click)="delete()"
+            <button type="button" class="ui-button-danger" pButton icon="fa fa-close" (click)="close()"
                 label="Cancel"></button>
-            <button type="button" class="ui-button-success" pButton icon="fa fa-check" (click)="save()"
+            <button type="button" class="ui-button-success" pButton icon="fa fa-plus" (click)="save()"
                 label="Add"></button>
         </div>
     </p-footer>
 </p-dialog>
 
 <!-- Dialog pt Edit -->
-<!-- <p-dialog header="User Details" [(visible)]="displayDialog" [responsive]="true" showEffect="fade" [modal]="true"
+<p-dialog header="Edit User" [(visible)]="displayDialog1" [responsive]="true" showEffect="fade" [modal]="true" selectionMode="single"
     [style]="{'max-width': '500px'}">
     <div class="ui-g ui-fluid" *ngIf="user">
-        <div class="ui-g-12" *ngIf="user.userId">
+        <div class="ui-g-12">
             <div class="ui-g-4">
                 <label for="id">User Id</label>
             </div>
@@ -210,10 +212,8 @@
     </div>
     <p-footer>
         <div class="ui-dialog-buttonpane ui-helper-clearfix">
-            <button type="button" class="ui-button-danger" pButton icon="fa fa-close" (click)="delete()"
-                label="Delete"></button>
-            <button type="button" class="ui-button-success" pButton icon="fa fa-check" (click)="save()"
-                label="Save"></button>
+            <button type="button" class="ui-button-success" pButton icon="fa fa-check" (click)="saveEdit()"
+                label="Save Edit"></button>
         </div>
     </p-footer>
-</p-dialog> -->
+</p-dialog>
