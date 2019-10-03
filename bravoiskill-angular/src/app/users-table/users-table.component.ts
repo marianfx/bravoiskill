@@ -105,6 +105,14 @@ export class UsersTableComponent implements OnInit {
   }
 
   saveEdit() {
+///edit user in back-end
+    this.uService.editUser(this.user.userId, this.user).subscribe(
+      (response) => console.log(response),
+      (error) => console.log(error));
+///
+    this.user = null;
+    this.displayDialogU2 = false;
+    this.uService.getAllUsers().subscribe(users => (this.users = users));
 
   }
 

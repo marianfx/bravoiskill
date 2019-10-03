@@ -206,13 +206,13 @@
 <!-- Dialog pt Edit -->
 <p-dialog header="Edit User" [(visible)]="displayDialogU2" [responsive]="true" showEffect="fade" [modal]="true"
     selectionMode="single" [style]="{'max-width': '500px'}">
-    <div class="ui-g ui-fluid" *ngIf="user">
+    <div class="ui-g ui-fluid">
         <div class="ui-g-12">
             <div class="ui-g-4">
                 <label for="id">User Id</label>
             </div>
             <div class="ui-g-8">
-                <input readonly pInputText id="userId" [(ngModel)]="user.userId" />
+                <input pInputText id="userId" [(ngModel)]="user.userId" />
             </div>
         </div>
         <div class="ui-g-12">

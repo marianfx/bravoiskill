@@ -14,13 +14,14 @@ export class UserService {
   }
 
   getUserById(id: number){
-    return this.http.get<User>(`${environment.AppRoot}/users/id/${id}`);
+    return this.http.get<User>(`${environment.AppRoot}/users/${id}`);
   }
 
   createUser(user: User){
     return this.http.post(`${environment.AppRoot}/users`,user);
-
-
+  }
+  editUser(id: number, user: User){
+    return this.http.put(`${environment.AppRoot}/users/${id}`,user);
   }
 
 }
