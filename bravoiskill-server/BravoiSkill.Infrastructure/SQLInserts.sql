@@ -1,4 +1,5 @@
 ﻿
+
 INSERT INTO BravoiSkill.dbo.Badges (Description) VALUES 
 ('n00bie'),
 ('Incepator'),
@@ -40,12 +41,12 @@ INSERT INTO BravoiSkill.dbo.Skills (Description, CategoryId) VALUES
 ;
 
 INSERT INTO BravoiSkill.dbo.Users (FirstName,LastName,DateOfBirth,Email,Password,Skype,Photo,DepartmentId,ProfileId,BadgeId) VALUES 
-('Andrei','Leahu','1996-11-29 00:00:00.000','andrei_lh@yahoo.com','123456',skype@notfakeskye.tru,NULL,1,1,3),
-('Lidia-Gabriela','Burca','1999-07-14 00:00:00.000','lidia_burca@yahoo.com','123456',skype@notfakeskye.tru,NULL,1,1,2),
-('Olimpia','Ticlos','1997-06-10 00:00:00.000','olimpia_ticlos@yahoo.com','123456',skype@notfakeskye.tru,NULL,1,1,3),
-('Guest','GUEST','1997-06-10 00:00:00.000','guest@yahoo.com','123456',skype@notfakeskye.tru,NULL,2,3,1),
-('User','USER','1997-06-10 00:00:00.000','user@yahoo.com','123456',skype@notfakeskye.tru,NULL,3,2,1),
-('User','USER','1997-06-10 00:00:00.000','user@yahoo.com','123456',skype@notfakeskye.tru,NULL,2,2,1)
+('Andrei','Leahu','1996-11-29 00:00:00.000','andrei_lh@yahoo.com','123456','skype@notfakeskye.tru',NULL,1,1,3),
+('Lidia-Gabriela','Burca','1999-07-14 00:00:00.000','lidia_burca@yahoo.com','123456','skype@notfakeskye.tru',NULL,1,1,2),
+('Olimpia','Ticlos','1997-06-10 00:00:00.000','olimpia_ticlos@yahoo.com','123456','skype@notfakeskye.tru',NULL,1,1,3),
+('Guest','GUEST','1997-06-10 00:00:00.000','guest@yahoo.com','123456','skype@notfakeskye.tru',NULL,2,3,1),
+('User','USER','1997-06-10 00:00:00.000','user@yahoo.com','123456','skype@notfakeskye.tru',NULL,3,2,1),
+('User','USER','1997-06-10 00:00:00.000','user@yahoo.com','123456','skype@notfakeskye.tru',NULL,2,2,1)
 ;
 
 
