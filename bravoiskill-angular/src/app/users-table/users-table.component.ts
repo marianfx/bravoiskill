@@ -12,7 +12,7 @@ import { Department } from '../auth/models/department';
 })
 export class UsersTableComponent implements OnInit {
   items: MenuItem[];
-  
+
   displayDialogU1: boolean;
   displayDialogU2: boolean;
   user: User = {} as User;
@@ -20,7 +20,7 @@ export class UsersTableComponent implements OnInit {
   newUser: boolean;
   users: User[];
   colsUser: any[];
-  
+
   displayDialogD1: boolean;
   displayDialogD2: boolean;
   department: Department = {} as Department;
@@ -31,7 +31,8 @@ export class UsersTableComponent implements OnInit {
 
   activeItem: MenuItem;
 
-  constructor(private uService: UserService) { }
+  constructor(private uService: UserService) {}
+
 
   ngOnInit() {
     this.uService.getAllUsers().subscribe(users => (this.users = users));
@@ -78,8 +79,15 @@ export class UsersTableComponent implements OnInit {
     else
       users[this.users.indexOf(this.selectedUser)] = this.user;
     this.users = users;
+///save user to back-end
+    this.uService.createUser(this.user).subscribe(
+      (response) => console.log(response),
+      (error) => console.log(error));
+///
     this.user = null;
     this.displayDialogU1 = false;
+
+
   }
 
   close() {

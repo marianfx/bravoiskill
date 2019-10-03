@@ -1,7 +1,8 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { User } from '../models/user';
 import { environment } from 'src/environments/environment';
+import { map } from 'rxjs/operators';
 
 @Injectable({ providedIn: 'root' })
 export class UserService {
@@ -12,7 +13,14 @@ export class UserService {
       .get<User[]>(`${environment.AppRoot}/users`);
   }
 
-  // postUser() {
-  //   this.http.post(`${environment.AppRoot}/users`);
-  // }
+  getUserById(id: number){
+    return this.http.get<User>(`${environment.AppRoot}/users/id/${id}`);
+  }
+
+  createUser(user: User){
+    return this.http.post(`${environment.AppRoot}/users`,user);
+
+
+  }
+
 }
