@@ -17,6 +17,7 @@ namespace BravoiSkill.Application.DTO.Users
         public int ProfileId { get; set; }
         public int BadgeId { get; set; }
         public string Token { get; set; }
+        public int DepartmentId { get; set; }
 
         public override IList<string> Validate()
         {
