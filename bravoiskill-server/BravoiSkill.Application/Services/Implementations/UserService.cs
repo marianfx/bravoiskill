@@ -78,6 +78,11 @@ namespace BravoiSkill.Application.Services.Implementations
 
         public void Create(User user)
         {
+            user.Validate();
+            if (user.HasErrors)
+                throw new Exception(user.Errors[0]);
+
+            user.Password = "123456";
             var userEntity = _mapper.Map<Domain.Entities.Users.User>(user);
             _userRepository.Create(userEntity);
         }

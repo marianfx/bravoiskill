@@ -23,7 +23,12 @@ namespace BravoiSkill.Application.DTO.Users
             Errors = new List<string>();
             if (string.IsNullOrWhiteSpace(FirstName))
                 Errors.Add(nameof(FirstName) + " cannot be empty");
-
+            else if (string.IsNullOrWhiteSpace(LastName))
+                Errors.Add(nameof(LastName) + " cannot be empty");
+            else if (string.IsNullOrWhiteSpace(Email))
+                Errors.Add(nameof(Email) + " cannot be empty");
+            else if (DateOfBirth == null)
+                Errors.Add(nameof(DateOfBirth) + " cannot be empty");
             return Errors;
         }
     }
