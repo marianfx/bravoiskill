@@ -9,7 +9,8 @@ INSERT INTO BravoiSkill.dbo.Badges (Description) VALUES
 INSERT INTO BravoiSkill.dbo.Departments (Description) VALUES 
 ('.NET'),
 ('Java'),
-('Testare')
+('Testare'),
+('Unasigned')
 ;
 
 INSERT INTO BravoiSkill.dbo.Profiles (Description) VALUES 
