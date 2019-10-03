@@ -6,8 +6,8 @@
                 <i class="fa fa-user"></i> Users
             </ng-template>
             <ng-template ngbTabContent>
-                <p-table #tt [value]="users" [columns]="cols" [paginator]="true" [rows]="10"
-                    sortMode="multiple" [(selection)]="selectedUser">
+                <p-table #tt [value]="users" [columns]="colsUser" [paginator]="true" [rows]="10" sortMode="multiple"
+                    [(selection)]="selectedUser">
                     <ng-template pTemplate="caption">
                         <i class="fa fa-search" style="margin:4px 4px 0 0"></i>
                         <input type="text" pInputText size="50" placeholder="Global Filter"
@@ -15,7 +15,7 @@
                     </ng-template>
                     <ng-template pTemplate="header" let-colums>
                         <tr>
-                            <th *ngFor="let col of cols" [pSortableColumn]="col.field">
+                            <th *ngFor="let col of colsUser" [pSortableColumn]="col.field">
                                 {{col.header}}
                                 <p-sortIcon [field]="col.field" ariaLabel="Activate to sort"
                                     ariaLabelDesc="Activate to sort in descending order"
@@ -25,7 +25,7 @@
                             <th>Actions</th>
                         </tr>
                         <tr>
-                            <th *ngFor="let col of cols" [ngSwitch]="col.field">
+                            <th *ngFor="let col of colsUser" [ngSwitch]="col.field">
                                 <input *ngSwitchCase="'userId'" pInputText type="text" style="width:100%"
                                     (input)="tt.filter($event.target.value, col.field, col.filterMatchMode)">
                                 <input *ngSwitchCase="'firstName'" pInputText type="text" style="width:100%"
@@ -42,9 +42,9 @@
                             <th></th>
                         </tr>
                     </ng-template>
-                    <ng-template pTemplate="body" let-user let-rowData let-columns="cols">
+                    <ng-template pTemplate="body" let-user let-rowData let-columns="colsUser">
                         <tr [pSelectableRow]="rowData">
-                            <td *ngFor="let col of cols">
+                            <td *ngFor="let col of colsUser">
                                 <div [ngSwitch]="col.field">
                                     <div *ngSwitchCase="'dateOfBirth'">{{user[col.field] | date: 'dd MMM y'}}</div>
                                     <div *ngSwitchDefault>{{user[col.field]}}</div>
@@ -53,7 +53,7 @@
                             <td>
                                 <button type="button" class="ui-button-danger" pButton icon="fa fa-trash"
                                     (click)="delete()"></button>
-                                <button type="button" class="ui-button-success" pButton icon="fa fa-pencil" 
+                                <button type="button" class="ui-button-success" pButton icon="fa fa-pencil"
                                     (click)="onEditSelect($event)"></button>
                                     <!-- "showDialogToAdd()" -->
                                     <!-- "onRowSelect($event)" -->
@@ -62,8 +62,8 @@
                     </ng-template>
                     <ng-template pTemplate="summary" let-rowData>
                         <div style="text-align:left">
-                            <button type="button" pButton icon="fa fa-plus" (click)="showDialogToAdd()"
-                                label="Add"></button>
+                            <button type="button" pButton icon="fa fa-plus" (click)="showDialogToAddUser()"
+                                label="Add User"></button>
                         </div>
                     </ng-template>
                 </p-table>
@@ -76,7 +76,58 @@
                 <i class="fa fa-users"></i> Departments
             </ng-template>
             <ng-template ngbTabContent>
-                <p class="description">Departments table!</p>
+                <p-table #tt [value]="departments" [columns]="colsDepartment" [paginator]="true" [rows]="10" sortMode="multiple"
+                    [(selection)]="selectedDepartment">
+                    <ng-template pTemplate="caption">
+                        <i class="fa fa-search" style="margin:4px 4px 0 0"></i>
+                        <input type="text" pInputText size="50" placeholder="Global Filter"
+                            (input)="tt.filterGlobal($event.target.value, 'contains')" style="width:auto">
+                    </ng-template>
+                    <ng-template pTemplate="header" let-colums>
+                        <tr>
+                            <th *ngFor="let col of colsDepartment" [pSortableColumn]="col.field">
+                                {{col.header}}
+                                <p-sortIcon [field]="col.field" ariaLabel="Activate to sort"
+                                    ariaLabelDesc="Activate to sort in descending order"
+                                    ariaLabelAsc="Activate to sort in ascending order">
+                                </p-sortIcon>
+                            </th>
+                            <th>Actions</th>
+                        </tr>
+                        <tr>
+                            <th *ngFor="let col of colsDepartment" [ngSwitch]="col.field">
+                                <input *ngSwitchCase="'departmentId'" pInputText type="text" style="width:100%"
+                                    (input)="tt.filter($event.target.value, col.field, col.filterMatchMode)">
+                                <input *ngSwitchCase="'description'" pInputText type="text" style="width:100%"
+                                    (input)="tt.filter($event.target.value, col.field, col.filterMatchMode)">
+                            </th>
+                            <th></th>
+                        </tr>
+                    </ng-template>
+                    <ng-template pTemplate="body" let-department let-rowData let-columns="colsDepartment">
+                        <tr [pSelectableRow]="rowData">
+                            <td *ngFor="let col of colsDepartment">
+                                <div [ngSwitch]="col.field">
+                                    <div *ngSwitchDefault>{{department[col.field]}}</div>
+                                </div>
+                            </td>
+                            <td>
+                                <button type="button" class="ui-button-danger" pButton icon="fa fa-trash"
+                                    (click)="delete()"></button>
+                                <button type="button" class="ui-button-success" pButton icon="fa fa-pencil"
+                                    (click)="onEditSelect($event)"></button>
+                                <!-- "showDialogToAdd()" -->
+                                <!-- "onRowSelect($event)" -->
+                            </td>
+                        </tr>
+                    </ng-template>
+                    <ng-template pTemplate="summary" let-rowData>
+                        <div style="text-align:left">
+                            <button type="button" pButton icon="fa fa-plus" (click)="showDialogToAddDepartment()"
+                                label="Add Department"></button>
+                        </div>
+                    </ng-template>
+                </p-table>
             </ng-template>
         </ngb-tab>
 
@@ -93,7 +144,7 @@
 </div>
 
 <!-- Dialog pt Add -->
-<p-dialog header="Add User" [(visible)]="displayDialog" [responsive]="true" showEffect="fade" [modal]="true"
+<p-dialog header="Add User" [(visible)]="displayDialogU1" [responsive]="true" showEffect="fade" [modal]="true"
     [style]="{'max-width': '500px'}">
     <div class="ui-g ui-fluid" *ngIf="user">
         <div class="ui-g-12">
@@ -153,8 +204,8 @@
 </p-dialog>
 
 <!-- Dialog pt Edit -->
-<p-dialog header="Edit User" [(visible)]="displayDialog1" [responsive]="true" showEffect="fade" [modal]="true" selectionMode="single"
-    [style]="{'max-width': '500px'}">
+<p-dialog header="Edit User" [(visible)]="displayDialogU2" [responsive]="true" showEffect="fade" [modal]="true"
+    selectionMode="single" [style]="{'max-width': '500px'}">
     <div class="ui-g ui-fluid" *ngIf="user">
         <div class="ui-g-12">
             <div class="ui-g-4">
