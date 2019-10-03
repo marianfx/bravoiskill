@@ -82,15 +82,15 @@ export class UsersTableComponent implements OnInit {
       users[this.users.indexOf(this.selectedUser)] = this.user;
     this.users = users;
 
-///save user to back-end
+    ///save user to back-end
     this.uService.createUser(this.user).subscribe(
       (response) => console.log(response),
       (error) => console.log(error));
-///
+    ///
+
     this.user = null;
     this.displayDialogU1 = false;
     this.uService.getAllUsers().subscribe(users => (this.users = users));
-
   }
 
   close() {
@@ -100,8 +100,11 @@ export class UsersTableComponent implements OnInit {
     this.displayDialogU1 = false;
   }
 
-  delete() {
-
+  deleteU() {
+    let index = this.users.indexOf(this.selectedUser);
+    this.uService.deleteUser(index).subscribe(
+      (response) => console.log(response),
+      (error) => console.log(error));
   }
 
   saveEdit() {

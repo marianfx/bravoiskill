@@ -20,8 +20,12 @@ export class UserService {
   createUser(user: User){
     return this.http.post(`${environment.AppRoot}/users`,user);
   }
+  
   editUser(id: number, user: User){
     return this.http.put(`${environment.AppRoot}/users/${id}`,user);
   }
 
+  deleteUser(id: number) {
+    return this.http.delete(`${environment.AppRoot}/users`);
+  }
 }

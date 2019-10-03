@@ -52,7 +52,7 @@
                             </td>
                             <td>
                                 <button type="button" class="ui-button-danger" pButton icon="fa fa-trash"
-                                    (click)="delete()"></button>
+                                    (click)="deleteU()"></button>
                                 <button type="button" class="ui-button-success" pButton icon="fa fa-pencil"
                                     (click)="onEditSelect($event)"></button>
                                     <!-- "showDialogToAdd()" -->
@@ -143,7 +143,7 @@
     </ngb-tabset>
 </div>
 
-<!-- Dialog pt Add -->
+<!-- Dialog pt Add User -->
 <p-dialog header="Add User" [(visible)]="displayDialogU1" [responsive]="true" showEffect="fade" [modal]="true"
     [style]="{'max-width': '500px'}">
     <div class="ui-g ui-fluid" *ngIf="user">
@@ -203,7 +203,7 @@
     </p-footer>
 </p-dialog>
 
-<!-- Dialog pt Edit -->
+<!-- Dialog pt Edit User -->
 <p-dialog header="Edit User" [(visible)]="displayDialogU2" [responsive]="true" showEffect="fade" [modal]="true"
     selectionMode="single" [style]="{'max-width': '500px'}">
     <div class="ui-g ui-fluid">
