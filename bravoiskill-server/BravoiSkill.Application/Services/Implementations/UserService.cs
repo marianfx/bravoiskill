@@ -110,7 +110,7 @@ namespace BravoiSkill.Application.Services.Implementations
             if (userEntity == null)
                 throw new Exception("User does not exist in database");
 
-            _userRepository.Update(userEntity);
+            _userRepository.Delete(userEntity);
         }
 
     }
