@@ -67,7 +67,7 @@ export class UsersTableComponent implements OnInit {
     this.displayDialogU1 = true;
   }
 
-  save() {
+  saveU1() {
 
     ///save user to back-end
     this.uService.createUser(this.user).subscribe(
@@ -79,12 +79,28 @@ export class UsersTableComponent implements OnInit {
     this.displayDialogU1 = false;
 
   }
+  saveD1(){
+    ///save user to back-end
+    this.dService.createDepartment(this.department).subscribe(
+      (response) => {console.log(response),this.dService.getAllDepartments().subscribe(departments => (this.departments = departments));},
+      (error) => console.log(error));
+    ///
 
-  close() {
+    this.department = null;
+    this.displayDialogD1 = false;
+  }
+
+  closeU1() {
     let index = this.users.indexOf(this.selectedUser);
     this.users = this.users.filter((val, i) => i != index);
     this.user = null;
     this.displayDialogU1 = false;
+  }
+  closeD1(){
+    let index = this.departments.indexOf(this.selectedDepartment);
+    this.departments = this.departments.filter((val, i) => i != index);
+    this.department = null;
+    this.displayDialogD1 = false;
   }
 
   deleteUser(id: number) {
@@ -94,7 +110,7 @@ export class UsersTableComponent implements OnInit {
       (error) => console.log(error));
   }
 
-  saveEdit(id: number, user: User) {
+  saveUserEdit(id: number, user: User) {
 ///edit user in back-end
     this.uService.editUser(id, user).subscribe(
       (response) => {console.log(response);  this.uService.getAllUsers().subscribe(users => (this.users = users));},
@@ -103,8 +119,18 @@ export class UsersTableComponent implements OnInit {
 ///
 this.user = null;
 this.displayDialogU2 = false;
-
   }
+  saveDepartmentEdit(id: number, department: Department) {
+    ///edit department in back-end
+        this.dService.editDepartment(id, department).subscribe(
+          (response) => {console.log(response);  this.dService.getAllDepartments().subscribe(departments => (this.departments = departments));},
+          (error) => console.log(error),
+         )
+    ///
+    this.department = null;
+    this.displayDialogD2 = false;
+
+      }
 
   onEditSelectUser(user: User) {
     this.newUser = false;
@@ -121,16 +147,31 @@ this.displayDialogU2 = false;
     console.log(c);
     return user;
   }
+  cloneDepartment(c: Department): Department {
+    let department = {} as Department;
+    for (let prop in c) {
+      department[prop] = c[prop];
+    }
+    console.log(department);
+    console.log(c);
+    return department;
+  }
 
 
   // DEPARTMENT
   showDialogToAddDepartment() {
-
+    this.newDepartment = true;
+    this.department = {} as Department;
+    this.displayDialogD1 = true;
   }
   deleteDepartment(departmentId: number){
-
+    this.dService.deleteDepartment(departmentId).subscribe(
+      (response) => {console.log(response);this.dService.getAllDepartments().subscribe(departments => (this.departments = departments));},
+      (error) => console.log(error));
   }
   onEditSelectDepartment(department: Department){
-
+    this.newDepartment = false;
+    this.department = this.cloneDepartment(department);
+    this.displayDialogD2 = true;
   }
 }

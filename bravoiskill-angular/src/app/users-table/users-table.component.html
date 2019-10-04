@@ -191,9 +191,9 @@
     </div>
     <p-footer>
         <div class="ui-dialog-buttonpane ui-helper-clearfix">
-            <button type="button" class="ui-button-danger" pButton icon="fa fa-close" (click)="close()"
+            <button type="button" class="ui-button-danger" pButton icon="fa fa-close" (click)="closeU1()"
                 label="Cancel"></button>
-            <button type="button" class="ui-button-success" pButton icon="fa fa-plus" (click)="save()"
+            <button type="button" class="ui-button-success" pButton icon="fa fa-plus" (click)="saveU1()"
                 label="Add"></button>
         </div>
     </p-footer>
@@ -208,7 +208,7 @@
                 <label for="userId">User Id</label>
             </div>
             <div class="ui-g-8">
-                <input pInputText id="userId" [(ngModel)]="user.userId"/>
+                <input readonly pInputText id="userId" [(ngModel)]="user.userId"/>
             </div>
         </div>
         <div class="ui-g-12">
@@ -259,7 +259,58 @@
     </div>
     <p-footer>
         <div class="ui-dialog-buttonpane ui-helper-clearfix">
-            <button type="button" class="ui-button-success" pButton icon="fa fa-check" (click)="saveEdit(user.userId, user)"
+            <button type="button" class="ui-button-success" pButton icon="fa fa-check" (click)="saveUserEdit(user.userId, user)"
+                label="Save Edit"></button>
+        </div>
+    </p-footer>
+</p-dialog>
+<!-- Dialog pt Add Department -->
+<p-dialog header="Add Department" [(visible)]="displayDialogD1" [responsive]="true" showEffect="fade" [modal]="true"
+    [style]="{'max-width': '500px'}">
+    <div class="ui-g ui-fluid" *ngIf="department">
+        <div class="ui-g-12">
+            <div class="ui-g-4">
+                <label for="description">Description</label>
+            </div>
+            <div class="ui-g-8">
+                <input pInputText id="description" [(ngModel)]="department.description" />
+            </div>
+        </div>
+    </div>
+    <p-footer>
+        <div class="ui-dialog-buttonpane ui-helper-clearfix">
+            <button type="button" class="ui-button-danger" pButton icon="fa fa-close" (click)="closeD1()"
+                label="Cancel"></button>
+            <button type="button" class="ui-button-success" pButton icon="fa fa-plus" (click)="saveD1()"
+                label="Add"></button>
+        </div>
+    </p-footer>
+</p-dialog>
+
+<!-- Dialog pt Edit Department -->
+<p-dialog header="Edit Department" [(visible)]="displayDialogD2" [responsive]="true" showEffect="fade" [modal]="true"
+    selectionMode="single" [style]="{'max-width': '500px'}">
+    <div class="ui-g ui-fluid" *ngIf="department">
+        <div class="ui-g-12">
+            <div class="ui-g-4">
+                <label for="departmentId">Department Id</label>
+            </div>
+            <div class="ui-g-8">
+                <input readonly pInputText id="departmentId" [(ngModel)]="department.departmentId"/>
+            </div>
+        </div>
+        <div class="ui-g-12">
+            <div class="ui-g-4">
+                <label for="description">Description</label>
+            </div>
+            <div class="ui-g-8">
+                <input pInputText id="description" [(ngModel)]="department.description" />
+            </div>
+        </div>
+    </div>
+    <p-footer>
+        <div class="ui-dialog-buttonpane ui-helper-clearfix">
+            <button type="button" class="ui-button-success" pButton icon="fa fa-check" (click)="saveDepartmentEdit(department.departmentId, department)"
                 label="Save Edit"></button>
         </div>
     </p-footer>
