@@ -57,7 +57,7 @@ namespace BravoiSkill.API.Controllers
         }
 
         [HttpPut("{id}")]
-        // PUT api/users/id
+        // PUT api/users/:id
         public async Task<IActionResult> Edit(int id, [FromBody]Application.DTO.Users.User user)
         {
             // _userService.Edit(id, user).GetAwaiter().GetResult(); // varianta transforma async in sync
@@ -67,7 +67,7 @@ namespace BravoiSkill.API.Controllers
         }
 
         [HttpDelete("{id}")]
-        // DELETE api/users/id
+        // DELETE api/users/:id
         public IActionResult Delete(int id)
         {
             _userService.Delete(id);

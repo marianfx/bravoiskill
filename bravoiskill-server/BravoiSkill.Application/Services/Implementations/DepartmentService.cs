@@ -62,7 +62,14 @@ namespace BravoiSkill.Application.Services.Implementations
             _mapper.Map<Department, Domain.Entities.Users.Department>(department, departmentEntity);
             _departmentRepository.Update(departmentEntity);
         }
+        public void Delete(int id)
+        {
+            var departmentEntity = _departmentRepository.GetDepartmentById(id);
+            if (departmentEntity == null)
+                throw new Exception("Department does not exist in database");
 
+            _departmentRepository.Delete(departmentEntity);
+        }
     }
 }
 

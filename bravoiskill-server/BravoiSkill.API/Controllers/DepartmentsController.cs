@@ -46,10 +46,18 @@ namespace BravoiSkill.API.Controllers
         }
 
         [HttpPut("{id}")]
-        // PUT api/departments/id
+        // PUT api/departments/:id
         public async Task<IActionResult> Edit(int id, [FromBody]Application.DTO.Users.Department department)
         {
            await _departmentService.Edit(id, department); // varianta cu async
+            return Ok();
+
+        }
+        [HttpDelete("{id}")]
+        // DELETE api/departments/:id
+        public IActionResult Delete(int id)
+        {
+            _departmentService.Delete(id);
             return Ok();
 
         }

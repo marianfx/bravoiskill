@@ -14,5 +14,6 @@ namespace BravoiSkill.Application.Services.Interfaces
         void Create(Department department);
 
         Task Edit(int id, Department department);
+        void Delete(int id);
     }   
 }

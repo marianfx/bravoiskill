@@ -44,6 +44,11 @@ namespace BravoiSkill.Infrastructure.Repositories.Users
             _context.SaveChanges();
             return department;
         }
+        public void Delete(Department department)
+        {
+            _context.Set<Department>().Remove(department);
+            _context.SaveChanges();
+        }
 
     }
 }

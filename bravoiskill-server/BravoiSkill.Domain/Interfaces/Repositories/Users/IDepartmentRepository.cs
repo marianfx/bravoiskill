@@ -13,5 +13,6 @@ namespace BravoiSkill.Domain.Interfaces.Repositories.Users
        Department Create(Department department);
 
         Department Update(Department department);
+        void Delete(Department user);
     }
 }
