@@ -18,8 +18,10 @@ namespace BravoiSkill.Domain.Interfaces.Repositories.Users
         /// <returns></returns>
         User GetUserById(int id);
 
-        User Create(Entities.Users.User user);
+        User Create(User user);
 
         User Update(User user);
+
+        void Delete(User user);
     }
 }

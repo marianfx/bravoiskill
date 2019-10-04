@@ -65,5 +65,14 @@ namespace BravoiSkill.API.Controllers
             return Ok();
 
         }
+
+        [HttpDelete("{id}")]
+        // DELETE api/users/id
+        public IActionResult Delete(int id)
+        {
+            _userService.Delete(id);
+            return Ok();
+
+        }
     }
 }

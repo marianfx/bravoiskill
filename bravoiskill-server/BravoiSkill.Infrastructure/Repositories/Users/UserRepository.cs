@@ -45,5 +45,11 @@ namespace BravoiSkill.Infrastructure.Repositories.Users
             return user;
         }
 
+        public void Delete(User user)
+        {
+            _context.Set<User>().Remove(user);
+            _context.SaveChanges();
+        }
+
     }
 }

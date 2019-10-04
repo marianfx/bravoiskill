@@ -104,6 +104,15 @@ namespace BravoiSkill.Application.Services.Implementations
             _userRepository.Update(userEntity);
         }
 
+        public void Delete(int id)
+        {
+            var userEntity = _userRepository.GetUserById(id);
+            if (userEntity == null)
+                throw new Exception("User does not exist in database");
+
+            _userRepository.Update(userEntity);
+        }
+
     }
 }
 
