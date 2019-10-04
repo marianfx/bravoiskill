@@ -23,6 +23,7 @@ import { AccordionModule } from 'primeng/accordion';
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import {CalendarModule} from 'primeng/calendar';
 import { TabMenuModule } from 'primeng/tabmenu';
+import { SkillService } from './auth/service/skill.service';
 
 @NgModule({
   declarations: [
@@ -53,6 +54,7 @@ import { TabMenuModule } from 'primeng/tabmenu';
   ],
   exports: [],
   providers: [
+    SkillService,
     UserService,
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
     { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },

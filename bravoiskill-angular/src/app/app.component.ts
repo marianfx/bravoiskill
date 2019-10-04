@@ -6,6 +6,7 @@ import 'rxjs/add/operator/filter';
 import { DOCUMENT } from '@angular/common';
 import { Location } from '@angular/common';
 import { UserService } from './auth/service/user.service';
+import { SkillService } from './auth/service/skill.service';
 
 var didScroll;
 var lastScrollTop = 0;
@@ -29,7 +30,8 @@ export class AppComponent implements OnInit {
         @Inject(DOCUMENT) private document: any,
         private element: ElementRef,
         public location: Location,
-        private uService: UserService) { }
+        private uService: UserService,
+        private sService: SkillService) { }
 
     @HostListener('window:scroll', ['$event'])
     hasScrolled() {

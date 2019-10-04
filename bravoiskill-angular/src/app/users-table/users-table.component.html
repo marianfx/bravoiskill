@@ -133,8 +133,59 @@
                 <i class="fa fa-cogs"></i> Skills
             </ng-template>
             <ng-template ngbTabContent>
-                <p class="description">Skills table!</p>
-            </ng-template>
+              <p-table #tt [value]="skills" [columns]="colsSkill" [paginator]="true" [rows]="10" sortMode="multiple"
+                  [(selection)]="selectedSkill">
+                  <ng-template pTemplate="caption">
+                      <i class="fa fa-search" style="margin:4px 4px 0 0"></i>
+                      <input type="text" pInputText size="50" placeholder="Global Filter"
+                          (input)="tt.filterGlobal($event.target.value, 'contains')" style="width:auto">
+                  </ng-template>
+                  <ng-template pTemplate="header" let-colums>
+                      <tr>
+                          <th *ngFor="let col of colsSkill" [pSortableColumn]="col.field">
+                              {{col.header}}
+                              <p-sortIcon [field]="col.field" ariaLabel="Activate to sort"
+                                  ariaLabelDesc="Activate to sort in descending order"
+                                  ariaLabelAsc="Activate to sort in ascending order">
+                              </p-sortIcon>
+                          </th>
+                          <th>Actions</th>
+                      </tr>
+                      <tr>
+                          <th *ngFor="let col of colsSkill" [ngSwitch]="col.field">
+                              <input *ngSwitchCase="'skillId'" pInputText type="text" style="width:100%"
+                                  (input)="tt.filter($event.target.value, col.field, col.filterMatchMode)">
+                              <input *ngSwitchCase="'description'" pInputText type="text" style="width:100%"
+                                  (input)="tt.filter($event.target.value, col.field, col.filterMatchMode)">
+                              <input *ngSwitchCase="'categoryId'" pInputText type="text" style="width:100%"
+                                  (input)="tt.filter($event.target.value, col.field, col.filterMatchMode)">
+                          </th>
+                          <th></th>
+                      </tr>
+                  </ng-template>
+                  <ng-template pTemplate="body" let-skill let-rowData let-columns="colsSkill">
+                      <tr [pSelectableRow]="rowData">
+                          <td *ngFor="let col of colsSkill">
+                              <div [ngSwitch]="col.field">
+                                  <div *ngSwitchDefault>{{skill[col.field]}}</div>
+                              </div>
+                          </td>
+                          <td>
+                              <button type="button" class="ui-button-danger" pButton icon="fa fa-trash"
+                                  (click)="deleteSkill(skill.skillId)"></button>
+                              <button type="button" class="ui-button-success" pButton icon="fa fa-pencil"
+                                  (click)="onEditSelectSkill(skill)"></button>
+                          </td>
+                      </tr>
+                  </ng-template>
+                  <ng-template pTemplate="summary" let-rowData>
+                      <div style="text-align:left">
+                          <button type="button" pButton icon="fa fa-plus" (click)="showDialogToAddSkill()"
+                              label="Add Skill"></button>
+                      </div>
+                  </ng-template>
+              </p-table>
+          </ng-template>
         </ngb-tab>
     </ngb-tabset>
 </div>

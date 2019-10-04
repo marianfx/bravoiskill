@@ -5,6 +5,8 @@ import { MenuItem } from 'primeng/api';
 import { User } from '../auth/models/user';
 import { Department } from '../auth/models/department';
 import { DepartmentService } from '../auth/service/department.service';
+import { Skill } from '../auth/models/skill';
+import { SkillService } from '../auth/service/skill.service';
 
 @Component({
   selector: 'app-users-table',
@@ -30,13 +32,22 @@ export class UsersTableComponent implements OnInit {
   departments: Department[];
   colsDepartment: any[];
 
+  displayDialogS1: boolean;
+  displayDialogS2: boolean;
+  skill: Skill = {} as Skill;
+  selectedSkill: Skill;
+  newSkill: boolean;
+  skills: Skill[];
+  colsSkill: any[];
+
   activeItem: MenuItem;
 
-  constructor(private uService: UserService, private dService: DepartmentService) { }
+  constructor(private uService: UserService, private dService: DepartmentService, private sService: SkillService) { }
 
   ngOnInit() {
     this.uService.getAllUsers().subscribe(users => (this.users = users));
     this.dService.getAllDepartments().subscribe (departments => (this.departments = departments));
+    this.sService.getAllSkills().subscribe(skills =>(this.skills = skills));
 
     this.items = [
       { label: 'Users', icon: 'fa fa-fw fa-user' },
@@ -57,6 +68,12 @@ export class UsersTableComponent implements OnInit {
     this.colsDepartment = [
       { field: 'departmentId', header: 'Id' },
       { field: 'description', header: 'Description' }
+    ];
+
+    this.colsSkill = [
+      { field: 'skillId', header: 'Id' },
+      { field: 'description', header: 'Description' },
+      { field: 'categoryId', header: 'CategoryId' }
     ];
   }
 
@@ -79,16 +96,7 @@ export class UsersTableComponent implements OnInit {
     this.displayDialogU1 = false;
 
   }
-  saveD1(){
-    ///save user to back-end
-    this.dService.createDepartment(this.department).subscribe(
-      (response) => {console.log(response),this.dService.getAllDepartments().subscribe(departments => (this.departments = departments));},
-      (error) => console.log(error));
-    ///
 
-    this.department = null;
-    this.displayDialogD1 = false;
-  }
 
   closeU1() {
     let index = this.users.indexOf(this.selectedUser);
@@ -96,12 +104,7 @@ export class UsersTableComponent implements OnInit {
     this.user = null;
     this.displayDialogU1 = false;
   }
-  closeD1(){
-    let index = this.departments.indexOf(this.selectedDepartment);
-    this.departments = this.departments.filter((val, i) => i != index);
-    this.department = null;
-    this.displayDialogD1 = false;
-  }
+
 
   deleteUser(id: number) {
 
@@ -120,17 +123,7 @@ export class UsersTableComponent implements OnInit {
 this.user = null;
 this.displayDialogU2 = false;
   }
-  saveDepartmentEdit(id: number, department: Department) {
-    ///edit department in back-end
-        this.dService.editDepartment(id, department).subscribe(
-          (response) => {console.log(response);  this.dService.getAllDepartments().subscribe(departments => (this.departments = departments));},
-          (error) => console.log(error),
-         )
-    ///
-    this.department = null;
-    this.displayDialogD2 = false;
 
-      }
 
   onEditSelectUser(user: User) {
     this.newUser = false;
@@ -147,15 +140,7 @@ this.displayDialogU2 = false;
     console.log(c);
     return user;
   }
-  cloneDepartment(c: Department): Department {
-    let department = {} as Department;
-    for (let prop in c) {
-      department[prop] = c[prop];
-    }
-    console.log(department);
-    console.log(c);
-    return department;
-  }
+
 
 
   // DEPARTMENT
@@ -174,4 +159,93 @@ this.displayDialogU2 = false;
     this.department = this.cloneDepartment(department);
     this.displayDialogD2 = true;
   }
+  saveDepartmentEdit(id: number, department: Department) {
+    ///edit department in back-end
+        this.dService.editDepartment(id, department).subscribe(
+          (response) => {console.log(response);  this.dService.getAllDepartments().subscribe(departments => (this.departments = departments));},
+          (error) => console.log(error),
+         )
+    ///
+    this.department = null;
+    this.displayDialogD2 = false;
+
+  }
+  cloneDepartment(c: Department): Department {
+    let department = {} as Department;
+    for (let prop in c) {
+      department[prop] = c[prop];
+    }
+    console.log(department);
+    console.log(c);
+    return department;
+  }
+  closeD1(){
+    let index = this.departments.indexOf(this.selectedDepartment);
+    this.departments = this.departments.filter((val, i) => i != index);
+    this.department = null;
+    this.displayDialogD1 = false;
+  }
+  saveD1(){
+    ///save user to back-end
+    this.dService.createDepartment(this.department).subscribe(
+      (response) => {console.log(response),this.dService.getAllDepartments().subscribe(departments => (this.departments = departments));},
+      (error) => console.log(error));
+    ///
+
+    this.department = null;
+    this.displayDialogD1 = false;
+  }
+
+ //Skill
+ showDialogToAddSkill() {
+  this.newSkill = true;
+  this.skill = {} as Skill;
+  this.displayDialogS1 = true;
+}
+deleteSkill(skillId: number){
+  this.sService.deleteSkill(skillId).subscribe(
+    (response) => {console.log(response);this.sService.getAllSkills().subscribe(skills => (this.skills = skills));},
+    (error) => console.log(error));
+}
+onEditSelectSkill(skill: Skill){
+  this.newSkill = false;
+  this.skill = this.cloneSkill(skill);
+  this.displayDialogS2 = true;
+}
+saveSkillEdit(id: number, skill: Skill) {
+  ///edit department in back-end
+      this.sService.editSkill(id, skill).subscribe(
+        (response) => {console.log(response); this.sService.getAllSkills().subscribe(skills => (this.skills = skills));},
+        (error) => console.log(error),
+       )
+  ///
+  this.skill = null;
+  this.displayDialogS2 = false;
+
+}
+cloneSkill(c: Skill): Skill {
+  let skill = {} as Skill;
+  for (let prop in c) {
+    skill[prop] = c[prop];
+  }
+  console.log(skill);
+  console.log(c);
+  return skill;
+}
+closeS1(){
+  let index = this.skills.indexOf(this.selectedSkill);
+  this.skills = this.skills.filter((val, i) => i != index);
+  this.skill = null;
+  this.displayDialogS1 = false;
+}
+saveS1(){
+  ///save user to back-end
+  this.sService.createSkill(this.skill).subscribe(
+    (response) => {console.log(response); this.sService.getAllSkills().subscribe(skills => (this.skills = skills));},
+    (error) => console.log(error));
+  ///
+
+  this.skill = null;
+  this.displayDialogS1 = false;
+}
 }
