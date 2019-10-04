@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using BravoiSkill.Application.DTO.Shared;
 using BravoiSkill.Application.DTO.Users;
 using BravoiSkill.Application.Services.Interfaces;
 using BravoiSkill.Domain.Interfaces.Repositories.Users;
@@ -81,9 +82,10 @@ namespace BravoiSkill.Application.Services.Implementations
             user.Validate();
             if (user.HasErrors)
                 throw new Exception(user.Errors[0]);
-            user.Password = "123456";
-            user.ProfileId = 3;
-            user.DepartmentId = 4;
+            user.Password = Constants.DefaultPassword;
+            user.ProfileId = Constants.DefaultProfileId;
+            user.DepartmentId = Constants.DefaultDepartmentId;
+            user.BadgeId = Constants.DefaultBadgeId;
             var userEntity = _mapper.Map<Domain.Entities.Users.User>(user);
             _userRepository.Create(userEntity);
         }
