@@ -52,11 +52,9 @@
                             </td>
                             <td>
                                 <button type="button" class="ui-button-danger" pButton icon="fa fa-trash"
-                                    (click)="deleteU(user.userId)"></button>
+                                    (click)="deleteUser(user.userId)"></button>
                                 <button type="button" class="ui-button-success" pButton icon="fa fa-pencil"
-                                    (click)="onEditSelect($event)"></button>
-                                    <!-- "showDialogToAdd()" -->
-                                    <!-- "onRowSelect($event)" -->
+                                    (click)="onEditSelectUser(user)"></button>
                             </td>
                         </tr>
                     </ng-template>
@@ -113,11 +111,9 @@
                             </td>
                             <td>
                                 <button type="button" class="ui-button-danger" pButton icon="fa fa-trash"
-                                    (click)="delete()"></button>
+                                    (click)="deleteDepartment(department.departmentId)"></button>
                                 <button type="button" class="ui-button-success" pButton icon="fa fa-pencil"
-                                    (click)="onEditSelect($event)"></button>
-                                <!-- "showDialogToAdd()" -->
-                                <!-- "onRowSelect($event)" -->
+                                    (click)="onEditSelectDepartment(department)"></button>
                             </td>
                         </tr>
                     </ng-template>
@@ -212,7 +208,7 @@
                 <label for="userId">User Id</label>
             </div>
             <div class="ui-g-8">
-                <input pInputText id="userId" [(ngModel)]="user.userId" />
+                <input pInputText id="userId" [(ngModel)]="user.userId"/>
             </div>
         </div>
         <div class="ui-g-12">
@@ -263,7 +259,7 @@
     </div>
     <p-footer>
         <div class="ui-dialog-buttonpane ui-helper-clearfix">
-            <button type="button" class="ui-button-success" pButton icon="fa fa-check" (click)="saveEdit()"
+            <button type="button" class="ui-button-success" pButton icon="fa fa-check" (click)="saveEdit(user.userId, user)"
                 label="Save Edit"></button>
         </div>
     </p-footer>

@@ -67,21 +67,7 @@ export class UsersTableComponent implements OnInit {
     this.displayDialogU1 = true;
   }
 
-  showDialogToEditUser() {
-    this.newUser = true;
-    this.user = {} as User;
-    this.displayDialogU2 = true;
-  }
-
   save() {
-    let users = [...this.users];
-    if (this.newUser)
-      {users.push(this.user);
-    }
-    else
-      users[this.users.indexOf(this.selectedUser)] = this.user;
-
-    this.users = users;
 
     ///save user to back-end
     this.uService.createUser(this.user).subscribe(
@@ -101,16 +87,16 @@ export class UsersTableComponent implements OnInit {
     this.displayDialogU1 = false;
   }
 
-  deleteU(id: number) {
+  deleteUser(id: number) {
 
     this.uService.deleteUser(id).subscribe(
       (response) => {console.log(response);this.uService.getAllUsers().subscribe(users => (this.users = users));},
       (error) => console.log(error));
   }
 
-  saveEdit() {
+  saveEdit(id: number, user: User) {
 ///edit user in back-end
-    this.uService.editUser(this.user.userId, this.user).subscribe(
+    this.uService.editUser(id, user).subscribe(
       (response) => {console.log(response);  this.uService.getAllUsers().subscribe(users => (this.users = users));},
       (error) => console.log(error),
      )
@@ -120,9 +106,9 @@ this.displayDialogU2 = false;
 
   }
 
-  onEditSelect(event) {
+  onEditSelectUser(user: User) {
     this.newUser = false;
-    this.user = this.cloneUser(event.data);
+    this.user = this.cloneUser(user);
     this.displayDialogU2 = true;
   }
 
@@ -139,6 +125,12 @@ this.displayDialogU2 = false;
 
   // DEPARTMENT
   showDialogToAddDepartment() {
+
+  }
+  deleteDepartment(departmentId: number){
+
+  }
+  onEditSelectDepartment(department: Department){
 
   }
 }
