@@ -85,13 +85,13 @@ export class UsersTableComponent implements OnInit {
 
     ///save user to back-end
     this.uService.createUser(this.user).subscribe(
-      (response) => console.log(response),
+      (response) => {console.log(response),this.uService.getAllUsers().subscribe(users => (this.users = users));},
       (error) => console.log(error));
     ///
 
     this.user = null;
     this.displayDialogU1 = false;
-    this.uService.getAllUsers().subscribe(users => (this.users = users));
+
   }
 
   close() {
@@ -101,17 +101,17 @@ export class UsersTableComponent implements OnInit {
     this.displayDialogU1 = false;
   }
 
-  deleteU() {
-    let index = this.users.indexOf(this.selectedUser);
-    this.uService.deleteUser(index).subscribe(
-      (response) => console.log(response),
+  deleteU(id: number) {
+
+    this.uService.deleteUser(id).subscribe(
+      (response) => {console.log(response);this.uService.getAllUsers().subscribe(users => (this.users = users));},
       (error) => console.log(error));
   }
 
   saveEdit() {
 ///edit user in back-end
     this.uService.editUser(this.user.userId, this.user).subscribe(
-      (response) => {console.log(response);  this.uService.getAllUsers().subscribe(users => (this.users = users))},
+      (response) => {console.log(response);  this.uService.getAllUsers().subscribe(users => (this.users = users));},
       (error) => console.log(error),
      )
 ///

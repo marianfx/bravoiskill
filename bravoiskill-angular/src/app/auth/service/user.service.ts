@@ -3,6 +3,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { User } from '../models/user';
 import { environment } from 'src/environments/environment';
 import { map } from 'rxjs/operators';
+import { Observable } from 'rxjs';
 
 @Injectable({ providedIn: 'root' })
 export class UserService {
@@ -20,12 +21,12 @@ export class UserService {
   createUser(user: User){
     return this.http.post(`${environment.AppRoot}/users`,user);
   }
-  
-  editUser(id: number, user: User){
-    return this.http.put(`${environment.AppRoot}/users/${id}`,user);
+
+  editUser(id: number, user: User): Observable<void>{
+    return this.http.put<void>(`${environment.AppRoot}/users/${id}`,user);
   }
 
-  deleteUser(id: number) {
-    return this.http.delete(`${environment.AppRoot}/users`);
+  deleteUser(id: number): Observable<void> {
+    return this.http.delete<void>(`${environment.AppRoot}/users/${id}`);
   }
 }
