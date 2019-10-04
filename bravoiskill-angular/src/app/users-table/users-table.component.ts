@@ -77,10 +77,10 @@ export class UsersTableComponent implements OnInit {
     let users = [...this.users];
     if (this.newUser)
       {users.push(this.user);
-      this.uService.getAllUsers().subscribe(users => (this.users = users));
     }
     else
       users[this.users.indexOf(this.selectedUser)] = this.user;
+
     this.users = users;
 
     ///save user to back-end
@@ -116,7 +116,7 @@ export class UsersTableComponent implements OnInit {
 ///
     this.user = null;
     this.displayDialogU2 = false;
-    this.uService.getAllUsers().subscribe(users => (this.users = users));
+    setTimeout(function(){this.uService.getAllUsers().subscribe(users => (this.users = users)), 200});
 
   }
 
