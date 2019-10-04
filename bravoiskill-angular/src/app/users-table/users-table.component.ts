@@ -4,6 +4,7 @@ import { MenuItem } from 'primeng/api';
 
 import { User } from '../auth/models/user';
 import { Department } from '../auth/models/department';
+import { DepartmentService } from '../auth/service/department.service';
 
 @Component({
   selector: 'app-users-table',
@@ -31,11 +32,11 @@ export class UsersTableComponent implements OnInit {
 
   activeItem: MenuItem;
 
-  constructor(private uService: UserService) {}
-
+  constructor(private uService: UserService, private dService: DepartmentService) { }
 
   ngOnInit() {
     this.uService.getAllUsers().subscribe(users => (this.users = users));
+    this.dService.getAllDepartments().subscribe (departments => (this.departments = departments));
 
     this.items = [
       { label: 'Users', icon: 'fa fa-fw fa-user' },
@@ -54,8 +55,8 @@ export class UsersTableComponent implements OnInit {
     ];
 
     this.colsDepartment = [
-      { field: 'DepartmentId', header: 'Id' },
-      { field: 'Description', header: 'Description' }
+      { field: 'departmentId', header: 'Id' },
+      { field: 'description', header: 'Description' }
     ];
   }
 

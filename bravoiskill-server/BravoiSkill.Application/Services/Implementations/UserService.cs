@@ -82,7 +82,6 @@ namespace BravoiSkill.Application.Services.Implementations
             if (user.HasErrors)
                 throw new Exception(user.Errors[0]);
             user.Password = "123456";
-            user.BadgeId = 1;
             user.ProfileId = 3;
             user.DepartmentId = 4;
             var userEntity = _mapper.Map<Domain.Entities.Users.User>(user);
@@ -100,7 +99,6 @@ namespace BravoiSkill.Application.Services.Implementations
                 throw new Exception("User does not exist in database");
             user.UserId = userEntity.UserId;
             user.ProfileId = userEntity.ProfileId;
-            user.BadgeId = userEntity.BadgeId;
 
             _mapper.Map<User, Domain.Entities.Users.User>(user, userEntity);
             _userRepository.Update(userEntity);
