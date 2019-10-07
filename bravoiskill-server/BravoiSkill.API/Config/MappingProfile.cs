@@ -18,6 +18,8 @@ namespace BravoiSkill.API.Config
 
             CreateMap<App.Users.Department, DomainEntities.Users.Department>()
                 .ReverseMap();
+            CreateMap<App.Users.Skill, DomainEntities.Users.Skill>()
+                .ReverseMap();
         }
     }
 }

@@ -49,6 +49,9 @@ namespace BravoiSkill.API
             services.AddTransient<IUserRepository, UserRepository>();
             services.AddTransient<IUserService, UserService>();
 
+            services.AddTransient<ISkillRepository, SkillRepository>();
+            services.AddTransient<ISkillService, SkillService>();
+
             services.AddTransient<IDepartmentRepository, DepartmentRepository>();
             services.AddTransient<IDepartmentService, DepartmentService>();
 
