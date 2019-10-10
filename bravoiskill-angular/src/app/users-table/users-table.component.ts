@@ -28,7 +28,8 @@ export class UsersTableComponent implements OnInit {
   newUser: boolean;
   users: User[];
   colsUser: any[];
-  alertDelete: boolean;
+  alertDeleteUser: boolean;
+  alertDeleteDepartment: boolean;
 
   displayDialogD1: boolean;
   displayDialogD2: boolean;
@@ -109,16 +110,25 @@ export class UsersTableComponent implements OnInit {
     this.displayDialogU1 = true;
   }
 
-  onDelete(user: User) {
-    this.alertDelete = true;
-    this.user = user;
+  onDeleteUser(user: User) {
+    this.user = this.cloneUser(user);
+    this.alertDeleteUser = true;
   }
 
-  closeAlertDelete()
+  closeAlertDeleteUser()
   {
-    this.alertDelete = false;
+    this.alertDeleteUser = false;
   }
 
+  onDeleteDepartment(department: Department) {
+    this.department = this.cloneDepartment(department);
+    this.alertDeleteDepartment = true;
+  }
+
+  closeAlertDeleteDepartment()
+  {
+    this.alertDeleteDepartment = false;
+  }
   saveU1() {
 
     ///save user to back-end
@@ -143,18 +153,20 @@ export class UsersTableComponent implements OnInit {
 
   deleteUser(id: number) {
     this.uService.deleteUser(id).subscribe(
-      (response) => {console.log(response);this.uService.getAllUsers().subscribe(users => (this.users = users));},
+      (response) => {console.log(response);
+                     this.uService.getAllUsers().subscribe(users => (this.users = users)); },
       (error) => console.log(error));
-    this.alertDelete = false;
+    this.alertDeleteUser = false;
   }
 
   saveUserEdit(id: number, user: User) {
-///edit user in back-end
+
+// edit user in back-end
     this.uService.editUser(id, user).subscribe(
       (response) => {console.log(response);  this.uService.getAllUsers().subscribe(users => (this.users = users));},
       (error) => console.log(error),
      )
-///
+//
 this.user = null;
 this.displayDialogU2 = false;
   }
@@ -188,6 +200,7 @@ this.displayDialogU2 = false;
     this.dService.deleteDepartment(departmentId).subscribe(
       (response) => {console.log(response);this.dService.getAllDepartments().subscribe(departments => (this.departments = departments));},
       (error) => console.log(error));
+    this.alertDeleteDepartment = false;
   }
   onEditSelectDepartment(department: Department){
     this.newDepartment = false;
