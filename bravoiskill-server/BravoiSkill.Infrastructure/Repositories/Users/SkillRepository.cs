@@ -20,9 +20,8 @@ namespace BravoiSkill.Infrastructure.Repositories.Users
 
         public IQueryable<Skill> GetListOfSkills()
         {
-            var rez = from us in _context.Skills
-                      select us;
-            return rez;
+            var skills = _context.Skills.Include(s => s.SkillCategory);
+            return skills;
         }
 
         public Skill GetSkillById(int id)
