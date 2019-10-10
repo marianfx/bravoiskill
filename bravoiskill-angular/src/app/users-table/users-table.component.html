@@ -52,7 +52,7 @@
                             </td>
                             <td>
                                 <button type="button" class="ui-button-danger" pButton icon="fa fa-trash"
-                                    (click)="deleteUser(user.userId)"></button>
+                                (click)="onDelete(user)"></button>
                                 <button type="button" class="ui-button-success" pButton icon="fa fa-pencil"
                                     (click)="onEditSelectUser(user)"></button>
                             </td>
@@ -312,6 +312,22 @@
         <div class="ui-dialog-buttonpane ui-helper-clearfix">
             <button type="button" class="ui-button-success" pButton icon="fa fa-check" (click)="saveUserEdit(user.userId, user)"
                 label="Save Edit"></button>
+        </div>
+    </p-footer>
+</p-dialog>
+
+<!-- Dialog pt Delete User -->
+<p-dialog header="Delete User" [(visible)]="alertDelete" [responsive]="true" showEffect="fade" [modal]="true"
+    selectionMode="single" [style]="{'max-width': '500px'}">
+    <div>
+        Are you shure that you want to delete this user?
+    </div>
+    <p-footer>
+        <div class="ui-dialog-buttonpane ui-helper-clearfix">
+            <button type="button" class="ui-button-danger" pButton icon="fa fa-close" (click)="closeAlertDelete()"
+            label="No"></button>
+            <button type="button" class="ui-button-success" pButton icon="fa fa-check" (click)="deleteUser(user.userId)"
+                label="Yes"></button>
         </div>
     </p-footer>
 </p-dialog>

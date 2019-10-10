@@ -7,6 +7,7 @@ import { Department } from '../auth/models/department';
 import { DepartmentService } from '../auth/service/department.service';
 import { Skill } from '../auth/models/skill';
 import { SkillService } from '../auth/service/skill.service';
+import {MDCDialog} from '@material/dialog';
 
 @Component({
   selector: 'app-users-table',
@@ -23,6 +24,7 @@ export class UsersTableComponent implements OnInit {
   newUser: boolean;
   users: User[];
   colsUser: any[];
+  alertDelete: boolean;
 
   displayDialogD1: boolean;
   displayDialogD2: boolean;
@@ -47,7 +49,7 @@ export class UsersTableComponent implements OnInit {
   ngOnInit() {
     this.uService.getAllUsers().subscribe(users => (this.users = users));
     this.dService.getAllDepartments().subscribe (departments => (this.departments = departments));
-    this.sService.getAllSkills().subscribe(skills =>(this.skills = skills));
+    this.sService.getAllSkills().subscribe(skills => (this.skills = skills));
 
     this.items = [
       { label: 'Users', icon: 'fa fa-fw fa-user' },
@@ -84,6 +86,16 @@ export class UsersTableComponent implements OnInit {
     this.displayDialogU1 = true;
   }
 
+  onDelete(user: User) {
+    this.alertDelete = true;
+    this.user = user;
+  }
+
+  closeAlertDelete()
+  {
+    this.alertDelete = false;
+  }
+
   saveU1() {
 
     ///save user to back-end
@@ -107,10 +119,10 @@ export class UsersTableComponent implements OnInit {
 
 
   deleteUser(id: number) {
-
     this.uService.deleteUser(id).subscribe(
       (response) => {console.log(response);this.uService.getAllUsers().subscribe(users => (this.users = users));},
       (error) => console.log(error));
+    this.alertDelete = false;
   }
 
   saveUserEdit(id: number, user: User) {
