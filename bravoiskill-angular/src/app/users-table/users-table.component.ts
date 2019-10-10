@@ -1,13 +1,14 @@
 import { Component, OnInit } from '@angular/core';
 import { UserService } from '../auth/service/user.service';
-import { MenuItem } from 'primeng/api';
-
+import { MenuItem, SelectItem } from 'primeng/api';
+import {AccordionModule} from 'primeng/accordion';
 import { User } from '../auth/models/user';
 import { Department } from '../auth/models/department';
 import { DepartmentService } from '../auth/service/department.service';
 import { Skill } from '../auth/models/skill';
 import { SkillService } from '../auth/service/skill.service';
 import {MDCDialog} from '@material/dialog';
+import { SkillCategory } from '../auth/models/skillCategory';
 
 @Component({
   selector: 'app-users-table',
@@ -15,7 +16,10 @@ import {MDCDialog} from '@material/dialog';
   styleUrls: ['./users-table.component.css']
 })
 export class UsersTableComponent implements OnInit {
+
   items: MenuItem[];
+
+  searchCategories: SelectItem[];
 
   displayDialogU1: boolean;
   displayDialogU2: boolean;
@@ -40,7 +44,9 @@ export class UsersTableComponent implements OnInit {
   selectedSkill: Skill;
   newSkill: boolean;
   skills: Skill[];
+  fullSkillsList: Skill[];
   colsSkill: any[];
+
 
   activeItem: MenuItem;
 
@@ -75,8 +81,25 @@ export class UsersTableComponent implements OnInit {
     this.colsSkill = [
       { field: 'skillId', header: 'Id' },
       { field: 'description', header: 'Description' },
-      { field: 'categoryId', header: 'CategoryId' }
+      { field: 'skillCategory', header: 'Category' }
     ];
+    this.searchCategories = [
+      { label: 'All Categories', value:  null },
+      { label: 'Human Relations', value: "saa" },
+      { label: 'Character', value: "Character" },
+      { label: 'Web - Front-End', value: 'Web - Front-End' },
+      { label: 'Desktop/Mobile', value: 'Desktop/Mobile' },
+      { label: 'Databases', value: 'Databases' },
+      { label: 'Q&A', value: 'Q&A' },
+      { label: 'UI/UX', value: 'UI/UX' },
+      { label: 'Business Analysis', value: 'Business Analysis' },
+      { label: 'Sales', value: 'Sales' },
+      { label: 'Management', value: 'Management' },
+      { label: 'Digital', value: 'Digital' }
+  ];
+
+
+
   }
 
   // USER

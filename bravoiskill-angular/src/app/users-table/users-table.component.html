@@ -157,16 +157,17 @@
                                   (input)="tt.filter($event.target.value, col.field, col.filterMatchMode)">
                               <input *ngSwitchCase="'description'" pInputText type="text" style="width:100%"
                                   (input)="tt.filter($event.target.value, col.field, col.filterMatchMode)">
-                              <input *ngSwitchCase="'categoryId'" pInputText type="text" style="width:100%"
-                                  (input)="tt.filter($event.target.value, col.field, col.filterMatchMode)">
+
+                              <p-dropdown *ngSwitchCase="'skillCategory'" [options]="searchCategories" [style]="{'width':'100%'}"
+                              (onChange)="tt.filter($event.value, col.field + '.description', 'equals')"></p-dropdown>
                           </th>
-                          <th></th>
                       </tr>
                   </ng-template>
                   <ng-template pTemplate="body" let-skill let-rowData let-columns="colsSkill">
                       <tr [pSelectableRow]="rowData">
                           <td *ngFor="let col of colsSkill">
                               <div [ngSwitch]="col.field">
+                                <div *ngSwitchCase="'skillCategory'">{{skill[col.field].description}}</div>
                                   <div *ngSwitchDefault>{{skill[col.field]}}</div>
                               </div>
                           </td>
@@ -356,6 +357,65 @@
 
 <!-- Dialog pt Edit Department -->
 <p-dialog header="Edit Department" [(visible)]="displayDialogD2" [responsive]="true" showEffect="fade" [modal]="true"
+    selectionMode="single" [style]="{'max-width': '500px'}">
+    <div class="ui-g ui-fluid" *ngIf="department">
+        <div class="ui-g-12">
+            <div class="ui-g-4">
+                <label for="departmentId">Department Id</label>
+            </div>
+            <div class="ui-g-8">
+                <input readonly pInputText id="departmentId" [(ngModel)]="department.departmentId"/>
+            </div>
+        </div>
+        <div class="ui-g-12">
+            <div class="ui-g-4">
+                <label for="description">Description</label>
+            </div>
+            <div class="ui-g-8">
+                <input pInputText id="description" [(ngModel)]="department.description" />
+            </div>
+        </div>
+    </div>
+    <p-footer>
+        <div class="ui-dialog-buttonpane ui-helper-clearfix">
+            <button type="button" class="ui-button-success" pButton icon="fa fa-check" (click)="saveDepartmentEdit(department.departmentId, department)"
+                label="Save Edit"></button>
+        </div>
+    </p-footer>
+</p-dialog>
+<!-- Dialog pt Add Skill -->
+<!-- <p-dialog header="Add Skill" [(visible)]="displayDialogS1" [responsive]="true" showEffect="fade" [modal]="true"
+    [style]="{'max-width': '500px'}">
+    <div class="ui-g ui-fluid" *ngIf="skill">
+        <div class="ui-g-12">
+            <div class="ui-g-4">
+                <label for="description">Description</label>
+            </div>
+            <div class="ui-g-8">
+                <input pInputText id="description" [(ngModel)]="skill.description" />
+            </div>
+        </div>
+        <div class="ui-g-12">
+            <div class="ui-g-4">
+                <label for="">CategoryDescription</label>
+            </div>
+            <div class="ui-g-8">
+                <input pInputText id="skill.skillCategory.description" [(ngModel)]="skill.skillCategory.description" />
+            </div>
+        </div>
+    </div>
+    <p-footer>
+        <div class="ui-dialog-buttonpane ui-helper-clearfix">
+            <button type="button" class="ui-button-danger" pButton icon="fa fa-close" (click)="closeS1()"
+                label="Cancel"></button>
+            <button type="button" class="ui-button-success" pButton icon="fa fa-plus" (click)="saveS1()"
+                label="Add"></button>
+        </div>
+    </p-footer>
+</p-dialog> -->
+
+<!-- Dialog pt Edit Department -->
+<p-dialog header="Edit Department" [(visible)]="displayDialogS2" [responsive]="true" showEffect="fade" [modal]="true"
     selectionMode="single" [style]="{'max-width': '500px'}">
     <div class="ui-g ui-fluid" *ngIf="department">
         <div class="ui-g-12">

@@ -24,6 +24,7 @@ import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import {CalendarModule} from 'primeng/calendar';
 import { TabMenuModule } from 'primeng/tabmenu';
 import { SkillService } from './auth/service/skill.service';
+import{DropdownModule} from 'primeng/dropdown';
 
 @NgModule({
   declarations: [
@@ -50,7 +51,8 @@ import { SkillService } from './auth/service/skill.service';
     AccordionModule,
     BrowserAnimationsModule,
     CalendarModule,
-    TabMenuModule
+    TabMenuModule,
+    DropdownModule
   ],
   exports: [],
   providers: [
