@@ -1,459 +1,426 @@
 <div class="content-section implementation">
-    <ngb-tabset [justify]="'center'" class="custom-tab-content flex-column flex-md-row" type="pills">
-        <!-- Users -->
-        <ngb-tab>
-            <ng-template ngbTabTitle>
-                <i class="fa fa-user"></i> Users
-            </ng-template>
-            <ng-template ngbTabContent>
-                <p-table #tt [value]="users" [columns]="colsUser" [paginator]="true" [rows]="10" sortMode="multiple"
-                    [(selection)]="selectedUser">
-                    <ng-template pTemplate="caption">
-                        <i class="fa fa-search" style="margin:4px 4px 0 0"></i>
-                        <input type="text" pInputText size="50" placeholder="Global Filter"
-                            (input)="tt.filterGlobal($event.target.value, 'contains')" style="width:auto">
-                    </ng-template>
-                    <ng-template pTemplate="header" let-colums>
-                        <tr>
-                            <th *ngFor="let col of colsUser" [pSortableColumn]="col.field">
-                                {{col.header}}
-                                <p-sortIcon [field]="col.field" ariaLabel="Activate to sort"
-                                    ariaLabelDesc="Activate to sort in descending order"
-                                    ariaLabelAsc="Activate to sort in ascending order">
-                                </p-sortIcon>
-                            </th>
-                            <th>Actions</th>
-                        </tr>
-                        <tr>
-                            <th *ngFor="let col of colsUser" [ngSwitch]="col.field">
-                                <input *ngSwitchCase="'userId'" pInputText type="text" style="width:100%"
-                                    (input)="tt.filter($event.target.value, col.field, col.filterMatchMode)">
-                                <input *ngSwitchCase="'firstName'" pInputText type="text" style="width:100%"
-                                    (input)="tt.filter($event.target.value, col.field, col.filterMatchMode)">
-                                <input *ngSwitchCase="'lastName'" pInputText type="text" style="width:100%"
-                                    (input)="tt.filter($event.target.value, col.field, col.filterMatchMode)">
-                                <input *ngSwitchCase="'dateOfBirth'" pInputText type="text" style="width:100%"
-                                    (input)="tt.filter($event.target.value, col.field, col.filterMatchMode)">
-                                <input *ngSwitchCase="'email'" pInputText type="text" style="width:100%"
-                                    (input)="tt.filter($event.target.value, col.field, col.filterMatchMode)">
-                                <input *ngSwitchCase="'skype'" pInputText type="text" style="width:100%"
-                                    (input)="tt.filter($event.target.value, col.field, col.filterMatchMode)">
-                            </th>
-                            <th></th>
-                        </tr>
-                    </ng-template>
-                    <ng-template pTemplate="body" let-user let-rowData let-columns="colsUser">
-                        <tr [pSelectableRow]="rowData">
-                            <td *ngFor="let col of colsUser">
-                                <div [ngSwitch]="col.field">
-                                    <div *ngSwitchCase="'dateOfBirth'">{{user[col.field] | date: 'dd MMM y'}}</div>
-                                    <div *ngSwitchDefault>{{user[col.field]}}</div>
-                                </div>
-                            </td>
-                            <td>
-                                <button type="button" class="ui-button-danger" pButton icon="fa fa-trash"
-                                (click)="onDeleteUser(user)"></button>
-                                <button type="button" class="ui-button-success" pButton icon="fa fa-pencil"
-                                (click)="onEditSelectUser(user)"></button>
-                            </td>
-                        </tr>
-                    </ng-template>
-                    <ng-template pTemplate="summary" let-rowData>
-                        <div style="text-align:left">
-                            <button type="button" pButton icon="fa fa-plus" (click)="showDialogToAddUser()"
-                                label="Add User"></button>
-                        </div>
-                    </ng-template>
-                </p-table>
-            </ng-template>
-        </ngb-tab>
-
-        <!-- Departments -->
-        <ngb-tab>
-            <ng-template ngbTabTitle>
-                <i class="fa fa-users"></i> Departments
-            </ng-template>
-            <ng-template ngbTabContent>
-                <p-table #tt [value]="departments" [columns]="colsDepartment" [paginator]="true" [rows]="10" sortMode="multiple"
-                    [(selection)]="selectedDepartment">
-                    <ng-template pTemplate="caption">
-                        <i class="fa fa-search" style="margin:4px 4px 0 0"></i>
-                        <input type="text" pInputText size="50" placeholder="Global Filter"
-                            (input)="tt.filterGlobal($event.target.value, 'contains')" style="width:auto">
-                    </ng-template>
-                    <ng-template pTemplate="header" let-colums>
-                        <tr>
-                            <th *ngFor="let col of colsDepartment" [pSortableColumn]="col.field">
-                                {{col.header}}
-                                <p-sortIcon [field]="col.field" ariaLabel="Activate to sort"
-                                    ariaLabelDesc="Activate to sort in descending order"
-                                    ariaLabelAsc="Activate to sort in ascending order">
-                                </p-sortIcon>
-                            </th>
-                            <th>Actions</th>
-                        </tr>
-                        <tr>
-                            <th *ngFor="let col of colsDepartment" [ngSwitch]="col.field">
-                                <input *ngSwitchCase="'departmentId'" pInputText type="text" style="width:100%"
-                                    (input)="tt.filter($event.target.value, col.field, col.filterMatchMode)">
-                                <input *ngSwitchCase="'description'" pInputText type="text" style="width:100%"
-                                    (input)="tt.filter($event.target.value, col.field, col.filterMatchMode)">
-                            </th>
-                            <th></th>
-                        </tr>
-                    </ng-template>
-                    <ng-template pTemplate="body" let-department let-rowData let-columns="colsDepartment">
-                        <tr [pSelectableRow]="rowData">
-                            <td *ngFor="let col of colsDepartment">
-                                <div [ngSwitch]="col.field">
-                                    <div *ngSwitchDefault>{{department[col.field]}}</div>
-                                </div>
-                            </td>
-                            <td>
-                                <button type="button" class="ui-button-danger" pButton icon="fa fa-trash"
-                                (click)="onDeleteDepartment(department)"></button>
-                                <button type="button" class="ui-button-success" pButton icon="fa fa-pencil"
-                                    (click)="onEditSelectDepartment(department)"></button>
-                            </td>
-                        </tr>
-                    </ng-template>
-                    <ng-template pTemplate="summary" let-rowData>
-                        <div style="text-align:left">
-                            <button type="button" pButton icon="fa fa-plus" (click)="showDialogToAddDepartment()"
-                                label="Add Department"></button>
-                        </div>
-                    </ng-template>
-                </p-table>
-            </ng-template>
-        </ngb-tab>
-
-        <!-- Skills -->
-        <ngb-tab>
-            <ng-template ngbTabTitle>
-                <i class="fa fa-cogs"></i> Skills
-            </ng-template>
-            <ng-template ngbTabContent>
-              <p-table #tt [value]="skills" [columns]="colsSkill" [paginator]="true" [rows]="10" sortMode="multiple"
-                  [(selection)]="selectedSkill">
-                  <ng-template pTemplate="caption">
-                      <i class="fa fa-search" style="margin:4px 4px 0 0"></i>
-                      <input type="text" pInputText size="50" placeholder="Global Filter"
-                          (input)="tt.filterGlobal($event.target.value, 'contains')" style="width:auto">
-                  </ng-template>
-                  <ng-template pTemplate="header" let-colums>
-                      <tr>
-                          <th *ngFor="let col of colsSkill" [pSortableColumn]="col.field">
-                              {{col.header}}
-                              <p-sortIcon [field]="col.field" ariaLabel="Activate to sort"
-                                  ariaLabelDesc="Activate to sort in descending order"
-                                  ariaLabelAsc="Activate to sort in ascending order">
-                              </p-sortIcon>
-                          </th>
-                          <th>Actions</th>
-                      </tr>
-                      <tr>
-                          <th *ngFor="let col of colsSkill" [ngSwitch]="col.field">
-                              <input *ngSwitchCase="'skillId'" pInputText type="text" style="width:100%"
-                                  (input)="tt.filter($event.target.value, col.field, col.filterMatchMode)">
-                              <input *ngSwitchCase="'description'" pInputText type="text" style="width:100%"
-                                  (input)="tt.filter($event.target.value, col.field, col.filterMatchMode)">
-
-                              <p-dropdown *ngSwitchCase="'skillCategory'" [options]="searchCategories" [style]="{'width':'100%'}"
-                              (onChange)="tt.filter($event.value, col.field + '.description', 'equals')"></p-dropdown>
-                          </th>
-                      </tr>
-                  </ng-template>
-                  <ng-template pTemplate="body" let-skill let-rowData let-columns="colsSkill">
-                      <tr [pSelectableRow]="rowData">
-                          <td *ngFor="let col of colsSkill">
-                              <div [ngSwitch]="col.field">
-                                <div *ngSwitchCase="'skillCategory'">{{skill[col.field].description}}</div>
-                                  <div *ngSwitchDefault>{{skill[col.field]}}</div>
-                              </div>
-                          </td>
-                          <td>
-                              <button type="button" class="ui-button-danger" pButton icon="fa fa-trash"
-                                  (click)="deleteSkill(skill.skillId)"></button>
-                              <button type="button" class="ui-button-success" pButton icon="fa fa-pencil"
-                                  (click)="onEditSelectSkill(skill)"></button>
-                          </td>
-                      </tr>
-                  </ng-template>
-                  <ng-template pTemplate="summary" let-rowData>
-                      <div style="text-align:left">
-                          <button type="button" pButton icon="fa fa-plus" (click)="showDialogToAddSkill()"
-                              label="Add Skill"></button>
-                      </div>
-                  </ng-template>
-              </p-table>
+  <ngb-tabset [justify]="'center'" class="custom-tab-content flex-column flex-md-row" type="pills">
+    <!-- Users -->
+    <ngb-tab>
+      <ng-template ngbTabTitle>
+        <i class="fa fa-user"></i> Users
+      </ng-template>
+      <ng-template ngbTabContent>
+        <p-table #tt [value]="users" [columns]="colsUser" [paginator]="true" [rows]="10" sortMode="multiple"
+          [(selection)]="selectedUser">
+          <ng-template pTemplate="caption">
+            <i class="fa fa-search" style="margin:4px 4px 0 0"></i>
+            <input type="text" pInputText size="50" placeholder="Global Filter"
+              (input)="tt.filterGlobal($event.target.value, 'contains')" style="width:auto">
           </ng-template>
-        </ngb-tab>
-    </ngb-tabset>
+          <ng-template pTemplate="header" let-colums>
+            <tr>
+              <th *ngFor="let col of colsUser" [pSortableColumn]="col.field">
+                {{col.header}}
+                <p-sortIcon [field]="col.field" ariaLabel="Activate to sort"
+                  ariaLabelDesc="Activate to sort in descending order"
+                  ariaLabelAsc="Activate to sort in ascending order">
+                </p-sortIcon>
+              </th>
+              <th>Actions</th>
+            </tr>
+            <tr>
+              <th *ngFor="let col of colsUser" [ngSwitch]="col.field">
+                <input *ngSwitchCase="'userId'" pInputText type="text" style="width:100%"
+                  (input)="tt.filter($event.target.value, col.field, col.filterMatchMode)">
+                <input *ngSwitchCase="'firstName'" pInputText type="text" style="width:100%"
+                  (input)="tt.filter($event.target.value, col.field, col.filterMatchMode)">
+                <input *ngSwitchCase="'lastName'" pInputText type="text" style="width:100%"
+                  (input)="tt.filter($event.target.value, col.field, col.filterMatchMode)">
+                <input *ngSwitchCase="'dateOfBirth'" pInputText type="text" style="width:100%"
+                  (input)="tt.filter($event.target.value, col.field, col.filterMatchMode)">
+                <input *ngSwitchCase="'email'" pInputText type="text" style="width:100%"
+                  (input)="tt.filter($event.target.value, col.field, col.filterMatchMode)">
+                <input *ngSwitchCase="'skype'" pInputText type="text" style="width:100%"
+                  (input)="tt.filter($event.target.value, col.field, col.filterMatchMode)">
+              </th>
+              <th></th>
+            </tr>
+          </ng-template>
+          <ng-template pTemplate="body" let-user let-rowData let-columns="colsUser">
+            <tr [pSelectableRow]="rowData">
+              <td *ngFor="let col of colsUser">
+                <div [ngSwitch]="col.field">
+                  <div *ngSwitchCase="'dateOfBirth'">{{user[col.field] | date: 'dd MMM y'}}</div>
+                  <div *ngSwitchDefault>{{user[col.field]}}</div>
+                </div>
+              </td>
+              <td>
+                <button type="button" class="ui-button-danger" pButton icon="fa fa-trash"
+                  (click)="onDeleteUser(user)"></button>
+                <button type="button" class="ui-button-success" pButton icon="fa fa-pencil"
+                  (click)="onEditSelectUser(user)"></button>
+              </td>
+            </tr>
+          </ng-template>
+          <ng-template pTemplate="summary" let-rowData>
+            <div style="text-align:left">
+              <button type="button" pButton icon="fa fa-plus" (click)="showDialogToAddUser()" label="Add User"></button>
+            </div>
+          </ng-template>
+        </p-table>
+      </ng-template>
+    </ngb-tab>
+
+    <!-- Departments -->
+    <ngb-tab>
+      <ng-template ngbTabTitle>
+        <i class="fa fa-users"></i> Departments
+      </ng-template>
+      <ng-template ngbTabContent>
+        <p-table #tt [value]="departments" [columns]="colsDepartment" [paginator]="true" [rows]="10" sortMode="multiple"
+          [(selection)]="selectedDepartment">
+          <ng-template pTemplate="caption">
+            <i class="fa fa-search" style="margin:4px 4px 0 0"></i>
+            <input type="text" pInputText size="50" placeholder="Global Filter"
+              (input)="tt.filterGlobal($event.target.value, 'contains')" style="width:auto">
+          </ng-template>
+          <ng-template pTemplate="header" let-colums>
+            <tr>
+              <th *ngFor="let col of colsDepartment" [pSortableColumn]="col.field">
+                {{col.header}}
+                <p-sortIcon [field]="col.field" ariaLabel="Activate to sort"
+                  ariaLabelDesc="Activate to sort in descending order"
+                  ariaLabelAsc="Activate to sort in ascending order">
+                </p-sortIcon>
+              </th>
+              <th>Actions</th>
+            </tr>
+            <tr>
+              <th *ngFor="let col of colsDepartment" [ngSwitch]="col.field">
+                <input *ngSwitchCase="'departmentId'" pInputText type="text" style="width:100%"
+                  (input)="tt.filter($event.target.value, col.field, col.filterMatchMode)">
+                <input *ngSwitchCase="'description'" pInputText type="text" style="width:100%"
+                  (input)="tt.filter($event.target.value, col.field, col.filterMatchMode)">
+              </th>
+              <th></th>
+            </tr>
+          </ng-template>
+          <ng-template pTemplate="body" let-department let-rowData let-columns="colsDepartment">
+            <tr [pSelectableRow]="rowData">
+              <td *ngFor="let col of colsDepartment">
+                <div [ngSwitch]="col.field">
+                  <div *ngSwitchDefault>{{department[col.field]}}</div>
+                </div>
+              </td>
+              <td>
+                <button type="button" class="ui-button-danger" pButton icon="fa fa-trash"
+                  (click)="onDeleteDepartment(department)"></button>
+                <button type="button" class="ui-button-success" pButton icon="fa fa-pencil"
+                  (click)="onEditSelectDepartment(department)"></button>
+              </td>
+            </tr>
+          </ng-template>
+          <ng-template pTemplate="summary" let-rowData>
+            <div style="text-align:left">
+              <button type="button" pButton icon="fa fa-plus" (click)="showDialogToAddDepartment()"
+                label="Add Department"></button>
+            </div>
+          </ng-template>
+        </p-table>
+      </ng-template>
+    </ngb-tab>
+
+    <!-- Skills -->
+    <ngb-tab>
+      <ng-template ngbTabTitle>
+        <i class="fa fa-cogs"></i> Skills
+      </ng-template>
+      <ng-template ngbTabContent>
+        <p-table #tt [value]="skills" [columns]="colsSkill" [paginator]="true" [rows]="10" sortMode="multiple"
+          [(selection)]="selectedSkill">
+          <ng-template pTemplate="caption">
+            <i class="fa fa-search" style="margin:4px 4px 0 0"></i>
+            <input type="text" pInputText size="50" placeholder="Global Filter"
+              (input)="tt.filterGlobal($event.target.value, 'contains')" style="width:auto">
+          </ng-template>
+          <ng-template pTemplate="header" let-colums>
+            <tr>
+              <th *ngFor="let col of colsSkill" [pSortableColumn]="col.field">
+                {{col.header}}
+                <p-sortIcon [field]="col.field" ariaLabel="Activate to sort"
+                  ariaLabelDesc="Activate to sort in descending order"
+                  ariaLabelAsc="Activate to sort in ascending order">
+                </p-sortIcon>
+              </th>
+              <th>Actions</th>
+            </tr>
+            <tr>
+              <th *ngFor="let col of colsSkill" [ngSwitch]="col.field">
+                <input *ngSwitchCase="'skillId'" pInputText type="text" style="width:100%"
+                  (input)="tt.filter($event.target.value, col.field, col.filterMatchMode)">
+                <input *ngSwitchCase="'description'" pInputText type="text" style="width:100%"
+                  (input)="tt.filter($event.target.value, col.field, col.filterMatchMode)">
+
+                <p-dropdown *ngSwitchCase="'skillCategory'" [options]="searchCategories" [style]="{'width':'100%'}"
+                  (onChange)="tt.filter($event.value, col.field + '.description', 'equals')"></p-dropdown>
+              </th>
+            </tr>
+          </ng-template>
+          <ng-template pTemplate="body" let-skill let-rowData let-columns="colsSkill">
+            <tr [pSelectableRow]="rowData">
+              <td *ngFor="let col of colsSkill">
+                <div [ngSwitch]="col.field">
+                  <div *ngSwitchCase="'skillCategory'">{{skill[col.field].description}}</div>
+                  <div *ngSwitchDefault>{{skill[col.field]}}</div>
+                </div>
+              </td>
+              <td>
+                <button type="button" class="ui-button-danger" pButton icon="fa fa-trash"
+                  (click)="deleteSkill(skill.skillId)"></button>
+                <button type="button" class="ui-button-success" pButton icon="fa fa-pencil"
+                  (click)="onEditSelectSkill(skill)"></button>
+              </td>
+            </tr>
+          </ng-template>
+          <ng-template pTemplate="summary" let-rowData>
+            <div style="text-align:left">
+              <button type="button" pButton icon="fa fa-plus" (click)="showDialogToAddSkill()"
+                label="Add Skill"></button>
+            </div>
+          </ng-template>
+        </p-table>
+      </ng-template>
+    </ngb-tab>
+  </ngb-tabset>
 </div>
 
 <!-- Dialog pt Add User -->
 <p-dialog header="Add User" [(visible)]="displayDialogU1" [responsive]="true" showEffect="fade" [modal]="true"
-    [style]="{'max-width': '500px'}">
-    <div class="ui-g ui-fluid" *ngIf="user">
-        <div class="ui-g-12">
-            <div class="ui-g-4">
-                <label for="firstName">First Name</label>
-            </div>
-            <div class="ui-g-8">
-                <input pInputText id="firstName" [(ngModel)]="user.firstName" />
-            </div>
-        </div>
-        <div class="ui-g-12">
-            <div class="ui-g-4">
-                <label for="lastName">Last Name</label>
-            </div>
-            <div class="ui-g-8">
-                <input pInputText id="lastName" [(ngModel)]="user.lastName" />
-            </div>
-        </div>
-        <div class="ui-g-12">
-            <div class="ui-g-4">
-                <label for="dateOfBirth">Date of birth</label>
-            </div>
-            <div class="ui-g-8" *ngIf="user.dateOfBirth != null">
-                <input id="dateOfBirth" [(ngModel)]="user.dateOfBirth" dateFormat="dd.mm.yy" showTime="true"
-                    [style]="{width: '100%', height: '100%'}" />
-            </div>
-            <div class="ui-g-8" *ngIf="user.dateOfBirth == null">
-                <p-calendar id="dateOfBirth" [(ngModel)]="user.dateOfBirth" dateFormat="dd.mm.yy" showTime="false"
-                    [style]="{width: '100%', height: '100%'}" [showIcon]="true"></p-calendar>
-            </div>
-        </div>
-        <div class="ui-g-12">
-            <div class="ui-g-4">
-                <label for="email">Email</label>
-            </div>
-            <div class="ui-g-8">
-                <input pInputText id="email" [(ngModel)]="user.email" />
-            </div>
-        </div>
-        <div class="ui-g-12">
-            <div class="ui-g-4">
-                <label for="skype">Skype</label>
-            </div>
-            <div class="ui-g-8">
-                <input pInputText id="skype" [(ngModel)]="user.skype" />
-            </div>
-        </div>
+  [style]="{'max-width': '500px'}">
+  <div class="ui-g ui-fluid" *ngIf="user">
+    <div class="ui-g-12">
+      <div class="ui-g-4">
+        <label for="firstName">First Name</label>
+      </div>
+      <div class="ui-g-8">
+        <input pInputText id="firstName" [(ngModel)]="user.firstName" />
+      </div>
     </div>
-    <p-footer>
-        <div class="ui-dialog-buttonpane ui-helper-clearfix">
-            <button type="button" class="ui-button-danger" pButton icon="fa fa-close" (click)="closeU1()"
-                label="Cancel"></button>
-            <button type="button" class="ui-button-success" pButton icon="fa fa-plus" (click)="saveU1()"
-                label="Add"></button>
-        </div>
-    </p-footer>
+    <div class="ui-g-12">
+      <div class="ui-g-4">
+        <label for="lastName">Last Name</label>
+      </div>
+      <div class="ui-g-8">
+        <input pInputText id="lastName" [(ngModel)]="user.lastName" />
+      </div>
+    </div>
+    <div class="ui-g-12">
+      <div class="ui-g-4">
+        <label for="dateOfBirth">Date of birth</label>
+      </div>
+      <div class="ui-g-8" *ngIf="user.dateOfBirth != null">
+        <input id="dateOfBirth" [(ngModel)]="user.dateOfBirth" dateFormat="dd.mm.yy" showTime="true"
+          [style]="{width: '100%', height: '100%'}" />
+      </div>
+      <div class="ui-g-8" *ngIf="user.dateOfBirth == null">
+        <p-calendar id="dateOfBirth" [(ngModel)]="user.dateOfBirth" dateFormat="dd.mm.yy" showTime="false"
+          [style]="{width: '100%', height: '100%'}" [showIcon]="true"></p-calendar>
+      </div>
+    </div>
+    <div class="ui-g-12">
+      <div class="ui-g-4">
+        <label for="email">Email</label>
+      </div>
+      <div class="ui-g-8">
+        <input pInputText id="email" [(ngModel)]="user.email" />
+      </div>
+    </div>
+    <div class="ui-g-12">
+      <div class="ui-g-4">
+        <label for="skype">Skype</label>
+      </div>
+      <div class="ui-g-8">
+        <input pInputText id="skype" [(ngModel)]="user.skype" />
+      </div>
+    </div>
+  </div>
+  <p-footer>
+    <div class="ui-dialog-buttonpane ui-helper-clearfix">
+      <button type="button" class="ui-button-danger" pButton icon="fa fa-close" (click)="closeU1()"
+        label="Cancel"></button>
+      <button type="button" class="ui-button-success" pButton icon="fa fa-plus" (click)="saveU1()" label="Add"></button>
+    </div>
+  </p-footer>
 </p-dialog>
 
 <!-- Dialog pt Edit User -->
 <p-dialog header="Edit User" [(visible)]="displayDialogU2" [responsive]="true" showEffect="fade" [modal]="true"
-    selectionMode="single" [style]="{'max-width': '500px'}">
-    <div class="ui-g ui-fluid" *ngIf="user">
-        <div class="ui-g-12">
-            <div class="ui-g-4">
-                <label for="userId">User Id</label>
-            </div>
-            <div class="ui-g-8">
-                <input readonly pInputText id="userId" [(ngModel)]="user.userId"/>
-            </div>
-        </div>
-        <div class="ui-g-12">
-            <div class="ui-g-4">
-                <label for="firstName">First Name</label>
-            </div>
-            <div class="ui-g-8">
-                <input pInputText id="firstName" [(ngModel)]="user.firstName" />
-            </div>
-        </div>
-        <div class="ui-g-12">
-            <div class="ui-g-4">
-                <label for="lastName">Last Name</label>
-            </div>
-            <div class="ui-g-8">
-                <input pInputText id="lastName" [(ngModel)]="user.lastName" />
-            </div>
-        </div>
-        <div class="ui-g-12">
-            <div class="ui-g-4">
-                <label for="dateOfBirth">Date of birth</label>
-            </div>
-            <div class="ui-g-8" *ngIf="user.dateOfBirth != null">
-                <input id="dateOfBirth" [(ngModel)]="user.dateOfBirth" dateFormat="dd.mm.yy" showTime="true"
-                    [style]="{width: '100%', height: '100%'}" />
-            </div>
-            <div class="ui-g-8" *ngIf="user.dateOfBirth == null">
-                <p-calendar id="dateOfBirth" [(ngModel)]="user.dateOfBirth" dateFormat="dd.mm.yy" showTime="false"
-                    [style]="{width: '100%', height: '100%'}" [showIcon]="true"></p-calendar>
-            </div>
-        </div>
-        <div class="ui-g-12">
-            <div class="ui-g-4">
-                <label for="email">Email</label>
-            </div>
-            <div class="ui-g-8">
-                <input pInputText id="email" [(ngModel)]="user.email" />
-            </div>
-        </div>
-        <div class="ui-g-12">
-            <div class="ui-g-4">
-                <label for="skype">Skype</label>
-            </div>
-            <div class="ui-g-8">
-                <input pInputText id="skype" [(ngModel)]="user.skype" />
-            </div>
-        </div>
+  selectionMode="single" [style]="{'max-width': '500px'}">
+  <div class="ui-g ui-fluid" *ngIf="user">
+    <div class="ui-g-12">
+      <div class="ui-g-4">
+        <label for="userId">User Id</label>
+      </div>
+      <div class="ui-g-8">
+        <input readonly pInputText id="userId" [(ngModel)]="user.userId" />
+      </div>
     </div>
-    <p-footer>
-        <div class="ui-dialog-buttonpane ui-helper-clearfix">
-            <button type="button" class="ui-button-success" pButton icon="fa fa-check" (click)="saveUserEdit(user.userId, user)"
-                label="Save Edit"></button>
-        </div>
-    </p-footer>
+    <div class="ui-g-12">
+      <div class="ui-g-4">
+        <label for="firstName">First Name</label>
+      </div>
+      <div class="ui-g-8">
+        <input pInputText id="firstName" [(ngModel)]="user.firstName" />
+      </div>
+    </div>
+    <div class="ui-g-12">
+      <div class="ui-g-4">
+        <label for="lastName">Last Name</label>
+      </div>
+      <div class="ui-g-8">
+        <input pInputText id="lastName" [(ngModel)]="user.lastName" />
+      </div>
+    </div>
+    <div class="ui-g-12">
+      <div class="ui-g-4">
+        <label for="dateOfBirth">Date of birth</label>
+      </div>
+      <div class="ui-g-8" *ngIf="user.dateOfBirth != null">
+        <input id="dateOfBirth" [(ngModel)]="user.dateOfBirth" dateFormat="dd.mm.yy" showTime="true"
+          [style]="{width: '100%', height: '100%'}" />
+      </div>
+      <div class="ui-g-8" *ngIf="user.dateOfBirth == null">
+        <p-calendar id="dateOfBirth" [(ngModel)]="user.dateOfBirth" dateFormat="dd.mm.yy" showTime="false"
+          [style]="{width: '100%', height: '100%'}" [showIcon]="true"></p-calendar>
+      </div>
+    </div>
+    <div class="ui-g-12">
+      <div class="ui-g-4">
+        <label for="email">Email</label>
+      </div>
+      <div class="ui-g-8">
+        <input pInputText id="email" [(ngModel)]="user.email" />
+      </div>
+    </div>
+    <div class="ui-g-12">
+      <div class="ui-g-4">
+        <label for="skype">Skype</label>
+      </div>
+      <div class="ui-g-8">
+        <input pInputText id="skype" [(ngModel)]="user.skype" />
+      </div>
+    </div>
+  </div>
+  <p-footer>
+    <div class="ui-dialog-buttonpane ui-helper-clearfix">
+      <button type="button" class="ui-button-success" pButton icon="fa fa-check"
+        (click)="saveUserEdit(user.userId, user)" label="Save Edit"></button>
+    </div>
+  </p-footer>
 </p-dialog>
 
 <!-- Dialog pt Delete User -->
 <p-dialog header="Delete User" [(visible)]="alertDeleteUser" [responsive]="true" showEffect="fade" [modal]="true"
-    selectionMode="single" [style]="{'max-width': '500px'}">
-    <div>
-        Are you shure that you want to delete this user?
+  selectionMode="single" [style]="{'max-width': '500px'}">
+  <div>
+    Are you shure that you want to delete this user?
+  </div>
+  <p-footer>
+    <div class="ui-dialog-buttonpane ui-helper-clearfix">
+      <button type="button" class="ui-button-danger" pButton icon="fa fa-close" (click)="closeAlertDeleteUser()"
+        label="No"></button>
+      <button type="button" class="ui-button-success" pButton icon="fa fa-check" (click)="deleteUser(user.userId)"
+        label="Yes"></button>
     </div>
-    <p-footer>
-        <div class="ui-dialog-buttonpane ui-helper-clearfix">
-            <button type="button" class="ui-button-danger" pButton icon="fa fa-close" (click)="closeAlertDeleteUser()"
-            label="No"></button>
-            <button type="button" class="ui-button-success" pButton icon="fa fa-check" (click)="deleteUser(user.userId)"
-                label="Yes"></button>
-        </div>
-    </p-footer>
+  </p-footer>
 </p-dialog>
 <!-- Dialog pt Add Department -->
 <p-dialog header="Add Department" [(visible)]="displayDialogD1" [responsive]="true" showEffect="fade" [modal]="true"
-    [style]="{'max-width': '500px'}">
-    <div class="ui-g ui-fluid" *ngIf="department">
-        <div class="ui-g-12">
-            <div class="ui-g-4">
-                <label for="description">Description</label>
-            </div>
-            <div class="ui-g-8">
-                <input pInputText id="description" [(ngModel)]="department.description" />
-            </div>
-        </div>
+  [style]="{'max-width': '500px'}">
+  <div class="ui-g ui-fluid" *ngIf="department">
+    <div class="ui-g-12">
+      <div class="ui-g-4">
+        <label for="description">Description</label>
+      </div>
+      <div class="ui-g-8">
+        <input pInputText id="description" [(ngModel)]="department.description" />
+      </div>
     </div>
-    <p-footer>
-        <div class="ui-dialog-buttonpane ui-helper-clearfix">
-            <button type="button" class="ui-button-danger" pButton icon="fa fa-close" (click)="closeD1()"
-                label="Cancel"></button>
-            <button type="button" class="ui-button-success" pButton icon="fa fa-plus" (click)="saveD1()"
-                label="Add"></button>
-        </div>
-    </p-footer>
+  </div>
+  <p-footer>
+    <div class="ui-dialog-buttonpane ui-helper-clearfix">
+      <button type="button" class="ui-button-danger" pButton icon="fa fa-close" (click)="closeD1()"
+        label="Cancel"></button>
+      <button type="button" class="ui-button-success" pButton icon="fa fa-plus" (click)="saveD1()" label="Add"></button>
+    </div>
+  </p-footer>
 </p-dialog>
 
 <!-- Dialog pt Edit Department -->
 <p-dialog header="Edit Department" [(visible)]="displayDialogD2" [responsive]="true" showEffect="fade" [modal]="true"
-    selectionMode="single" [style]="{'max-width': '500px'}">
-    <div class="ui-g ui-fluid" *ngIf="department">
-        <div class="ui-g-12">
-            <div class="ui-g-4">
-                <label for="departmentId">Department Id</label>
-            </div>
-            <div class="ui-g-8">
-                <input readonly pInputText id="departmentId" [(ngModel)]="department.departmentId"/>
-            </div>
-        </div>
-        <div class="ui-g-12">
-            <div class="ui-g-4">
-                <label for="description">Description</label>
-            </div>
-            <div class="ui-g-8">
-                <input pInputText id="description" [(ngModel)]="department.description" />
-            </div>
-        </div>
+  selectionMode="single" [style]="{'max-width': '500px'}">
+  <div class="ui-g ui-fluid" *ngIf="department">
+    <div class="ui-g-12">
+      <div class="ui-g-4">
+        <label for="departmentId">Department Id</label>
+      </div>
+      <div class="ui-g-8">
+        <input readonly pInputText id="departmentId" [(ngModel)]="department.departmentId" />
+      </div>
     </div>
-    <p-footer>
-        <div class="ui-dialog-buttonpane ui-helper-clearfix">
-            <button type="button" class="ui-button-success" pButton icon="fa fa-check" (click)="saveDepartmentEdit(department.departmentId, department)"
-                label="Save Edit"></button>
-        </div>
-    </p-footer>
+    <div class="ui-g-12">
+      <div class="ui-g-4">
+        <label for="description">Description</label>
+      </div>
+      <div class="ui-g-8">
+        <input pInputText id="description" [(ngModel)]="department.description" />
+      </div>
+    </div>
+  </div>
+  <p-footer>
+    <div class="ui-dialog-buttonpane ui-helper-clearfix">
+      <button type="button" class="ui-button-success" pButton icon="fa fa-check"
+        (click)="saveDepartmentEdit(department.departmentId, department)" label="Save Edit"></button>
+    </div>
+  </p-footer>
 </p-dialog>
 <!-- Dialog pt Delete Departments -->
-<p-dialog header="Delete Department" [(visible)]="alertDeleteDepartment" [responsive]="true" showEffect="fade" [modal]="true"
-selectionMode="single" [style]="{'max-width': '500px'}">
-    <div>
-        Are you shure that you want to delete this department?
-    </div>
-        <div class="ui-dialog-buttonpane ui-helper-clearfix">
-            <button type="button" class="ui-button-danger" pButton icon="fa fa-close" (click)="closeAlertDeleteDepartment()"
-            label="No"></button>
-            <button type="button" class="ui-button-success" pButton icon="fa fa-check" (click)="deleteDepartment(department.departmentId)"
-                label="Yes"></button>
-
+<p-dialog header="Delete Department" [(visible)]="alertDeleteDepartment" [responsive]="true" showEffect="fade"
+  [modal]="true" selectionMode="single" [style]="{'max-width': '500px'}">
+  <div>
+    Are you shure that you want to delete this department?
+  </div>
+  <div class="ui-dialog-buttonpane ui-helper-clearfix">
+    <button type="button" class="ui-button-danger" pButton icon="fa fa-close" (click)="closeAlertDeleteDepartment()"
+      label="No"></button>
+    <button type="button" class="ui-button-success" pButton icon="fa fa-check"
+      (click)="deleteDepartment(department.departmentId)" label="Yes"></button>
+  </div>
+</p-dialog>
 <!-- Dialog pt Add Skill -->
 <p-dialog header="Add Skill" [(visible)]="displayDialogS1" [responsive]="true" showEffect="fade" [modal]="true"
-    [style]="{'max-width': '500px'}">
-    <div class="ui-g ui-fluid" *ngIf="skill">
-        <div class="ui-g-12">
-            <div class="ui-g-4">
-                <label for="description">Skill description</label>
-            </div>
-                <label for="description">Description</label>
-            <div class="ui-g-8">
-                <input pInputText id="description" [(ngModel)]="skill.description" />
-            </div>
-        </div>
-        <div class="ui-g-12">
-            <div class="ui-g-4">
-                <label for="skillCategory">Category</label>
-            </div>
-            <div class="ui-g-8">
-                <p-dropdown [options]="searchCategoriesId" id="skillCategory" [(ngModel)]="skill.skillCategory" [style]="{'width':'100%'}"></p-dropdown>
-                <!-- <input pInputText id="skill.skillCategory.description" [(ngModel)]="skill.skillCategory.description" /> -->
-            </div>
-        </div>
+  [style]="{'max-width': '500px'}">
+  <div class="ui-g ui-fluid" *ngIf="skill">
+    <div class="ui-g-12">
+      <div class="ui-g-4">
+        <label for="description">Skill description</label>
+      </div>
+      <div class="ui-g-8">
+        <input pInputText id="description" [(ngModel)]="skill.description" />
+      </div>
     </div>
-    <p-footer>
-        <div class="ui-dialog-buttonpane ui-helper-clearfix">
-            <button type="button" class="ui-button-danger" pButton icon="fa fa-close" (click)="closeS1()"
-                label="Cancel"></button>
-            <button type="button" class="ui-button-success" pButton icon="fa fa-plus" (click)="saveS1()"
-                label="Add"></button>
-        </div>
-    </p-footer>
-</p-dialog>
-
-<!-- Dialog pt Edit Department -->
-
-<p-dialog header="Edit Department" [(visible)]="displayDialogS2" [responsive]="true" showEffect="fade" [modal]="true"
-selectionMode="single" [style]="{'max-width': '500px'}">
-    <div class="ui-g ui-fluid" *ngIf="department">
-            <div class="ui-g-4">
-                <label for="departmentId">Department Id</label>
-        <div class="ui-g-12">
-            </div>
-            <div class="ui-g-8">
-                <input readonly pInputText id="departmentId" [(ngModel)]="department.departmentId"/>
-            </div>
-        </div>
-        <div class="ui-g-12">
-            <div class="ui-g-4">
-                <label for="description">Description</label>
-            </div>
-            <div class="ui-g-8">
-                <input pInputText id="description" [(ngModel)]="department.description" />
-            </div>
-        </div>
+    <div class="ui-g-12">
+      <div class="ui-g-4">
+        <label for="skillCategory">Category</label>
+      </div>
+      <div class="ui-g-8">
+        <p-dropdown [options]="searchCategoriesId" id="skillCategory" [(ngModel)]="skill.skillCategory"
+          [style]="{'width':'100%'}"></p-dropdown>
+        <!-- <input pInputText id="skill.skillCategory.description" [(ngModel)]="skill.skillCategory.description" /> -->
+      </div>
     </div>
-    <p-footer>
-        <div class="ui-dialog-buttonpane ui-helper-clearfix">
-            <button type="button" class="ui-button-success" pButton icon="fa fa-check" (click)="saveDepartmentEdit(department.departmentId, department)"
-                label="Save Edit"></button>
-        </div>
-    </p-footer>
+  </div>
+  <p-footer>
+    <div class="ui-dialog-buttonpane ui-helper-clearfix">
+      <button type="button" class="ui-button-danger" pButton icon="fa fa-close" (click)="closeS1()"
+        label="Cancel"></button>
+      <button type="button" class="ui-button-success" pButton icon="fa fa-plus" (click)="saveS1()" label="Add"></button>
+    </div>
+  </p-footer>
 </p-dialog>

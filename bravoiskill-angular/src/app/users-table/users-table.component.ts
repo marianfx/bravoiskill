@@ -262,7 +262,9 @@ this.displayDialogU2 = false;
  showDialogToAddSkill() {
   this.newSkill = true;
   this.skill = {} as Skill;
+  this.displayDialogS2 = false;
   this.displayDialogS1 = true;
+
 }
 deleteSkill(skillId: number){
   this.sService.deleteSkill(skillId).subscribe(
