@@ -385,22 +385,23 @@
 </p-dialog>
 <!-- Dialog pt Delete Departments -->
 <p-dialog header="Delete Department" [(visible)]="alertDeleteDepartment" [responsive]="true" showEffect="fade" [modal]="true"
+selectionMode="single" [style]="{'max-width': '500px'}">
     <div>
-    selectionMode="single" [style]="{'max-width': '500px'}">
         Are you shure that you want to delete this department?
-    <p-footer>
     </div>
         <div class="ui-dialog-buttonpane ui-helper-clearfix">
             <button type="button" class="ui-button-danger" pButton icon="fa fa-close" (click)="closeAlertDeleteDepartment()"
             label="No"></button>
             <button type="button" class="ui-button-success" pButton icon="fa fa-check" (click)="deleteDepartment(department.departmentId)"
                 label="Yes"></button>
+
 <!-- Dialog pt Add Skill -->
-<!-- <p-dialog header="Add Skill" [(visible)]="displayDialogS1" [responsive]="true" showEffect="fade" [modal]="true"
+<p-dialog header="Add Skill" [(visible)]="displayDialogS1" [responsive]="true" showEffect="fade" [modal]="true"
     [style]="{'max-width': '500px'}">
     <div class="ui-g ui-fluid" *ngIf="skill">
         <div class="ui-g-12">
             <div class="ui-g-4">
+                <label for="description">Skill description</label>
             </div>
                 <label for="description">Description</label>
             <div class="ui-g-8">
@@ -409,10 +410,11 @@
         </div>
         <div class="ui-g-12">
             <div class="ui-g-4">
-                <label for="">CategoryDescription</label>
+                <label for="skillCategory">Category</label>
             </div>
             <div class="ui-g-8">
-                <input pInputText id="skill.skillCategory.description" [(ngModel)]="skill.skillCategory.description" />
+                <p-dropdown [options]="searchCategoriesId" id="skillCategory" [(ngModel)]="skill.skillCategory" [style]="{'width':'100%'}"></p-dropdown>
+                <!-- <input pInputText id="skill.skillCategory.description" [(ngModel)]="skill.skillCategory.description" /> -->
             </div>
         </div>
     </div>
@@ -424,11 +426,12 @@
                 label="Add"></button>
         </div>
     </p-footer>
-</p-dialog> -->
+</p-dialog>
 
 <!-- Dialog pt Edit Department -->
-    selectionMode="single" [style]="{'max-width': '500px'}">
+
 <p-dialog header="Edit Department" [(visible)]="displayDialogS2" [responsive]="true" showEffect="fade" [modal]="true"
+selectionMode="single" [style]="{'max-width': '500px'}">
     <div class="ui-g ui-fluid" *ngIf="department">
             <div class="ui-g-4">
                 <label for="departmentId">Department Id</label>

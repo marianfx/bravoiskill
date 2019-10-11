@@ -21,6 +21,7 @@ export class SkillService {
   }
 
   createSkill(skill: Skill){
+    console.log(skill);
     return this.http.post(`${environment.AppRoot}/skills`,skill);
   }
 

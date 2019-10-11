@@ -20,6 +20,7 @@ export class UsersTableComponent implements OnInit {
   items: MenuItem[];
 
   searchCategories: SelectItem[];
+  searchCategoriesId: SelectItem[];
 
   displayDialogU1: boolean;
   displayDialogU2: boolean;
@@ -98,6 +99,19 @@ export class UsersTableComponent implements OnInit {
       { label: 'Management', value: 'Management' },
       { label: 'Digital', value: 'Digital' }
   ];
+  this.searchCategoriesId = [
+    { label: 'Human Relations', value: {categoryId: 3, description:'Human Relations'}},
+    { label: 'Character', value: 4 },
+    { label: 'Web - Front-End', value: 5 },
+    { label: 'Desktop/Mobile', value: 7 },
+    { label: 'Databases', value: 8 },
+    { label: 'Q&A', value: 9 },
+    { label: 'UI/UX', value: 10 },
+    { label: 'Business Analysis', value: 11 },
+    { label: 'Sales', value: 12 },
+    { label: 'Management', value: 13 },
+    { label: 'Digital', value: 14 }
+];
 
 
 
