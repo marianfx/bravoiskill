@@ -29,6 +29,7 @@ export class UsersTableComponent implements OnInit {
   newUser: boolean;
   users: User[];
   colsUser: any[];
+  alertDeleteSkill: boolean;
   alertDeleteUser: boolean;
   alertDeleteDepartment: boolean;
 
@@ -142,6 +143,15 @@ export class UsersTableComponent implements OnInit {
   closeAlertDeleteDepartment()
   {
     this.alertDeleteDepartment = false;
+  }
+  onDeleteSkill(skill: Skill) {
+    this.skill = this.cloneSkill(skill);
+    this.alertDeleteSkill = true;
+  }
+
+  closeAlertDeleteSkill()
+  {
+    this.alertDeleteSkill = false;
   }
   saveU1() {
 
@@ -270,6 +280,7 @@ deleteSkill(skillId: number){
   this.sService.deleteSkill(skillId).subscribe(
     (response) => {console.log(response);this.sService.getAllSkills().subscribe(skills => (this.skills = skills));},
     (error) => console.log(error));
+    this.alertDeleteSkill = false;
 }
 onEditSelectSkill(skill: Skill){
   this.newSkill = false;

@@ -172,7 +172,7 @@
               </td>
               <td>
                 <button type="button" class="ui-button-danger" pButton icon="fa fa-trash"
-                  (click)="deleteSkill(skill.skillId)"></button>
+                  (click)="onDeleteSkill(skill)"></button>
                 <button type="button" class="ui-button-success" pButton icon="fa fa-pencil"
                   (click)="onEditSelectSkill(skill)"></button>
               </td>
@@ -412,7 +412,6 @@
       <div class="ui-g-8">
         <p-dropdown [options]="searchCategoriesId" id="skillCategory" [(ngModel)]="skill.categoryId"
           [style]="{'width':'100%'}"></p-dropdown>
-        <!-- <input pInputText id="skill.skillCategory.description" [(ngModel)]="skill.skillCategory.description" /> -->
       </div>
     </div>
   </div>
@@ -423,4 +422,17 @@
       <button type="button" class="ui-button-success" pButton icon="fa fa-plus" (click)="saveS1()" label="Add"></button>
     </div>
   </p-footer>
+</p-dialog>
+<!-- Dialog pt Delete Skills -->
+<p-dialog header="Delete Skill" [(visible)]="alertDeleteSkill" [responsive]="true" showEffect="fade"
+  [modal]="true" selectionMode="single" [style]="{'max-width': '500px'}">
+  <div>
+    Are you shure that you want to delete this skill?
+  </div>
+  <div class="ui-dialog-buttonpane ui-helper-clearfix">
+    <button type="button" class="ui-button-danger" pButton icon="fa fa-close" (click)="closeAlertDeleteSkill()"
+      label="No"></button>
+    <button type="button" class="ui-button-success" pButton icon="fa fa-check"
+      (click)="deleteSkill(skill.skillId)" label="Yes"></button>
+  </div>
 </p-dialog>
