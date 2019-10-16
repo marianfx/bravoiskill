@@ -55,8 +55,8 @@ namespace BravoiSkill.Application.Services.Implementations
             if (skillEntity == null)
                 throw new Exception("Skill does not exist in database");
             skill.SkillId = skillEntity.SkillId;
-
-            _mapper.Map<Skill, Domain.Entities.Users.Skill>(skill, skillEntity);
+            _mapper.Map(skill, skillEntity);
+            skillEntity.SkillCategory = null;
             _skillRepository.Update(skillEntity);
         }
         public void Delete(int id)
