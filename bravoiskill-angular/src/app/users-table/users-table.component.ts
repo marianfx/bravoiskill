@@ -7,8 +7,6 @@ import { Department } from '../auth/models/department';
 import { DepartmentService } from '../auth/service/department.service';
 import { Skill } from '../auth/models/skill';
 import { SkillService } from '../auth/service/skill.service';
-import {MDCDialog} from '@material/dialog';
-import { SkillCategory } from '../auth/models/skillCategory';
 
 @Component({
   selector: 'app-users-table',
