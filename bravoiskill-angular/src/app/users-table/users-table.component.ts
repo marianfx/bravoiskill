@@ -86,7 +86,7 @@ export class UsersTableComponent implements OnInit {
     ];
     this.searchCategories = [
       { label: 'All Categories', value:  null },
-      { label: 'Human Relations', value: "saa" },
+      { label: 'Human Relations', value: "Human Relations" },
       { label: 'Character', value: "Character" },
       { label: 'Web - Front-End', value: 'Web - Front-End' },
       { label: 'Desktop/Mobile', value: 'Desktop/Mobile' },
