@@ -25,6 +25,7 @@ import {CalendarModule} from 'primeng/calendar';
 import { TabMenuModule } from 'primeng/tabmenu';
 import { SkillService } from './auth/service/skill.service';
 import{DropdownModule} from 'primeng/dropdown';
+import { ProfileComponent } from './profile/profile.component';
 
 @NgModule({
   declarations: [
@@ -33,7 +34,8 @@ import{DropdownModule} from 'primeng/dropdown';
     FooterComponent,
     LoginComponent,
     HomeComponent,
-    UsersTableComponent
+    UsersTableComponent,
+    ProfileComponent
   ],
   imports: [
     BrowserModule,

@@ -8,6 +8,6 @@ export interface User {
   token?: string;
   skype: string;
   // photo: string;
-  // profileId: number;
-  // badgeId: number;
+  profileId: number;
+  badgeId: number;
 }

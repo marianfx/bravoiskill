@@ -85,7 +85,7 @@
           <a class="nav-link" *ngIf="currentUser" (click)="logout()"  style="cursor: pointer" >Logout</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" *ngIf="currentUser" style="cursor: pointer" >Tables</a>
+          <a class="nav-link" [routerLink]="['/tables']" *ngIf="currentUser && currentUser.profileId == 1" style="cursor: pointer" >Tables</a>
         </li>
       </ul>
     </div>
