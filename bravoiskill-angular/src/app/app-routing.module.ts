@@ -6,10 +6,12 @@ import { HomeComponent } from './home/home.component';
 import { AuthGuard } from './auth/auth.guard';
 import { UsersTableComponent } from './users-table/users-table.component';
 import { AuthAdmin } from './auth/auth.admin';
+import { ProfileComponent } from './profile/profile.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent, canActivate: [AuthGuard] },
   { path: 'tables', component: UsersTableComponent, canActivate: [AuthAdmin]},
+  { path: 'profile', component: ProfileComponent },
   { path: 'login', component: LoginComponent },
   { path: '**', redirectTo: '' }
 ];
