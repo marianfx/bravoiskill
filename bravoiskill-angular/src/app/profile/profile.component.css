@@ -1,0 +1,24 @@
+.card-profile-image img {
+  position: absolute;
+  left: 50%;
+  max-width: 100%;
+  transition: all .15s ease;
+  -webkit-transform: translate(-50%,-30%);
+  transform: translate(-50%,-30%);
+  border-radius: .375rem;
+}
+.card-profile-image img:hover {
+  max-width: 110%;
+}
+
+.card-profile-image img, .shadow {
+  box-shadow: 0 0 2rem 0 rgba(136,152,170,.15)!important;
+}
+
+.rounded-circle {
+  border-radius: 50%!important;
+}
+img {
+  vertical-align: middle;
+  border-style: none;
+}
