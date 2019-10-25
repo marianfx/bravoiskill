@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { User } from '../auth/models/user';
 import { AuthenticationService } from '../auth/service/authentication.service';
+import * as moment from 'moment';
+import { ipInfo } from '../ipinfo';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-profile',
@@ -9,13 +12,28 @@ import { AuthenticationService } from '../auth/service/authentication.service';
 })
 export class ProfileComponent implements OnInit {
 
-  currentUser: User;
-  constructor(private authenticationService: AuthenticationService) {
-    this.authenticationService.currentUser.subscribe(x => this.currentUser = x);
+  public currentUser: User;
+  public ipData: ipInfo;
+  token: String = 'df96ac341a7a8d';
+
+  constructor(private authenticationService: AuthenticationService, public http: HttpClient) {
+
+    this.authenticationService.currentUser.subscribe(x => this.currentUser = x );
+
    }
 
   ngOnInit() {
-
+    this.SetIpAddress();
   }
-
+  public CalculateAge(dateOfBirth: Date)
+  {
+   return moment().diff(dateOfBirth, 'year');
+  }
+  SetIpAddress(){
+    this.http.get('https://ipinfo.io/?token='+this.token).subscribe(data => {
+      console.log(data);
+      this.ipData = data as ipInfo;
+    });
 }
+ }
+

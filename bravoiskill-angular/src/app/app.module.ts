@@ -26,6 +26,8 @@ import { TabMenuModule } from 'primeng/tabmenu';
 import { SkillService } from './auth/service/skill.service';
 import{DropdownModule} from 'primeng/dropdown';
 import { ProfileComponent } from './profile/profile.component';
+import { AgmCoreModule } from '@agm/core';
+
 
 @NgModule({
   declarations: [
@@ -54,7 +56,10 @@ import { ProfileComponent } from './profile/profile.component';
     BrowserAnimationsModule,
     CalendarModule,
     TabMenuModule,
-    DropdownModule
+    DropdownModule,
+    AgmCoreModule.forRoot({
+      apiKey: 'AIzaSyC1ReIVGVAdDP09g6YUAYhzhCtmSFiXxeY'
+    })
   ],
   exports: [],
   providers: [
