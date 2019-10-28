@@ -20,37 +20,36 @@ export class ProfileComponent implements OnInit {
 
   constructor(private authenticationService: AuthenticationService, public http: HttpClient) {
 
-    this.authenticationService.currentUser.subscribe(x => this.currentUser = x );
+    this.authenticationService.currentUser.subscribe(x => this.currentUser = x);
 
-   }
+  }
 
   ngOnInit() {
     this.SetIpAddress();
   }
-  public CalculateAge(dateOfBirth: Date)
-  {
-   return moment().diff(dateOfBirth, 'year');
+  public CalculateAge(dateOfBirth: Date) {
+    return moment().diff(dateOfBirth, 'year');
   }
-  SetIpAddress(){
-    this.http.get('https://ipinfo.io/?token='+this.token).subscribe(data => {
+  SetIpAddress() {
+    this.http.get('https://ipinfo.io/?token=' + this.token).subscribe(data => {
       console.log(data);
       this.ipData = data as ipInfo;
     });
   }
-  OnFileSelected(event){
+  OnFileSelected(event) {
     console.log(event);
     this.selectedFile = <File>event.target.files[0];
   }
-  OnUpload(){
+  OnUpload() {
     const fd = new FormData();
     fd.append('image', this.selectedFile, this.selectedFile.name)
-    this.http.post('',fd).subscribe(res => {
+    this.http.post('', fd).subscribe(res => {
       console.log(res);
     });
     this.hidden = true;
   }
-  OnEdit(){
+  OnEdit() {
     this.hidden = !this.hidden;
   }
- }
+}
 

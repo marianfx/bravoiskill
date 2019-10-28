@@ -7,6 +7,7 @@
   transform: translate(-50%,-30%);
   border-radius: .375rem;
 }
+
 .card-profile-image img:hover {
   max-width: 110%;
 }
@@ -18,8 +19,21 @@
 .rounded-circle {
   border-radius: 50%!important;
 }
+
 img {
   vertical-align: middle;
   border-style: none;
 }
 
+.profile-foto .profile-caption {
+  /* position: absolute; */
+  top: 0;
+  left: 0;
+  transition: all .2s ease-in-out;
+  opacity: 0;
+  background-color: rgba(26,188,156,.9);
+}
+
+.profile-foto .profile-caption:hover {
+  opacity: 1;
+}

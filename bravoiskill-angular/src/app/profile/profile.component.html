@@ -25,9 +25,18 @@
           <div class="card card-profile shadow">
             <div class="row justify-content-center">
               <div class="col-lg-3 order-lg-2">
-                <div class="card-profile-image card-header">
+
+                <div class="card-profile-image">
+                  <div class="profile-foto mx-auto">
+                    <div class="profile-caption d-flex align-items-center justify-content-center w-100 h-100">
+                      <div class="profile-caption-content text-white">
+                        <i class="fas fa-plus fa-3x"></i>
+                      </div>
+                    </div>
+                  </div>
                   <img src="assets/img/theme/team-4-800x800.jpg" class="rounded-circle" (click)="OnEdit()">
                 </div>
+
                 <div class="container" *ngIf="!hidden">
                   <div class="d-flex justify-content-center">
                     <input type="file" (change)="OnFileSelected($event)">
@@ -47,15 +56,15 @@
                 <div class="col">
                   <div class="card-profile-stats d-flex justify-content-center mt-md-5">
                     <div>
-                      <span class="heading">22</span>
-                      <span class="description">Friends</span>
+                      <span class="heading">22 </span>
+                      <span class="description">Friends, </span>
                     </div>
                     <div>
-                      <span class="heading">10</span>
-                      <span class="description">Photos</span>
+                      <span class="heading">10 </span>
+                      <span class="description">Photos, </span>
                     </div>
                     <div>
-                      <span class="heading">89</span>
+                      <span class="heading">89 </span>
                       <span class="description">Comments</span>
                     </div>
                   </div>
