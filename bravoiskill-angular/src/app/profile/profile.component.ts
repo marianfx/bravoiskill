@@ -12,9 +12,11 @@ import { HttpClient } from '@angular/common/http';
 })
 export class ProfileComponent implements OnInit {
 
+  public hidden: boolean = true;
   public currentUser: User;
   public ipData: ipInfo;
   token: String = 'df96ac341a7a8d';
+  selectedFile: File = null;
 
   constructor(private authenticationService: AuthenticationService, public http: HttpClient) {
 
@@ -34,6 +36,21 @@ export class ProfileComponent implements OnInit {
       console.log(data);
       this.ipData = data as ipInfo;
     });
-}
+  }
+  OnFileSelected(event){
+    console.log(event);
+    this.selectedFile = <File>event.target.files[0];
+  }
+  OnUpload(){
+    const fd = new FormData();
+    fd.append('image', this.selectedFile, this.selectedFile.name)
+    this.http.post('',fd).subscribe(res => {
+      console.log(res);
+    });
+    this.hidden = true;
+  }
+  OnEdit(){
+    this.hidden = !this.hidden;
+  }
  }
 
