@@ -1,15 +1,19 @@
 .card-profile-image img {
   position: absolute;
   left: 50%;
-  max-width: 100%;
-  transition: all .15s ease;
+  max-width: 9.365rem;
   -webkit-transform: translate(-50%,-30%);
   transform: translate(-50%,-30%);
   border-radius: .375rem;
+  border-top: 0px;
+  transition: all .2s ease-in-out;
+  opacity: 1;
+  background-color: rgba(26,188,156,.9);
 }
 
 .card-profile-image img:hover {
-  max-width: 110%;
+  max-width: 10rem;
+  opacity: 0.22;
 }
 
 .card-profile-image img, .shadow {
@@ -25,15 +29,3 @@ img {
   border-style: none;
 }
 
-.profile-foto .profile-caption {
-  /* position: absolute; */
-  top: 0;
-  left: 0;
-  transition: all .2s ease-in-out;
-  opacity: 0;
-  background-color: rgba(26,188,156,.9);
-}
-
-.profile-foto .profile-caption:hover {
-  opacity: 1;
-}
