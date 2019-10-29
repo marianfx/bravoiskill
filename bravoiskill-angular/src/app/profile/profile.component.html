@@ -25,11 +25,12 @@
           <div class="card card-profile shadow">
             <div class="row justify-content-center">
               <div class="col-lg-3 order-lg-2">
-
                 <div class="card-profile-image">
-
-                  <img src="assets/img/theme/team-4-800x800.jpg" class="rounded-circle" (click)="OnEdit()">
-
+                  <div class="profile-pic" style="background-image: url('assets/img/theme/team-4-800x800.jpg')"
+                    (click)="OnEdit()">
+                    <span><i class="fa fa-camera-retro"></i></span>
+                    <span>&nbsp;Change Image</span>
+                  </div>
                 </div>
 
                 <div class="container" *ngIf="!hidden">
@@ -43,7 +44,6 @@
             <div class="card-header text-center border-0 pt-8 pt-md-4 pb-0 pb-md-4">
               <div class="d-flex justify-content-between">
                 <a href="javascript:void(0)" class="btn btn-sm btn-info mr-4">Connect</a>
-              <div style="color: blue; font-size: 12px;">Edit profile photo !</div>
                 <a href="javascript:void(0)" class="btn btn-sm btn-default float-right">Message</a>
               </div>
             </div>

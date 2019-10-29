@@ -1,31 +1,34 @@
-.card-profile-image img {
+
+.profile-pic {
   position: absolute;
   left: 50%;
   max-width: 9.365rem;
   -webkit-transform: translate(-50%,-30%);
   transform: translate(-50%,-30%);
-  border-radius: .375rem;
-  border-top: 0px;
-  transition: all .2s ease-in-out;
-  opacity: 1;
-  background-color: rgba(26,188,156,.9);
-}
-
-.card-profile-image img:hover {
-  max-width: 10rem;
-  opacity: 0.22;
-}
-
-.card-profile-image img, .shadow {
-  box-shadow: 0 0 2rem 0 rgba(136,152,170,.15)!important;
-}
-
-.rounded-circle {
-  border-radius: 50%!important;
-}
-
-img {
+  border-radius: 50%;
+  height: 150px;
+  width: 150px;
+  background-size: cover;
+  background-position: center;
+  background-blend-mode: multiply;
   vertical-align: middle;
-  border-style: none;
+  text-align: center;
+  color: transparent;
+  transition: all .3s ease;
+  text-decoration: none;
+}
+
+.profile-pic:hover {
+  background-color: rgba(0,0,0,.5);
+  z-index: 10000;
+  color: #fff;
+  transition: all .3s ease;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.profile-pic span {
+  display: inline-block;
+  padding-top: 4rem;
 }
 
