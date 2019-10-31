@@ -4,6 +4,7 @@ import { AuthenticationService } from '../auth/service/authentication.service';
 import * as moment from 'moment';
 import { ipInfo } from '../ipinfo';
 import { HttpClient } from '@angular/common/http';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-profile',
@@ -42,8 +43,11 @@ export class ProfileComponent implements OnInit {
   }
   OnUpload() {
     const fd = new FormData();
-    fd.append('image', this.selectedFile, this.selectedFile.name)
-    this.http.post('', fd).subscribe(res => {
+    fd.append('file', this.selectedFile, this.selectedFile.name)
+
+    this.http.post(`${environment.AppRoot}/profileImage`, fd
+    // , { headers: { "Content-Type": null }}
+    ).subscribe(res => {
       console.log(res);
     });
     this.hidden = true;
