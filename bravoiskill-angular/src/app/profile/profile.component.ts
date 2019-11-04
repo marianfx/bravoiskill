@@ -18,6 +18,7 @@ export class ProfileComponent implements OnInit {
   public ipData: ipInfo;
   token: String = 'df96ac341a7a8d';
   selectedFile: File = null;
+  profilePhoto: String = "";
 
   constructor(private authenticationService: AuthenticationService, public http: HttpClient) {
 
@@ -45,10 +46,10 @@ export class ProfileComponent implements OnInit {
     const fd = new FormData();
     fd.append('file', this.selectedFile, this.selectedFile.name)
 
-    this.http.post(`${environment.AppRoot}/profileImage`, fd
-    // , { headers: { "Content-Type": null }}
-    ).subscribe(res => {
+    this.http.post(`${environment.AppRoot}/profileImage`, fd)
+    .subscribe(res => {
       console.log(res);
+      this.profilePhoto = this.selectedFile.name;
     });
     this.hidden = true;
   }
