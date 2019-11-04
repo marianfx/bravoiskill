@@ -4,6 +4,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Net.Http.Headers;
 
 
 // For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
@@ -22,38 +23,38 @@ namespace BravoiSkill.API.Controllers
         {
             public IFormFile files { get; set; }
         }
-        [HttpPost]
-        public async Task<string> Post()
+        [HttpPost, DisableRequestSizeLimit]
+        public IActionResult Upload()
         {
-            var files = Request.Form.Files;
-
-            if (files.Count > 0)
+            try
             {
-                try
+                var file = Request.Form.Files[0];
+                var folderName = Path.Combine("Resources", "Images");
+                var pathToSave = Path.Combine(Directory.GetCurrentDirectory(), folderName);
+
+                if (file.Length > 0)
                 {
-                    if (!Directory.Exists(_environment.WebRootPath + "\\uploads\\"))
+                    var fileName = ContentDispositionHeaderValue.Parse(file.ContentDisposition).FileName.Trim();
+                    var fullPath = Path.Combine(pathToSave, fileName.ToString());
+                    var dbPath = Path.Combine(folderName, fileName.ToString());
+
+                    using (var stream = new FileStream(fullPath, FileMode.Create))
                     {
-                        Directory.CreateDirectory(_environment.WebRootPath + "\\uploads\\");
+                        file.CopyTo(stream);
                     }
 
-                    var file = files[0];
-                    using (FileStream filestream = System.IO.File.Create(_environment.WebRootPath + "\\uploads\\" + file.FileName))
-                    {
-                        file.CopyTo(filestream);
-                        filestream.Flush();
-                        return "\\uploads\\" + file.FileName;
-                    }
+                    return Ok(new { dbPath });
                 }
-                catch (Exception ex)
+                else
                 {
-                    return ex.ToString();
+                    return BadRequest();
                 }
             }
-            else
+            catch (Exception ex)
             {
-                return "Unsuccessful";
+                return StatusCode(500, "Internal server error");
             }
-
         }
     }
 }
+    
