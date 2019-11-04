@@ -21,27 +21,29 @@ export class ProfileComponent implements OnInit {
   profilePhoto: String = "";
 
   constructor(private authenticationService: AuthenticationService, public http: HttpClient) {
-
     this.authenticationService.currentUser.subscribe(x => this.currentUser = x);
-
   }
 
   ngOnInit() {
     this.SetIpAddress();
   }
+
   public CalculateAge(dateOfBirth: Date) {
     return moment().diff(dateOfBirth, 'year');
   }
+  
   SetIpAddress() {
     this.http.get('https://ipinfo.io/?token=' + this.token).subscribe(data => {
       console.log(data);
       this.ipData = data as ipInfo;
     });
   }
+  
   OnFileSelected(event) {
     console.log(event);
     this.selectedFile = <File>event.target.files[0];
   }
+  
   OnUpload() {
     const fd = new FormData();
     fd.append('file', this.selectedFile, this.selectedFile.name)
@@ -53,6 +55,7 @@ export class ProfileComponent implements OnInit {
     });
     this.hidden = true;
   }
+  
   OnEdit() {
     this.hidden = !this.hidden;
   }
