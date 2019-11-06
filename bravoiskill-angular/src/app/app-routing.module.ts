@@ -11,7 +11,7 @@ import { ProfileComponent } from './profile/profile.component';
 const routes: Routes = [
   { path: '', component: HomeComponent, canActivate: [AuthGuard] },
   { path: 'tables', component: UsersTableComponent, canActivate: [AuthAdmin]},
-  { path: 'profile', component: ProfileComponent },
+  { path: 'profile/:id', component: ProfileComponent },
   { path: 'login', component: LoginComponent },
   { path: '**', redirectTo: '' }
 ];

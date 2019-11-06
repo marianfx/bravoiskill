@@ -14,9 +14,11 @@ export class NavbarComponent implements OnInit {
     private lastPoppedUrl: string;
     private yScrollStack: number[] = [];
     currentUser: User;
+    public profileRoute: String;
 
     constructor(public location: Location, private router: Router, private authenticationService: AuthenticationService) {
       this.authenticationService.currentUser.subscribe(x => this.currentUser = x);
+      this.profileRoute = "profile/"+ `${this.currentUser.userId}`;
     }
 
     ngOnInit() {

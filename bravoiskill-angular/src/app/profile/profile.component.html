@@ -11,10 +11,10 @@
       <div class="container-fluid">
         <div class="row">
           <div class="col-lg-7 col-md-10">
-            <h1 class="display-2 text-white">Hello, {{currentUser.firstName}} !!!</h1>
+            <h1 class="display-2 text-white" *ngIf="!canMessage">Hello, {{cUser.firstName}} !!!</h1>
             <p class="text-white mt-0 mb-5">This is your skilled-orientated profile page. You can see the progress
               you've made with your work-related skills and manage your personal skills and reviews</p>
-            <a href="#!" class="btn btn-info">Edit profile</a>
+            <a href="#!" class="btn btn-info" *ngIf="!canMessage">Edit profile</a>
           </div>
         </div>
       </div>
@@ -43,8 +43,8 @@
             </div>
             <div class="card-header text-center border-0 pt-8 pt-md-4 pb-0 pb-md-4">
               <div class="d-flex justify-content-between">
-                <a href="javascript:void(0)" class="btn btn-sm btn-info mr-4">Connect</a>
-                <a href="skype:live:olimpiaticlos?chat" class="btn btn-sm btn-default float-right">Message</a>
+                <!-- <a href="javascript:void(0)" class="btn btn-sm btn-info mr-4">Connect</a> -->
+                <a href="skype:live:olimpiaticlos?chat" class="btn btn-sm btn-default float-right" *ngIf="canMessage">Message</a>
               </div>
             </div>
             <div class="card-body pt-0 pt-md-4">
@@ -67,9 +67,9 @@
                 </div>
               </div>
               <div class="text-center">
-                <h3>{{currentUser.firstName}} {{currentUser.lastName}},
+                <h3>{{cUser.firstName}} {{cUser.lastName}},
                   <span
-                    class="font-weight-light">{{CalculateAge(currentUser.dateOfBirth)}}
+                    class="font-weight-light">{{CalculateAge(cUser.dateOfBirth)}}
                   </span>
                 </h3>
                 <div class="h5 font-weight-300 style-location" *ngIf="ipData">

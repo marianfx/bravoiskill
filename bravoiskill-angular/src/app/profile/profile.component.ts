@@ -1,12 +1,16 @@
-import { Component, OnInit } from "@angular/core";
-import { User } from "../auth/models/user";
-import { AuthenticationService } from "../auth/service/authentication.service";
-import * as moment from "moment";
-import { ipInfo } from "../ipinfo";
-import { HttpClient } from "@angular/common/http";
-import { environment } from "src/environments/environment";
 import { empty } from "rxjs";
 import { not } from "@angular/compiler/src/output/output_ast";
+import { Component, OnInit } from '@angular/core';
+import { User } from '../auth/models/user';
+import { AuthenticationService } from '../auth/service/authentication.service';
+import * as moment from 'moment';
+import { ipInfo } from '../ipinfo';
+import { HttpClient } from '@angular/common/http';
+import { environment } from 'src/environments/environment';
+import { getDefaultService } from 'selenium-webdriver/chrome';
+import { ActivatedRoute } from '@angular/router';
+import { Subscription } from 'rxjs';
+import { UserService } from '../auth/service/user.service';
 
 @Component({
   selector: "app-profile",
@@ -15,25 +19,20 @@ import { not } from "@angular/compiler/src/output/output_ast";
 })
 export class ProfileComponent implements OnInit {
   public hidden: boolean = true;
-  public currentUser: User;
+  public cUser: User = {} as User;
   public ipData: ipInfo;
-  token: String = "df96ac341a7a8d";
+  public canMessage: boolean = false;
+  token: String = 'df96ac341a7a8d';
   selectedFile: File = null;
-  profilePhoto: String = "url('assets/img/theme/team-4-800x800.jpg')";
+  profilePhoto: String = "";
+  private routeSub: Subscription;
 
-  constructor(
-    private authenticationService: AuthenticationService,
-    public http: HttpClient,
-  ) {
-    this.authenticationService.currentUser.subscribe(
-      x => {
-        this.currentUser = x;
-        this.profilePhoto = "url('" + `${environment.AppRoot}/users/${x.userId}/photo` + "')";
-      }
-    );
+  constructor(private authenticationService: AuthenticationService, public http: HttpClient, public route: ActivatedRoute, public userService: UserService) {
+   // this.authenticationService.currentUser.subscribe(x => this.currentUser = x);
   }
 
   ngOnInit() {
+    this.getUserMet();
     this.SetIpAddress();
   }
 
@@ -48,6 +47,29 @@ export class ProfileComponent implements OnInit {
     });
   }
 
+  getUserMet() {
+    // // this.route
+    // get route parameters
+    this.routeSub = this.route.params.subscribe(params => {
+      // console.log(params) //log the entire params object
+      console.log(params['id']) //log the value of id
+      if(params && params['id']) {
+        this.userService.getUserById(+(params['id'])).subscribe(user => {
+          this.cUser = user;
+          this.authenticationService.currentUser.subscribe(x => this.canMessage = ( x.userId != this.cUser.userId ));
+          console.log(user);
+        });
+        console.log(this.cUser.userId);
+      }
+    });
+
+    // check id not null
+
+    // get user by id using user service
+
+    // populate curentUser with resulted user
+  }
+  
   OnFileSelected(event) {
     console.log(event);
     this.selectedFile = <File>event.target.files[0];
@@ -70,5 +92,9 @@ export class ProfileComponent implements OnInit {
 
   OnEdit() {
     this.hidden = !this.hidden;
+  }
+
+  ngOnDestroy() {
+    this.routeSub.unsubscribe();
   }
 }
