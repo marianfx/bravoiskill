@@ -7,7 +7,7 @@ export interface User {
   password: string;
   token?: string;
   skype: string;
-  // photo: string;
+  photo: string;
   profileId: number;
   badgeId: number;
 }

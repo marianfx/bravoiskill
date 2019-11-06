@@ -26,7 +26,7 @@
             <div class="row justify-content-center">
               <div class="col-lg-3 order-lg-2">
                 <div class="card-profile-image">
-                  <div class="profile-pic" style="background-image: url('assets/img/theme/team-4-800x800.jpg')"
+                  <div class="profile-pic" [ngStyle]="{'background-image': profilePhoto}"
                     (click)="OnEdit()">
                     <span><i class="fa fa-camera-retro"></i></span>
                     <span>&nbsp;Change Image</span>
@@ -36,7 +36,7 @@
                 <div class="container" *ngIf="!hidden">
                   <div class="d-flex justify-content-center">
                     <input type="file" (change)="OnFileSelected($event)">
-                    <button type="button" class="btn-default" (click)="OnUpload()">Upload</button>
+                    <button type="button" class="btn-default" (click)="OnUpload(currentUser.userId)">Upload</button>
                   </div>
                 </div>
               </div>
