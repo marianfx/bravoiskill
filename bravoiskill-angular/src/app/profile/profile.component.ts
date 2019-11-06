@@ -49,25 +49,23 @@ export class ProfileComponent implements OnInit {
 
   getUserMet() {
     // // this.route
-    // get route parameters
+    // get route parameter
+    // check id not null
+    // get user by id using user service
+    // populate curentUser with resulted user
     this.routeSub = this.route.params.subscribe(params => {
       // console.log(params) //log the entire params object
       console.log(params['id']) //log the value of id
       if(params && params['id']) {
         this.userService.getUserById(+(params['id'])).subscribe(user => {
           this.cUser = user;
+          this.profilePhoto = "url('" + `${environment.AppRoot}/users/${user.userId}/photo` + "')";
           this.authenticationService.currentUser.subscribe(x => this.canMessage = ( x.userId != this.cUser.userId ));
           console.log(user);
         });
         console.log(this.cUser.userId);
       }
     });
-
-    // check id not null
-
-    // get user by id using user service
-
-    // populate curentUser with resulted user
   }
   
   OnFileSelected(event) {
@@ -84,7 +82,7 @@ export class ProfileComponent implements OnInit {
       .subscribe(x => {
         if (!x || !x["fileName"])
           return console.log ("Error");
-            this.profilePhoto = "url('" + `${environment.AppRoot}/users/${this.currentUser.userId}/photo` + "')";
+            this.profilePhoto = "url('" + `${environment.AppRoot}/users/${this.cUser.userId}/photo` + "')";
       });
 
     this.hidden = true;
