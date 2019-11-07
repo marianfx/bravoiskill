@@ -18,7 +18,7 @@ export class NavbarComponent implements OnInit {
 
     constructor(public location: Location, private router: Router, private authenticationService: AuthenticationService) {
       this.authenticationService.currentUser.subscribe(x => this.currentUser = x);
-      this.profileRoute = "profile/"+ `${this.currentUser.userId}`;
+
     }
 
     ngOnInit() {
@@ -66,4 +66,7 @@ export class NavbarComponent implements OnInit {
       this.authenticationService.logout();
       this.router.navigate(['/login']);
   }
+    myProfileRedirect(){
+      return "profile/"+ `${this.currentUser.userId}`;
+    }
 }

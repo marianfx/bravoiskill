@@ -67,7 +67,7 @@ export class ProfileComponent implements OnInit {
       }
     });
   }
-  
+
   OnFileSelected(event) {
     console.log(event);
     this.selectedFile = <File>event.target.files[0];

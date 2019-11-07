@@ -82,7 +82,7 @@
           </div>
         </li> -->
         <li class="nav-item">
-          <a class="nav-link" [routerLink]="profileRoute" *ngIf="currentUser" style="cursor: pointer" >My Profile</a>
+          <a class="nav-link" [routerLink]="myProfileRedirect()" *ngIf="currentUser" style="cursor: pointer" >My Profile</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" [routerLink]="['/tables']" *ngIf="currentUser && currentUser.profileId == 1" style="cursor: pointer" >Tables</a>
