@@ -26,9 +26,15 @@
             <div class="row justify-content-center">
               <div class="col-lg-3 order-lg-2">
                 <div class="card-profile-image">
-                  <div class="profile-pic" [ngStyle]="{'background-image': profilePhoto}" (click)="uploader.click()">
+                  <div *ngIf="!canMessage" class="profile-pic owner" [ngStyle]="{'background-image': profilePhoto}" (click)="uploader.click()">
                     <span><i class="fa fa-camera-retro"></i></span>
                     <span>&nbsp;Change Image</span>
+                  </div>
+                </div>
+                <div *ngIf="canMessage" class="card-profile-image" #cantM>
+                  <div class="profile-pic" [ngStyle]="{'background-image': profilePhoto}">
+                    <span><i class="fa fa-camera-retro"></i></span>
+                    <span>&nbsp;</span>
                   </div>
                 </div>
                 <div class="container">

@@ -1,5 +1,5 @@
 
-.profile-pic {
+.profile-pic, .owner {
   position: absolute;
   left: 50%;
   max-width: 9.365rem;
@@ -18,7 +18,7 @@
   text-decoration: none;
 }
 
-.profile-pic:hover {
+.profile-pic.owner:hover {
   background-color: rgba(0,0,0,.5);
   z-index: 10000;
   color: #fff;
