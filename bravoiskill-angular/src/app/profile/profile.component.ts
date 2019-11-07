@@ -11,7 +11,7 @@ import { getDefaultService } from 'selenium-webdriver/chrome';
 import { ActivatedRoute } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { UserService } from '../auth/service/user.service';
-
+import {DomSanitizer} from '@angular/platform-browser';
 @Component({
   selector: "app-profile",
   templateUrl: "./profile.component.html",
@@ -26,7 +26,8 @@ export class ProfileComponent implements OnInit {
   profilePhoto: String = "";
   private routeSub: Subscription;
 
-  constructor(private authenticationService: AuthenticationService, public http: HttpClient, public route: ActivatedRoute, public userService: UserService) {
+  constructor(private authenticationService: AuthenticationService, public http: HttpClient,
+     public route: ActivatedRoute, public userService: UserService, private sanitizer:DomSanitizer) {
    // this.authenticationService.currentUser.subscribe(x => this.currentUser = x);
   }
 
@@ -87,5 +88,8 @@ export class ProfileComponent implements OnInit {
   }
   ngOnDestroy() {
     this.routeSub.unsubscribe();
+  }
+  skype(skype: String){
+    return this.sanitizer.bypassSecurityTrustUrl("skype:"+skype+"?chat");
   }
 }
