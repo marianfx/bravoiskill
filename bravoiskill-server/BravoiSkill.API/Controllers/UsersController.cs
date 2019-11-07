@@ -136,6 +136,10 @@ namespace BravoiSkill.API.Controllers
                 var folderName = Path.Combine("Resources", "Images");
                 var folderPath = Path.Combine(Directory.GetCurrentDirectory(), folderName);
                 var filename = _userService.GetById(id).Photo;
+
+                if (filename == null)
+                    filename = "default.png";
+
                 var path = Path.Combine(folderPath, filename);
                 var file = System.IO.File.OpenRead(path);
                 if (file == null)
