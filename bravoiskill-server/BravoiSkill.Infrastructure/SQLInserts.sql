@@ -45,6 +45,8 @@ INSERT INTO BravoiSkill.dbo.Users (FirstName,LastName,DateOfBirth,Email,Password
 ('Andrei','Leahu','1996-11-29 00:00:00.000','andrei_lh@yahoo.com','123456','live:andrei_lh',NULL,1,1,3),
 ('Lidia-Gabriela','Burca','1999-07-14 00:00:00.000','lidia_burca@yahoo.com','123456','live:4013d68d7a36af76',NULL,1,1,2),
 ('Olimpia','Ticlos','1997-06-10 00:00:00.000','olimpia_ticlos@yahoo.com','123456','live:olimpiaticlos',NULL,1,1,3),
+('Laiu','Stefanel','1990-06-10 00:00:00.000','stefanel_laiu@yahoo.com','123456','wolfang27',NULL,1,1,3),
+('Lungu','Claudiu-Demian','1994-06-10 00:00:00.000','naimad_lungu@yahoo.com','123456','klahoodyoo',NULL,1,1,3),
 ('Guest','GUEST','1997-06-10 00:00:00.000','guest@yahoo.com','123456','skype@notfakeskye.tru',NULL,2,3,1),
 ('User','USER','1997-06-10 00:00:00.000','user@yahoo.com','123456','skype@notfakeskye.tru',NULL,3,2,1),
 ('User','USER','1997-06-10 00:00:00.000','user@yahoo.com','123456','skype@notfakeskye.tru',NULL,2,2,1)
