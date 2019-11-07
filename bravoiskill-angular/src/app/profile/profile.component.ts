@@ -18,7 +18,6 @@ import { UserService } from '../auth/service/user.service';
   styleUrls: ["./profile.component.css"]
 })
 export class ProfileComponent implements OnInit {
-  public hidden: boolean = true;
   public cUser: User = {} as User;
   public ipData: ipInfo;
   public canMessage: boolean = false;
@@ -71,6 +70,7 @@ export class ProfileComponent implements OnInit {
   OnFileSelected(event) {
     console.log(event);
     this.selectedFile = <File>event.target.files[0];
+    this.OnUpload(this.cUser.userId);
   }
 
   OnUpload(id: number) {
@@ -82,16 +82,9 @@ export class ProfileComponent implements OnInit {
       .subscribe(x => {
         if (!x || !x["fileName"])
           return console.log ("Error");
-            this.profilePhoto = "url('" + `${environment.AppRoot}/users/${this.cUser.userId}/photo` + "')";
+        this.profilePhoto = "url('" + `${environment.AppRoot}/users/${this.cUser.userId}/photo` + "')";
       });
-
-    this.hidden = true;
   }
-
-  OnEdit() {
-    this.hidden = !this.hidden;
-  }
-
   ngOnDestroy() {
     this.routeSub.unsubscribe();
   }

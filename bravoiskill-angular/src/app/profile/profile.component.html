@@ -26,17 +26,14 @@
             <div class="row justify-content-center">
               <div class="col-lg-3 order-lg-2">
                 <div class="card-profile-image">
-                  <div class="profile-pic" onerror="profilePhoto = url('assets/img/theme/team-4-800x800.jpg')"   [ngStyle]="{'background-image': profilePhoto}"
-                    (click)="OnEdit()">
+                  <div class="profile-pic" [ngStyle]="{'background-image': profilePhoto}" (click)="uploader.click()">
                     <span><i class="fa fa-camera-retro"></i></span>
                     <span>&nbsp;Change Image</span>
                   </div>
                 </div>
-
-                <div class="container" *ngIf="!hidden">
+                <div class="container">
                   <div class="d-flex justify-content-center">
-                    <input type="file" (change)="OnFileSelected($event)">
-                    <button type="button" class="btn-default" (click)="OnUpload(cUser.userId)">Upload</button>
+                    <input hidden type="file" (change)="OnFileSelected($event)" #uploader>
                   </div>
                 </div>
               </div>
