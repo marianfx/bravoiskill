@@ -2,14 +2,9 @@
 using BravoiSkill.Application.DTO.Users;
 using BravoiSkill.Application.Services.Interfaces;
 using BravoiSkill.Domain.Interfaces.Repositories.Users;
-using Microsoft.Extensions.Options;
-using Microsoft.IdentityModel.Tokens;
 using System;
 using System.Collections.Generic;
-using System.IdentityModel.Tokens.Jwt;
 using System.Linq;
-using System.Security.Claims;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace BravoiSkill.Application.Services.Implementations
@@ -62,6 +57,7 @@ namespace BravoiSkill.Application.Services.Implementations
             _mapper.Map<Department, Domain.Entities.Users.Department>(department, departmentEntity);
             _departmentRepository.Update(departmentEntity);
         }
+
         public void Delete(int id)
         {
             var departmentEntity = _departmentRepository.GetDepartmentById(id);

@@ -9,14 +9,13 @@ namespace BravoiSkill.Application.DTO.Shared
 
         public BaseDto()
         {
-
         }
 
         public virtual IList<string> Validate()
         {
             return Errors;
         }
-        public bool HasErrors => Errors.Any();
 
+        public bool HasErrors => Errors.Any();
     }
 }

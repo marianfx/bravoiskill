@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { UserService } from '../auth/service/user.service';
 import { MenuItem, SelectItem } from 'primeng/api';
-import { AccordionModule } from 'primeng/accordion';
 import { User } from '../auth/models/user';
 import { Department } from '../auth/models/department';
 import { DepartmentService } from '../auth/service/department.service';
@@ -263,7 +262,6 @@ export class UsersTableComponent implements OnInit {
     this.skill = {} as Skill;
     this.displayDialogS2 = false;
     this.displayDialogS1 = true;
-
   }
 
   deleteSkill(skillId: number) {

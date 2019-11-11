@@ -26,7 +26,6 @@ namespace BravoiSkill.API
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
-
         }
 
         public IConfiguration Configuration { get; }
@@ -72,7 +71,6 @@ namespace BravoiSkill.API
 
             var appSettings = appSettingsSection.Get<AppSettings>();
 
-
             // auth
             var key = Encoding.ASCII.GetBytes(appSettings.Secret);
             services.AddAuthentication(x =>
@@ -90,7 +88,6 @@ namespace BravoiSkill.API
                     IssuerSigningKey = new SymmetricSecurityKey(key),
                     ValidateIssuer = false,
                     ValidateAudience = false
-
                 };
             });
         }

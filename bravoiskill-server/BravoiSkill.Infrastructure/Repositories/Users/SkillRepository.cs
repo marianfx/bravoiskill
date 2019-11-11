@@ -2,10 +2,7 @@
 using BravoiSkill.Domain.Interfaces.Repositories.Users;
 using BravoiSkill.Infrastructure.Database;
 using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 
 namespace BravoiSkill.Infrastructure.Repositories.Users
 {
@@ -15,7 +12,6 @@ namespace BravoiSkill.Infrastructure.Repositories.Users
         public SkillRepository(BravoiSkillDbContext context)
         {
             _context = context;
-
         }
 
         public IQueryable<Skill> GetListOfSkills()
@@ -51,7 +47,6 @@ namespace BravoiSkill.Infrastructure.Repositories.Users
             _context.Set<Skill>().Remove(skill);
             _context.SaveChanges();
         }
-
     }
 }
 

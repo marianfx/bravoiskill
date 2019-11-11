@@ -26,7 +26,8 @@
             <div class="row justify-content-center">
               <div class="col-lg-3 order-lg-2">
                 <div class="card-profile-image">
-                  <div *ngIf="!canMessage" class="profile-pic owner" [ngStyle]="{'background-image': profilePhoto}" (click)="uploader.click()">
+                  <div *ngIf="!canMessage" class="profile-pic owner" [ngStyle]="{'background-image': profilePhoto}"
+                    (click)="uploader.click()">
                     <span><i class="fa fa-camera-retro"></i></span>
                     <span>&nbsp;Change Image</span>
                   </div>
@@ -47,7 +48,8 @@
             <div class="card-header text-center border-0 pt-8 pt-md-4 pb-0 pb-md-4">
               <div class="d-flex justify-content-between">
                 <!-- <a href="javascript:void(0)" class="btn btn-sm btn-info mr-4">Connect</a> -->
-                <a [attr.href]="skype(cUser.skype)" class="btn btn-sm btn-default float-right" *ngIf="canMessage">Message</a>
+                <a [attr.href]="skype(cUser.skype)" class="btn btn-sm btn-default float-right"
+                  *ngIf="canMessage">Message</a>
               </div>
             </div>
             <div class="card-body pt-0 pt-md-4">
@@ -71,8 +73,7 @@
               </div>
               <div class="text-center">
                 <h3>{{cUser.firstName}} {{cUser.lastName}},
-                  <span
-                    class="font-weight-light">{{CalculateAge(cUser.dateOfBirth)}}
+                  <span class="font-weight-light">{{CalculateAge(cUser.dateOfBirth)}}
                   </span>
                 </h3>
                 <div class="h5 font-weight-300 style-location" *ngIf="ipData">

@@ -1,5 +1,4 @@
 ﻿
-
 INSERT INTO BravoiSkill.dbo.Badges (Description) VALUES 
 ('n00bie'),
 ('Incepator'),
@@ -51,7 +50,6 @@ INSERT INTO BravoiSkill.dbo.Users (FirstName,LastName,DateOfBirth,Email,Password
 ('User','USER','1997-06-10 00:00:00.000','user@yahoo.com','123456','skype@notfakeskye.tru',NULL,3,2,1),
 ('User','USER','1997-06-10 00:00:00.000','user@yahoo.com','123456','skype@notfakeskye.tru',NULL,2,2,1)
 ;
-
 
 
 	--//modelBuilder.Entity<Badge>().HasData(new Badge[] {

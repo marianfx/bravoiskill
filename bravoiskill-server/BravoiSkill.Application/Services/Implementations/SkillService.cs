@@ -1,11 +1,9 @@
 ﻿using AutoMapper;
 using BravoiSkill.Application.Services.Interfaces;
 using BravoiSkill.Domain.Interfaces.Repositories.Users;
-using BravoiSkill.Application.DTO.Shared;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using BravoiSkill.Application.DTO.Users;
 
@@ -59,6 +57,7 @@ namespace BravoiSkill.Application.Services.Implementations
             skillEntity.SkillCategory = null;
             _skillRepository.Update(skillEntity);
         }
+
         public void Delete(int id)
         {
             var skillEntity = _skillRepository.GetSkillById(id);

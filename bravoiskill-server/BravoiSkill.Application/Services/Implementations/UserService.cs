@@ -52,7 +52,6 @@ namespace BravoiSkill.Application.Services.Implementations
             };
             var token = tokenHandler.CreateToken(tokenDescriptor);
             user.Token = tokenHandler.WriteToken(token);
-
             
             //remove password before returning
             user.Password = null;
@@ -114,7 +113,6 @@ namespace BravoiSkill.Application.Services.Implementations
 
             _userRepository.Delete(userEntity);
         }
-
     }
 }
 

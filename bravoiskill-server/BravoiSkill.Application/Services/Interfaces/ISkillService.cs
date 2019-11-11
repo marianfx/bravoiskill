@@ -1,16 +1,13 @@
-﻿
-using BravoiSkill.Application.DTO.Users;
-using System;
+﻿using BravoiSkill.Application.DTO.Users;
 using System.Collections.Generic;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace BravoiSkill.Application.Services.Interfaces
 {
     public interface ISkillService
     {
-       
         IEnumerable<Skill> GetAll();
+
         Skill GetById(int id);
 
         void Create(Skill skill);

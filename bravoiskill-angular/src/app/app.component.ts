@@ -8,7 +8,6 @@ import { Location } from '@angular/common';
 import { UserService } from './auth/service/user.service';
 import { SkillService } from './auth/service/skill.service';
 
-
 var didScroll;
 var lastScrollTop = 0;
 var delta = 5;

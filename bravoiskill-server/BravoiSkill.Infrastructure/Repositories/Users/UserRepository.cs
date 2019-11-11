@@ -3,7 +3,6 @@ using BravoiSkill.Domain.Interfaces.Repositories.Users;
 using BravoiSkill.Infrastructure.Database;
 using Microsoft.EntityFrameworkCore;
 using System.Linq;
-using System.Threading.Tasks;
 
 namespace BravoiSkill.Infrastructure.Repositories.Users
 {
@@ -13,7 +12,6 @@ namespace BravoiSkill.Infrastructure.Repositories.Users
         public UserRepository(BravoiSkillDbContext context)
         {
             _context = context;
-           
         }
 
         public IQueryable<User> GetListOfUsers()
@@ -50,6 +48,5 @@ namespace BravoiSkill.Infrastructure.Repositories.Users
             _context.Set<User>().Remove(user);
             _context.SaveChanges();
         }
-
     }
 }

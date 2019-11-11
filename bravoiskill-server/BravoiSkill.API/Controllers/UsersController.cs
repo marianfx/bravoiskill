@@ -1,16 +1,11 @@
-﻿using BravoiSkill.Domain.Entities.Users;
-using BravoiSkill.Application.DTO.Users;
-using BravoiSkill.Infrastructure.Database;
-using Microsoft.AspNetCore.Authorization;
+﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using System.Collections.Generic;
 using System.Linq;
 using BravoiSkill.Application.Services.Interfaces;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using System.IO;
 using System;
-using System.Net.Http.Headers;
 
 namespace BravoiSkill.API.Controllers
 {
@@ -25,6 +20,7 @@ namespace BravoiSkill.API.Controllers
         {
             _userService = userService;
         }
+
         public class FileUploadAPI
         {
             public IFormFile files { get; set; }
@@ -72,7 +68,6 @@ namespace BravoiSkill.API.Controllers
             // _userService.Edit(id, user).GetAwaiter().GetResult(); // varianta transforma async in sync
             await _userService.Edit(id, user); // varianta cu async
             return Ok();
-
         }
 
         [HttpDelete("{id}")]
@@ -81,8 +76,8 @@ namespace BravoiSkill.API.Controllers
         {
             _userService.Delete(id);
             return Ok();
-
         }
+
         // POST api/users/:id/photo
         [Route("{id}/photo")]
         [HttpPost, DisableRequestSizeLimit]
@@ -151,7 +146,6 @@ namespace BravoiSkill.API.Controllers
                 Console.WriteLine(ex.Message);
                 return null;
             }
-
         }
     }
 }

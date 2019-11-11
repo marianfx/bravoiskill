@@ -1,4 +1,5 @@
-﻿namespace BravoiSkill.Application
+﻿
+namespace BravoiSkill.Application
 {
     public class AppSettings
     {

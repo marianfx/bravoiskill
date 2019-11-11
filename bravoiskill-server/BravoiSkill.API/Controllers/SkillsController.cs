@@ -1,5 +1,4 @@
-﻿
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using BravoiSkill.Application.Services.Interfaces;
 using System.Threading.Tasks;
 
@@ -46,15 +45,14 @@ namespace BravoiSkill.API.Controllers
         {
             await _skillService.Edit(id, skill); // varianta cu async
             return Ok();
-
         }
+
         [HttpDelete("{id}")]
         // DELETE api/skills/:id
         public IActionResult Delete(int id)
         {
             _skillService.Delete(id);
             return Ok();
-
         }
     }
 }

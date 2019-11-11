@@ -1,5 +1,3 @@
-import { empty } from "rxjs";
-import { not } from "@angular/compiler/src/output/output_ast";
 import { Component, OnInit } from '@angular/core';
 import { User } from '../auth/models/user';
 import { AuthenticationService } from '../auth/service/authentication.service';
@@ -7,11 +5,11 @@ import * as moment from 'moment';
 import { ipInfo } from '../ipinfo';
 import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
-import { getDefaultService } from 'selenium-webdriver/chrome';
 import { ActivatedRoute } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { UserService } from '../auth/service/user.service';
-import {DomSanitizer} from '@angular/platform-browser';
+import { DomSanitizer } from '@angular/platform-browser';
+
 @Component({
   selector: "app-profile",
   templateUrl: "./profile.component.html",
@@ -86,9 +84,11 @@ export class ProfileComponent implements OnInit {
         this.profilePhoto = "url('" + `${environment.AppRoot}/users/${this.cUser.userId}/photo` + "')";
       });
   }
+
   ngOnDestroy() {
     this.routeSub.unsubscribe();
   }
+  
   skype(skype: String){
     return this.sanitizer.bypassSecurityTrustUrl("skype:"+skype+"?chat");
   }

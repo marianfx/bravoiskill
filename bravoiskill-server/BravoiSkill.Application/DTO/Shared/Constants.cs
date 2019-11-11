@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
+﻿
 namespace BravoiSkill.Application.DTO.Shared
 {
     public static class Constants

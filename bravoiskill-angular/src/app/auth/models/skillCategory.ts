@@ -1,5 +1,4 @@
-
 export interface SkillCategory {
-categoryId: number;
-description: string;
+    categoryId: number;
+    description: string;
 }

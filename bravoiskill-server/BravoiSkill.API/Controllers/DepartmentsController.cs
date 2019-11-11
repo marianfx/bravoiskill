@@ -1,10 +1,4 @@
-﻿using BravoiSkill.Domain.Entities.Users;
-using BravoiSkill.Application.DTO.Users;
-using BravoiSkill.Infrastructure.Database;
-using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Mvc;
-using System.Collections.Generic;
-using System.Linq;
+﻿using Microsoft.AspNetCore.Mvc;
 using BravoiSkill.Application.Services.Interfaces;
 using System.Threading.Tasks;
 
@@ -51,15 +45,14 @@ namespace BravoiSkill.API.Controllers
         {
            await _departmentService.Edit(id, department); // varianta cu async
             return Ok();
-
         }
+
         [HttpDelete("{id}")]
         // DELETE api/departments/:id
         public IActionResult Delete(int id)
         {
             _departmentService.Delete(id);
             return Ok();
-
         }
     }
 }

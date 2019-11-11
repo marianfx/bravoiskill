@@ -3,7 +3,6 @@ using BravoiSkill.Domain.Interfaces.Repositories.Users;
 using BravoiSkill.Infrastructure.Database;
 using Microsoft.EntityFrameworkCore;
 using System.Linq;
-using System.Threading.Tasks;
 
 namespace BravoiSkill.Infrastructure.Repositories.Users
 {
@@ -13,7 +12,6 @@ namespace BravoiSkill.Infrastructure.Repositories.Users
         public DepartmentRepository(BravoiSkillDbContext context)
         {
             _context = context;
-           
         }
 
         public IQueryable<Department> GetListOfDepartments()
@@ -44,11 +42,11 @@ namespace BravoiSkill.Infrastructure.Repositories.Users
             _context.SaveChanges();
             return department;
         }
+
         public void Delete(Department department)
         {
             _context.Set<Department>().Remove(department);
             _context.SaveChanges();
         }
-
     }
 }

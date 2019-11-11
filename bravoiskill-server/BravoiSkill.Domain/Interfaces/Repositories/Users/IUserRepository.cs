@@ -4,7 +4,7 @@ using System.Linq;
 namespace BravoiSkill.Domain.Interfaces.Repositories.Users
 {
    public interface IUserRepository
-    {
+   {
         /// <summary>
         ///     The method builds a query that selects all the users from the Db
         /// </summary>
@@ -23,5 +23,5 @@ namespace BravoiSkill.Domain.Interfaces.Repositories.Users
         User Update(User user);
 
         void Delete(User user);
-    }
+   }
 }

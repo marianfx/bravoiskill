@@ -82,13 +82,15 @@
           </div>
         </li> -->
         <li class="nav-item">
-          <a class="nav-link" [routerLink]="myProfileRedirect()" *ngIf="currentUser" style="cursor: pointer" >My Profile</a>
+          <a class="nav-link" [routerLink]="myProfileRedirect()" *ngIf="currentUser" style="cursor: pointer">My
+            Profile</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" [routerLink]="['/tables']" *ngIf="currentUser && currentUser.profileId == 1" style="cursor: pointer" >Tables</a>
+          <a class="nav-link" [routerLink]="['/tables']" *ngIf="currentUser && currentUser.profileId == 1"
+            style="cursor: pointer">Tables</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" *ngIf="currentUser" (click)="logout()"  style="cursor: pointer" >Logout</a>
+          <a class="nav-link" *ngIf="currentUser" (click)="logout()" style="cursor: pointer">Logout</a>
         </li>
       </ul>
     </div>

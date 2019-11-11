@@ -1,7 +1,4 @@
 ﻿using BravoiSkill.Application.DTO.Shared;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace BravoiSkill.Application.DTO.Users
 {
@@ -10,6 +7,7 @@ namespace BravoiSkill.Application.DTO.Users
         public int SkillId { get; set; }
         public string Description { get; set; }
         public int CategoryId { get; set; }
+
         public SkillCategory SkillCategory { get; set; }
     }
 }
