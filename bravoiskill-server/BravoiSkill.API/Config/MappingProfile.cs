@@ -15,7 +15,6 @@ namespace BravoiSkill.API.Config
         {
             CreateMap<App.Users.User, DomainEntities.Users.User>()
                 .ReverseMap();
-
             CreateMap<App.Users.Badge, DomainEntities.Users.Badge>()
                 .ReverseMap();
             CreateMap<App.Users.Department, DomainEntities.Users.Department>()
@@ -25,8 +24,6 @@ namespace BravoiSkill.API.Config
             CreateMap<App.Users.Review, DomainEntities.Users.Review>()
                 .ReverseMap();
             CreateMap<App.Users.Skill, DomainEntities.Users.Skill>()
-                .ReverseMap();
-            CreateMap<App.Users.SkillCategory, DomainEntities.Users.SkillCategory>()
                 .ReverseMap();
             CreateMap<App.Users.SkillReview, DomainEntities.Users.SkillReview>()
                 .ReverseMap();
