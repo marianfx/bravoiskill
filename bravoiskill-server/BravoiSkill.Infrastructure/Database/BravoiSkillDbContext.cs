@@ -44,6 +44,26 @@ namespace BravoiSkill.Infrastructure.Database
                 .WithMany(b => b.BadgeUsers)
                 .HasForeignKey(ub => ub.BadgeId).OnDelete(DeleteBehavior.Restrict);
 
+            modelBuilder.Entity<SkillReview>()
+                .HasKey(sr => new { sr.SkillId, sr.ReviewId });
+            modelBuilder.Entity<SkillReview>()
+                .HasOne(sr => sr.Skill)
+                .WithMany(s => s.SkillReviews)
+                .HasForeignKey(sr => sr.SkillId).OnDelete(DeleteBehavior.Restrict);
+            modelBuilder.Entity<SkillReview>()
+                .HasOne(rs => rs.Review)
+                .WithMany(r => r.ReviewSkills)
+                .HasForeignKey(rs => rs.ReviewId).OnDelete(DeleteBehavior.Restrict);
+
+            modelBuilder.Entity<Review>()
+               .HasOne(r => r.ReviewedUser)
+               .WithMany(r => r.ReviewedReviews)
+               .HasForeignKey(r => r.ReviewedUserId).OnDelete(DeleteBehavior.Restrict);
+            modelBuilder.Entity<Review>()
+               .HasOne(r => r.ReviewerUser)
+               .WithMany(r => r.ReviewerReviews)
+               .HasForeignKey(r => r.ReviewerUserId).OnDelete(DeleteBehavior.Restrict);
+
             modelBuilder.Entity<SkillCategory>()
                 .HasOne(p => p.Parent)
                 .WithMany(p => p.Children)

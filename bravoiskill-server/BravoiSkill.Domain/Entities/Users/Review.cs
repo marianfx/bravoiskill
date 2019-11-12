@@ -1,5 +1,7 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace BravoiSkill.Domain.Entities.Users
 {
@@ -12,10 +14,17 @@ namespace BravoiSkill.Domain.Entities.Users
         [Required]
         public string Comment { get; set; }
 
+        [Required]
         public int ReviewedUserId { get; set; }
+        [Required]
+        public int ReviewerUserId { get; set; }
+
+        [ForeignKey("ReviewedUserId")]
         public User ReviewedUser { get; set; }
 
-        public int ReviewerUserId { get; set; }
-        public User ReviewerUser { get; set; } 
+        [ForeignKey("ReviewerUserId")]
+        public User ReviewerUser { get; set; }
+
+        public ICollection<SkillReview> ReviewSkills { get; set; }
     }
 }

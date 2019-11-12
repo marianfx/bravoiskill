@@ -15,5 +15,6 @@ namespace BravoiSkill.Domain.Entities.Users
         public SkillCategory SkillCategory { get; set; }
         
         public ICollection<UserSkill> SkillUsers { get; set; }
+        public ICollection<SkillReview> SkillReviews { get; set; }
     }
 }
