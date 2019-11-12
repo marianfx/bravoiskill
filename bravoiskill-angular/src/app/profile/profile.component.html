@@ -94,5 +94,66 @@
         </div>
       </div>
     </div>
+    <br>
+    <div class="container-fluid mt--7">
+      <div class="row d-flex justify-content-center">
+        <div class="col-xl-7 order-xl-2 mb-5 mb-xl-0">
+          <div class="card card-profile shadow">
+            <div class="card-body pt-0 pt-md-4">
+              <h5>~ Reviews ~</h5>
+
+              <p-table #tt [value]="reviews" [columns]="colsRev" [paginator]="true" [rows]="3" sortMode="multiple">
+                <ng-template pTemplate="caption">
+                  <i class="fa fa-search" style="margin:4px 4px 0 0"></i>
+                  <input type="text" pInputText size="50" placeholder="Global Filter"
+                    (input)="tt.filterGlobal($event.target.value, 'contains')" style="width:auto">
+                </ng-template>
+                <ng-template pTemplate="header" let-colums>
+                  <tr>
+                    <th *ngFor="let col of colsRev" [pSortableColumn]="col.field">
+                      {{col.header}}
+                      <p-sortIcon [field]="col.field" ariaLabel="Activate to sort"
+                        ariaLabelDesc="Activate to sort in descending order" ariaLabelAsc="Activate to sort in ascending order">
+                      </p-sortIcon>
+                    </th>
+                  </tr>
+                  <tr>
+                    <th *ngFor="let col of colsRev" [ngSwitch]="col.field">
+                      <input *ngSwitchCase="'userid'" pInputText type="text" style="width:100%"
+                        (input)="tt.filter($event.target.value, col.field, col.filterMatchMode)">
+                      <input *ngSwitchCase="'skill'" pInputText type="text" style="width:100%"
+                        (input)="tt.filter($event.target.value, col.field, col.filterMatchMode)">
+                      <input *ngSwitchCase="'puncte'" pInputText type="text" style="width:100%"
+                        (input)="tt.filter($event.target.value, col.field, col.filterMatchMode)">
+                      <input *ngSwitchCase="'comment'" pInputText type="text" style="width:100%"
+                        (input)="tt.filter($event.target.value, col.field, col.filterMatchMode)">
+                      <input *ngSwitchCase="'revDate'" pInputText type="text" style="width:100%"
+                        (input)="tt.filter($event.target.value, col.field, col.filterMatchMode)">
+                    </th>
+                  </tr>
+                </ng-template>
+                <ng-template pTemplate="body" let-user let-rowData let-columns="colsRev">
+                  <tr [pSelectableRow]="rowData">
+                    <td *ngFor="let col of colsRev">
+                      <div [ngSwitch]="col.field">
+                        <!-- <div *ngSwitchCase="'dateOfBirth'">{{user[col.field] | date: 'dd MMM y'}}</div>
+                        <div *ngSwitchDefault>{{user[col.field]}}</div> -->
+                        <div *ngSwitchCase="'userid'">{{ user[userId] }}</div>
+                        <div *ngSwitchCase="'skill'">{{ skill[description] }}</div>
+                        <div *ngSwitchCase="'puncte'">{{ skillReview[reviewPoints] }}</div>
+                        <div *ngSwitchCase="'comment'">{{ review[comment] }}</div>
+                        <div *ngSwitchCase="'revDate'">{{ review[reviewDate] | date: 'dd MMM y'}}</div>
+                        <div *ngSwitchDefault>{{ "NULL" }}</div>
+                      </div>
+                    </td>
+                  </tr>
+                </ng-template>
+              </p-table>
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
   </section>
 </main>

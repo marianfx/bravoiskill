@@ -1,10 +1,9 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using BravoiSkill.Application.DTO.Shared;
 
-namespace BravoiSkill.Domain.Entities.Users
+namespace BravoiSkill.Application.DTO.Users
 {
-    public class UserSkill
+    public class UserSkill: BaseDto
     {
-        [Required]
         public int Points { get; set; }
 
         public int UserId { get; set; }

@@ -6,8 +6,8 @@ namespace BravoiSkill.Application.DTO.Users
     {
         public int SkillId { get; set; }
         public string Description { get; set; }
-        public int CategoryId { get; set; }
 
+        public int CategoryId { get; set; }
         public SkillCategory SkillCategory { get; set; }
     }
 }

@@ -4,14 +4,16 @@ using BravoiSkill.Infrastructure.Database;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace BravoiSkill.Infrastructure.Migrations
 {
     [DbContext(typeof(BravoiSkillDbContext))]
-    partial class BravoiSkillDbContextModelSnapshot : ModelSnapshot
+    [Migration("20191111153309_AddTablesForReview")]
+    partial class AddTablesForReview
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

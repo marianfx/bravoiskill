@@ -24,6 +24,9 @@ export class ProfileComponent implements OnInit {
   profilePhoto: String = "";
   private routeSub: Subscription;
 
+  user: User = {} as User;
+  colsRev: any[];
+
   constructor(private authenticationService: AuthenticationService, public http: HttpClient,
      public route: ActivatedRoute, public userService: UserService, private sanitizer:DomSanitizer) {
    // this.authenticationService.currentUser.subscribe(x => this.currentUser = x);
@@ -32,6 +35,14 @@ export class ProfileComponent implements OnInit {
   ngOnInit() {
     this.getUserMet();
     this.SetIpAddress();
+
+    this.colsRev = [
+      { field: 'userid', header: 'Reviewer' },
+      { field: 'skill', header: 'Skill' },
+      { field: 'puncte', header: 'Points' },
+      { field: 'comment', header: 'Comment' },
+      { field: 'revDate', header: 'Review Date' }
+    ];
   }
 
   public CalculateAge(dateOfBirth: Date) {
