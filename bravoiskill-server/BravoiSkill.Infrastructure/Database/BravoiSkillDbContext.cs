@@ -5,14 +5,16 @@ namespace BravoiSkill.Infrastructure.Database
 {
     public class BravoiSkillDbContext : DbContext
     {
-        public DbSet<User> Users { get; set; }
-        public DbSet<Profile> Profiles { get; set; }
         public DbSet<Badge> Badges { get; set; }
         public DbSet<Department> Departments { get; set; }
+        public DbSet<Profile> Profiles { get; set; }
+        public DbSet<Review> Reviews { get; set; }
         public DbSet<Skill> Skills { get; set; }
         public DbSet<SkillCategory> SkillCategories { get; set; }
-        public DbSet<UserSkill> UserSkills { get; set; }
+        public DbSet<SkillReview> SkillReviews { get; set; }
+        public DbSet<User> Users { get; set; }
         public DbSet<UserBadge> UserBadges { get; set; }
+        public DbSet<UserSkill> UserSkills { get; set; }
 
         public BravoiSkillDbContext(DbContextOptions<BravoiSkillDbContext> es) : base(es) { }
 
