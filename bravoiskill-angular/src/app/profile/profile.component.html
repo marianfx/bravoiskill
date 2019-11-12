@@ -19,6 +19,8 @@
         </div>
       </div>
     </div>
+
+    <!-- Cardul de profil -->
     <div class="container-fluid mt--7">
       <div class="row d-flex justify-content-center">
         <div class="col-xl-4 order-xl-2 mb-5 mb-xl-0">
@@ -94,7 +96,10 @@
         </div>
       </div>
     </div>
+    
     <br>
+    
+    <!-- Tabelul de review -->
     <div class="container-fluid mt--7">
       <div class="row d-flex justify-content-center">
         <div class="col-xl-7 order-xl-2 mb-5 mb-xl-0">
@@ -136,10 +141,8 @@
                   <tr [pSelectableRow]="rowData">
                     <td *ngFor="let col of colsRev">
                       <div [ngSwitch]="col.field">
-                        <!-- <div *ngSwitchCase="'dateOfBirth'">{{user[col.field] | date: 'dd MMM y'}}</div>
-                        <div *ngSwitchDefault>{{user[col.field]}}</div> -->
-                        <div *ngSwitchCase="'userid'">{{ user[userId] }}</div>
-                        <div *ngSwitchCase="'skill'">{{ skill[description] }}</div>
+                        <div *ngSwitchCase="'userid'">{{ review[reviewerUserId] }}</div>
+                        <div *ngSwitchCase="'skill'">{{ skillReview[skillId] }}</div>
                         <div *ngSwitchCase="'puncte'">{{ skillReview[reviewPoints] }}</div>
                         <div *ngSwitchCase="'comment'">{{ review[comment] }}</div>
                         <div *ngSwitchCase="'revDate'">{{ review[reviewDate] | date: 'dd MMM y'}}</div>
