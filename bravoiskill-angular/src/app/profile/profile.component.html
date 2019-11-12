@@ -12,7 +12,7 @@
         <div class="row">
           <div class="col-lg-7 col-md-10">
             <h1 class="display-2 text-white" *ngIf="!canMessage">Hello, {{cUser.firstName}} !!!</h1>
-            <p class="text-white mt-0 mb-5">This is your skilled-orientated profile page. You can see the progress
+            <p class="text-white mt-0 mb-5" *ngIf="!canMessage">This is your skilled-orientated profile page. You can see the progress
               you've made with your work-related skills and manage your personal skills and reviews</p>
             <a href="#!" class="btn btn-info" *ngIf="!canMessage">Edit profile</a>
           </div>
@@ -32,10 +32,8 @@
                     <span>&nbsp;Change Image</span>
                   </div>
                 </div>
-                <div *ngIf="canMessage" class="card-profile-image" #cantM>
+                <div *ngIf="canMessage" class="card-profile-image">
                   <div class="profile-pic" [ngStyle]="{'background-image': profilePhoto}">
-                    <span><i class="fa fa-camera-retro"></i></span>
-                    <span>&nbsp;</span>
                   </div>
                 </div>
                 <div class="container">
