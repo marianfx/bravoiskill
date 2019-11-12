@@ -14,8 +14,7 @@ INSERT INTO BravoiSkill.dbo.Departments (Description) VALUES
 
 INSERT INTO BravoiSkill.dbo.Profiles (Description) VALUES 
 ('Administrator'),
-('User'),
-('Guest')
+('User')
 ;
 
 INSERT INTO BravoiSkill.dbo.SkillCategories (Description, ParentId) VALUES 
@@ -46,10 +45,42 @@ INSERT INTO BravoiSkill.dbo.Users (FirstName,LastName,DateOfBirth,Email,Password
 ('Olimpia','Ticlos','1997-06-10 00:00:00.000','olimpia_ticlos@yahoo.com','123456','live:olimpiaticlos',NULL,1,1,3),
 ('Laiu','Stefanel','1990-06-10 00:00:00.000','stefanel_laiu@yahoo.com','123456','wolfang27',NULL,1,1,3),
 ('Lungu','Claudiu-Demian','1994-06-10 00:00:00.000','naimad_lungu@yahoo.com','123456','klahoodyoo',NULL,1,1,3),
-('Guest','GUEST','1997-06-10 00:00:00.000','guest@yahoo.com','123456','skype@notfakeskye.tru',NULL,2,3,1),
 ('User','USER','1997-06-10 00:00:00.000','user@yahoo.com','123456','skype@notfakeskye.tru',NULL,3,2,1),
 ('User','USER','1997-06-10 00:00:00.000','user@yahoo.com','123456','skype@notfakeskye.tru',NULL,2,2,1)
 ;
+
+INSERT INTO BravoiSkill.dbo.Reviews (ReviewDate, Comment, ReviewedUserId, ReviewerUserId) VALUES
+('2018-11-12 00:00:00.000', 'A acceptat ca a gresit', 1, 3),
+('2018-12-25 00:00:00.000', 'M-a ajutat la HTML toata ziua', 2, 1),
+('2019-11-02 00:00:00.000', 'Problema la iOS', 4, 1),
+('2019-10-17 00:00:00.000', 'A pus link la un buton', 5, 4),
+('2019-04-02 00:00:00.000', 'Am invatat sa modific saturatia culorilor', 3, 2),
+('2019-05-12 00:00:00.000', 'S-a miscat foarte repede la task', 1, 5),
+('2019-06-14 00:00:00.000', 'Foarte increzator', 1, 4),
+('2019-11-02 00:00:00.000', 'Ma ajuta mereu', 2, 1),
+('2018-03-02 00:00:00.000', 'Mi-a dat clasele pentru buton', 5, 2),
+('2019-08-23 00:00:00.000', 'Mereu la timp la meeting', 3, 5),
+('2019-01-09 00:00:00.000', 'Ma destinde cand sunt incordat', 1, 4),
+('2019-10-02 00:00:00.000', 'Bun organizator de task-uri', 4, 2),
+('2019-06-14 00:00:00.000', 'Mi-a dat modele de interogari in SQL si exemple', 3, 2),
+('2019-10-13 00:00:00.000', 'Mi-a facut o prezentare in power point', 4, 5)
+
+INSERT INTO BravoiSkill.dbo.SkillReviews (SkillId, ReviewId, ReviewPoints) VALUES
+(5, 1, 4),
+(25, 2, 7),
+(45, 3, 3),
+(25, 4, 3),
+(57, 5, 5),
+(14, 6, 4),
+(24, 7, 5),
+(7, 8, 7),
+(33, 9, 2),
+(18, 10, 10),
+(16, 11, 5),
+(69, 12, 6),
+(50, 13, 8),
+(76, 14, 2)
+
 
 
 	--//modelBuilder.Entity<Badge>().HasData(new Badge[] {
@@ -57,9 +88,8 @@ INSERT INTO BravoiSkill.dbo.Users (FirstName,LastName,DateOfBirth,Email,Password
 	--//    new Badge{Description="Cel mai avansat"},
 	--//});
 	--//modelBuilder.Entity<Profile>().HasData(new Profile[] {
-	--//    new Profile{Description = "Administrator"},
-	--//    new Profile{Description="User"},
-	--//    new Profile{Description="Guest"}
+	--//    new Profile{Description="Administrator"},
+	--//    new Profile{Description="User"}
 	--//});
 	--//modelBuilder.Entity<User>().HasData(new User[] {
 	--//    new User{FirstName = "Andrei", LastName="Leahu", DateOfBirth = new System.DateTime(1996, 11, 29), Email="andrei_lh@yahoo.com", ProfileId=1},
