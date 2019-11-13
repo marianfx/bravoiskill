@@ -96,9 +96,9 @@
         </div>
       </div>
     </div>
-    
+
     <br>
-    
+
     <!-- Tabelul de review -->
     <div class="container-fluid mt--7">
       <div class="row d-flex justify-content-center">
@@ -141,7 +141,7 @@
                   <tr [pSelectableRow]="rowData">
                     <td *ngFor="let col of colsRev">
                       <div [ngSwitch]="col.field">
-                        <div *ngSwitchCase="'userid'">{{ review[reviewerUserId] }}</div>
+                        <div *ngSwitchCase="'userId'">{{ reviews[reviewerUserId] }}</div>
                         <div *ngSwitchCase="'skill'">{{ skillReview[skillId] }}</div>
                         <div *ngSwitchCase="'puncte'">{{ skillReview[reviewPoints] }}</div>
                         <div *ngSwitchCase="'comment'">{{ review[comment] }}</div>

@@ -9,6 +9,8 @@ import { ActivatedRoute } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { UserService } from '../auth/service/user.service';
 import { DomSanitizer } from '@angular/platform-browser';
+import { ReviewService } from '../auth/service/review.service';
+import { Review } from '../auth/models/review';
 
 @Component({
   selector: "app-profile",
@@ -16,6 +18,7 @@ import { DomSanitizer } from '@angular/platform-browser';
   styleUrls: ["./profile.component.css"]
 })
 export class ProfileComponent implements OnInit {
+  public reviews: Review[];
   public cUser: User = {} as User;
   public ipData: ipInfo;
   public canMessage: boolean = false;
@@ -28,13 +31,15 @@ export class ProfileComponent implements OnInit {
   colsRev: any[];
 
   constructor(private authenticationService: AuthenticationService, public http: HttpClient,
-     public route: ActivatedRoute, public userService: UserService, private sanitizer:DomSanitizer) {
+     public route: ActivatedRoute, public userService: UserService, public reviewService: ReviewService, private sanitizer:DomSanitizer) {
    // this.authenticationService.currentUser.subscribe(x => this.currentUser = x);
   }
 
   ngOnInit() {
     this.getUserMet();
     this.SetIpAddress();
+    this.reviewService.getAllReviews().subscribe(x => {this.reviews = x;
+    console.log(x);});
 
     this.colsRev = [
       { field: 'userid', header: 'Reviewer' },
@@ -99,7 +104,7 @@ export class ProfileComponent implements OnInit {
   ngOnDestroy() {
     this.routeSub.unsubscribe();
   }
-  
+
   skype(skype: String){
     return this.sanitizer.bypassSecurityTrustUrl("skype:"+skype+"?chat");
   }
