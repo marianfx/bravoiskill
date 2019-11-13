@@ -33,7 +33,8 @@ namespace BravoiSkill.Application.Services.Implementations
         }
         public IEnumerable<Review> GetAllFor(int id)
         {
-            var reviewsDb = _reviewRepository.GetListOfReviews().Where(x => x.ReviewedUserId == id);
+            //var reviewsDb = _reviewRepository.GetListOfReviews().Where(x => x.ReviewedUserId == id);
+            var reviewsDb = _reviewRepository.GetListOfReviewsFor(id);
             var reviewsDto = reviewsDb
                 .Select(reviewDb => _mapper.Map<Review>(reviewDb))
                 .ToList();

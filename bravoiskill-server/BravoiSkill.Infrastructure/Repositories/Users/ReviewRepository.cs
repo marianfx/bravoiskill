@@ -23,6 +23,13 @@ namespace BravoiSkill.Infrastructure.Repositories.Users
                       select d;
             return rez;
         }
+        public IQueryable<Review> GetListOfReviewsFor(int id)
+        {
+            var rez = from d in _context.Reviews
+                      where d.ReviewedUserId == id
+                      select d;
+            return rez;
+        }
 
         public Review GetReviewById(int id)
         {

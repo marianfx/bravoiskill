@@ -10,6 +10,8 @@ namespace BravoiSkill.Domain.Interfaces.Repositories.Users
     {
         IQueryable<Review> GetListOfReviews();
 
+        IQueryable<Review> GetListOfReviewsFor(int id);
+
         Review GetReviewById(int id);
 
         Review Create(Review review);
