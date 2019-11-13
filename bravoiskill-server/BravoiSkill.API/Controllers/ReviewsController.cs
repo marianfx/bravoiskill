@@ -26,6 +26,15 @@ namespace BravoiSkill.API.Controllers
             return Ok(reviews);
         }
 
+        // GET api/reviews/for/:id
+        [Route("for/{id}")]
+        [HttpGet]
+        public IActionResult GetAllFor(int id)
+        {
+            var reviews = _reviewService.GetAllFor(id);
+            return Ok(reviews);
+        }
+
         // GET api/reviews/:id
         [HttpGet("{id}")]
         public IActionResult Get(int id)

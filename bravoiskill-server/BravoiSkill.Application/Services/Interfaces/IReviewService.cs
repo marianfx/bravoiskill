@@ -10,6 +10,8 @@ namespace BravoiSkill.Application.Services.Interfaces
     {
         IEnumerable<Review> GetAll();
 
+        IEnumerable<Review> GetAllFor(int id);
+
         Review GetById(int id);
 
         void Create(Review review);
