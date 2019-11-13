@@ -28,7 +28,7 @@ export class ProfileComponent implements OnInit {
   private routeSub: Subscription;
 
   user: User = {} as User;
-  colsRev: any[];
+  colsReview: any[];
 
   constructor(private authenticationService: AuthenticationService, public http: HttpClient,
      public route: ActivatedRoute, public userService: UserService, public reviewService: ReviewService, private sanitizer:DomSanitizer) {
@@ -38,16 +38,20 @@ export class ProfileComponent implements OnInit {
   ngOnInit() {
     this.getUserMet();
     this.SetIpAddress();
-    this.reviewService.getAllReviews().subscribe(x => {this.reviews = x;
-    console.log(x);});
 
-    this.colsRev = [
-      { field: 'userid', header: 'Reviewer' },
+
+
+    this.colsReview = [
+      { field: 'reviewerUserId', header: 'Reviewer' },
       { field: 'skill', header: 'Skill' },
-      { field: 'puncte', header: 'Points' },
+      { field: 'points', header: 'Points' },
       { field: 'comment', header: 'Comment' },
-      { field: 'revDate', header: 'Review Date' }
+      { field: 'reviewDate', header: 'Review Date' }
     ];
+
+  }
+  getReviewsFor(id: number){
+    this.reviewService.getAllReviewsFor(id).subscribe(x => {this.reviews = x;console.log(x);});
   }
 
   public CalculateAge(dateOfBirth: Date) {
@@ -73,6 +77,7 @@ export class ProfileComponent implements OnInit {
       if(params && params['id']) {
         this.userService.getUserById(+(params['id'])).subscribe(user => {
           this.cUser = user;
+          this.getReviewsFor(this.cUser.userId);
           this.profilePhoto = "url('" + `${environment.AppRoot}/users/${user.userId}/photo` + "')";
           this.authenticationService.currentUser.subscribe(x => this.canMessage = ( x.userId != this.cUser.userId ));
           console.log(user);

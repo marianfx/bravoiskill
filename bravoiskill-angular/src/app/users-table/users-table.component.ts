@@ -52,7 +52,9 @@ export class UsersTableComponent implements OnInit {
   constructor(private uService: UserService, private dService: DepartmentService, private sService: SkillService) { }
 
   ngOnInit() {
-    this.uService.getAllUsers().subscribe(users => (this.users = users));
+    this.uService.getAllUsers().subscribe(users => {
+      this.users = users;
+      console.log(users);});
     this.dService.getAllDepartments().subscribe(departments => (this.departments = departments));
     this.sService.getAllSkills().subscribe(skills => (this.skills = skills));
 

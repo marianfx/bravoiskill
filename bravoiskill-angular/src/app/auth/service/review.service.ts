@@ -12,6 +12,10 @@ export class ReviewService {
     return this.http
       .get<Review[]>(`${environment.AppRoot}/reviews`);
   }
+  getAllReviewsFor(id: number) {
+    return this.http
+      .get<Review[]>(`${environment.AppRoot}/reviews/for/${id}`);
+  }
   deleteReview(id: number): Observable<void> {
     return this.http.delete<void>(`${environment.AppRoot}/reviews/${id}`);
   }
