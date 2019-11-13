@@ -25,10 +25,9 @@ namespace BravoiSkill.Infrastructure.Repositories.Users
         }
         public IQueryable<Review> GetListOfReviewsFor(int id)
         {
-            var rez = from d in _context.Reviews
-                      where d.ReviewedUserId == id
-                      select d;
+            var rez = _context.Reviews.Where(d => d.ReviewedUserId == id).Include(s => s.ReviewSkills);
             return rez;
+         
         }
 
         public Review GetReviewById(int id)

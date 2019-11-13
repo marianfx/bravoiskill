@@ -60,6 +60,9 @@ namespace BravoiSkill.API
             services.AddTransient<IReviewRepository, ReviewRepository>();
             services.AddTransient<IReviewService, ReviewService>();
 
+            services.AddTransient<IBadgeRepository, BadgeRepository>();
+            services.AddTransient<IBadgeService, BadgeService>();
+
             // database
             services.AddDbContext<BravoiSkillDbContext>(options =>
             options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
