@@ -27,7 +27,8 @@ import { SkillService } from './auth/service/skill.service';
 import { DropdownModule } from 'primeng/dropdown';
 import { ProfileComponent } from './profile/profile.component';
 import { AgmCoreModule } from '@agm/core';
-
+import { MatSliderModule } from '@angular/material/slider';
+import {MatChipsModule} from '@angular/material/chips';
 
 @NgModule({
   declarations: [
@@ -57,6 +58,8 @@ import { AgmCoreModule } from '@agm/core';
     CalendarModule,
     TabMenuModule,
     DropdownModule,
+    MatSliderModule,
+    MatChipsModule,
     AgmCoreModule.forRoot({
       apiKey: 'AIzaSyC1ReIVGVAdDP09g6YUAYhzhCtmSFiXxeY'
     })

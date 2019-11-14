@@ -11,12 +11,14 @@ import { UserService } from '../auth/service/user.service';
 import { DomSanitizer } from '@angular/platform-browser';
 import { ReviewService } from '../auth/service/review.service';
 import { Review } from '../auth/models/review';
+import {ThemePalette} from '@angular/material/core';
 
 @Component({
   selector: "app-profile",
   templateUrl: "./profile.component.html",
   styleUrls: ["./profile.component.css"]
 })
+
 export class ProfileComponent implements OnInit {
   public reviews: Review[];
   public cUser: User = {} as User;
@@ -29,6 +31,12 @@ export class ProfileComponent implements OnInit {
 
   user: User = {} as User;
   colsReview: any[];
+  availableColors: ChipColor[] = [
+    {name: 'none', color: undefined},
+    {name: 'Primary', color: 'primary'},
+    {name: 'Accent', color: 'accent'},
+    {name: 'Warn', color: 'warn'}
+  ];
 
   constructor(private authenticationService: AuthenticationService, public http: HttpClient,
      public route: ActivatedRoute, public userService: UserService, public reviewService: ReviewService, private sanitizer:DomSanitizer) {
@@ -50,6 +58,9 @@ export class ProfileComponent implements OnInit {
     ];
 
   }
+  getRandomInt() {
+    return Math.floor(Math.random() * 4);
+}
   getReviewsFor(id: number){
     this.reviewService.getAllReviewsFor(id).subscribe(x => {this.reviews = x;console.log(x);});
   }
@@ -113,4 +124,8 @@ export class ProfileComponent implements OnInit {
   skype(skype: String){
     return this.sanitizer.bypassSecurityTrustUrl("skype:"+skype+"?chat");
   }
+}
+export interface ChipColor {
+  name: string;
+  color: ThemePalette;
 }
