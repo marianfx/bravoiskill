@@ -12,6 +12,7 @@ import { DomSanitizer } from '@angular/platform-browser';
 import { ReviewService } from '../auth/service/review.service';
 import { Review } from '../auth/models/review';
 import {ThemePalette} from '@angular/material/core';
+import { BadgeService } from '../auth/service/badge.service';
 
 @Component({
   selector: "app-profile",
@@ -28,25 +29,34 @@ export class ProfileComponent implements OnInit {
   selectedFile: File = null;
   profilePhoto: String = "";
   private routeSub: Subscription;
+  currentBadge: String;
+  currentBadgeColor: String;
+
 
   user: User = {} as User;
   colsReview: any[];
-  availableColors: ChipColor[] = [
-    {name: 'none', color: undefined},
-    {name: 'Primary', color: 'primary'},
-    {name: 'Accent', color: 'accent'},
-    {name: 'Warn', color: 'warn'}
+  availableColors: String[] = [
+    'red',
+    'green',
+    'black',
+    'blue',
+    'pink',
+    'purple',
+    'orange',
+    'indigo',
+    'magenta'
   ];
 
+
   constructor(private authenticationService: AuthenticationService, public http: HttpClient,
-     public route: ActivatedRoute, public userService: UserService, public reviewService: ReviewService, private sanitizer:DomSanitizer) {
+     public route: ActivatedRoute, public userService: UserService, public reviewService: ReviewService, private sanitizer:DomSanitizer, public badgeService: BadgeService) {
    // this.authenticationService.currentUser.subscribe(x => this.currentUser = x);
   }
 
   ngOnInit() {
     this.getUserMet();
     this.SetIpAddress();
-
+    this.currentBadgeColor = this.availableColors[this.getRandomInt()];
 
 
     this.colsReview = [
@@ -58,8 +68,10 @@ export class ProfileComponent implements OnInit {
     ];
 
   }
+
   getRandomInt() {
-    return Math.floor(Math.random() * 4);
+    return Math.floor(Math.random() * (this.availableColors.length-1));
+
 }
   getReviewsFor(id: number){
     this.reviewService.getAllReviewsFor(id).subscribe(x => {this.reviews = x;console.log(x);});
@@ -88,6 +100,7 @@ export class ProfileComponent implements OnInit {
       if(params && params['id']) {
         this.userService.getUserById(+(params['id'])).subscribe(user => {
           this.cUser = user;
+          this.badgeService.getBadgeById(this.cUser.userId).subscribe( x => this.currentBadge = x.description);
           this.getReviewsFor(this.cUser.userId);
           this.profilePhoto = "url('" + `${environment.AppRoot}/users/${user.userId}/photo` + "')";
           this.authenticationService.currentUser.subscribe(x => this.canMessage = ( x.userId != this.cUser.userId ));
@@ -125,7 +138,4 @@ export class ProfileComponent implements OnInit {
     return this.sanitizer.bypassSecurityTrustUrl("skype:"+skype+"?chat");
   }
 }
-export interface ChipColor {
-  name: string;
-  color: ThemePalette;
-}
+

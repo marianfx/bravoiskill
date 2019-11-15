@@ -58,10 +58,7 @@
                   <div class="card-profile-stats d-flex justify-content-center mt-md-5">
                     <div>
                       <mat-chip-list aria-label="Fish selection">
-                        <mat-chip>One fish</mat-chip>
-                        <mat-chip>Two fish</mat-chip>
-                        <mat-chip color="primary" selected>Primary fish</mat-chip>
-                        <mat-chip color="accent" selected>Accent fish</mat-chip>
+                        <mat-chip [ngStyle]= "{'background-color' : currentBadgeColor}" selected>{{currentBadge}}</mat-chip>
                       </mat-chip-list>
                     </div>
                   </div>
