@@ -28,7 +28,10 @@ import { DropdownModule } from 'primeng/dropdown';
 import { ProfileComponent } from './profile/profile.component';
 import { AgmCoreModule } from '@agm/core';
 import { MatSliderModule } from '@angular/material/slider';
-import {MatChipsModule} from '@angular/material/chips';
+import { MatChipsModule } from '@angular/material/chips';
+import { ProfileReviewsTableComponent } from './profile-reviews-table/profile-reviews-table.component';
+
+
 
 @NgModule({
   declarations: [
@@ -38,7 +41,8 @@ import {MatChipsModule} from '@angular/material/chips';
     LoginComponent,
     HomeComponent,
     UsersTableComponent,
-    ProfileComponent
+    ProfileComponent,
+    ProfileReviewsTableComponent
   ],
   imports: [
     BrowserModule,

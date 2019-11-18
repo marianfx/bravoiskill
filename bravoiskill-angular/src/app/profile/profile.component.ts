@@ -11,7 +11,6 @@ import { UserService } from '../auth/service/user.service';
 import { DomSanitizer } from '@angular/platform-browser';
 import { ReviewService } from '../auth/service/review.service';
 import { Review } from '../auth/models/review';
-import {ThemePalette} from '@angular/material/core';
 import { BadgeService } from '../auth/service/badge.service';
 
 @Component({
@@ -59,13 +58,7 @@ export class ProfileComponent implements OnInit {
     this.currentBadgeColor = this.availableColors[this.getRandomInt()];
 
 
-    this.colsReview = [
-      { field: 'reviewerUserId', header: 'Reviewer' },
-      { field: 'skill', header: 'Skill' },
-      { field: 'points', header: 'Points' },
-      { field: 'comment', header: 'Comment' },
-      { field: 'reviewDate', header: 'Review Date' }
-    ];
+
 
   }
 
