@@ -1,11 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import { UserService } from '../auth/service/user.service';
+import { UserService } from '../../../shared/shared-services/user.service';
 import { MenuItem, SelectItem } from 'primeng/api';
-import { User } from '../auth/models/user';
-import { Department } from '../auth/models/department';
-import { DepartmentService } from '../auth/service/department.service';
-import { Skill } from '../auth/models/skill';
-import { SkillService } from '../auth/service/skill.service';
+import { User } from '../../../shared/shared-models/user';
+import { Department } from '../models/department';
+import { DepartmentService } from '../services/department.service';
+import { Skill } from '../models/skill';
+import { SkillService } from '../services/skill.service';
 
 @Component({
   selector: 'app-users-table',

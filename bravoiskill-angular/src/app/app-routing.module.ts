@@ -1,12 +1,12 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { LoginComponent } from './login/login.component';
+import { LoginComponent } from './modules/login/components/login.component';
 import { CommonModule } from '@angular/common';
-import { HomeComponent } from './home/home.component';
-import { AuthGuard } from './auth/auth.guard';
-import { UsersTableComponent } from './users-table/users-table.component';
-import { AuthAdmin } from './auth/auth.admin';
-import { ProfileComponent } from './profile/profile.component';
+import { HomeComponent } from './modules/home/components/home.component';
+import { AuthGuard } from './auth/auth-guards/auth.guard';
+import { UsersTableComponent } from './modules/users-table/components/users-table.component';
+import { AuthAdmin } from './auth/auth-guards/auth.admin';
+import { ProfileComponent } from './modules/profile/components/profile.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent, canActivate: [AuthGuard] },

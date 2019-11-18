@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { first } from 'rxjs/operators';
-import { User } from '../auth/models/user';
-import { UserService } from '../auth/service/user.service';
+import { User } from '../../../shared/shared-models/user';
+import { UserService } from '../../../shared/shared-services/user.service';
 
 @Component({ templateUrl: 'home.component.html' })
 export class HomeComponent implements OnInit {

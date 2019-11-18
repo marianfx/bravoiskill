@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, NavigationEnd, NavigationStart } from '@angular/router';
 import { Location, PopStateEvent } from '@angular/common';
-import { User } from 'src/app/auth/models/user';
+import { User } from 'src/app/shared/shared-models/user';
 import { AuthenticationService } from 'src/app/auth/service/authentication.service';
 
 @Component({
@@ -64,7 +64,7 @@ export class NavbarComponent implements OnInit {
         this.authenticationService.logout();
         this.router.navigate(['/login']);
     }
-    
+
     myProfileRedirect() {
         return "profile/" + `${this.currentUser.userId}`;
     }

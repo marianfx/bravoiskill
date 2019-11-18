@@ -1,16 +1,16 @@
 import { Component, OnInit } from '@angular/core';
-import { User } from '../auth/models/user';
-import { AuthenticationService } from '../auth/service/authentication.service';
+import { User } from '../../../shared/shared-models/user';
+import { AuthenticationService } from '../../../auth/service/authentication.service';
 import * as moment from 'moment';
-import { ipInfo } from '../ipinfo';
+import { ipInfo } from '../models/ipinfo';
 import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 import { ActivatedRoute } from '@angular/router';
 import { Subscription } from 'rxjs';
-import { UserService } from '../auth/service/user.service';
+import { UserService } from '../../../shared/shared-services/user.service';
 import { DomSanitizer } from '@angular/platform-browser';
-import { Review } from '../auth/models/review';
-import { BadgeService } from '../auth/service/badge.service';
+import { Review } from '../../profile-reviews-table/models/review';
+import { BadgeService } from '../services/badge.service';
 
 @Component({
   selector: "app-profile",

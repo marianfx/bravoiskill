@@ -1,11 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import { User } from '../auth/models/user';
+import { User } from '../../../shared/shared-models/user';
 import { HttpClient } from '@angular/common/http';
 import { ActivatedRoute } from '@angular/router';
 import { Subscription } from 'rxjs';
-import { UserService } from '../auth/service/user.service';
-import { ReviewService } from '../auth/service/review.service';
-import { Review } from '../auth/models/review';
+import { UserService } from '../../../shared/shared-services/user.service';
+import { ReviewService } from '../services/review.service';
+import { Review } from '../models/review';
 
 
 @Component({

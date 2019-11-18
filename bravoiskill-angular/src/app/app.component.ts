@@ -1,12 +1,12 @@
 import { Component, OnInit, HostListener, Renderer, Inject, ElementRef } from '@angular/core';
 import { Router, NavigationEnd } from '@angular/router';
-import { User } from './auth/models/user';
+import { User } from './shared/shared-models/user';
 import { Subscription } from 'rxjs';
 import 'rxjs/add/operator/filter';
 import { DOCUMENT } from '@angular/common';
 import { Location } from '@angular/common';
-import { UserService } from './auth/service/user.service';
-import { SkillService } from './auth/service/skill.service';
+import { UserService } from './shared/shared-services/user.service';
+import { SkillService } from './modules/users-table/services/skill.service';
 
 var didScroll;
 var lastScrollTop = 0;
