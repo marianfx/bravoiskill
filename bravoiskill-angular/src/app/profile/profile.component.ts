@@ -9,7 +9,6 @@ import { ActivatedRoute } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { UserService } from '../auth/service/user.service';
 import { DomSanitizer } from '@angular/platform-browser';
-import { ReviewService } from '../auth/service/review.service';
 import { Review } from '../auth/models/review';
 import { BadgeService } from '../auth/service/badge.service';
 
@@ -30,10 +29,8 @@ export class ProfileComponent implements OnInit {
   private routeSub: Subscription;
   currentBadge: String;
   currentBadgeColor: String;
-
-
   user: User = {} as User;
-  colsReview: any[];
+
   availableColors: String[] = [
     'red',
     'green',
@@ -48,7 +45,7 @@ export class ProfileComponent implements OnInit {
 
 
   constructor(private authenticationService: AuthenticationService, public http: HttpClient,
-     public route: ActivatedRoute, public userService: UserService, public reviewService: ReviewService, private sanitizer:DomSanitizer, public badgeService: BadgeService) {
+     public route: ActivatedRoute, public userService: UserService, private sanitizer:DomSanitizer, public badgeService: BadgeService) {
    // this.authenticationService.currentUser.subscribe(x => this.currentUser = x);
   }
 
@@ -56,19 +53,12 @@ export class ProfileComponent implements OnInit {
     this.getUserMet();
     this.SetIpAddress();
     this.currentBadgeColor = this.availableColors[this.getRandomInt()];
-
-
-
-
   }
 
   getRandomInt() {
     return Math.floor(Math.random() * (this.availableColors.length-1));
 
 }
-  getReviewsFor(id: number){
-    this.reviewService.getAllReviewsFor(id).subscribe(x => {this.reviews = x;console.log(x);});
-  }
 
   public CalculateAge(dateOfBirth: Date) {
     return moment().diff(dateOfBirth, "year");
@@ -94,12 +84,9 @@ export class ProfileComponent implements OnInit {
         this.userService.getUserById(+(params['id'])).subscribe(user => {
           this.cUser = user;
           this.badgeService.getBadgeById(this.cUser.userId).subscribe( x => this.currentBadge = x.description);
-          this.getReviewsFor(this.cUser.userId);
           this.profilePhoto = "url('" + `${environment.AppRoot}/users/${user.userId}/photo` + "')";
           this.authenticationService.currentUser.subscribe(x => this.canMessage = ( x.userId != this.cUser.userId ));
-          console.log(user);
         });
-        console.log(this.cUser.userId);
       }
     });
   }
