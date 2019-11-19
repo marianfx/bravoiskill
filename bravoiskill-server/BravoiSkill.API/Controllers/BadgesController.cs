@@ -26,6 +26,15 @@ namespace BravoiSkill.API.Controllers
             return Ok(badges);
         }
 
+        // GET api/badges/for/:id
+        [Route("for/{id}")]
+        [HttpGet]
+        public IActionResult GetAllFor(int id)
+        {
+            var ubadges = _badgeService.GetAllFor(id);
+            return Ok(ubadges);
+        }
+
         // GET api/badges/:id
         [HttpGet("{id}")]
         public IActionResult Get(int id)

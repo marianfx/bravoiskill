@@ -23,6 +23,12 @@ namespace BravoiSkill.Infrastructure.Repositories.Users
                       select d;
             return rez;
         }
+        public IQueryable<UserBadge> GetListOfBadgesFor(int id)
+        {
+            var rez = _context.UserBadges.Where(d => d.UserId == id).Include(s => s.Badge);
+            return rez;
+
+        }
 
         public Badge GetBadgeById(int id)
         {

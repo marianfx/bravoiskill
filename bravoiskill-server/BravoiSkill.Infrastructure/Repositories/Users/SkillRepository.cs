@@ -16,6 +16,7 @@ namespace BravoiSkill.Infrastructure.Repositories.Users
 
         public IQueryable<Skill> GetListOfSkills()
         {
+       
             var skills = _context.Skills.Include(s => s.SkillCategory);
             return skills;
         }

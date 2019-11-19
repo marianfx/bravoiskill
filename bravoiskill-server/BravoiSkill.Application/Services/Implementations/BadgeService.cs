@@ -31,6 +31,14 @@ namespace BravoiSkill.Application.Services.Implementations
 
             return badgesDto;
         }
+        public IEnumerable<UserBadge> GetAllFor(int id)
+        {
+            var uBadgesDb = _badgeRepository.GetListOfBadgesFor(id);
+            var uBadgesDto = uBadgesDb.Select(uBadgeDb => _mapper.Map<UserBadge>(uBadgeDb))
+                .ToList();
+
+            return uBadgesDto;
+        }
 
         public Badge GetById(int id)
         {
@@ -67,6 +75,8 @@ namespace BravoiSkill.Application.Services.Implementations
 
             _badgeRepository.Delete(badgeEntity);
         }
+
+       
     }
 }
 
