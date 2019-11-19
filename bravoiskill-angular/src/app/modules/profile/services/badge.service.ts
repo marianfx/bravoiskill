@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 import { Badge } from '../models/badge';
 import { Observable } from 'rxjs';
+import { UserBadge } from '../models/userBadge';
 
 @Injectable({ providedIn: 'root' })
 export class BadgeService {
@@ -11,6 +12,10 @@ export class BadgeService {
   getAllBadges() {
     return this.http
       .get<Badge[]>(`${environment.AppRoot}/badges`);
+  }
+  getAllBadgesFor(id: number) {
+    return this.http
+      .get<UserBadge[]>(`${environment.AppRoot}/badges/for/${id}`);
   }
   deleteBadge(id: number): Observable<void> {
     return this.http.delete<void>(`${environment.AppRoot}/badges/${id}`);

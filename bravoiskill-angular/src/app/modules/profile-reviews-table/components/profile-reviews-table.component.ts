@@ -38,7 +38,7 @@ export class ProfileReviewsTableComponent implements OnInit {
   }
 
   getReviewsFor(id: number){
-    this.reviewService.getAllReviewsFor(id).subscribe(x => {this.reviews = x;console.log(x);});
+    this.reviewService.getAllReviewsFor(id).subscribe(x => this.reviews = x);
   }
 
 
@@ -50,14 +50,11 @@ export class ProfileReviewsTableComponent implements OnInit {
     // populate curentUser with resulted user
     this.routeSub = this.route.params.subscribe(params => {
       // console.log(params) //log the entire params object
-      console.log(params['id']) //log the value of id
       if(params && params['id']) {
         this.userService.getUserById(+(params['id'])).subscribe(user => {
           this.cUser = user;
           this.getReviewsFor(this.cUser.userId);
-          console.log(user);
         });
-        console.log(this.cUser.userId);
       }
     });
   }
