@@ -15,10 +15,12 @@ namespace BravoiSkill.API.Controllers
     public class UsersController : ControllerBase
     {
         private IUserService _userService;
+        private IBadgeService _badgeService;
 
-        public UsersController(IUserService userService)
+        public UsersController(IUserService userService, IBadgeService badgeService)
         {
             _userService = userService;
+            _badgeService = badgeService;
         }
 
         public class FileUploadAPI
@@ -72,7 +74,7 @@ namespace BravoiSkill.API.Controllers
 
         [HttpDelete("{id}")]
         // DELETE api/users/:id
-        public IActionResult Delete(int id)
+        public IActionResult DeleteUser(int id)
         {
             _userService.Delete(id);
             return Ok();
@@ -146,6 +148,38 @@ namespace BravoiSkill.API.Controllers
                 Console.WriteLine(ex.Message);
                 return null;
             }
+        }
+        // GET api/users/:id/badges
+        [Route("{id}/badges")]
+        [HttpGet]
+        public IActionResult GetAllFor(int id)
+        {
+            var ubadges = _badgeService.GetAllFor(id);
+            return Ok(ubadges);
+        }
+
+        // GET api/users/:id/badge
+        [HttpGet("{id}/badge")]
+        public IActionResult GetActiveBadgeById(int id)
+        {
+            var badge = _badgeService.GetActiveBadgeById(id);
+            return Ok(badge);
+        }
+
+        // PUT api/users/:id/badge
+        [HttpPut("{id}/badge")]
+        public async Task<IActionResult> Edit(int id, [FromBody]Application.DTO.Users.Badge badge)
+        {
+            await _badgeService.Edit(id, badge); // varianta cu async
+            return Ok();
+        }
+
+        // DELETE api/users/:id/badge
+        [HttpDelete("{id}/badge")]
+        public IActionResult DeleteBadge(int id)
+        {
+            _badgeService.Delete(id);
+            return Ok();
         }
     }
 }

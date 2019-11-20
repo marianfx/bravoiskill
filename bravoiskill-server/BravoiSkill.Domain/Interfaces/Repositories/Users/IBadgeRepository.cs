@@ -9,9 +9,9 @@ namespace BravoiSkill.Domain.Interfaces.Repositories.Users
     public interface IBadgeRepository
     {
         IQueryable<Badge> GetListOfBadges();
-        IQueryable<UserBadge> GetListOfBadgesFor(int id);
+        IQueryable<Badge> GetListOfBadgesFor(int id);
 
-        Badge GetBadgeById(int id);
+        Badge GetActiveBadgeById(int id);
 
         Badge Create(Badge badge);
 

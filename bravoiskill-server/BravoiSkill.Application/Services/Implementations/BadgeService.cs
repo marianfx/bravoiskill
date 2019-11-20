@@ -31,18 +31,18 @@ namespace BravoiSkill.Application.Services.Implementations
 
             return badgesDto;
         }
-        public IEnumerable<UserBadge> GetAllFor(int id)
+        public IEnumerable<Badge> GetAllFor(int id)
         {
-            var uBadgesDb = _badgeRepository.GetListOfBadgesFor(id);
-            var uBadgesDto = uBadgesDb.Select(uBadgeDb => _mapper.Map<UserBadge>(uBadgeDb))
+            var badgesDb = _badgeRepository.GetListOfBadgesFor(id);
+            var badgesDto = badgesDb.Select(badgeDb => _mapper.Map<Badge>(badgeDb))
                 .ToList();
 
-            return uBadgesDto;
+            return badgesDto;
         }
 
-        public Badge GetById(int id)
+        public Badge GetActiveBadgeById(int id)
         {
-            var badgeDb = _badgeRepository.GetBadgeById(id);
+            var badgeDb = _badgeRepository.GetActiveBadgeById(id);
             return _mapper.Map<Badge>(badgeDb);
         }
 
@@ -58,7 +58,7 @@ namespace BravoiSkill.Application.Services.Implementations
             if (badge.HasErrors)
                 throw new Exception(badge.Errors[0]);
 
-            var badgeEntity = _badgeRepository.GetBadgeById(id);
+            var badgeEntity = _badgeRepository.GetActiveBadgeById(id);
             if (badgeEntity == null)
                 throw new Exception("Badge does not exist in database");
             badge.BadgeId = badgeEntity.BadgeId;
@@ -69,7 +69,7 @@ namespace BravoiSkill.Application.Services.Implementations
 
         public void Delete(int id)
         {
-            var badgeEntity = _badgeRepository.GetBadgeById(id);
+            var badgeEntity = _badgeRepository.GetActiveBadgeById(id);
             if (badgeEntity == null)
                 throw new Exception("Badge does not exist in database");
 

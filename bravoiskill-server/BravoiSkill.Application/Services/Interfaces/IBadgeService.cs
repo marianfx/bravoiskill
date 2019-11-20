@@ -11,9 +11,9 @@ namespace BravoiSkill.Application.Services.Interfaces
     {
         IEnumerable<Badge> GetAll();
 
-        IEnumerable<UserBadge> GetAllFor(int id);
+        IEnumerable<Badge> GetAllFor(int id);
 
-        Badge GetById(int id);
+        Badge GetActiveBadgeById(int id);
 
         void Create(Badge badge);
 
