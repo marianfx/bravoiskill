@@ -3,7 +3,6 @@ import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 import { Badge } from '../models/badge';
 import { Observable } from 'rxjs';
-import { UserBadge } from '../models/userBadge';
 
 @Injectable({ providedIn: 'root' })
 export class BadgeService {
@@ -15,13 +14,13 @@ export class BadgeService {
   }
   getAllBadgesFor(id: number) {
     return this.http
-      .get<UserBadge[]>(`${environment.AppRoot}/badges/for/${id}`);
+      .get<Badge[]>(`${environment.AppRoot}/users/${id}/badges`);
   }
   deleteBadge(id: number): Observable<void> {
-    return this.http.delete<void>(`${environment.AppRoot}/badges/${id}`);
+    return this.http.delete<void>(`${environment.AppRoot}/users/${id}/badge`);
   }
-  getBadgeById(id: number){
-    return this.http.get<Badge>(`${environment.AppRoot}/badges/${id}`);
+  getActiveBadgeById(id: number){
+    return this.http.get<Badge>(`${environment.AppRoot}/users/${id}/badge`);
   }
 
   createBadge(badge: Badge){
@@ -29,7 +28,7 @@ export class BadgeService {
   }
 
   editBadge(id: number, badge: Badge): Observable<void>{
-    return this.http.put<void>(`${environment.AppRoot}/badges/${id}`,badge);
+    return this.http.put<void>(`${environment.AppRoot}/users/${id}/badge`,badge);
   }
 
 }
