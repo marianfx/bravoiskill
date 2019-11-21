@@ -81,6 +81,22 @@ INSERT INTO BravoiSkill.dbo.SkillReviews (SkillId, ReviewId, ReviewPoints) VALUE
 (50, 13, 8),
 (76, 14, 2)
 
+INSERT INTO BravoiSkill.dbo.UserBadges (UserId, BadgeId) VALUES
+(1, 1),
+(1, 2),
+(1, 3),
+(2, 1),
+(2, 2),
+(3, 1),
+(4, 1),
+(4, 2),
+(4, 3),
+(5, 1),
+(5, 2),
+(5, 3),
+(6, 1),
+(7, 1)
+
 
 
 	--//modelBuilder.Entity<Badge>().HasData(new Badge[] {
