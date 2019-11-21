@@ -102,7 +102,7 @@
             <label for="currentBadge">Current Badge</label>
           </div>
           <div class="ui-g-8">
-            <p-dropdown [options]="availableBadgesDescription" id="currentBadge" [(ngModel)]="currentBadge.description"
+            <p-dropdown [options]="availableBadgesDescription" id="currentBadge" [(ngModel)]="currentBadge"
               [style]="{'width':'100%'}"></p-dropdown>
           </div>
         </div>
@@ -110,7 +110,7 @@
       <p-footer>
         <div class="ui-dialog-buttonpane ui-helper-clearfix">
           <button type="button" class="ui-button-success" pButton icon="fa fa-check"
-            (click)="saveBadgeEdit(currentBadge.badgeId, currentBadge)" label="Save Edit"></button>
+            (click)="saveBadgeEdit(cUser.userId, cUser)" label="Save Edit"></button>
         </div>
       </p-footer>
     </p-dialog>

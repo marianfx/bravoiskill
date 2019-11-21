@@ -12,6 +12,7 @@ import { DomSanitizer } from "@angular/platform-browser";
 import { Review } from "../../profile-reviews-table/models/review";
 import { BadgeService } from "../services/badge.service";
 import { Badge } from "../models/badge";
+import { SelectItem } from 'primeng/api';
 
 @Component({
   selector: "app-profile",
@@ -30,8 +31,8 @@ export class ProfileComponent implements OnInit {
   public currentBadge: Badge = {} as Badge;
   currentBadgeColor: String;
   user: User = {} as User;
-  public availableBadges: Badge[];
-  public availableBadgesDescription: String[] = [];
+  public availableBadges: Badge[] = [] as Badge[];
+  public availableBadgesDescription: SelectItem[] = [];
   displayDialogueB: boolean;
 
   availableColors: String[] = [
@@ -60,11 +61,14 @@ export class ProfileComponent implements OnInit {
   ngOnInit() {
     this.getUserMet();
     this.SetIpAddress();
-    this.currentBadgeColor = this.availableColors[this.getRandomInt()];
+    this.setRandomBadgeColor();
+  }
+  setRandomBadgeColor() {
+    this.currentBadgeColor = this.availableColors[this.getRandomInt(this.availableColors.length - 1)];
   }
 
-  getRandomInt() {
-    return Math.floor(Math.random() * (this.availableColors.length - 1));
+  getRandomInt(max: number) {
+    return Math.floor(Math.random() * max);
   }
 
   public CalculateAge(dateOfBirth: Date) {
@@ -90,20 +94,15 @@ export class ProfileComponent implements OnInit {
       if (params && params["id"]) {
         this.userService.getUserById(+params["id"]).subscribe(user => {
           this.cUser = user;
-          this.badgeService.getActiveBadgeById(this.cUser.userId).subscribe(x => (this.currentBadge = x));
+          this.badgeService.getActiveBadgeById(this.cUser.badgeId).subscribe(x => (this.currentBadge = x));
           this.badgeService.getAllBadgesFor(this.cUser.userId).subscribe(x => {
             this.availableBadges = x;
-            console.log(this.availableBadges);
             for (let index = 0; index < this.availableBadges.length; index++) {
-              this.availableBadgesDescription.push(this.availableBadges[index].description);
-              console.log("La indexul " + index + " valoare este " +this.availableBadges[index].description);
+              this.availableBadgesDescription.push({label: this.availableBadges[index].description, value:this.availableBadges[index]} as SelectItem);
             }
           });
 
-          this.profilePhoto =
-            "url('" +
-            `${environment.AppRoot}/users/${user.userId}/photo` +
-            "')";
+          this.profilePhoto = "url('" + `${environment.AppRoot}/users/${user.userId}/photo` + "')";
           this.authenticationService.currentUser.subscribe(
             x => (this.canMessage = x.userId != this.cUser.userId)
           );
@@ -140,16 +139,20 @@ export class ProfileComponent implements OnInit {
   skype(skype: String) {
     return this.sanitizer.bypassSecurityTrustUrl("skype:" + skype + "?chat");
   }
-  saveBadgeEdit(id: number, badge: Badge) {
+  saveBadgeEdit(id: number, user: User) {
+
+    user.badgeId = this.currentBadge.badgeId;
     ///edit department in back-end
-    this.badgeService.editBadge(id, badge).subscribe(
+    this.userService.editUser(id, user).subscribe(
       response => {
         console.log(response);
+        this.setRandomBadgeColor();
+        this.badgeService.getActiveBadgeById(this.cUser.badgeId).subscribe(x => (this.currentBadge = x));
       },
       error => console.log(error)
     );
     ///
-    this.badgeService.getActiveBadgeById(this.cUser.userId).subscribe(x => (this.currentBadge = x));
+
     this.displayDialogueB = false;
   }
   editBadge() {
