@@ -10,6 +10,8 @@ namespace BravoiSkill.Application.Services.Interfaces
 
         Skill GetById(int id);
 
+        IEnumerable<UserSkill> GetByUserId(int id);
+
         void Create(Skill skill);
 
         Task Edit(int id, Skill skill);

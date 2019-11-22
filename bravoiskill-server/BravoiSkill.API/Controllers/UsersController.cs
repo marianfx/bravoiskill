@@ -16,11 +16,13 @@ namespace BravoiSkill.API.Controllers
     {
         private IUserService _userService;
         private IBadgeService _badgeService;
+        private ISkillService _skillService;
 
-        public UsersController(IUserService userService, IBadgeService badgeService)
+        public UsersController(IUserService userService, IBadgeService badgeService, ISkillService skillService)
         {
             _userService = userService;
             _badgeService = badgeService;
+            _skillService = skillService;
         }
 
         public class FileUploadAPI
@@ -36,6 +38,13 @@ namespace BravoiSkill.API.Controllers
 
             if (user == null)
                 return BadRequest(new { message = "Username or password is incorrect" });
+            return Ok(user);
+        }
+        // GET api/users/:id/userskills
+        [HttpGet("{id}/userskills")]
+        public IActionResult GetUserSkillsByUserId(int id)
+        {
+            var user = _skillService.GetByUserId(id);
             return Ok(user);
         }
 

@@ -29,6 +29,13 @@ namespace BravoiSkill.Infrastructure.Repositories.Users
             return rez.FirstOrDefault();
         }
 
+        public IQueryable<UserSkill> GetUserSkillsByUserId(int id)
+        {
+            var rez = _context.UserSkills.Where(us => us.UserId == id).Include(b => b.Skill);
+            return rez;
+
+        }
+
         public Skill Create(Skill skill)
         {
             _context.Set<Skill>().Add(skill);

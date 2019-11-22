@@ -37,6 +37,13 @@ namespace BravoiSkill.Application.Services.Implementations
             return _mapper.Map<Skill>(skillDb);
         }
 
+        public IEnumerable<UserSkill> GetByUserId(int id)
+        {
+            var skillsDb = _skillRepository.GetUserSkillsByUserId(id);
+            var skillsDto = skillsDb.Select(skillDb => _mapper.Map<UserSkill>(skillDb)).ToList();
+            return skillsDto;
+        }
+
         public void Create(Skill skill)
         {
             var skillEntity = _mapper.Map<Domain.Entities.Users.Skill>(skill);

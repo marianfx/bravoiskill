@@ -17,6 +17,7 @@ namespace BravoiSkill.Domain.Interfaces.Repositories.Users
         /// <param name="id"></param>
         /// <returns></returns>
         Skill GetSkillById(int id);
+        IQueryable<UserSkill> GetUserSkillsByUserId(int id);
 
         Skill Create(Skill skill);
 
