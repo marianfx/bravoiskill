@@ -63,6 +63,15 @@ export class ProfileComponent implements OnInit {
     this.SetIpAddress();
     this.setRandomBadgeColor();
   }
+
+  refreshProfilePhoto(){
+    this.profilePhoto = "url('" + `${environment.AppRoot}/users/${this.cUser.userId}/photo` + "')";
+  }
+
+  refreshActiveBadge(){
+    this.badgeService.getActiveBadgeById(this.cUser.badgeId).subscribe(x => (this.currentBadge = x));
+  }
+
   setRandomBadgeColor() {
     this.currentBadgeColor = this.availableColors[this.getRandomInt(this.availableColors.length - 1)];
   }
@@ -94,15 +103,14 @@ export class ProfileComponent implements OnInit {
       if (params && params["id"]) {
         this.userService.getUserById(+params["id"]).subscribe(user => {
           this.cUser = user;
-          this.badgeService.getActiveBadgeById(this.cUser.badgeId).subscribe(x => (this.currentBadge = x));
+          this.refreshActiveBadge();
           this.badgeService.getAllBadgesFor(this.cUser.userId).subscribe(x => {
             this.availableBadges = x;
             for (let index = 0; index < this.availableBadges.length; index++) {
               this.availableBadgesDescription.push({label: this.availableBadges[index].description, value:this.availableBadges[index]} as SelectItem);
             }
           });
-
-          this.profilePhoto = "url('" + `${environment.AppRoot}/users/${user.userId}/photo` + "')";
+          this.refreshProfilePhoto();
           this.authenticationService.currentUser.subscribe(
             x => (this.canMessage = x.userId != this.cUser.userId)
           );
@@ -125,10 +133,7 @@ export class ProfileComponent implements OnInit {
       .post(`${environment.AppRoot}/users/${id}/photo`, fd)
       .subscribe(x => {
         if (!x || !x["fileName"]) return console.log("Error");
-        this.profilePhoto =
-          "url('" +
-          `${environment.AppRoot}/users/${this.cUser.userId}/photo` +
-          "')";
+        this.refreshProfilePhoto();
       });
   }
 
@@ -139,15 +144,16 @@ export class ProfileComponent implements OnInit {
   skype(skype: String) {
     return this.sanitizer.bypassSecurityTrustUrl("skype:" + skype + "?chat");
   }
-  saveBadgeEdit(id: number, user: User) {
+
+  saveCurrentBadgeEdit(id: number, user: User) {
 
     user.badgeId = this.currentBadge.badgeId;
-    ///edit department in back-end
+    ///edit user in back-end
     this.userService.editUser(id, user).subscribe(
       response => {
         console.log(response);
         this.setRandomBadgeColor();
-        this.badgeService.getActiveBadgeById(this.cUser.badgeId).subscribe(x => (this.currentBadge = x));
+        this.refreshActiveBadge();
       },
       error => console.log(error)
     );

@@ -5,7 +5,10 @@ import { ActivatedRoute } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { UserService } from '../../../shared/shared-services/user.service';
 import { ReviewService } from '../services/review.service';
-import { Review } from '../models/review';
+import { SkillService } from 'src/app/shared/shared-services/skill.service';
+import { UserSkill } from '../models/userSkill';
+
+
 
 
 @Component({
@@ -16,30 +19,26 @@ import { Review } from '../models/review';
 
 export class ProfileReviewsTableComponent implements OnInit {
 
-  public reviews: Review[];
+  public skills: UserSkill[];
   public cUser: User = {} as User;
   public canMessage: boolean = false;
   private routeSub: Subscription;
   user: User = {} as User;
-  colsReview = [
-    { field: 'reviewerUserId', header: 'Reviewer' },
+  colsSkills = [
     { field: 'skill', header: 'Skill' },
     { field: 'points', header: 'Points' },
-    { field: 'comment', header: 'Comment' },
-    { field: 'reviewDate', header: 'Review Date' }
   ];
 
 
   constructor(public http: HttpClient,
-     public route: ActivatedRoute, public userService: UserService, public reviewService: ReviewService) {}
+     public route: ActivatedRoute, public userService: UserService, public reviewService: ReviewService, public skillService: SkillService) {}
 
   ngOnInit() {
     this.getUserMet();
+
   }
 
-  getReviewsFor(id: number){
-    this.reviewService.getAllReviewsFor(id).subscribe(x => this.reviews = x);
-  }
+
 
 
   getUserMet() {
@@ -53,7 +52,7 @@ export class ProfileReviewsTableComponent implements OnInit {
       if(params && params['id']) {
         this.userService.getUserById(+(params['id'])).subscribe(user => {
           this.cUser = user;
-          this.getReviewsFor(this.cUser.userId);
+          this.skillService.getUserSkillByUserId(this.cUser.userId).subscribe( x => {this.skills = x;console.log(x);});
         });
       }
     });

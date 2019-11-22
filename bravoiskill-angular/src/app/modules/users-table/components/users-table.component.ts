@@ -5,7 +5,7 @@ import { User } from '../../../shared/shared-models/user';
 import { Department } from '../models/department';
 import { DepartmentService } from '../services/department.service';
 import { Skill } from '../models/skill';
-import { SkillService } from '../services/skill.service';
+import { SkillService } from '../../../shared/shared-services/skill.service';
 
 @Component({
   selector: 'app-users-table',

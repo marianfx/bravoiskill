@@ -6,7 +6,7 @@ import 'rxjs/add/operator/filter';
 import { DOCUMENT } from '@angular/common';
 import { Location } from '@angular/common';
 import { UserService } from './shared/shared-services/user.service';
-import { SkillService } from './modules/users-table/services/skill.service';
+import { SkillService } from './shared/shared-services/skill.service';
 
 var didScroll;
 var lastScrollTop = 0;

@@ -23,7 +23,7 @@ import { AccordionModule } from 'primeng/accordion';
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { CalendarModule } from 'primeng/calendar';
 import { TabMenuModule } from 'primeng/tabmenu';
-import { SkillService } from './modules/users-table/services/skill.service';
+import { SkillService } from './shared/shared-services/skill.service';
 import { DropdownModule } from 'primeng/dropdown';
 import { ProfileComponent } from './modules/profile/components/profile.component';
 import { AgmCoreModule } from '@agm/core';

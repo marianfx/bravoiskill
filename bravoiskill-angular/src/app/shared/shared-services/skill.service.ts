@@ -1,8 +1,10 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Skill } from '../models/skill';
+import { Skill } from '../../modules/users-table/models/skill';
 import { environment } from 'src/environments/environment';
 import { Observable } from 'rxjs/internal/Observable';
+import { UserSkill } from 'src/app/modules/profile-reviews-table/models/userSkill';
+
 
 @Injectable({ providedIn: 'root' })
 export class SkillService {
@@ -19,6 +21,10 @@ export class SkillService {
 
   getSkillById(id: number){
     return this.http.get<Skill>(`${environment.AppRoot}/skills/${id}`);
+  }
+
+  getUserSkillByUserId(id: number){
+    return this.http.get<UserSkill[]>(`${environment.AppRoot}/users/${id}/userskills`)
   }
 
   createSkill(skill: Skill){
