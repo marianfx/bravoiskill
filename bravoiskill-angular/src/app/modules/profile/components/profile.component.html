@@ -12,7 +12,8 @@
         <div class="row">
           <div class="col-lg-7 col-md-10">
             <h1 class="display-2 text-white" *ngIf="!canMessage">Hello, {{cUser.firstName}} !!!</h1>
-            <p class="text-white mt-0 mb-5" *ngIf="!canMessage">This is your skilled-orientated profile page. You can see the progress
+            <p class="text-white mt-0 mb-5" *ngIf="!canMessage">This is your skilled-orientated profile page. You can
+              see the progress
               you've made with your work-related skills and manage your personal skills and reviews</p>
             <a href="#!" class="btn btn-info" *ngIf="!canMessage">Edit profile</a>
           </div>
@@ -58,7 +59,8 @@
                   <div class="card-profile-stats d-flex justify-content-center mt-md-5">
                     <div>
                       <mat-chip-list aria-label="Fish selection">
-                        <mat-chip [ngStyle]= "{'background-color' : currentBadgeColor}" selected (click)="editBadge()">{{currentBadge.description}}</mat-chip>
+                        <mat-chip [ngStyle]="{'background-color' : currentBadgeColor}" selected (click)="editBadge()">
+                          {{currentBadge.description}}</mat-chip>
                       </mat-chip-list>
                     </div>
                   </div>
@@ -90,12 +92,16 @@
       </div>
     </div>
 
-<br>
-<app-profile-reviews-table></app-profile-reviews-table>
+    <br>
+    <!-- Comentarii review -->
+    <app-reviews-comments></app-reviews-comments>
+    <br>
+    <!-- Tabelul de Skill Points -->
+    <app-profile-reviews-table></app-profile-reviews-table>
 
     <!-- Dialog pt Edit Badge -->
-    <p-dialog header="Edit Badge" [(visible)]="displayDialogueB" [responsive]="true" showEffect="fade"
-      [modal]="true" selectionMode="single" [style]="{'max-width': '500px'}">
+    <p-dialog header="Edit Badge" [(visible)]="displayDialogueB" [responsive]="true" showEffect="fade" [modal]="true"
+      selectionMode="single" [style]="{'max-width': '500px'}">
       <div class="ui-g ui-fluid" *ngIf="cUser">
         <div class="ui-g-12">
           <div class="ui-g-4">
@@ -114,3 +120,5 @@
         </div>
       </p-footer>
     </p-dialog>
+  </section>
+</main>

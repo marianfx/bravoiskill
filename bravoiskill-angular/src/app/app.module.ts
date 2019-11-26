@@ -30,6 +30,7 @@ import { AgmCoreModule } from '@agm/core';
 import { MatSliderModule } from '@angular/material/slider';
 import { MatChipsModule } from '@angular/material/chips';
 import { ProfileReviewsTableComponent } from './modules/profile-reviews-table/components/profile-reviews-table.component';
+import { ReviewsCommentsComponent } from './modules/reviews-comments/components/reviews-comments.component';
 
 
 
@@ -42,7 +43,8 @@ import { ProfileReviewsTableComponent } from './modules/profile-reviews-table/co
     HomeComponent,
     UsersTableComponent,
     ProfileComponent,
-    ProfileReviewsTableComponent
+    ProfileReviewsTableComponent,
+    ReviewsCommentsComponent
   ],
   imports: [
     BrowserModule,

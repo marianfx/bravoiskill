@@ -9,8 +9,6 @@ import { SkillService } from 'src/app/shared/shared-services/skill.service';
 import { UserSkill } from '../models/userSkill';
 
 
-
-
 @Component({
   selector: 'app-profile-reviews-table',
   templateUrl: './profile-reviews-table.component.html',
@@ -32,21 +30,20 @@ export class ProfileReviewsTableComponent implements OnInit {
 
 
   constructor(public http: HttpClient,
-     public route: ActivatedRoute, public userService: UserService, public reviewService: ReviewService, public skillService: SkillService) {}
+    public route: ActivatedRoute, public userService: UserService, public reviewService: ReviewService, public skillService: SkillService) { }
 
   ngOnInit() {
     this.getUserMet();
 
   }
 
-  getSkillsPoints(){
-    this.skillService.getUserSkillByUserId(this.cUser.userId).subscribe( x =>
-      { this.skills = x;
-        if(this.skills.length>10)
-          this.paginator = true;});
+  getSkillsPoints() {
+    this.skillService.getUserSkillByUserId(this.cUser.userId).subscribe(x => {
+    this.skills = x;
+      if (this.skills.length > 10)
+        this.paginator = true;
+    });
   }
-
-
 
   getUserMet() {
     // // this.route
@@ -56,14 +53,12 @@ export class ProfileReviewsTableComponent implements OnInit {
     // populate curentUser with resulted user
     this.routeSub = this.route.params.subscribe(params => {
       // console.log(params) //log the entire params object
-      if(params && params['id']) {
+      if (params && params['id']) {
         this.userService.getUserById(+(params['id'])).subscribe(user => {
-        this.cUser = user;
-        this.getSkillsPoints();
+          this.cUser = user;
+          this.getSkillsPoints();
         });
       }
     });
   }
-
 }
-
