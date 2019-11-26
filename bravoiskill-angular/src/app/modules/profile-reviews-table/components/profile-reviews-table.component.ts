@@ -28,6 +28,7 @@ export class ProfileReviewsTableComponent implements OnInit {
     { field: 'skill', header: 'Skill' },
     { field: 'points', header: 'Points' },
   ];
+  public paginator: boolean = false;
 
 
   constructor(public http: HttpClient,
@@ -38,6 +39,12 @@ export class ProfileReviewsTableComponent implements OnInit {
 
   }
 
+  getSkillsPoints(){
+    this.skillService.getUserSkillByUserId(this.cUser.userId).subscribe( x =>
+      { this.skills = x;
+        if(this.skills.length>10)
+          this.paginator = true;});
+  }
 
 
 
@@ -51,8 +58,8 @@ export class ProfileReviewsTableComponent implements OnInit {
       // console.log(params) //log the entire params object
       if(params && params['id']) {
         this.userService.getUserById(+(params['id'])).subscribe(user => {
-          this.cUser = user;
-          this.skillService.getUserSkillByUserId(this.cUser.userId).subscribe( x => {this.skills = x;console.log(x);});
+        this.cUser = user;
+        this.getSkillsPoints();
         });
       }
     });

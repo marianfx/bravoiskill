@@ -5,12 +5,8 @@
         <div class="col-xl-7 order-xl-2 mb-5 mb-xl-0">
           <div class="card card-profile shadow">
             <div class="card-body pt-0 pt-md-4">
-              <h5>~Skill Points ~</h5>
-
-              <p-table #tt [value]="skills" [columns]="colsSkills" [paginator]="true" [rows]="3" sortMode="multiple">
+              <p-table #tt [value]="skills" [columns]="colsSkills" [paginator]="paginator" [rows]="3" sortMode="multiple">
                 <ng-template pTemplate="caption">
-                  <i class="fa fa-search" style="margin:4px 4px 0 0"></i>
-
                 </ng-template>
                 <ng-template pTemplate="header" let-colums>
                   <tr>
@@ -33,7 +29,6 @@
                   </tr>
                 </ng-template>
               </p-table>
-
             </div>
           </div>
         </div>
