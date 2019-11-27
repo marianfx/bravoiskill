@@ -28,15 +28,9 @@ import { ProfileComponent } from './modules/profile/components/profile.component
 import { AgmCoreModule } from '@agm/core';
 import { MatSliderModule } from '@angular/material/slider';
 import { MatChipsModule } from '@angular/material/chips';
-<<<<<<< HEAD
-import { ProfileReviewsTableComponent } from './modules/profile-reviews-table/components/profile-reviews-table.component';
-import { ReviewsCommentsComponent } from './modules/reviews-comments/components/reviews-comments.component';
-
-=======
 import { UsersTableComponent } from './modules/users-table/components/users-table.component';
 import { ProfileReviewsComponent } from './modules/profile-reviews/components/profile-reviews.component';
->>>>>>> Rename profile-reviews-table Component to profile-reviews
-
+import { ReviewsCommentsComponent } from './modules/reviews-comments/components/reviews-comments.component';
 
 @NgModule({
   declarations: [
@@ -47,12 +41,8 @@ import { ProfileReviewsComponent } from './modules/profile-reviews/components/pr
     HomeComponent,
     UsersTableComponent,
     ProfileComponent,
-<<<<<<< HEAD
-    ProfileReviewsTableComponent,
+    ProfileReviewsComponent,
     ReviewsCommentsComponent
-=======
-    ProfileReviewsComponent
->>>>>>> Rename profile-reviews-table Component to profile-reviews
   ],
   imports: [
     BrowserModule,
