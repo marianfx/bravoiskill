@@ -3,7 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { Skill } from '../../modules/users-table/models/skill';
 import { environment } from 'src/environments/environment';
 import { Observable } from 'rxjs/internal/Observable';
-import { UserSkill } from 'src/app/modules/profile-reviews-table/models/userSkill';
+import { UserSkill } from 'src/app/modules/profile-reviews/models/userSkill';
 
 
 @Injectable({ providedIn: 'root' })

@@ -8,7 +8,6 @@ import { Location } from '@angular/common';
 import { UserService } from './shared/shared-services/user.service';
 import { SkillService } from './shared/shared-services/skill.service';
 
-var didScroll;
 var lastScrollTop = 0;
 var delta = 5;
 var navbarHeight = 0;

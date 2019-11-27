@@ -9,13 +9,12 @@ import { LoginComponent } from './modules/login/components/login.component';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { JwtInterceptor } from './auth/interceptors/jwt.interceptor';
 import { ErrorInterceptor } from './auth/interceptors/error.interceptor';
-// import { fakeBackendProvider } from './auth/fake-backend';
+import { ChartsModule } from 'ng2-charts';
 import { HomeComponent } from './modules/home/components/home.component';
 import { RouterModule } from '@angular/router';
 import { NavbarComponent } from './shared/shared-modules/navbar/navbar.component';
 import { FooterComponent } from './shared/shared-modules/footer/footer.component';
 import { UserService } from './shared/shared-services/user.service';
-import { UsersTableComponent } from './modules/users-table/components/users-table.component';
 import { TableModule } from 'primeng/table';
 import { DialogModule } from 'primeng/dialog';
 import { ButtonModule } from 'primeng/button';
@@ -29,9 +28,14 @@ import { ProfileComponent } from './modules/profile/components/profile.component
 import { AgmCoreModule } from '@agm/core';
 import { MatSliderModule } from '@angular/material/slider';
 import { MatChipsModule } from '@angular/material/chips';
+<<<<<<< HEAD
 import { ProfileReviewsTableComponent } from './modules/profile-reviews-table/components/profile-reviews-table.component';
 import { ReviewsCommentsComponent } from './modules/reviews-comments/components/reviews-comments.component';
 
+=======
+import { UsersTableComponent } from './modules/users-table/components/users-table.component';
+import { ProfileReviewsComponent } from './modules/profile-reviews/components/profile-reviews.component';
+>>>>>>> Rename profile-reviews-table Component to profile-reviews
 
 
 @NgModule({
@@ -43,8 +47,12 @@ import { ReviewsCommentsComponent } from './modules/reviews-comments/components/
     HomeComponent,
     UsersTableComponent,
     ProfileComponent,
+<<<<<<< HEAD
     ProfileReviewsTableComponent,
     ReviewsCommentsComponent
+=======
+    ProfileReviewsComponent
+>>>>>>> Rename profile-reviews-table Component to profile-reviews
   ],
   imports: [
     BrowserModule,
@@ -67,8 +75,8 @@ import { ReviewsCommentsComponent } from './modules/reviews-comments/components/
     MatSliderModule,
     MatChipsModule,
     AgmCoreModule.forRoot({
-      apiKey: 'AIzaSyC1ReIVGVAdDP09g6YUAYhzhCtmSFiXxeY'
-    })
+      apiKey: 'AIzaSyC1ReIVGVAdDP09g6YUAYhzhCtmSFiXxeY'}),
+    ChartsModule
   ],
   exports: [],
   providers: [
@@ -76,7 +84,6 @@ import { ReviewsCommentsComponent } from './modules/reviews-comments/components/
     UserService,
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
     { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
-    // fakeBackendProvider
   ],
   bootstrap: [AppComponent]
 })

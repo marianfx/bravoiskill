@@ -1,0 +1,48 @@
+<!-- Tabelul de Skill Points -->
+<div class="container-fluid mt--7">
+  <div class="row d-flex justify-content-center">
+    <div class="col-xl-7 order-xl-2 mb-5 mb-xl-0">
+      <div class="card card-profile shadow">
+        <div class="card-body pt-0 pt-md-4">
+          <p-table #tt [value]="skills" [columns]="colsSkills" [paginator]="paginator" [rows]="3" sortMode="multiple">
+            <ng-template pTemplate="caption">
+            </ng-template>
+            <ng-template pTemplate="header" let-colums>
+              <tr>
+                <th *ngFor="let col of colsSkills" [pSortableColumn]="col.field">
+                  {{ col.header }}
+                  <p-sortIcon [field]="col.field" ariaLabel="Activate to sort"
+                    ariaLabelDesc="Activate to sort in descending order"
+                    ariaLabelAsc="Activate to sort in ascending order">
+                  </p-sortIcon>
+                </th>
+              </tr>
+            </ng-template>
+            <ng-template pTemplate="body" let-rowData let-columns="colsSkills">
+              <tr [pSelectableRow]="rowData">
+                <td *ngFor="let col of colsSkills">
+                  <div [ngSwitch]="col.field">
+                    <div *ngSwitchCase="'skill'">{{ rowData[col.field].description }}</div>
+                    <div *ngSwitchDefault>{{ rowData[col.field] }}</div>
+                  </div>
+                </td>
+              </tr>
+            </ng-template>
+          </p-table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<br><br>
+<div>
+  <div style="display: block">
+    <canvas baseChart width="400" height="250"
+            [datasets]="barChartData"
+            [labels]="barChartLabels"
+            [options]="barChartOptions"
+            [legend]="barChartLegend"
+            [chartType]="barChartType">
+    </canvas>
+  </div>
+</div>
