@@ -31,9 +31,10 @@ export class ProfileReviewsComponent implements OnInit {
   barChartLabels = ["Skills"];
   barChartType = "bar";
   barChartLegend = true;
-  barChartData: Array<{ data: number; label: string }> = [
-    { data: 0, label: "" }
+  barChartData: any = [
+    { data: [0,1], label: "" }
   ];
+  public seeMore: boolean = false;
 
   constructor(
     public http: HttpClient,
@@ -47,17 +48,30 @@ export class ProfileReviewsComponent implements OnInit {
     this.getUserMet();
   }
 
+  seeMoreActivate(element){
+
+   if (element.textContent != 'Back to Charts')
+   element.textContent = 'Back to Charts';
+   else
+   element.textContent = 'See more';
+
+   this.seeMore = !this.seeMore;
+
+  }
+
   getSkillsPoints() {
     this.skillService.getUserSkillByUserId(this.cUser.userId).subscribe(x => {
       this.skills = x;
       if (this.skills.length > 10) {
         this.paginator = true;}
       console.log(this.skills);
-        this.barChartData = [];
-        this.skills.forEach(y => this.barChartData.push({data: +y.points, label: y.skill.description}), 50);
+      this.barChartData = [];
+      let topSkills=[];
+      this.skills.sort((n1,n2) => n2.points - n1.points);
+      console.log(this.skills);
+      this.skills.slice(0,5).forEach(y => this.barChartData.push({data: [y.points], label: y.skill.description}));
+
       })}
-
-
 
   getUserMet() {
     // // this.route

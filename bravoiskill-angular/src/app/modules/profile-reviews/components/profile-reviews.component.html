@@ -1,5 +1,6 @@
 <!-- Tabelul de Skill Points -->
-<div class="container-fluid mt--7">
+
+<div [hidden]="!seeMore" class="container-fluid mt--7" >
   <div class="row d-flex justify-content-center">
     <div class="col-xl-7 order-xl-2 mb-5 mb-xl-0">
       <div class="card card-profile shadow">
@@ -35,9 +36,12 @@
   </div>
 </div>
 <br><br>
-<div>
-  <div style="display: block">
-    <canvas baseChart width="400" height="250"
+<div class="container-fluid mt--7">
+    <div class="row d-flex justify-content-center">
+        <div class="col-xl-7 order-xl-2 mb-5 mb-xl-0">
+
+  <div [hidden]="seeMore" style="display: block;" >
+    <canvas baseChart
             [datasets]="barChartData"
             [labels]="barChartLabels"
             [options]="barChartOptions"
@@ -45,4 +49,9 @@
             [chartType]="barChartType">
     </canvas>
   </div>
+  <button class="btn-primary btn" [innerText]="'See more'" (click)="seeMoreActivate($event.target)"></button>
+  </div>
+  </div>
+
 </div>
+
