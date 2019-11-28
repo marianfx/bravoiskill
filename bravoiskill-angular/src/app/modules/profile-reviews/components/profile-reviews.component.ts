@@ -60,6 +60,14 @@ export class ProfileReviewsComponent implements OnInit {
     this.getUserMet();
   }
 
+  seeMoreActivate(element) {
+    this.seeMore = !this.seeMore;
+  }
+
+  getChartButtonText() {
+    return this.seeMore ? 'Back to charts' : 'See more';
+  }
+
   getSkillsPoints() {
     this.skillService.getUserSkillByUserId(this.cUser.userId).subscribe(x => {
       this.skills = x;

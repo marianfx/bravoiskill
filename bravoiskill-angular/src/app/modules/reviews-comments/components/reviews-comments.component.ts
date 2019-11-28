@@ -5,6 +5,7 @@ import { UserService } from 'src/app/shared/shared-services/user.service';
 import { ActivatedRoute } from '@angular/router';
 import { User } from 'src/app/shared/shared-models/user';
 import { Review } from 'src/app/shared/shared-models/review';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-reviews-comments',
@@ -18,12 +19,15 @@ export class ReviewsCommentsComponent implements OnInit {
   public cUser: User = {} as User;
   private routeSub: Subscription;
   reviews: Review[] = [];
-  reviewers: any;
 
   constructor(public reviewService: ReviewService, public userService: UserService, public route: ActivatedRoute) { }
 
   ngOnInit() {
     this.getUserMet();
+  }
+
+  getImageUrl(id: number){
+    return "url('" + `${environment.AppRoot}/users/${id}/photo` + "')";
   }
 
   getUserMet() {
@@ -32,7 +36,6 @@ export class ReviewsCommentsComponent implements OnInit {
         this.userService.getUserById(+params["id"]).subscribe(user => {
           this.cUser = user;
           this.getReviews();
-          this.getReviewersFor(this.cUser.userId);
         });
       }
     });
@@ -41,14 +44,6 @@ export class ReviewsCommentsComponent implements OnInit {
     this.reviewService.getAllReviewsFor(this.cUser.userId).subscribe( x => {
       this.reviews = x;
       console.log(this.reviews);
-    })
-  }
-  getReviewersFor(id: number){
-    this.userService.getUsersReviewersByReviewedUserId(id).subscribe(x =>{
-      this.reviewers = x.reduce((m, o) => {
-        m[o.userId] = o;
-        return m;
-    }, {});
     })
   }
 

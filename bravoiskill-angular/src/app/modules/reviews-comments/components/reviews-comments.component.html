@@ -11,14 +11,14 @@
                   <div class="user-avatar user-avatar-sm">
                     <div class="thumbnail" style="background-color: #b1b1b1">
                       <div class="picture"
-                        style="background-image: url('https://graph.facebook.com/956394454433991/picture?width=78&amp;height=78&amp;date=20180312080300')">
+                      [ngStyle]="{'background-image': getImageUrl(review.reviewerId)}">
                       </div>
                     </div>
                   </div>
                 </div>
                 <div class="product-review-user-meta">
-                  <p class="product-review-author mrg-top-xs semibold">{{reviewers[review.reviewerUserId].firstName}},
-                    {{reviewers[review.reviewerUserId].lastName}}</p>
+                  <p class="product-review-author mrg-top-xs semibold">{{review.user.firstName}},
+                    {{review.user.lastName}}</p>
                   <p class="small text-muted mrg-sep-none">{{review.reviewDate | date: 'dd MMM y'}}</p>
                 </div>
               </div>

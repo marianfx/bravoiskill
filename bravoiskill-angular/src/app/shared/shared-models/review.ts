@@ -1,4 +1,5 @@
 import { SkillReview } from 'src/app/modules/profile-reviews/models/skillReview';
+import { User } from './user';
 
 export interface Review {
   reviewId: number;
@@ -7,4 +8,5 @@ export interface Review {
   reviewedUserId: number;
   reviewerUserId: number;
   reviewSkills: SkillReview[];
+  user: User;
 }
