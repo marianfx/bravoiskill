@@ -91,14 +91,6 @@
         </div>
       </div>
     </div>
-
-    <br>
-    <!-- Comentarii review -->
-    <app-reviews-comments></app-reviews-comments>
-    <br>
-    <!-- Skill Points -->
-    <app-profile-reviews></app-profile-reviews>
-
     <!-- Dialog pt Edit Badge -->
     <p-dialog header="Edit Badge" [(visible)]="displayDialogueB" [responsive]="true" showEffect="fade" [modal]="true"
       selectionMode="single" [style]="{'max-width': '500px'}">
@@ -120,5 +112,14 @@
         </div>
       </p-footer>
     </p-dialog>
-  </section>
+
+
+<br>
+<!-- Skill Points -->
+<app-profile-reviews></app-profile-reviews>
+</section>
 </main>
+
+<br>
+<!-- Comentarii review -->
+<app-reviews-comments></app-reviews-comments>

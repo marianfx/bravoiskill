@@ -26,13 +26,24 @@ export class ProfileReviewsComponent implements OnInit {
   public paginator: boolean = false;
   public barChartOptions = {
     scaleShowVerticalLines: false,
-    responsive: true
+    responsive: true,
+    scales: {
+      yAxes: [{
+        ticks: {
+        beginAtZero: true,
+            stepValue: 50,
+            steps: 10,
+          min : 0,
+        }
+    }]
+
+    }
   };
-  barChartLabels = ["Skills"];
+  barChartLabels = ["Loading..."];
   barChartType = "bar";
   barChartLegend = true;
   barChartData: any = [
-    { data: [0,1], label: "" }
+    { data: [0], label: "Loading..." }
   ];
   public seeMore: boolean = false;
 
@@ -70,6 +81,7 @@ export class ProfileReviewsComponent implements OnInit {
       this.skills.sort((n1,n2) => n2.points - n1.points);
       console.log(this.skills);
       this.skills.slice(0,5).forEach(y => this.barChartData.push({data: [y.points], label: y.skill.description}));
+      this.barChartLabels = ['Skills'];
 
       })}
 
