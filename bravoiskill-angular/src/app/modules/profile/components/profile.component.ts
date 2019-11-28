@@ -9,7 +9,7 @@ import { ActivatedRoute } from "@angular/router";
 import { Subscription } from "rxjs";
 import { UserService } from "../../../shared/shared-services/user.service";
 import { DomSanitizer } from "@angular/platform-browser";
-import { Review } from "../../profile-reviews/models/review";
+import { Review } from "../../../shared/shared-models/review";
 import { BadgeService } from "../services/badge.service";
 import { Badge } from "../models/badge";
 import { SelectItem } from 'primeng/api';

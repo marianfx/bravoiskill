@@ -4,7 +4,7 @@ import { HttpClient } from "@angular/common/http";
 import { ActivatedRoute } from "@angular/router";
 import { Subscription } from "rxjs";
 import { UserService } from "../../../shared/shared-services/user.service";
-import { ReviewService } from "../services/review.service";
+import { ReviewService } from "../../../shared/shared-services/review.service";
 import { SkillService } from "src/app/shared/shared-services/skill.service";
 import { UserSkill } from "../models/userSkill";
 

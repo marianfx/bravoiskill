@@ -1,4 +1,4 @@
-import { SkillReview } from '../../profile-reviews/models/skillReview';
+import { SkillReview } from 'src/app/modules/profile-reviews/models/skillReview';
 
 export interface Review {
   reviewId: number;
