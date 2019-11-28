@@ -33,15 +33,15 @@ export class ProfileReviewsComponent implements OnInit {
     scaleShowVerticalLines: false,
     responsive: true,
     scales: {
-        {
       yAxes: [
+        {
           ticks: {
             beginAtZero: true,
-            steps: 10,
             stepValue: 50,
+            steps: 10,
             min: 0
-        }
           }
+        }
       ]
     }
   };
@@ -52,7 +52,7 @@ export class ProfileReviewsComponent implements OnInit {
     public userService: UserService,
     public reviewService: ReviewService,
     public skillService: SkillService
-  ) { }
+  ) {}
 
   ngOnInit() {
     this.getUserMet();
@@ -77,10 +77,16 @@ export class ProfileReviewsComponent implements OnInit {
       let topSkills = [];
       this.skills.sort((n1, n2) => n2.points - n1.points);
       console.log(this.skills);
-      this.skills.slice(0, 5).forEach(y => this.barChartData.push({ data: [y.points], label: y.skill.description }));
-      this.barChartLabels = ['Skills'];
-
-    })
+      this.skills
+        .slice(0, 5)
+        .forEach(y =>
+          this.barChartData.push({
+            data: [y.points],
+            label: y.skill.description
+          })
+        );
+      this.barChartLabels = ["Skills"];
+    });
   }
 
   getUserMet() {

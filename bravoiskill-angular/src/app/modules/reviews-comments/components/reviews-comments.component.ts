@@ -27,7 +27,6 @@ export class ReviewsCommentsComponent implements OnInit {
   }
 
   getUserMet() {
-
     this.routeSub = this.route.params.subscribe(params => {
       if (params && params["id"]) {
         this.userService.getUserById(+params["id"]).subscribe(user => {
@@ -52,11 +51,11 @@ export class ReviewsCommentsComponent implements OnInit {
     }, {});
     })
   }
-  
+
   toggle() {
     this.show = !this.show;
     // CHANGE THE NAME OF THE BUTTON.
-    if(this.show)  
+    if(this.show)
       this.buttonName = "See less";
     else
       this.buttonName = "See more";

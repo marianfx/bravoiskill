@@ -1,85 +1,87 @@
 <!-- Comentarii review -->
 <div *ngFor="let review of reviews" class="container-fluid mt--7">
-    <div class="row d-flex justify-content-center">
-        <div class="col-xl-6 order-xl-2 mb-5 mb-xl-0">
-            <div class="card card-profile shadow">
-                <div class="product-conversations-list js-reviews-list">
-                    <div class="product-review-item js-review-item row border-bottom" data-id="756355" data-product-pnk="DZJJHYBBM">
-                        <div class="col-md-3">
-                            <div class="product-review-head">
-                                <div class="product-review-user-avatar">
-                                    <div class="user-avatar user-avatar-sm">
-                                        <div class="thumbnail" style="background-color: #b1b1b1">
-                                            <div class="picture"
-                                                style="background-image: url('https://graph.facebook.com/956394454433991/picture?width=78&amp;height=78&amp;date=20180312080300')">
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="product-review-user-meta">
-                                    <p class="product-review-author mrg-top-xs semibold">{{reviewers[review.reviewerUserId].firstName}}, {{reviewers[review.reviewerUserId].lastName}}</p>
-                                    <p class="small text-muted mrg-sep-none">{{review.reviewDate | date: 'dd MMM y'}}</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-5">
-                            <div class="product-review-body">
-                                <h3 class="product-review-title">
-                                    SKILL
-                                    <div class="progress" style="height:15px">
-                                        <div class="progress-bar bg-success" style="width:60%">
-                                            nr puncte
-                                        </div>
-                                    </div>
-                                </h3>
-                                <h3 class="product-review-title">
-                                    SKILL
-                                    <div class="progress" style="height:15px">
-                                        <div class="progress-bar bg-success" style="width:30%">
-                                            nr puncte
-                                        </div>
-                                    </div>
-                                </h3>
-                                <h3 class="product-review-title">
-                                    SKILL
-                                    <div class="progress" style="height:15px">
-                                        <div class="progress-bar bg-success" style="width:90%">
-                                            nr puncte
-                                        </div>
-                                    </div>
-                                </h3>
-                                <div *ngIf="show">
-                                    <h3 class="product-review-title">
-                                        SKILL
-                                        <div class="progress" style="height:15px">
-                                            <div class="progress-bar bg-success" style="width:90%">
-                                                nr puncte
-                                            </div>
-                                        </div>
-                                    </h3>
-                                    <h3 class="product-review-title">
-                                        SKILL
-                                        <div class="progress" style="height:15px">
-                                            <div class="progress-bar bg-success" style="width:90%">
-                                                nr puncte
-                                            </div>
-                                        </div>
-                                    </h3>
-                                </div>
-                                <button type="button" class="btn btn-outline-secondary btn-sm" (click)="toggle()" id="bt"> {{ buttonName }} </button>
-                            </div>
-                        </div>
-                        <div class="col-md-4">
-                            <div class="product-review-body">
-                                <div class="mrg-btm-xs js-review-body review-body-container"
-                                    id="review-body-collapse-756355">
-                                    {{review.comment}}
-                                    <br>
-                                </div>
-                            </div>
-                        </div>
+  <div class="row d-flex justify-content-center">
+    <div class="col-xl-6 order-xl-2 mb-5 mb-xl-0">
+      <div class="card card-profile shadow">
+        <div class="product-conversations-list js-reviews-list">
+          <div class="product-review-item js-review-item row border-bottom" data-id="756355"
+            data-product-pnk="DZJJHYBBM">
+            <div class="col-md-3">
+              <div class="product-review-head">
+                <div class="product-review-user-avatar">
+                  <div class="user-avatar user-avatar-sm">
+                    <div class="thumbnail" style="background-color: #b1b1b1">
+                      <div class="picture"
+                        style="background-image: url('https://graph.facebook.com/956394454433991/picture?width=78&amp;height=78&amp;date=20180312080300')">
+                      </div>
                     </div>
+                  </div>
+                </div>
+                <div class="product-review-user-meta">
+                  <p class="product-review-author mrg-top-xs semibold">{{reviewers[review.reviewerUserId].firstName}},
+                    {{reviewers[review.reviewerUserId].lastName}}</p>
+                  <p class="small text-muted mrg-sep-none">{{review.reviewDate | date: 'dd MMM y'}}</p>
+                </div>
+              </div>
             </div>
+            <div class="col-md-5">
+              <div class="product-review-body">
+                <h3 class="product-review-title">
+                  SKILL
+                  <div class="progress" style="height:15px">
+                    <div class="progress-bar bg-success" style="width:60%">
+                      nr puncte
+                    </div>
+                  </div>
+                </h3>
+                <h3 class="product-review-title">
+                  SKILL
+                  <div class="progress" style="height:15px">
+                    <div class="progress-bar bg-success" style="width:30%">
+                      nr puncte
+                    </div>
+                  </div>
+                </h3>
+                <h3 class="product-review-title">
+                  SKILL
+                  <div class="progress" style="height:15px">
+                    <div class="progress-bar bg-success" style="width:90%">
+                      nr puncte
+                    </div>
+                  </div>
+                </h3>
+                <div *ngIf="show">
+                  <h3 class="product-review-title">
+                    SKILL
+                    <div class="progress" style="height:15px">
+                      <div class="progress-bar bg-success" style="width:90%">
+                        nr puncte
+                      </div>
+                    </div>
+                  </h3>
+                  <h3 class="product-review-title">
+                    SKILL
+                    <div class="progress" style="height:15px">
+                      <div class="progress-bar bg-success" style="width:90%">
+                        nr puncte
+                      </div>
+                    </div>
+                  </h3>
+                </div>
+                <button type="button" class="btn btn-outline-secondary btn-sm" (click)="toggle()" id="bt">
+                  {{ buttonName }} </button>
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="product-review-body">
+                <div class="mrg-btm-xs js-review-body review-body-container" id="review-body-collapse-756355">
+                  {{review.comment}}
+                  <br>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
+      </div>
     </div>
-</div>
+  </div>
