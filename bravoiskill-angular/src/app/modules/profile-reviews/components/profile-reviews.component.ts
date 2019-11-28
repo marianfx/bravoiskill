@@ -45,6 +45,8 @@ export class ProfileReviewsComponent implements OnInit {
       ]
     }
   };
+  public show: boolean = false;
+  public buttonName: any = 'See more';
 
   constructor(
     public http: HttpClient,
@@ -52,18 +54,10 @@ export class ProfileReviewsComponent implements OnInit {
     public userService: UserService,
     public reviewService: ReviewService,
     public skillService: SkillService
-  ) {}
+  ) { }
 
   ngOnInit() {
     this.getUserMet();
-  }
-
-  seeMoreActivate(element) {
-    if (element.textContent != "Back to Charts")
-      element.textContent = "Back to Charts";
-    else element.textContent = "See more";
-
-    this.seeMore = !this.seeMore;
   }
 
   getSkillsPoints() {
@@ -104,5 +98,14 @@ export class ProfileReviewsComponent implements OnInit {
         });
       }
     });
+  }
+  
+  toggle() {
+    this.show = !this.show;
+    // CHANGE THE NAME OF THE BUTTON.
+    if(this.show)
+      this.buttonName = "See less";
+    else
+      this.buttonName = "See more";
   }
 }
