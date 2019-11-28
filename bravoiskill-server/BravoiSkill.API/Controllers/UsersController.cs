@@ -47,6 +47,13 @@ namespace BravoiSkill.API.Controllers
             var user = _skillService.GetByUserId(id);
             return Ok(user);
         }
+        // GET api/users/:id/reviewers
+        [HttpGet("{id}/reviewers")]
+        public IActionResult GetUsersReviewersByReviewedUserId(int id)
+        {
+            var user = _userService.GetUsersReviewersByUserId(id);
+            return Ok(user);
+        }
 
         // GET api/users
         [HttpGet]

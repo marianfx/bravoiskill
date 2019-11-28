@@ -10,6 +10,8 @@ namespace BravoiSkill.Application.Services.Interfaces
 
         IEnumerable<User> GetAll();
 
+        IEnumerable<User> GetUsersReviewersByUserId(int id);
+
         User GetById(int id);
 
         void Create(User user);

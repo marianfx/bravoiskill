@@ -69,6 +69,12 @@ namespace BravoiSkill.Application.Services.Implementations
 
             return usersDto;
         }
+        public IEnumerable<User> GetUsersReviewersByUserId(int id)
+        {
+            var userDb = _userRepository.GetListOfUsersReviewersForReviewedUserById(id);
+            var userDto = userDb.Select(u => _mapper.Map<User>(u)).ToList();
+            return userDto;
+        }
 
         public User GetById(int id)
         {

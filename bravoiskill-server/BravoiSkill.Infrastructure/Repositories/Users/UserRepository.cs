@@ -28,6 +28,15 @@ namespace BravoiSkill.Infrastructure.Repositories.Users
                       select us;
             return rez.FirstOrDefault();
         }
+        public IQueryable<User> GetListOfUsersReviewersForReviewedUserById(int id)
+        {
+            var rez = from us in _context.Users join re in _context.Reviews
+                      on us.ProfileId equals re.ReviewedUserId
+                      where re.ReviewedUserId == id
+                      select us; 
+                   
+            return rez;
+        }
 
         public User Create(User user)
         {

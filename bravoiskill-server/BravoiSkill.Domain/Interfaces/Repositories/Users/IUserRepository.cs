@@ -9,13 +9,14 @@ namespace BravoiSkill.Domain.Interfaces.Repositories.Users
         ///     The method builds a query that selects all the users from the Db
         /// </summary>
         /// <returns>The newly created user</returns>
-        IQueryable<Domain.Entities.Users.User> GetListOfUsers();
+        IQueryable<User> GetListOfUsers();
 
         /// <summary>
         /// Searches for an user based on user ID. Returns null if not found
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
+        IQueryable<User> GetListOfUsersReviewersForReviewedUserById(int id);
         User GetUserById(int id);
 
         User Create(User user);
