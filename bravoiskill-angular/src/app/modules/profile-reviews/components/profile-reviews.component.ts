@@ -24,28 +24,27 @@ export class ProfileReviewsComponent implements OnInit {
     { field: "points", header: "Points" }
   ];
   public paginator: boolean = false;
+  public seeMore: boolean = false;
+  barChartLabels = ["Loading..."];
+  barChartType = "bar";
+  barChartLegend = true;
+  barChartData: any = [{ data: [0], label: "Loading..." }];
   public barChartOptions = {
     scaleShowVerticalLines: false,
     responsive: true,
     scales: {
-      yAxes: [{
-        ticks: {
-          beginAtZero: true,
-          stepValue: 50,
-          steps: 10,
-          min: 0,
+        {
+      yAxes: [
+          ticks: {
+            beginAtZero: true,
+            steps: 10,
+            stepValue: 50,
+            min: 0
         }
-      }]
-
+          }
+      ]
     }
   };
-  barChartLabels = ["Loading..."];
-  barChartType = "bar";
-  barChartLegend = true;
-  barChartData: any = [
-    { data: [0], label: "Loading..." }
-  ];
-  public seeMore: boolean = false;
 
   constructor(
     public http: HttpClient,
@@ -60,14 +59,11 @@ export class ProfileReviewsComponent implements OnInit {
   }
 
   seeMoreActivate(element) {
-
-    if (element.textContent != 'Back to Charts')
-      element.textContent = 'Back to Charts';
-    else
-      element.textContent = 'See more';
+    if (element.textContent != "Back to Charts")
+      element.textContent = "Back to Charts";
+    else element.textContent = "See more";
 
     this.seeMore = !this.seeMore;
-
   }
 
   getSkillsPoints() {

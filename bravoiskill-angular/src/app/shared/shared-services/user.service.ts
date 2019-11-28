@@ -16,6 +16,10 @@ export class UserService {
     return this.http.get<User>(`${environment.AppRoot}/users/${id}`);
   }
 
+  getUsersReviewersByReviewedUserId(id: number){
+    return this.http.get<User[]>(`${environment.AppRoot}/users/${id}/reviewers`);
+  }
+
   createUser(user: User){
     return this.http.post(`${environment.AppRoot}/users`,user);
   }
