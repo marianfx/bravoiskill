@@ -30,12 +30,12 @@ export class ProfileReviewsComponent implements OnInit {
     scales: {
       yAxes: [{
         ticks: {
-        beginAtZero: true,
-            stepValue: 50,
-            steps: 10,
-          min : 0,
+          beginAtZero: true,
+          stepValue: 50,
+          steps: 10,
+          min: 0,
         }
-    }]
+      }]
 
     }
   };
@@ -53,20 +53,20 @@ export class ProfileReviewsComponent implements OnInit {
     public userService: UserService,
     public reviewService: ReviewService,
     public skillService: SkillService
-  ) {}
+  ) { }
 
   ngOnInit() {
     this.getUserMet();
   }
 
-  seeMoreActivate(element){
+  seeMoreActivate(element) {
 
-   if (element.textContent != 'Back to Charts')
-   element.textContent = 'Back to Charts';
-   else
-   element.textContent = 'See more';
+    if (element.textContent != 'Back to Charts')
+      element.textContent = 'Back to Charts';
+    else
+      element.textContent = 'See more';
 
-   this.seeMore = !this.seeMore;
+    this.seeMore = !this.seeMore;
 
   }
 
@@ -74,16 +74,18 @@ export class ProfileReviewsComponent implements OnInit {
     this.skillService.getUserSkillByUserId(this.cUser.userId).subscribe(x => {
       this.skills = x;
       if (this.skills.length > 10) {
-        this.paginator = true;}
+        this.paginator = true;
+      }
       console.log(this.skills);
       this.barChartData = [];
-      let topSkills=[];
-      this.skills.sort((n1,n2) => n2.points - n1.points);
+      let topSkills = [];
+      this.skills.sort((n1, n2) => n2.points - n1.points);
       console.log(this.skills);
-      this.skills.slice(0,5).forEach(y => this.barChartData.push({data: [y.points], label: y.skill.description}));
+      this.skills.slice(0, 5).forEach(y => this.barChartData.push({ data: [y.points], label: y.skill.description }));
       this.barChartLabels = ['Skills'];
 
-      })}
+    })
+  }
 
   getUserMet() {
     // // this.route

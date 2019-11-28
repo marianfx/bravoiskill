@@ -5,8 +5,10 @@
     </div>
 
     <div class="header pb-8 pt-5 pt-lg-8" style="background-size: cover; background-position: center top;">
+      
       <!-- Mask -->
       <span class="mask bg-gradient-danger opacity-8"></span>
+
       <!-- Header container -->
       <div class="container-fluid">
         <div class="row">
@@ -91,6 +93,7 @@
         </div>
       </div>
     </div>
+
     <!-- Dialog pt Edit Badge -->
     <p-dialog header="Edit Badge" [(visible)]="displayDialogueB" [responsive]="true" showEffect="fade" [modal]="true"
       selectionMode="single" [style]="{'max-width': '500px'}">
@@ -113,13 +116,12 @@
       </p-footer>
     </p-dialog>
 
+    <br>
+    <!-- Skill Points -->
+    <app-profile-reviews></app-profile-reviews>
+    <br><br>
+    <!-- Comentarii review -->
+    <app-reviews-comments></app-reviews-comments>
 
-<br>
-<!-- Skill Points -->
-<app-profile-reviews></app-profile-reviews>
-</section>
+  </section>
 </main>
-
-<br>
-<!-- Comentarii review -->
-<app-reviews-comments></app-reviews-comments>
