@@ -11,14 +11,15 @@
                   <div class="user-avatar user-avatar-sm">
                     <div class="thumbnail" style="background-color: #b1b1b1">
                       <div class="picture"
-                      [ngStyle]="{'background-image': getImageUrl(review.reviewerId)}">
+                      [ngStyle]="{'background-image': getImageUrl(review.reviewerUserId)}">
+
                       </div>
                     </div>
                   </div>
                 </div>
                 <div class="product-review-user-meta">
-                  <p class="product-review-author mrg-top-xs semibold">{{review.user.firstName}},
-                    {{review.user.lastName}}</p>
+                  <p class="product-review-author mrg-top-xs semibold">{{review.reviewerUser.firstName}},
+                    {{review.reviewerUser.lastName}}</p>
                   <p class="small text-muted mrg-sep-none">{{review.reviewDate | date: 'dd MMM y'}}</p>
                 </div>
               </div>

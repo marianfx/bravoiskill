@@ -8,5 +8,5 @@ export interface Review {
   reviewedUserId: number;
   reviewerUserId: number;
   reviewSkills: SkillReview[];
-  user: User;
+  reviewerUser: User;
 }
