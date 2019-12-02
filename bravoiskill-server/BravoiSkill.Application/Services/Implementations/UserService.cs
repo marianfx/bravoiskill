@@ -109,8 +109,9 @@ namespace BravoiSkill.Application.Services.Implementations
                 throw new Exception("User does not exist in database");
             user.UserId = userEntity.UserId;
             user.ProfileId = userEntity.ProfileId;
-
+            var pass = user.Password ?? userEntity.Password;
             _mapper.Map<User, Domain.Entities.Users.User>(user, userEntity);
+            userEntity.Password = pass;
             _userRepository.Update(userEntity);
         }
 
