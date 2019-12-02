@@ -32,9 +32,7 @@ namespace BravoiSkill.Application.Services.Implementations
 
         public User Authenticate(string email, string password)
         {
-            var user = GetAll()
-                .FirstOrDefault(x => x.Email == email && x.Password == password);
-            // almost always use FirstOrDefault, SingleOrDefault is kk
+            var user = GetAuthUser(email, password);
 
             if (user == null) 
                 return null;
@@ -52,9 +50,6 @@ namespace BravoiSkill.Application.Services.Implementations
             };
             var token = tokenHandler.CreateToken(tokenDescriptor);
             user.Token = tokenHandler.WriteToken(token);
-            
-            //remove password before returning
-            user.Password = null;
 
             return user;
         }
@@ -69,6 +64,14 @@ namespace BravoiSkill.Application.Services.Implementations
 
             return usersDto;
         }
+
+        private User GetAuthUser(string email, string pass)
+        {
+            // almost always use FirstOrDefault, SingleOrDefault is kk
+            var user = _userRepository.GetListOfUsers().FirstOrDefault(u => u.Email == email && u.Password == pass);
+            return _mapper.Map<User>(user);
+        }
+
         public IEnumerable<User> GetUsersReviewersByUserId(int id)
         {
             var userDb = _userRepository.GetListOfUsersReviewersForReviewedUserById(id);

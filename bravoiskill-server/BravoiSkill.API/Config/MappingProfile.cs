@@ -13,8 +13,9 @@ namespace BravoiSkill.API.Config
 
         public void AddMappings()
         {
-            CreateMap<App.Users.User, DomainEntities.Users.User>()
-                .ReverseMap();
+            CreateMap<App.Users.User, DomainEntities.Users.User>();
+            CreateMap<DomainEntities.Users.User, App.Users.User>().ForMember(x => x.Password, opt => opt.Ignore());
+
             CreateMap<App.Users.Badge, DomainEntities.Users.Badge>()
                 .ReverseMap();
             CreateMap<App.Users.Department, DomainEntities.Users.Department>()
