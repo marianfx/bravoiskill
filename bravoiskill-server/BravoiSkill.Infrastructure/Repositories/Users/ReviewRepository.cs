@@ -28,7 +28,9 @@ namespace BravoiSkill.Infrastructure.Repositories.Users
             var rez = _context.Reviews
                 .Where(d => d.ReviewedUserId == id)
                 .Include(s => s.ReviewSkills)
+                .ThenInclude(s => s.Skill)
                 .Include(s => s.ReviewerUser);
+                
             return rez;
          
         }
