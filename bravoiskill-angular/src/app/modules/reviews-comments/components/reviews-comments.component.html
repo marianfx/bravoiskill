@@ -26,49 +26,16 @@
             </div>
             <div class="col-md-5">
               <div class="product-review-body">
-                <h3 class="product-review-title">
-                  SKILL
+                <h3 *ngFor="let skillReview of review.reviewSkills" class="product-review-title">
+                  {{skillReview.skill.description}}
                   <div class="progress" style="height:15px">
                     <div class="progress-bar bg-success" style="width:60%">
-                      nr puncte
+                      {{skillReview.reviewPoints}}
                     </div>
                   </div>
                 </h3>
-                <h3 class="product-review-title">
-                  SKILL
-                  <div class="progress" style="height:15px">
-                    <div class="progress-bar bg-success" style="width:30%">
-                      nr puncte
-                    </div>
-                  </div>
-                </h3>
-                <h3 class="product-review-title">
-                  SKILL
-                  <div class="progress" style="height:15px">
-                    <div class="progress-bar bg-success" style="width:90%">
-                      nr puncte
-                    </div>
-                  </div>
-                </h3>
-                <div *ngIf="show">
-                  <h3 class="product-review-title">
-                    SKILL
-                    <div class="progress" style="height:15px">
-                      <div class="progress-bar bg-success" style="width:90%">
-                        nr puncte
-                      </div>
-                    </div>
-                  </h3>
-                  <h3 class="product-review-title">
-                    SKILL
-                    <div class="progress" style="height:15px">
-                      <div class="progress-bar bg-success" style="width:90%">
-                        nr puncte
-                      </div>
-                    </div>
-                  </h3>
-                </div>
-                <button type="button" class="btn btn-outline-secondary btn-sm" (click)="toggle()" id="bt">
+                </div >
+                <button *ngIf="review.reviewSkills?.length > 3" type="button" class="btn btn-outline-secondary btn-sm" (click)="toggle()" id="bt">
                   {{ buttonName }} </button>
               </div>
             </div>
