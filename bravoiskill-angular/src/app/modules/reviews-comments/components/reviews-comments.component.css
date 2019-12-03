@@ -3,6 +3,9 @@
     padding-top: 1.25rem;
     padding-bottom: 1.25rem;
 }
+.comment{
+  padding-left: 1.25rem;
+}
 
 .row {
     margin-left: 0.625rem;
@@ -50,7 +53,7 @@ p {
     font-size: 85%;
 }
 
-.col-md-3, .col-md-5, .col-md-4 {
+.col-md-4, .col-md-8, .col-md-4 {
     position: relative;
     min-height: 0.0625rem;
     padding-left: 0.625rem;
@@ -193,13 +196,13 @@ p {
 }
 
 @media (min-width: 992px) {
-    .col-md-3 {
+    .col-md-4 {
         width: 16.66667%;
     }
 }
 
 @media (min-width: 992px) {
-    .col-md-3, .col-md-5, .col-md-4 {
+    .col-md-8, .col-md-4 {
         float: left;
     }
 }
@@ -229,3 +232,4 @@ p {
         vertical-align: middle;
     }
 }
+
