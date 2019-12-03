@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Skill } from '../../modules/users-table/models/skill';
+import { Skill } from '../shared-models/skill';
 import { environment } from 'src/environments/environment';
 import { Observable } from 'rxjs/internal/Observable';
 import { UserSkill } from 'src/app/modules/profile-reviews/models/userSkill';

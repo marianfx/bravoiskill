@@ -1,4 +1,4 @@
-import { SkillCategory } from './skillCategory';
+import { SkillCategory } from 'src/app/modules/users-table/models/skillCategory';
 
 export interface Skill {
   skillId: number;

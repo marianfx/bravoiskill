@@ -4,7 +4,7 @@ import { MenuItem, SelectItem } from 'primeng/api';
 import { User } from '../../../shared/shared-models/user';
 import { Department } from '../models/department';
 import { DepartmentService } from '../services/department.service';
-import { Skill } from '../models/skill';
+import { Skill } from '../../../shared/shared-models/skill';
 import { SkillService } from '../../../shared/shared-services/skill.service';
 
 @Component({
