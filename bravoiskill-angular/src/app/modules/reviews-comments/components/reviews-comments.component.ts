@@ -25,7 +25,10 @@ export class ReviewsCommentsComponent implements OnInit {
   ngOnInit() {
     this.getUserMet();
   }
-
+  getSkillPercenter(points: number){
+    let response = (points * 10) + '%';
+    return response;
+  }
   getImageUrl(id: number){
     return "url('" + `${environment.AppRoot}/users/${id}/photo` + "')";
   }
