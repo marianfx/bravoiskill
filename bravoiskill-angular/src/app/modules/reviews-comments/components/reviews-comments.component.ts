@@ -13,12 +13,10 @@ import { environment } from 'src/environments/environment';
   styleUrls: ['./reviews-comments.component.css']
 })
 export class ReviewsCommentsComponent implements OnInit {
-  public show: boolean = false;
-  public buttonName: any = 'See more';
-
   public cUser: User = {} as User;
   private routeSub: Subscription;
   reviews: Review[] = [];
+  expanded = [];
 
   constructor(public reviewService: ReviewService, public userService: UserService, public route: ActivatedRoute) { }
 
@@ -46,17 +44,12 @@ export class ReviewsCommentsComponent implements OnInit {
   getReviews(){
     this.reviewService.getAllReviewsFor(this.cUser.userId).subscribe( x => {
       this.reviews = x;
+      this.expanded = [];
+      for(var i = 0; i < this.reviews.length; i++)
+        this.expanded.push(false);
+
       console.log(this.reviews);
     })
-  }
-
-  toggle() {
-    this.show = !this.show;
-    // CHANGE THE NAME OF THE BUTTON.
-    if(this.show)
-      this.buttonName = "See less";
-    else
-      this.buttonName = "See more";
   }
 }
 
