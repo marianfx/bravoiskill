@@ -1,0 +1,51 @@
+<div class="col-sm-12 col-lg-5 order-xl-2 mb-5 mb-xl-0">
+    <div class="card card-profile shadow">
+        <div class="product-conversations-list js-reviews-list">
+            <div class="product-review-item js-review-item row border-bottom">
+                <div class="col-md-4">
+                    <div class="product-review-head">
+                        <div class="product-review-user-avatar">
+                            <div class="user-avatar user-avatar-sm">
+                                <div class="thumbnail" style="background-color: #b1b1b1">
+                                    <div class="picture"
+                                        [ngStyle]="{'background-image': getImageUrl(review.reviewerUserId)}">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="product-review-user-meta">
+                            <p class="product-review-author mrg-top-xs semibold">{{ review.reviewerUser.firstName }},
+                                {{ review.reviewerUser.lastName }}</p>
+                            <p class="small text-muted mrg-sep-none">{{ review.reviewDate | date: 'dd MMM y' }}</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-8">
+                    <div class="product-review-body">
+                        <h3 *ngFor="let skillReview of review.reviewSkills;let i = index;" class="product-review-title">
+                            <div *ngIf="(i < 4) || expanded[j]">
+                                {{ skillReview.skill.description }}
+                                <div class="progress" style="height:15px">
+                                    <div class="progress-bar bg-success"
+                                        [ngStyle]="{'width' : getSkillPercenter(skillReview.reviewPoints)}">
+                                        {{ skillReview.reviewPoints }}
+                                    </div>
+                                </div>
+                            </div>
+                        </h3>
+                        <button *ngIf="review.reviewSkills?.length > 4"
+                            [innerText]="!expanded[j] ? 'SEE MORE' : 'SEE LESS'" type="button"
+                            class="btn btn-outline-secondary btn-sm" (click)="expanded[j] = !expanded[j]">
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <div class="product-review-body comment">
+                <div class="mrg-btm-xs js-review-body review-body-container" id="review-body-collapse-756355">
+                    {{ review.comment }}
+                    <br>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

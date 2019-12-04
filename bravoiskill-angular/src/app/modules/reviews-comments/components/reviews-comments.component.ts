@@ -23,10 +23,12 @@ export class ReviewsCommentsComponent implements OnInit {
   ngOnInit() {
     this.getUserMet();
   }
+  
   getSkillPercenter(points: number){
     let response = (points * 10) + '%';
     return response;
   }
+
   getImageUrl(id: number){
     return "url('" + `${environment.AppRoot}/users/${id}/photo` + "')";
   }
@@ -41,16 +43,15 @@ export class ReviewsCommentsComponent implements OnInit {
       }
     });
   }
+
   getReviews(){
     this.reviewService.getAllReviewsFor(this.cUser.userId).subscribe( x => {
       this.reviews = x;
       this.expanded = [];
       for(var i = 0; i < this.reviews.length; i++)
         this.expanded.push(false);
-
       console.log(this.reviews);
     })
   }
+
 }
-
-
