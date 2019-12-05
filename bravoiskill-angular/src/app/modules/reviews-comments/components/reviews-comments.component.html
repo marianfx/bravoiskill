@@ -1,9 +1,9 @@
 <!-- Comentarii review -->
-<div *ngFor="let review of reviews;let j = index;" class="container-fluid mt--7">
+<div *ngFor="let review of reviews;let i = index;" class="container-fluid mt--7">
   <div class="row d-flex justify-content-center">
-    <app-card></app-card>
+    <app-card [review] = "review" [expanded] = "expanded[i]"></app-card>
   </div>
 
   <br>
-  
+
 </div>

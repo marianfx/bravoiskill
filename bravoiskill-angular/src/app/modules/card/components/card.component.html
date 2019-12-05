@@ -23,7 +23,7 @@
                 <div class="col-md-8">
                     <div class="product-review-body">
                         <h3 *ngFor="let skillReview of review.reviewSkills;let i = index;" class="product-review-title">
-                            <div *ngIf="(i < 4) || expanded[j]">
+                            <div *ngIf="(i < 4) || expanded">
                                 {{ skillReview.skill.description }}
                                 <div class="progress" style="height:15px">
                                     <div class="progress-bar bg-success"
@@ -34,8 +34,8 @@
                             </div>
                         </h3>
                         <button *ngIf="review.reviewSkills?.length > 4"
-                            [innerText]="!expanded[j] ? 'SEE MORE' : 'SEE LESS'" type="button"
-                            class="btn btn-outline-secondary btn-sm" (click)="expanded[j] = !expanded[j]">
+                            [innerText]="!expanded ? 'SEE MORE' : 'SEE LESS'" type="button"
+                            class="btn btn-outline-secondary btn-sm" (click)="expanded = !expanded">
                         </button>
                     </div>
                 </div>
