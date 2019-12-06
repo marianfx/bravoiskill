@@ -32,6 +32,8 @@ import { UsersTableComponent } from './modules/users-table/components/users-tabl
 import { ProfileReviewsComponent } from './modules/profile-reviews/components/profile-reviews.component';
 import { ReviewsCommentsComponent } from './modules/reviews-comments/components/reviews-comments.component';
 import { CardComponent } from './modules/card/components/card.component';
+import { AddReviewComponent } from './modules/add-review/add-review.component';
+
 
 @NgModule({
   declarations: [
@@ -44,7 +46,8 @@ import { CardComponent } from './modules/card/components/card.component';
     ProfileComponent,
     ProfileReviewsComponent,
     ReviewsCommentsComponent,
-    CardComponent
+    CardComponent,
+    AddReviewComponent
   ],
   imports: [
     BrowserModule,

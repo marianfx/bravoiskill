@@ -1,0 +1,48 @@
+.mrg-top-md {
+  margin-top: 30px;
+}
+.panel-default {
+  border-color: rgba(0,0,0,.1);
+}
+.panel {
+  margin-bottom: 20px;
+  background-color: #fff;
+  border: 1px solid transparent;
+  border-radius: 3px;
+  box-shadow: 0 2px 12px -4px rgba(0,0,0,.1);
+  position: relative;
+}
+* {
+  box-sizing: border-box;
+}
+user agent stylesheet
+div {
+  display: block;
+}
+body {
+  font-family: "Open Sans",Helvetica,Arial,sans-serif;
+  font-size: 14px;
+  line-height: 1.42857;
+  color: #222;
+  background-color: #e9ebee;
+}
+html {
+  font-size: 10px;
+  -webkit-tap-highlight-color: transparent;
+}
+html {
+  font-family: sans-serif;
+  -ms-text-size-adjust: 100%;
+  -webkit-text-size-adjust: 100%;
+}
+user agent stylesheet
+html {
+  color: -internal-root-color;
+}
+:after, :before {
+  box-sizing: border-box;
+}
+:after, :before {
+  box-sizing: border-box;
+}
+
