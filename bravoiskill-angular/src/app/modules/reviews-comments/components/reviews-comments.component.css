@@ -12,3 +12,17 @@
     display: table;
 }
 
+.col-md-4 {
+  width: 16.66667%;
+}
+
+.col-md-8, .col-md-4 {
+float: left;
+}
+
+.col-md-4, .col-md-8, .col-md-4 {
+  position: relative;
+  min-height: 0.0625rem;
+  padding-left: 0.625rem;
+  padding-right: 0.625rem;
+}

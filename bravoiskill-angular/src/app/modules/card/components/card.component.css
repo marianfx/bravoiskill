@@ -1,7 +1,7 @@
 .product-review-item {
     color: #444;
     padding-top: 1.25rem;
-    padding-bottom: 1.25rem;
+    padding-left: 1.25rem;
 }
 .comment{
   padding-left: 1.25rem;
@@ -48,16 +48,12 @@ p {
     font-size: 85%;
 }
 
-.col-md-4, .col-md-8, .col-md-4 {
-    position: relative;
-    min-height: 0.0625rem;
-    padding-left: 0.625rem;
-    padding-right: 0.625rem;
-}
+
 
 .product-review-body {
     display: block;
     position: relative;
+    padding-right: 1.25rem;
 }
 
 .product-review-title {
@@ -146,10 +142,6 @@ p {
     border: 0 transparent;
 }
 
-.border-bottom {
-    border-bottom: 0.0625rem solid #dee2e6!important;
-}
-
 .progress {
     margin-bottom: 0;
 }
@@ -162,60 +154,52 @@ p {
     box-sizing: border-box;
 }
 
-@media (min-width: 768px) {
-    .user-avatar.user-avatar-sm {
+
+.user-avatar.user-avatar-sm {
         width: 3.5rem;
         height: 3.5rem;
     }
-}
 
-@media (min-width: 768px) {
-    .h3, h3 {
-        font-size: 0.875rem;
-    }
-}
 
-@media (min-width: 768px) {
-    .h1, .h2, .h3, h1, h2, h3 {
+.h3, h3 {
+      font-size: 0.875rem;
+  }
+
+
+.h1, .h2, .h3, h1, h2, h3 {
         margin-top: 0.625rem;
     }
+
+
+
+
+.product-review-head .product-review-user-avatar {
+        display: block;
 }
 
-@media (min-width: 992px) {
-    .col-md-4 {
-        width: 16.66667%;
-    }
-}
 
-@media (min-width: 992px) {
-    .col-md-8, .col-md-4 {
-        float: left;
-    }
-}
 
-@media (min-width: 992px) {
-    .product-review-head .product-review-user-avatar {
+.product-review-head .product-review-user-meta {
         display: block;
     }
-}
 
-@media (min-width: 992px) {
-    .product-review-head .product-review-user-meta {
-        display: block;
-    }
-}
 
-@media (max-width: 991px) {
-    .product-review-head .product-review-user-avatar {
+.product-review-head .product-review-user-avatar {
         width: 2.5rem;
         height: 2.5rem;
     }
-}
 
-@media (max-width: 991px) {
-    .product-review-head .product-review-item-image, .product-review-head .product-review-user-avatar {
+
+
+.product-review-head .product-review-item-image, .product-review-head .product-review-user-avatar {
         display: table-cell;
         vertical-align: middle;
-    }
 }
 
+.col-lg-5 .col-sm-12{
+  padding-left: 15px!important;
+}
+.row{
+  margin-right: 0px!important;
+  margin-left: 0px!important;
+}
