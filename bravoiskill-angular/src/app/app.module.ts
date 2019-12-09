@@ -30,9 +30,11 @@ import { MatSliderModule } from '@angular/material/slider';
 import { MatChipsModule } from '@angular/material/chips';
 import { UsersTableComponent } from './modules/users-table/components/users-table.component';
 import { ReviewsCommentsComponent } from './modules/review-modules/reviews-comments/components/reviews-comments.component';
-import { CardComponent } from './modules/card/components/card.component';
+import { CardComponent } from './modules/review-modules/card/components/card.component';
 import { AddReviewComponent } from './modules/review-modules/add-review/add-review.component';
 import { ProfileReviewsComponent } from './modules/review-modules/profile-reviews/components/profile-reviews.component';
+import { SkillCardComponent } from './modules/review-modules/skill-card/components/skill-card.component';
+import { SkillCategoryComponent } from './modules/review-modules/skill-category/components/skill-category.component';
 
 
 @NgModule({
@@ -47,7 +49,9 @@ import { ProfileReviewsComponent } from './modules/review-modules/profile-review
     ProfileReviewsComponent,
     ReviewsCommentsComponent,
     CardComponent,
-    AddReviewComponent
+    AddReviewComponent,
+    SkillCardComponent,
+    SkillCategoryComponent
   ],
   imports: [
     BrowserModule,

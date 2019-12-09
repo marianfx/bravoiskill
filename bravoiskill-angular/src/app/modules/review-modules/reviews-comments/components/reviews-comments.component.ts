@@ -17,6 +17,7 @@ export class ReviewsCommentsComponent implements OnInit {
   reviews: Review[] = [];
   expanded = [];
   @Input() displayDialogAddRev:boolean;
+  
   constructor(public reviewService: ReviewService, public userService: UserService, public route: ActivatedRoute) { }
 
   ngOnInit() {
