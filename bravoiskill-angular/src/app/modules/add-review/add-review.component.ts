@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 
 @Component({
   selector: 'app-add-review',
@@ -6,7 +6,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./add-review.component.css']
 })
 export class AddReviewComponent implements OnInit {
-
+@Input() displayDialogAddRev: boolean;
   constructor() { }
 
   ngOnInit() {

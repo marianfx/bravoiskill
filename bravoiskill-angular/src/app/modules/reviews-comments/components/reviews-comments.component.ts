@@ -1,11 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { ReviewService } from 'src/app/shared/shared-services/review.service';
 import { Subscription } from 'rxjs';
 import { UserService } from 'src/app/shared/shared-services/user.service';
 import { ActivatedRoute } from '@angular/router';
 import { User } from 'src/app/shared/shared-models/user';
 import { Review } from 'src/app/shared/shared-models/review';
-import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-reviews-comments',
@@ -17,7 +16,8 @@ export class ReviewsCommentsComponent implements OnInit {
   private routeSub: Subscription;
   reviews: Review[] = [];
   expanded = [];
-
+  displayDialogAddRev = false;
+@Input() canMessage: boolean;
   constructor(public reviewService: ReviewService, public userService: UserService, public route: ActivatedRoute) { }
 
   ngOnInit() {
