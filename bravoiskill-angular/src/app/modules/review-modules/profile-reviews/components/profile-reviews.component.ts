@@ -1,12 +1,12 @@
 import { Component, OnInit } from "@angular/core";
-import { User } from "../../../shared/shared-models/user";
 import { HttpClient } from "@angular/common/http";
 import { ActivatedRoute } from "@angular/router";
 import { Subscription } from "rxjs";
-import { UserService } from "../../../shared/shared-services/user.service";
-import { ReviewService } from "../../../shared/shared-services/review.service";
 import { SkillService } from "src/app/shared/shared-services/skill.service";
 import { UserSkill } from "../models/userSkill";
+import { User } from 'src/app/shared/shared-models/user';
+import { UserService } from 'src/app/shared/shared-services/user.service';
+import { ReviewService } from 'src/app/shared/shared-services/review.service';
 
 @Component({
   selector: "app-profile-reviews",

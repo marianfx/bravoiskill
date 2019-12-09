@@ -1,4 +1,4 @@
-import { Skill } from '../../../shared/shared-models/skill';
+import { Skill } from 'src/app/shared/shared-models/skill';
 
 export interface UserSkill {
   points: number;

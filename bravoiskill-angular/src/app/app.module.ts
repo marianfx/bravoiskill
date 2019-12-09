@@ -29,10 +29,10 @@ import { AgmCoreModule } from '@agm/core';
 import { MatSliderModule } from '@angular/material/slider';
 import { MatChipsModule } from '@angular/material/chips';
 import { UsersTableComponent } from './modules/users-table/components/users-table.component';
-import { ProfileReviewsComponent } from './modules/profile-reviews/components/profile-reviews.component';
-import { ReviewsCommentsComponent } from './modules/reviews-comments/components/reviews-comments.component';
+import { ReviewsCommentsComponent } from './modules/review-modules/reviews-comments/components/reviews-comments.component';
 import { CardComponent } from './modules/card/components/card.component';
-import { AddReviewComponent } from './modules/add-review/add-review.component';
+import { AddReviewComponent } from './modules/review-modules/add-review/add-review.component';
+import { ProfileReviewsComponent } from './modules/review-modules/profile-reviews/components/profile-reviews.component';
 
 
 @NgModule({

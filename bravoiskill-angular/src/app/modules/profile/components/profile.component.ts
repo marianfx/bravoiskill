@@ -65,11 +65,11 @@ export class ProfileComponent implements OnInit {
     this.setRandomBadgeColor();
   }
 
-  refreshProfilePhoto(){
+  refreshProfilePhoto() {
     this.profilePhoto = "url('" + `${environment.AppRoot}/users/${this.cUser.userId}/photo` + "')";
   }
 
-  refreshActiveBadge(){
+  refreshActiveBadge() {
     this.badgeService.getActiveBadgeById(this.cUser.badgeId).subscribe(x => (this.currentBadge = x));
   }
 
@@ -108,7 +108,7 @@ export class ProfileComponent implements OnInit {
           this.badgeService.getAllBadgesFor(this.cUser.userId).subscribe(x => {
             this.availableBadges = x;
             for (let index = 0; index < this.availableBadges.length; index++) {
-              this.availableBadgesDescription.push({label: this.availableBadges[index].description, value:this.availableBadges[index]} as SelectItem);
+              this.availableBadgesDescription.push({ label: this.availableBadges[index].description, value: this.availableBadges[index] } as SelectItem);
             }
           });
           this.refreshProfilePhoto();
@@ -162,8 +162,9 @@ export class ProfileComponent implements OnInit {
 
     this.displayDialogueB = false;
   }
+  
   editBadge() {
-    if(this.canMessage == false)
-    this.displayDialogueB = true;
+    if (this.canMessage == false)
+      this.displayDialogueB = true;
   }
 }
