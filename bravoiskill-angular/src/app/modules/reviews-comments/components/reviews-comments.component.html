@@ -7,10 +7,9 @@
     <app-card  [review] = "review" [expanded] = "expanded[i]"></app-card>
     </div>
   </div>
-<div class="form-row text-center">
-  <div class="col-12">
-<button *ngIf="canMessage" [innerText]="'Add review for '+ cUser.firstName" class="btn btn-danger" (click) = "displayDialogAddRev = !displayDialogAddRev"></button>
-</div>
-</div>
-<app-add-review *ngIf="canMessage" [displayDialogAddRev]="displayDialogAddRev"></app-add-review>
+
+
+
+
+<app-add-review [displayDialogAddRev]="displayDialogAddRev"></app-add-review>
 </div>

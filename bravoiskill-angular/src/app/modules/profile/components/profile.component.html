@@ -50,7 +50,7 @@
             </div>
             <div class="card-header text-center border-0 pt-8 pt-md-4 pb-0 pb-md-4">
               <div class="d-flex justify-content-between">
-                <!-- <a href="javascript:void(0)" class="btn btn-sm btn-info mr-4">Connect</a> -->
+                <button *ngIf="canMessage" [innerText]="'Add review'" (click)="displayDialogAddRev=!displayDialogAddRev" class="btn btn-sm btn-danger"></button>
                 <a [attr.href]="skype(cUser.skype)" class="btn btn-sm btn-default float-right"
                   *ngIf="canMessage">Message</a>
               </div>
@@ -121,7 +121,7 @@
     <app-profile-reviews></app-profile-reviews>
     <br><br>
     <!-- Comentarii review -->
-    <app-reviews-comments [canMessage]="canMessage"></app-reviews-comments>
+    <app-reviews-comments [displayDialogAddRev]="displayDialogAddRev"></app-reviews-comments>
 
   </section>
 </main>

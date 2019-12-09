@@ -20,6 +20,7 @@ import { SelectItem } from 'primeng/api';
   styleUrls: ["./profile.component.css"]
 })
 export class ProfileComponent implements OnInit {
+  displayDialogAddRev: boolean = false;
   public reviews: Review[];
   public cUser: User = {} as User;
   public ipData: ipInfo;
