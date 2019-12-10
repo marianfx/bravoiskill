@@ -2,10 +2,8 @@
 
 <div class="container">
   <div class="row d-flex">
-    <div class="col-sm-12 col-lg-6 order-xl-4 mb-5 mb-xl-5" *ngFor="let review of reviews;let i = index;">
+    <div class="col-sm-12 col-lg-6 order-xl-4 mb-5 mb-xl-5" *ngFor="let review of reviews; let i = index;">
       <app-card [review]="review" [expanded]="expanded[i]"></app-card>
     </div>
   </div>
-
-  <app-add-review [displayDialogAddRev]="displayDialogAddRev"></app-add-review>
 </div>

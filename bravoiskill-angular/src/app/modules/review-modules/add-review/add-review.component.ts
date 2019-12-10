@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, EventEmitter, Output } from '@angular/core';
 import { SkillCategory } from '../../users-table/models/skillCategory';
 import { User } from 'src/app/shared/shared-models/user';
 import { Subscription } from 'rxjs';
@@ -18,10 +18,12 @@ export class AddReviewComponent implements OnInit {
   public cUser: User = {} as User;
   private routeSub: Subscription;
   skills: Skill[] = [];
-  categories: any;
+  expandedC: boolean[] = [];
+  categories: any = []
   subCategories: any;
 
   @Input() displayDialogAddRev: boolean;
+  @Output() displayDialogAddRevChange = new EventEmitter();
 
   constructor(public reviewService: ReviewService, public userService: UserService, public route: ActivatedRoute, public skillService: SkillService) { }
 
@@ -30,14 +32,19 @@ export class AddReviewComponent implements OnInit {
     this.getCategories();
     this.getSubCategories();
   }
+
   getSubCategories() {
-    this.skillService.getCategories().subscribe(r => this.categories = r);
+    this.skillService.getCategories().subscribe(r => {
+      r.forEach(x => this.categories.push(x.description));
+      this.categories.forEach(x => this.expandedC.push(false));
+    });
   }
+
   getCategories() {
     this.skillService.getSubCategories().subscribe(r => this.subCategories = r);
   }
 
-  getSkillsForSubCategory(categoryId: number){
+  getSkillsForSubCategory(categoryId: number) {
     return this.skills.filter(s => s.categoryId == categoryId);
   }
 
@@ -45,12 +52,16 @@ export class AddReviewComponent implements OnInit {
     return this.subCategories.filter(c => c.parentId == categoryId);
   }
 
-  getSkills(){
+  getSkills() {
     this.skillService.getAllSkills().subscribe(x => {
       this.skills = x;
       console.log("This are the skills !");
       console.log(this.skills);
     });
+  }
+
+  closeModal() {
+    this.displayDialogAddRevChange.emit(false);
   }
 
   // getUserMet() {

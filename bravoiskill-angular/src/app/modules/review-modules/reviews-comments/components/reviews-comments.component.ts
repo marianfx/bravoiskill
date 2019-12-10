@@ -16,8 +16,7 @@ export class ReviewsCommentsComponent implements OnInit {
   private routeSub: Subscription;
   reviews: Review[] = [];
   expanded = [];
-  @Input() displayDialogAddRev:boolean;
-  
+
   constructor(public reviewService: ReviewService, public userService: UserService, public route: ActivatedRoute) { }
 
   ngOnInit() {
@@ -35,11 +34,11 @@ export class ReviewsCommentsComponent implements OnInit {
     });
   }
 
-  getReviews(){
-    this.reviewService.getAllReviewsFor(this.cUser.userId).subscribe( x => {
+  getReviews() {
+    this.reviewService.getAllReviewsFor(this.cUser.userId).subscribe(x => {
       this.reviews = x;
       this.expanded = [];
-      for(var i = 0; i < this.reviews.length; i++)
+      for (var i = 0; i < this.reviews.length; i++)
         this.expanded.push(false);
       console.log(this.reviews);
     })

@@ -5,14 +5,17 @@
       <h4 class="mrg-btm-none strong">Scrie review pentru (NUMELE):</h4>
     </div>
 
-    <div class="marg10" *ngFor="let skillCategory of skillCategories;">
-      <p> componenta </p>
-      <app-skill-category [skillCategory] = "skillCategory"></app-skill-category>
+    <div class="marg10">
+      <div class="container">
+        <div id="accordion" *ngFor="let skillCategory of skillCategories;let i = index;">
+          <app-skill-category [skillCategory]="skillCategory" [expandedC]="expandedC[i]"></app-skill-category>
+        </div>
+      </div>
     </div>
 
     <div class="marg10">
       <button type="button" class="btn btn-sm btn-success">Adauga review</button>
-      <button type="button" class="btn btn-sm btn-outline-secondary">Anulare</button>
+      <button type="button" (click)="closeModal()" class="btn btn-sm btn-outline-secondary">Anulare</button>
     </div>
   </div>
 </p-dialog>

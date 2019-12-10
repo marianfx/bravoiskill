@@ -7,12 +7,12 @@ import { SkillCategory } from 'src/app/modules/users-table/models/skillCategory'
   styleUrls: ['./skill-category.component.css']
 })
 export class SkillCategoryComponent implements OnInit {
-  
+
   @Input() skillCategory: SkillCategory;
-  
+  @Input() expandedC: boolean;
+
   constructor() { }
 
   ngOnInit() {
   }
-
 }

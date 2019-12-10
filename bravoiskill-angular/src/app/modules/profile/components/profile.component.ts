@@ -162,9 +162,14 @@ export class ProfileComponent implements OnInit {
 
     this.displayDialogueB = false;
   }
-  
+
   editBadge() {
     if (this.canMessage == false)
       this.displayDialogueB = true;
   }
+
+  onClose(event) {
+    console.log(event);
+  }
+  
 }

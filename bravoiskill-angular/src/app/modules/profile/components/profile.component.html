@@ -10,7 +10,7 @@
       <span class="mask bg-gradient-danger opacity-8"></span>
 
       <!-- Header container -->
-      <div class="container-fluid">
+      <div class="container-fluid" *ngIf="!canMessage">
         <div class="row">
           <div class="col-lg-7 col-md-10">
             <h1 class="display-2 text-white" *ngIf="!canMessage">Hello, {{cUser.firstName}} !!!</h1>
@@ -50,7 +50,8 @@
             </div>
             <div class="card-header text-center border-0 pt-8 pt-md-4 pb-0 pb-md-4">
               <div class="d-flex justify-content-between">
-                <button *ngIf="canMessage" [innerText]="'Add review'" (click)="displayDialogAddRev=!displayDialogAddRev" class="btn btn-sm btn-danger"></button>
+                <button *ngIf="canMessage" [innerText]="'Add review'" (click)="displayDialogAddRev=true"
+                  class="btn btn-sm btn-danger"></button>
                 <a [attr.href]="skype(cUser.skype)" class="btn btn-sm btn-default float-right"
                   *ngIf="canMessage">Message</a>
               </div>
@@ -121,7 +122,10 @@
     <app-profile-reviews></app-profile-reviews>
     <br><br>
     <!-- Comentarii review -->
-    <app-reviews-comments [displayDialogAddRev]="displayDialogAddRev"></app-reviews-comments>
+    <app-reviews-comments></app-reviews-comments>
+
+    <!-- Modal Add Review -->
+    <app-add-review [(displayDialogAddRev)]="displayDialogAddRev"></app-add-review>
 
   </section>
 </main>
