@@ -10,12 +10,14 @@ namespace BravoiSkill.Domain.Interfaces.Repositories.Users
         /// </summary>
         /// <returns>The newly created Skill</returns>
         IQueryable<Domain.Entities.Users.Skill> GetListOfSkills();
-        
+
         /// <summary>
         /// Searches for a skill based on skill ID. Returns null if not found
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
+        IQueryable<SkillCategory> GetAllSkillCategories();
+        IQueryable<SkillCategory> GetAllSkillSubCategories();
         Skill GetSkillById(int id);
         IQueryable<UserSkill> GetUserSkillsByUserId(int id);
 

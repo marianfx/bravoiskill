@@ -7,6 +7,8 @@ namespace BravoiSkill.Application.Services.Interfaces
     public interface ISkillService
     {
         IEnumerable<Skill> GetAll();
+        IEnumerable<SkillCategory> GetAllCategories();
+        IEnumerable<SkillCategory> GetAllSubCategories();
 
         Skill GetById(int id);
 

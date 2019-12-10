@@ -6,7 +6,7 @@ namespace BravoiSkill.API.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]
-    public class SkillsController: ControllerBase
+    public class SkillsController : ControllerBase
     {
         private ISkillService _skillService;
 
@@ -20,6 +20,20 @@ namespace BravoiSkill.API.Controllers
         public IActionResult GetAll()
         {
             var skills = _skillService.GetAll();
+            return Ok(skills);
+        }
+        // GET api/skills/categories
+        [HttpGet("categories")]
+        public IActionResult GetAllCategories()
+        {
+            var skills = _skillService.GetAllCategories();
+            return Ok(skills);
+        }
+        // GET api/skills/subCategories
+        [HttpGet("subCategories")]
+        public IActionResult GetAllSubCategories()
+        {
+            var skills = _skillService.GetAllSubCategories();
             return Ok(skills);
         }
 

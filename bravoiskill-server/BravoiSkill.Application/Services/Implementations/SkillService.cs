@@ -30,6 +30,24 @@ namespace BravoiSkill.Application.Services.Implementations
 
             return skillsDto;
         }
+        public IEnumerable<SkillCategory> GetAllCategories()
+        {
+            var categoriesDb = _skillRepository.GetAllSkillCategories();
+            var categoriesDto = categoriesDb
+                .Select(categorieDb => _mapper.Map<SkillCategory>(categorieDb))
+                .ToList();
+
+            return categoriesDto;
+        }
+        public IEnumerable<SkillCategory> GetAllSubCategories()
+        {
+            var categoriesDb = _skillRepository.GetAllSkillSubCategories();
+            var categoriesDto = categoriesDb
+                .Select(categorieDb => _mapper.Map<SkillCategory>(categorieDb))
+                .ToList();
+
+            return categoriesDto;
+        }
 
         public Skill GetById(int id)
         {

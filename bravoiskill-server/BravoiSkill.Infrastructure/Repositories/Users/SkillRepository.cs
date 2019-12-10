@@ -16,7 +16,6 @@ namespace BravoiSkill.Infrastructure.Repositories.Users
 
         public IQueryable<Skill> GetListOfSkills()
         {
-       
             var skills = _context.Skills.Include(s => s.SkillCategory);
             return skills;
         }
@@ -27,6 +26,16 @@ namespace BravoiSkill.Infrastructure.Repositories.Users
                       where us.SkillId == id
                       select us;
             return rez.FirstOrDefault();
+        }
+       public IQueryable<SkillCategory> GetAllSkillCategories()
+        {
+            var skillCategories = _context.SkillCategories.Where(x => x.ParentId == null);
+            return skillCategories;
+        }
+        public IQueryable<SkillCategory> GetAllSkillSubCategories()
+        {
+            var skillSubCategories = _context.SkillCategories.Where(x => x.ParentId != null);
+            return skillSubCategories;
         }
 
         public IQueryable<UserSkill> GetUserSkillsByUserId(int id)
@@ -55,6 +64,8 @@ namespace BravoiSkill.Infrastructure.Repositories.Users
             _context.Set<Skill>().Remove(skill);
             _context.SaveChanges();
         }
+
+
     }
 }
 
