@@ -35,6 +35,10 @@ import { AddReviewComponent } from './modules/review-modules/add-review/add-revi
 import { ProfileReviewsComponent } from './modules/review-modules/profile-reviews/components/profile-reviews.component';
 import { SkillCardComponent } from './modules/review-modules/skill-card/components/skill-card.component';
 import { SkillCategoryComponent } from './modules/review-modules/skill-category/components/skill-category.component';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { LoaderComponent } from './shared/loader/loader.component';
+import { LoaderService } from './shared/shared-services/loader.service';
+import { LoaderInterceptor } from './auth/interceptors/loader.interceptor';
 
 
 @NgModule({
@@ -51,9 +55,11 @@ import { SkillCategoryComponent } from './modules/review-modules/skill-category/
     CardComponent,
     AddReviewComponent,
     SkillCardComponent,
-    SkillCategoryComponent
+    SkillCategoryComponent,
+    LoaderComponent
   ],
   imports: [
+    MatProgressSpinnerModule,
     BrowserModule,
     CommonModule,
     NgbModule,
@@ -79,6 +85,8 @@ import { SkillCategoryComponent } from './modules/review-modules/skill-category/
   ],
   exports: [],
   providers: [
+    LoaderService,
+    { provide: HTTP_INTERCEPTORS, useClass: LoaderInterceptor, multi: true },
     SkillService,
     UserService,
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
