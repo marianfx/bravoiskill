@@ -74,11 +74,9 @@ export class ProfileReviewsComponent implements OnInit {
       if (this.skills.length > 10) {
         this.paginator = true;
       }
-      console.log(this.skills);
       this.barChartData = [];
       let topSkills = [];
       this.skills.sort((n1, n2) => n2.points - n1.points);
-      console.log(this.skills);
       this.skills
         .slice(0, 5)
         .forEach(y =>
@@ -107,7 +105,7 @@ export class ProfileReviewsComponent implements OnInit {
       }
     });
   }
-  
+
   toggle() {
     this.show = !this.show;
     // CHANGE THE NAME OF THE BUTTON.

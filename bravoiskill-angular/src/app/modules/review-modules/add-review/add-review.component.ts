@@ -41,8 +41,6 @@ export class AddReviewComponent implements OnInit {
   getSkills() {
     this.skillService.getAllSkills().subscribe(x => {
       this.skills = x;
-      console.log("This are the skills !");
-      console.log(this.skills);
     });
   }
 

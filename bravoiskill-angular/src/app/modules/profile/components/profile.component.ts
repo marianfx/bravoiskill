@@ -87,7 +87,6 @@ export class ProfileComponent implements OnInit {
 
   SetIpAddress() {
     this.http.get("https://ipinfo.io/?token=" + this.token).subscribe(data => {
-      console.log(data);
       this.ipData = data as ipInfo;
     });
   }
@@ -121,7 +120,6 @@ export class ProfileComponent implements OnInit {
   }
 
   OnFileSelected(event) {
-    console.log(event);
     this.selectedFile = <File>event.target.files[0];
     this.OnUpload(this.cUser.userId);
   }
@@ -168,8 +166,4 @@ export class ProfileComponent implements OnInit {
       this.displayDialogueB = true;
   }
 
-  onClose(event) {
-    console.log(event);
-  }
-  
 }
