@@ -1,3 +1,13 @@
-body.ui-slider.ui-slider-range {
-    background-color: #69d900!important;
+.yellow .ui-slider .ui-slider-range {
+    background-color: #ffe607;
 }
+.red .ui-slider .ui-slider-range {
+    background-color: #d90000;
+}
+.blue .ui-slider .ui-slider-range {
+    background-color: #0057d9;
+}
+.green .ui-slider .ui-slider-range {
+    background-color: #19d900;
+}
+
