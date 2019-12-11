@@ -4,8 +4,8 @@ import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-card',
-  templateUrl: './card.component.html',
-  styleUrls: ['./card.component.css']
+  templateUrl: './review-card.component.html',
+  styleUrls: ['./review-card.component.css']
 })
 export class CardComponent implements OnInit {
 
