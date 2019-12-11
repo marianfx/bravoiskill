@@ -1,17 +1,12 @@
 <div class="card">
     <div class="card-header">
-        <a class="card-link" data-toggle="collapse" href="" (click)="expandedC=!expandedC">
-            {{ skillCategory.description }} {{ skillCategory.categoryId }}
+        <a class="card-link" data-toggle="collapse" href="" (click)="expanded=!expanded">
+            {{ skillSubCategory.description }}
         </a>
     </div>
     <div class="collapse show" data-parent="#accordion">
-        <div class="card-body" *ngIf="expandedC">
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore
-            et dolore magna aliqua.
-            - CARD Skill-
-            <form class="range-field">
-                <input type="range" min="0" max="10" />
-            </form>
+        <div class="card-body" *ngIf="expanded">
+            <div *ngFor="let skill of skills">{{skill.description}}</div>
         </div>
     </div>
 </div>

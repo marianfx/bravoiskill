@@ -1,7 +1,6 @@
 import { Component, OnInit, Input, EventEmitter, Output } from '@angular/core';
 import { SkillCategory } from '../../users-table/models/skillCategory';
 import { User } from 'src/app/shared/shared-models/user';
-import { Subscription } from 'rxjs';
 import { UserService } from 'src/app/shared/shared-services/user.service';
 import { ActivatedRoute } from '@angular/router';
 import { ReviewService } from 'src/app/shared/shared-services/review.service';
@@ -15,12 +14,9 @@ import { SkillService } from 'src/app/shared/shared-services/skill.service';
 })
 export class AddReviewComponent implements OnInit {
 
-  public cUser: User = {} as User;
-  private routeSub: Subscription;
+  @Input() cUser: User = {} as User;
   skills: Skill[] = [];
-  expandedC: boolean[] = [];
-  categories: any = []
-  subCategories: any;
+  subCategories: SkillCategory[] = [];
 
   @Input() displayDialogAddRev: boolean;
   @Output() displayDialogAddRevChange = new EventEmitter();
@@ -29,27 +25,17 @@ export class AddReviewComponent implements OnInit {
 
   ngOnInit() {
     this.getSkills();
-    this.getCategories();
     this.getSubCategories();
   }
 
   getSubCategories() {
-    this.skillService.getCategories().subscribe(r => {
-      r.forEach(x => this.categories.push(x.description));
-      this.categories.forEach(x => this.expandedC.push(false));
+    this.skillService.getSubCategories().subscribe(r => {
+      r.forEach(x => this.subCategories.push(x));
     });
-  }
-
-  getCategories() {
-    this.skillService.getSubCategories().subscribe(r => this.subCategories = r);
   }
 
   getSkillsForSubCategory(categoryId: number) {
     return this.skills.filter(s => s.categoryId == categoryId);
-  }
-
-  getSubCategoryForCategory(categoryId: number) {
-    return this.subCategories.filter(c => c.parentId == categoryId);
   }
 
   getSkills() {
@@ -63,26 +49,4 @@ export class AddReviewComponent implements OnInit {
   closeModal() {
     this.displayDialogAddRevChange.emit(false);
   }
-
-  // getUserMet() {
-  //   this.routeSub = this.route.params.subscribe(params => {
-  //     if (params && params["id"]) {
-  //       this.userService.getUserById(+params["id"]).subscribe(user => {
-  //         this.cUser = user;
-  //         this.getCategories();
-  //       });
-  //     }
-  //   });
-  // }
-
-  // getCategories(){
-  //   this.reviewService.getAllReviewsFor(this.cUser.userId).subscribe( x => {
-  //     this.skillCategories = x;
-  //     this.expanded = [];
-  //     for(var i = 0; i < this.reviews.length; i++)
-  //       this.expanded.push(false);
-  //     console.log(this.reviews);
-  //   })
-  // }
-
 }

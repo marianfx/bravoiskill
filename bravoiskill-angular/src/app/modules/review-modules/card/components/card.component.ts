@@ -10,7 +10,7 @@ import { environment } from 'src/environments/environment';
 export class CardComponent implements OnInit {
 
   @Input() review: Review;
-  @Input() expanded: boolean[];
+  expanded: boolean = false;
 
   constructor() { }
 

@@ -15,7 +15,7 @@ export class ReviewsCommentsComponent implements OnInit {
   public cUser: User = {} as User;
   private routeSub: Subscription;
   reviews: Review[] = [];
-  expanded = [];
+
 
   constructor(public reviewService: ReviewService, public userService: UserService, public route: ActivatedRoute) { }
 
@@ -37,10 +37,6 @@ export class ReviewsCommentsComponent implements OnInit {
   getReviews() {
     this.reviewService.getAllReviewsFor(this.cUser.userId).subscribe(x => {
       this.reviews = x;
-      this.expanded = [];
-      for (var i = 0; i < this.reviews.length; i++)
-        this.expanded.push(false);
-      console.log(this.reviews);
     })
   }
 
