@@ -1,1 +1,5 @@
-<p>skill-card works!</p>
+<p-card header={{skill.description}} [style]="{width: '205px'}">    
+    <h6 class="first">Puncte: {{val1}}</h6>
+    <p-slider [(ngModel)]="val1" [min]="0" [max]="10" [ngStyle]="{'background-color' : red}"></p-slider>
+</p-card>
+<br>

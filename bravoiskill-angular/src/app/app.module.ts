@@ -35,6 +35,8 @@ import { AddReviewComponent } from './modules/review-modules/add-review/add-revi
 import { ProfileReviewsComponent } from './modules/review-modules/profile-reviews/components/profile-reviews.component';
 import { SkillCardComponent } from './modules/review-modules/skill-card/components/skill-card.component';
 import { SkillCategoryComponent } from './modules/review-modules/skill-category/components/skill-category.component';
+import { CardModule } from 'primeng/card'
+import { SliderModule } from 'primeng/slider';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { LoaderComponent } from './shared/loader/loader.component';
 import { LoaderService } from './shared/shared-services/loader.service';
@@ -81,7 +83,9 @@ import { LoaderInterceptor } from './auth/interceptors/loader.interceptor';
     MatChipsModule,
     AgmCoreModule.forRoot({
       apiKey: 'AIzaSyC1ReIVGVAdDP09g6YUAYhzhCtmSFiXxeY'}),
-    ChartsModule
+    ChartsModule,
+    CardModule,
+    SliderModule
   ],
   exports: [],
   providers: [
