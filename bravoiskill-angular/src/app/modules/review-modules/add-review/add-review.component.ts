@@ -17,7 +17,7 @@ export class AddReviewComponent implements OnInit {
   @Input() cUser: User = {} as User;
   skills: Skill[] = [];
   subCategories: SkillCategory[] = [];
-
+  allSkillPoints: {skill: Skill, points: number}[]=[];
   @Input() displayDialogAddRev: boolean;
   @Output() displayDialogAddRevChange = new EventEmitter();
 
@@ -42,6 +42,16 @@ export class AddReviewComponent implements OnInit {
     this.skillService.getAllSkills().subscribe(x => {
       this.skills = x;
     });
+  }
+  getAllSkillPoints(values: {skill: Skill, points: number}[]){
+    values.forEach(newValue => {
+      let index = this.allSkillPoints.findIndex(alreadyExistent => newValue.skill.skillId == alreadyExistent.skill.skillId);
+      if(index != -1)
+        this.allSkillPoints.splice(index,1,newValue);
+      else
+        this.allSkillPoints.push(newValue);
+    });
+    console.log(this.allSkillPoints);
   }
 
   closeModal() {

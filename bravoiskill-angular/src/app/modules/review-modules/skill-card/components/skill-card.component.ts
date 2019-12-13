@@ -11,7 +11,7 @@ import { Skill } from 'src/app/shared/shared-models/skill';
 export class SkillCardComponent implements OnInit {
    val1: number;
   @Input() skill: Skill = {} as Skill;
-  @Output() skillPoints = new EventEmitter<{skill:Skill; points:number}>();;
+  @Output() skillPoints = new EventEmitter<{skill:Skill; points:number}>();
   constructor() { }
 
   ngOnInit() {

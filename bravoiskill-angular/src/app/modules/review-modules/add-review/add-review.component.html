@@ -7,7 +7,7 @@
     <div class="marg10">
       <div class="container">
         <div id="accordion" *ngFor="let subCategory of subCategories">
-          <app-skill-category [skillSubCategory]="subCategory" [skills]="getSkillsForSubCategory(subCategory.categoryId)"></app-skill-category>
+          <app-skill-category [skillSubCategory]="subCategory" [skills]="getSkillsForSubCategory(subCategory.categoryId)" (allSkillPoints)="getAllSkillPoints($event)"></app-skill-category>
         </div>
       </div>
     </div>
