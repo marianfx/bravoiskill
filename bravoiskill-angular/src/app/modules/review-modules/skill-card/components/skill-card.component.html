@@ -1,7 +1,7 @@
 <div [ngClass]="getClass()">
     <p-card header={{skillPoint.skill.description}} [style]="{width: '205px'}">
         <h6 class="first">Puncte: {{val1}}</h6>
-        <p-slider [(ngModel)]="val1" [min]="0" [max]="10" [ngStyle]="{'background-color' : red}" (onChange)="onChangeValue()"></p-slider>
+        <p-slider [(ngModel)]="val1" [min]="0" [max]="10" [ngStyle]="{'background-color' : red}" (focusout)="onChangeValue()"></p-slider>
     </p-card>
 </div>
 <br>
