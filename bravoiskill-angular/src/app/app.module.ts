@@ -39,7 +39,7 @@ import { CardModule } from 'primeng/card'
 import { SliderModule } from 'primeng/slider';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { LoaderComponent } from './shared/loader/loader.component';
-import { LoaderService } from './shared/shared-services/loader.service';
+import { LoaderService } from './auth/service/loader.service';
 import { LoaderInterceptor } from './auth/interceptors/loader.interceptor';
 
 

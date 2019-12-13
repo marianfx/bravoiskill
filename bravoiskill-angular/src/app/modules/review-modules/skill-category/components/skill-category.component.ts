@@ -11,8 +11,18 @@ export class SkillCategoryComponent implements OnInit {
 
   @Input() skillSubCategory: SkillCategory;
   @Input() skills: Skill[];
-  expanded: boolean = false;
 
+  skillsPoints: {skill: Skill;points: number}[] = [];
+
+  expanded: boolean = false;
+  getSkillPoints(skillPoints){
+   let index = this.skillsPoints.findIndex(x => x.skill.skillId == skillPoints.skill.skillId);
+    if(index != -1)
+      this.skillsPoints.splice(index,1,skillPoints);
+    else
+    this.skillsPoints.push(skillPoints);
+    console.log(this.skillsPoints);
+  }
   constructor() { }
 
   ngOnInit() {
