@@ -1,5 +1,6 @@
 import { Component, OnInit, Input, ViewEncapsulation, Output, EventEmitter } from '@angular/core';
 import { Skill } from 'src/app/shared/shared-models/skill';
+import { SkillPoints } from '../../skill-points.service';
 
 
 @Component({
@@ -10,16 +11,12 @@ import { Skill } from 'src/app/shared/shared-models/skill';
 })
 export class SkillCardComponent implements OnInit {
    val1: number;
-  @Input() skill: Skill = {} as Skill;
-  @Output() skillPoints = new EventEmitter<{skill:Skill; points:number}>();
-  constructor() { }
+  @Input() skillPoint: {skill: Skill, points: number} = {} as {skill: Skill, points: number};
+
+  constructor(private skillPoints: SkillPoints) { }
 
   ngOnInit() {
-  }
-
-  onSkillCard(val1: any){
-    let emitData: any = {skill: this.skill, points: val1};
-    this.skillPoints.emit(emitData);
+    this.val1 = this.skillPoint.points;
   }
 
   getClass() {
@@ -30,5 +27,9 @@ export class SkillCardComponent implements OnInit {
     else if(this.val1 > 6 && this.val1<=8)
       return 'green';
     else return 'blue';
+  }
+
+  onChangeValue(){
+    this.skillPoints.updateSkill(this.skillPoint.skill, this.val1);
   }
 }

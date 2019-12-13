@@ -41,6 +41,7 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { LoaderComponent } from './shared/loader/loader.component';
 import { LoaderService } from './auth/service/loader.service';
 import { LoaderInterceptor } from './auth/interceptors/loader.interceptor';
+import { SkillPoints } from './modules/review-modules/skill-points.service';
 
 
 @NgModule({
@@ -89,6 +90,7 @@ import { LoaderInterceptor } from './auth/interceptors/loader.interceptor';
   ],
   exports: [],
   providers: [
+    SkillPoints,
     LoaderService,
     { provide: HTTP_INTERCEPTORS, useClass: LoaderInterceptor, multi: true },
     SkillService,
