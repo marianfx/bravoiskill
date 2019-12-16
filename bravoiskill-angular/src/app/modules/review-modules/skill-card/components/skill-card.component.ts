@@ -17,6 +17,7 @@ export class SkillCardComponent implements OnInit {
 
   ngOnInit() {
     this.val1 = this.skillPoint.points;
+    console.log('Sunt aici ' +this.skillPoint.skill.description);
   }
 
   getClass() {
