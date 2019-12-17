@@ -105,12 +105,4 @@ export class ProfileReviewsComponent implements OnInit {
     });
   }
 
-  toggle() {
-    this.show = !this.show;
-    // CHANGE THE NAME OF THE BUTTON.
-    if(this.show)
-      this.buttonName = "See less";
-    else
-      this.buttonName = "See more";
-  }
 }

@@ -2,12 +2,12 @@
 .profile-pic, .owner {
   position: absolute;
   left: 50%;
-  max-width: 9.365rem;
+  /* max-width: 9.365rem; */
   -webkit-transform: translate(-50%,-30%);
   transform: translate(-50%,-30%);
   border-radius: 50%;
-  height: 150px;
-  width: 150px;
+  height: 10rem;
+  width: 10rem;
   background-size: cover;
   background-position: center;
   background-blend-mode: multiply;

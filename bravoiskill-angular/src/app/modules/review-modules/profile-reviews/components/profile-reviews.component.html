@@ -54,8 +54,7 @@
 <div class="container-fluid mt--7">
   <div class="row d-flex justify-content-center">
     <div class="col-xl-7 order-xl-2 mb-5 mb-xl-0">
-      <button type="button" class="btn-primary btn" (click)="toggle()" id="bt">
-        {{ buttonName }} </button>
+      <button type="button" class="btn-primary btn" [innerText]='!show ? "SEE MORE" : "SEE LESS"' (click)="show = !show" id="bt"></button>
     </div>
   </div>
 </div>
