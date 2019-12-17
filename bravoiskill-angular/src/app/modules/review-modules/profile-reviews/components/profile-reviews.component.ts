@@ -75,7 +75,6 @@ export class ProfileReviewsComponent implements OnInit {
         this.paginator = true;
       }
       this.barChartData = [];
-      let topSkills = [];
       this.skills.sort((n1, n2) => n2.points - n1.points);
       this.skills
         .slice(0, 5)

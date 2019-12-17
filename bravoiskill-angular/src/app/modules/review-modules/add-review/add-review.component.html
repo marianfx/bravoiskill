@@ -1,5 +1,5 @@
 <p-dialog header="Add Review" [(visible)]="displayDialogAddRev" [responsive]="true" showEffect="fade" [modal]="true"
-  selectionMode="single" [style]="{'max-width': '120rem'}">
+  selectionMode="single" [style]="{'max-width': '120rem'}" (onHide)="closeModal()">
   <div class="panel panel-default mrg-top-md">
     <div class="table-cell col-xs-12 col-sm-12">
       <h4 class="mrg-btm-none strong">Scrie review pentru {{cUser.firstName}}:</h4>
