@@ -2,7 +2,7 @@
 
 <div class="container">
   <div class="row d-flex">
-    <div class="col-sm-12 col-lg-6 order-xl-4 mb-5 mb-xl-5" *ngFor="let review of reviews">
+    <div class="col-sm-12 col-lg-6 order-xl-4 mb-5 mb-xl-5" *ngFor="let review of skillPointsService.reviews">
       <app-card [review]="review"></app-card>
     </div>
   </div>

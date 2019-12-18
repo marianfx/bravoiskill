@@ -4,7 +4,7 @@ import { Subscription } from 'rxjs';
 import { UserService } from 'src/app/shared/shared-services/user.service';
 import { ActivatedRoute } from '@angular/router';
 import { User } from 'src/app/shared/shared-models/user';
-import { Review } from 'src/app/shared/shared-models/review';
+import { SkillPoints } from '../../skill-points.service';
 
 @Component({
   selector: 'app-reviews-comments',
@@ -14,10 +14,8 @@ import { Review } from 'src/app/shared/shared-models/review';
 export class ReviewsCommentsComponent implements OnInit {
   public cUser: User = {} as User;
   private routeSub: Subscription;
-  reviews: Review[] = [];
 
-
-  constructor(public reviewService: ReviewService, public userService: UserService, public route: ActivatedRoute) { }
+  constructor(public reviewService: ReviewService, public userService: UserService, public route: ActivatedRoute, public skillPointsService: SkillPoints) {}
 
   ngOnInit() {
     this.getUserMet();
@@ -28,16 +26,9 @@ export class ReviewsCommentsComponent implements OnInit {
       if (params && params["id"]) {
         this.userService.getUserById(+params["id"]).subscribe(user => {
           this.cUser = user;
-          this.getReviews();
+          this.skillPointsService.updateReviews(this.cUser.userId);
         });
       }
     });
   }
-
-  getReviews() {
-    this.reviewService.getAllReviewsFor(this.cUser.userId).subscribe(x => {
-      this.reviews = x;
-    })
-  }
-
 }

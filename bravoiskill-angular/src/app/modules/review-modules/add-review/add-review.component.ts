@@ -46,7 +46,11 @@ export class AddReviewComponent implements OnInit {
     });
     let reviewToBeAdded = {reviewDate: new Date(), comment: this.commnet, reviewedUserId: this.cUser.userId, reviewerUserId: this.reviewer.userId,
     reviewSkills: reviewSkillsToBeAdded} as Review;
-    this.skillPoints.addReviewToServer(reviewToBeAdded).subscribe(response => console.log(response), error => console.log(error));
+    this.skillPoints.addReviewToServer(reviewToBeAdded).subscribe(response => {
+      console.log(response),
+      error => console.log(error);
+      this.skillPoints.updateReviews(this.cUser.userId);
+    });
   }
 
 
