@@ -13,6 +13,7 @@ namespace BravoiSkill.Domain.Interfaces.Repositories.Users
         IQueryable<Review> GetListOfReviewsFor(int id);
 
         Review GetReviewById(int id);
+        void AddReview(Review review);
 
         Review Create(Review review);
 

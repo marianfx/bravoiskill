@@ -14,6 +14,8 @@ namespace BravoiSkill.Application.Services.Interfaces
 
         Review GetById(int id);
 
+        void Add(Review review);
+
         void Create(Review review);
 
         Task Edit(int id, Review review);

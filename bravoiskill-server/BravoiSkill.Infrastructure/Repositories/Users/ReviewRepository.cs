@@ -30,9 +30,9 @@ namespace BravoiSkill.Infrastructure.Repositories.Users
                 .Include(s => s.ReviewSkills)
                 .ThenInclude(s => s.Skill)
                 .Include(s => s.ReviewerUser);
-                
+
             return rez;
-         
+
         }
 
         public Review GetReviewById(int id)
@@ -61,6 +61,36 @@ namespace BravoiSkill.Infrastructure.Repositories.Users
         {
             _context.Set<Review>().Remove(review);
             _context.SaveChanges();
+        }
+        public void AddReview(Review review)
+        {
+            // declare transaction
+            using (var transaction = _context.Database.BeginTransaction())
+            {
+                try
+                {
+
+                    // validari => exception
+                    if (review != null)
+                    {
+                        // transaction 
+                        _context.Set<Review>().Add(review);
+                        _context.SaveChanges();
+                        // commit transaction
+
+                        transaction.Commit();
+                    }
+
+
+
+                }
+                catch (Exception ex)
+                {
+                    // rollback transaction
+                    transaction.Rollback();
+                    throw ex;
+                }
+            }
         }
     }
 }

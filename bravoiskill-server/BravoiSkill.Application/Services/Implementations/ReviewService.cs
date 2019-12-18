@@ -48,6 +48,12 @@ namespace BravoiSkill.Application.Services.Implementations
             return _mapper.Map<Review>(reviewDb);
         }
 
+        public void Add(Review review)
+        {
+            var reviewDb = _mapper.Map<Domain.Entities.Users.Review>(review);
+            _reviewRepository.AddReview(reviewDb);
+        } 
+
         public void Create(Review review)
         {
             var reviewEntity = _mapper.Map<Domain.Entities.Users.Review>(review);

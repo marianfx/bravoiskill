@@ -51,6 +51,15 @@ namespace BravoiSkill.API.Controllers
             return Ok();
         }
 
+        // POST api/reviews/add
+        [HttpPost("add")]
+        public IActionResult Add([FromBody]Application.DTO.Users.Review review)
+        {
+            _reviewService.Add(review);
+            return Ok();
+        }
+
+
         [HttpPut("{id}")]
         // PUT api/reviews/:id
         public async Task<IActionResult> Edit(int id, [FromBody]Application.DTO.Users.Review review)
