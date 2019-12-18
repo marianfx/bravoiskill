@@ -6,6 +6,9 @@ import { ActivatedRoute } from '@angular/router';
 import { ReviewService } from 'src/app/shared/shared-services/review.service';
 import { Skill } from 'src/app/shared/shared-models/skill';
 import { SkillPoints } from '../skill-points.service';
+import { AuthenticationService } from 'src/app/auth/service/authentication.service';
+import { Review } from 'src/app/shared/shared-models/review';
+import { SkillReview } from 'src/app/shared/shared-models/skillReview';
 
 @Component({
   selector: 'app-add-review',
@@ -18,19 +21,34 @@ export class AddReviewComponent implements OnInit {
   @Input() displayDialogAddRev: boolean;
   @Output() displayDialogAddRevChange = new EventEmitter();
 
+  reviewer: User = {} as User;
+  commnet: string = "";
   subCategories: SkillCategory[] = [];
+  reviewSkillPoints: {skill: Skill; points: number}[] = [];
 
-
-  constructor(public reviewService: ReviewService, public userService: UserService, public route: ActivatedRoute, private skillPoints: SkillPoints) { }
+  constructor(public reviewService: ReviewService, public route: ActivatedRoute, private skillPoints: SkillPoints, private authServ: AuthenticationService) { }
 
   ngOnInit() {
     this.subCategories = this.skillPoints.getAllSkillSubCategories();
-    console.log(this.subCategories);
+    this.authServ.currentUser.subscribe(x => this.reviewer = x);
   }
 
   getAllSkillPointsForSubCategory(id:number){
     return this.skillPoints.getSubSkillPointsForCategoryId(id);
   }
+
+  addReviewsToServer(){
+    let reviewSkillPoints = this.skillPoints.getAllSkillPoints().filter( x => x.points != 0);
+    let reviewSkillsToBeAdded: SkillReview[] = []
+    reviewSkillPoints.forEach(r => {
+      reviewSkillsToBeAdded.push({reviewPoints: r.points, skillId: r.skill.skillId} as SkillReview)
+     // for skillReview reviewId: number;
+    });
+    let reviewToBeAdded = {reviewDate: new Date(), comment: this.commnet, reviewedUserId: this.cUser.userId, reviewerUserId: this.reviewer.userId,
+    reviewSkills: reviewSkillsToBeAdded} as Review;
+    this.skillPoints.addReviewToServer(reviewToBeAdded).subscribe(response => console.log(response), error => console.log(error));
+  }
+
 
   closeModal() {
     this.displayDialogAddRevChange.emit(false);
