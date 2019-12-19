@@ -55,8 +55,6 @@ export class SkillPoints implements OnInit {
       this.allSkillPoints.splice(index,1,{skill: skill, points: value} as {skill: Skill, points: number});
     else
       this.allSkillPoints.push({skill: skill, points: value} as {skill: Skill, points: number});
-
-    console.log(this.allSkillPoints);
   }
 
   addReviewToServer(review: any){
@@ -65,6 +63,10 @@ export class SkillPoints implements OnInit {
 
   updateReviews(userId: number) {
     this.reviewService.getAllReviewsFor(userId).subscribe(x => this.reviews = x);
+  }
+
+  deleteSkillPointsData(){
+    this.allSkillPoints.filter(x => x.points != 0).forEach( y => y.points = 0);
   }
 
 }

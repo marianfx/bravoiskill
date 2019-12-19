@@ -11,7 +11,6 @@ export class SkillCategoryComponent implements OnInit {
 
   @Input() skillSubCategory: SkillCategory = {} as SkillCategory;
   @Input() skillPoints: {skill: Skill, points: number}[] = [];
-
   expanded: boolean = false;
 
   constructor() { }

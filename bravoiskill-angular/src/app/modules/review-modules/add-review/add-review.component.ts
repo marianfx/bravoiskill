@@ -1,7 +1,6 @@
 import { Component, OnInit, Input, EventEmitter, Output } from '@angular/core';
 import { SkillCategory } from '../../users-table/models/skillCategory';
 import { User } from 'src/app/shared/shared-models/user';
-import { UserService } from 'src/app/shared/shared-services/user.service';
 import { ActivatedRoute } from '@angular/router';
 import { ReviewService } from 'src/app/shared/shared-services/review.service';
 import { Skill } from 'src/app/shared/shared-models/skill';
@@ -20,9 +19,8 @@ export class AddReviewComponent implements OnInit {
   @Input() cUser: User = {} as User;
   @Input() displayDialogAddRev: boolean;
   @Output() displayDialogAddRevChange = new EventEmitter();
-
   reviewer: User = {} as User;
-  commnet: string = "";
+  comment: string = "";
   subCategories: SkillCategory[] = [];
   reviewSkillPoints: {skill: Skill; points: number}[] = [];
 
@@ -44,7 +42,7 @@ export class AddReviewComponent implements OnInit {
       reviewSkillsToBeAdded.push({reviewPoints: r.points, skillId: r.skill.skillId} as SkillReview)
      // for skillReview reviewId: number;
     });
-    let reviewToBeAdded = {reviewDate: new Date(), comment: this.commnet, reviewedUserId: this.cUser.userId, reviewerUserId: this.reviewer.userId,
+    let reviewToBeAdded = {reviewDate: new Date(), comment: this.comment, reviewedUserId: this.cUser.userId, reviewerUserId: this.reviewer.userId,
     reviewSkills: reviewSkillsToBeAdded} as Review;
     this.skillPoints.addReviewToServer(reviewToBeAdded).subscribe(response => {
       console.log(response),
@@ -53,8 +51,9 @@ export class AddReviewComponent implements OnInit {
     });
   }
 
-
-  closeModal() {
+  closeModal(){
     this.displayDialogAddRevChange.emit(false);
+    this.skillPoints.deleteSkillPointsData();
+    this.comment = "";
   }
 }
