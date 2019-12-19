@@ -16,6 +16,8 @@ import { NavbarComponent } from './shared/shared-modules/navbar/navbar.component
 import { FooterComponent } from './shared/shared-modules/footer/footer.component';
 import { UserService } from './shared/shared-services/user.service';
 import { TableModule } from 'primeng/table';
+import {MessageModule} from 'primeng/message';
+import {MessagesModule} from 'primeng/messages';
 import { DialogModule } from 'primeng/dialog';
 import { ButtonModule } from 'primeng/button';
 import { AccordionModule } from 'primeng/accordion';
@@ -74,6 +76,8 @@ import { SkillPoints } from './modules/review-modules/skill-points.service';
     ReactiveFormsModule,
     ButtonModule,
     TableModule,
+    MessageModule,
+    MessagesModule,
     DialogModule,
     AccordionModule,
     BrowserAnimationsModule,

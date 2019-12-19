@@ -1,5 +1,6 @@
 <p-dialog header="Add Review" [(visible)]="displayDialogAddRev" [responsive]="true" showEffect="fade" [modal]="true"
   selectionMode="single" [style]="{'max-width': '120rem'}" (onHide)="closeModal()">
+  <form [formGroup]="userform" (ngSubmit)="addReviewsToServer();closeModal()">
   <div *ngIf="displayDialogAddRev" class="panel panel-default mrg-top-md" style="min-width: 68rem;">
     <div class="table-cell col-xs-12 col-sm-12">
       <h4 class="mrg-btm-none strong">Scrie review pentru {{cUser.firstName}}:</h4>
@@ -11,14 +12,19 @@
         </div>
       </div>
     </div>
-    <h3 class="first">Add a comment</h3>
+    <h3 class="first">Add a comment*</h3>
     <span class="ui-float-label">
-      <textarea [(ngModel)]="comment" id="float-input" rows="5" cols="145" pInputTextarea></textarea>
+      <textarea type="text" [(ngModel)]="comment" id="float-input" rows="5" cols="145" pInputTextarea formControlName="comment" placeholder="Required(max 450 characters)"></textarea>
     </span>
+    <div class="ui-grid-col-4">
+      <p-message severity="error" [text]="userform.controls['comment'].errors['required'] ? 'A comment is required!' : userform.controls['comment'].errors['maxlength'] ? 'Must be shorter than 450 characters' : ''"
+              *ngIf="!userform.controls['comment'].valid&&userform.controls['comment'].dirty"></p-message>
+      </div>
 
     <div class="marg10">
-      <button type="button" class="btn btn-sm btn-success" (click)="addReviewsToServer();closeModal()">Add review</button>
+      <button type="submit" [disabled]="!userform.valid" class="btn btn-sm btn-success">Add review</button>
       <button type="button" (click)="closeModal()" class="btn btn-sm btn-outline-secondary">Cancel</button>
     </div>
   </div>
+  </form>
 </p-dialog>
