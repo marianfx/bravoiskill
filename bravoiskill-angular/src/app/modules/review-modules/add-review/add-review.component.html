@@ -7,7 +7,7 @@
     <div class="marg10">
       <div class="container">
         <div id="accordion" *ngFor="let subCategory of subCategories">
-          <app-skill-category [skillSubCategory]="subCategory" [skillPoints]="getAllSkillPointsForSubCategory(subCategory.categoryId)"></app-skill-category>
+          <app-skill-category [open]="displayDialogAddRev" [skillSubCategory]="subCategory" [skillPoints]="getAllSkillPointsForSubCategory(subCategory.categoryId)"></app-skill-category>
         </div>
       </div>
     </div>

@@ -55,5 +55,6 @@ export class AddReviewComponent implements OnInit {
     this.displayDialogAddRevChange.emit(false);
     this.skillPoints.deleteSkillPointsData();
     this.comment = "";
+    this.displayDialogAddRev = !this.displayDialogAddRev;
   }
 }
