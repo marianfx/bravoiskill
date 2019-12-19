@@ -23,7 +23,6 @@ export class AddReviewComponent implements OnInit {
   @Input() displayDialogAddRev: boolean;
   @Output() displayDialogAddRevChange = new EventEmitter();
   reviewer: User = {} as User;
-  comment: string = "";
   subCategories: SkillCategory[] = [];
   reviewSkillPoints: {skill: Skill; points: number}[] = [];
   userform: FormGroup;
@@ -50,7 +49,7 @@ export class AddReviewComponent implements OnInit {
       reviewSkillsToBeAdded.push({reviewPoints: r.points, skillId: r.skill.skillId} as SkillReview)
      // for skillReview reviewId: number;
     });
-    let reviewToBeAdded = {reviewDate: new Date(), comment: this.comment, reviewedUserId: this.cUser.userId, reviewerUserId: this.reviewer.userId,
+    let reviewToBeAdded = {reviewDate: new Date(), comment: this.userform.get('comment').value, reviewedUserId: this.cUser.userId, reviewerUserId: this.reviewer.userId,
     reviewSkills: reviewSkillsToBeAdded} as Review;
     this.skillPoints.addReviewToServer(reviewToBeAdded).subscribe(response => {
       console.log(response); this.submitted = true;
@@ -63,6 +62,6 @@ export class AddReviewComponent implements OnInit {
   closeModal(){
     this.displayDialogAddRevChange.emit(false);
     this.skillPoints.deleteSkillPointsData();
-    this.comment = "";
+    this.userform.get('comment').setValue("");
   }
 }
