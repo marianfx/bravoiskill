@@ -5,7 +5,7 @@
         </a>
     </div>
     <div class="collapse show" data-parent="#accordion">
-        <div class="card-body" *ngIf="expanded && open">
+        <div class="card-body" *ngIf="expanded">
           <div class = "row d-flex">
             <div class="col-sm-6 col-lg-4 order-xl-4 mb-6 mb-xl-6" *ngFor="let skillPoint of skillPoints">
                 <app-skill-card [skillPoint]="skillPoint"></app-skill-card>
