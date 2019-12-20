@@ -7,12 +7,15 @@ import { AuthGuard } from './auth/auth-guards/auth.guard';
 import { UsersTableComponent } from './modules/users-table/components/users-table.component';
 import { AuthAdmin } from './auth/auth-guards/auth.admin';
 import { ProfileComponent } from './modules/profile/components/profile.component';
+import { ColleaguesComponent } from './modules/colleagues/colleagues-component/colleagues.component';
+
 
 const routes: Routes = [
   { path: '', component: HomeComponent, canActivate: [AuthGuard] },
   { path: 'tables', component: UsersTableComponent, canActivate: [AuthAdmin]},
   { path: 'profile/:id', component: ProfileComponent},
   { path: 'login', component: LoginComponent },
+  { path:'colleagues', component: ColleaguesComponent},
   { path: '**', redirectTo: '' }
 ];
 

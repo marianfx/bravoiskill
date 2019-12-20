@@ -44,7 +44,8 @@ import { LoaderComponent } from './shared/loader/loader.component';
 import { LoaderService } from './auth/service/loader.service';
 import { LoaderInterceptor } from './auth/interceptors/loader.interceptor';
 import { SkillPoints } from './modules/review-modules/skill-points.service';
-
+import { ColleaguesComponent } from './modules/colleagues/colleagues-component/colleagues.component';
+import { DepartmentCardComponent } from './modules/colleagues/department-card/department-card.component';
 
 @NgModule({
   declarations: [
@@ -61,7 +62,9 @@ import { SkillPoints } from './modules/review-modules/skill-points.service';
     AddReviewComponent,
     SkillCardComponent,
     SkillCategoryComponent,
-    LoaderComponent
+    LoaderComponent,
+    ColleaguesComponent,
+    DepartmentCardComponent
   ],
   imports: [
     MatProgressSpinnerModule,
