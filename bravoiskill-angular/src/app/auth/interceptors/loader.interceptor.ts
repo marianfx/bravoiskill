@@ -9,7 +9,7 @@ export class LoaderInterceptor implements HttpInterceptor {
     constructor(public loaderService: LoaderService) { }
     intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
 
-        if(req.url != 'https://localhost:5001/api/users/1/photo')
+        if(req.url != 'https://localhost:5001/api/users/*/photo')
           this.loaderService.show();
         return next.handle(req).pipe(
             finalize(() => this.loaderService.hide())
