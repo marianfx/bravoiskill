@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using System.IO;
 using System;
+using Microsoft.Extensions.Logging;
 
 namespace BravoiSkill.API.Controllers
 {
@@ -17,12 +18,14 @@ namespace BravoiSkill.API.Controllers
         private IUserService _userService;
         private IBadgeService _badgeService;
         private ISkillService _skillService;
+        private readonly ILogger<UsersController> _logger;
 
-        public UsersController(IUserService userService, IBadgeService badgeService, ISkillService skillService)
+        public UsersController(IUserService userService, IBadgeService badgeService, ISkillService skillService, ILogger<UsersController> logger)
         {
             _userService = userService;
             _badgeService = badgeService;
             _skillService = skillService;
+            _logger = logger;
         }
 
         public class FileUploadAPI
@@ -73,10 +76,10 @@ namespace BravoiSkill.API.Controllers
 
         [HttpPut("{id}")]
         // PUT api/users/:id
-        public async Task<IActionResult> Edit(int id, [FromBody]Application.DTO.Users.User user)
+        public IActionResult Edit(int id, [FromBody]Application.DTO.Users.User user)
         {
             // _userService.Edit(id, user).GetAwaiter().GetResult(); // varianta transforma async in sync
-            await _userService.Edit(id, user); // varianta cu async
+            _userService.Edit(id, user); // varianta cu async
             return Ok();
         }
 

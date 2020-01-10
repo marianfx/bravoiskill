@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Logging;
 
 namespace BravoiSkill.API.Controllers
 {
@@ -7,14 +8,21 @@ namespace BravoiSkill.API.Controllers
     [ApiController]
     public class ValuesController : ControllerBase
     {
+        private readonly ILogger<ValuesController> _logger;
+
+        public ValuesController(ILogger<ValuesController> logger)
+        {
+            _logger = logger;
+        }
         // GET api/values
         [HttpGet]
         public ActionResult<IEnumerable<string>> Get()
         {
+            _logger.LogInformation("Values page says hello");
             return new string[] { "value1", "value2" };
         }
 
-        // GET api/values/5
+        // GET api/values/:id
         [HttpGet("{id}")]
         public ActionResult<string> Get(int id)
         {

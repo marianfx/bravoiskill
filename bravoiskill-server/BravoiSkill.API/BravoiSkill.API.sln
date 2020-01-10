@@ -5,11 +5,11 @@ VisualStudioVersion = 16.0.29102.190
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BravoiSkill.API", "BravoiSkill.API.csproj", "{008759FC-EF88-4542-8F9B-5D3163E370A4}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BravoiSkill.Domain", "..\BravoiSkill.Domain\BravoiSkill.Domain.csproj", "{6CB2E325-1684-4EDB-A98E-89FBAEAA5A27}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BravoiSkill.Domain", "..\BravoiSkill.Domain\BravoiSkill.Domain.csproj", "{6CB2E325-1684-4EDB-A98E-89FBAEAA5A27}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BravoiSkill.Infrastructure", "..\BravoiSkill.Infrastructure\BravoiSkill.Infrastructure.csproj", "{E4A1BAC1-69A3-4291-83DB-851636DB1113}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BravoiSkill.Infrastructure", "..\BravoiSkill.Infrastructure\BravoiSkill.Infrastructure.csproj", "{E4A1BAC1-69A3-4291-83DB-851636DB1113}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BravoiSkill.Application", "..\BravoiSkill.Application\BravoiSkill.Application.csproj", "{023A8ECA-B109-4C4D-A111-077313B3BFE5}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BravoiSkill.Application", "..\BravoiSkill.Application\BravoiSkill.Application.csproj", "{023A8ECA-B109-4C4D-A111-077313B3BFE5}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
