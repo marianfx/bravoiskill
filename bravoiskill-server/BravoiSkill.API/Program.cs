@@ -3,6 +3,7 @@ using Microsoft.Extensions.Logging;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore;
 using System;
+using System.Diagnostics;
 
 namespace BravoiSkill.API
 {
@@ -14,6 +15,7 @@ namespace BravoiSkill.API
             var logger = NLogBuilder.ConfigureNLog("nlog.config").GetCurrentClassLogger();
             try
             {
+                Trace.CorrelationManager.ActivityId = Guid.NewGuid();
                 logger.Debug("init main");
                 CreateWebHostBuilder(args).Build().Run();
             }

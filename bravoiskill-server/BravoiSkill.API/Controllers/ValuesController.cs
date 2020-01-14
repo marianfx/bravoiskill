@@ -1,6 +1,10 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.IO;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
+using NLog;
 
 namespace BravoiSkill.API.Controllers
 {
@@ -18,12 +22,23 @@ namespace BravoiSkill.API.Controllers
         [HttpGet]
         public ActionResult<IEnumerable<string>> Get()
         {
-            _logger.LogInformation("Values page says hello");
-            return new string[] { "value1", "value2" };
+            try
+            {
+                Trace.CorrelationManager.ActivityId = Guid.NewGuid(); //Sets the id for own activities
+                _logger.LogInformation("Values page says hello");
+                return new string[] { "value1", "value2" };
+            }
+            catch (Exception ex)
+            {
+                Guid g = Guid.NewGuid();
+                _logger.LogError(g + "|" + ex.ToLogString());
+                return StatusCode(500, "Internal server error ");
+            }
         }
 
         // GET api/values/:id
         [HttpGet("{id}")]
+
         public ActionResult<string> Get(int id)
         {
             return "value";
