@@ -63,6 +63,10 @@ export class ProfileComponent implements OnInit {
     this.getUserMet();
     this.SetIpAddress();
     this.setRandomBadgeColor();
+
+    this.http.get("https://localhost:5001/api/values/1").subscribe(
+      x => console.log("eroereee")
+    );
   }
 
   refreshProfilePhoto() {
@@ -165,5 +169,4 @@ export class ProfileComponent implements OnInit {
     if (this.canMessage == false)
       this.displayDialogueB = true;
   }
-
 }

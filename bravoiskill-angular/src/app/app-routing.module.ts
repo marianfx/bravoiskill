@@ -15,7 +15,7 @@ const routes: Routes = [
   { path: 'tables', component: UsersTableComponent, canActivate: [AuthAdmin]},
   { path: 'profile/:id', component: ProfileComponent, canActivate: [AuthGuard]},
   { path: 'login', component: LoginComponent},
-  { path:'colleagues', component: ColleaguesComponent, canActivate: [AuthGuard]},
+  { path: 'colleagues', component: ColleaguesComponent, canActivate: [AuthGuard]},
   { path: '**', redirectTo: '' }
 ];
 

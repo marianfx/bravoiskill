@@ -8,7 +8,8 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { LoginComponent } from './modules/login/components/login.component';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { JwtInterceptor } from './auth/interceptors/jwt.interceptor';
-import { ErrorInterceptor } from './auth/interceptors/error.interceptor';
+import { AuthenticationErrorInterceptor } from './auth/interceptors/error.interceptor';
+import { ServerErrorInterceptor } from './auth/interceptors/servererror.interceptor';
 import { ChartsModule } from 'ng2-charts';
 import { HomeComponent } from './modules/home/components/home.component';
 import { RouterModule } from '@angular/router';
@@ -16,8 +17,8 @@ import { NavbarComponent } from './shared/shared-modules/navbar/navbar.component
 import { FooterComponent } from './shared/shared-modules/footer/footer.component';
 import { UserService } from './shared/shared-services/user.service';
 import { TableModule } from 'primeng/table';
-import {MessageModule} from 'primeng/message';
-import {MessagesModule} from 'primeng/messages';
+import { MessageModule } from 'primeng/message';
+import { MessagesModule } from 'primeng/messages';
 import { DialogModule } from 'primeng/dialog';
 import { ButtonModule } from 'primeng/button';
 import { AccordionModule } from 'primeng/accordion';
@@ -46,6 +47,10 @@ import { LoaderInterceptor } from './auth/interceptors/loader.interceptor';
 import { SkillPoints } from './modules/review-modules/skill-points.service';
 import { ColleaguesComponent } from './modules/colleagues/colleagues-component/colleagues.component';
 import { DepartmentCardComponent } from './modules/colleagues/department-card/department-card.component';
+import { ToastModule } from 'primeng/toast';
+import { AlertToastComponent } from './shared/alert-toast/alert-toast.component';
+import { MessageService } from 'primeng/api';
+import { ServerErrorService } from './auth/service/servererror.service';
 
 @NgModule({
   declarations: [
@@ -64,7 +69,8 @@ import { DepartmentCardComponent } from './modules/colleagues/department-card/de
     SkillCategoryComponent,
     LoaderComponent,
     ColleaguesComponent,
-    DepartmentCardComponent
+    DepartmentCardComponent,
+    AlertToastComponent
   ],
   imports: [
     MatProgressSpinnerModule,
@@ -93,7 +99,8 @@ import { DepartmentCardComponent } from './modules/colleagues/department-card/de
       apiKey: 'AIzaSyC1ReIVGVAdDP09g6YUAYhzhCtmSFiXxeY'}),
     ChartsModule,
     CardModule,
-    SliderModule
+    SliderModule,
+    ToastModule
   ],
   exports: [],
   providers: [
@@ -102,8 +109,11 @@ import { DepartmentCardComponent } from './modules/colleagues/department-card/de
     { provide: HTTP_INTERCEPTORS, useClass: LoaderInterceptor, multi: true },
     SkillService,
     UserService,
+    MessageService,
+    ServerErrorService,
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
-    { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
+    { provide: HTTP_INTERCEPTORS, useClass: AuthenticationErrorInterceptor, multi: true },
+    { provide: HTTP_INTERCEPTORS, useClass: ServerErrorInterceptor, multi: true },
   ],
   bootstrap: [AppComponent]
 })

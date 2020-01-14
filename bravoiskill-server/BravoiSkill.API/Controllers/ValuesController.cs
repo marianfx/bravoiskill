@@ -41,6 +41,7 @@ namespace BravoiSkill.API.Controllers
 
         public ActionResult<string> Get(int id)
         {
+            throw new System.Exception("EXCEPTIE");
             return "value";
         }
 
