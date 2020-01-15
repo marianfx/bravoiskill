@@ -54,8 +54,11 @@ namespace BravoiSkill.API.Controllers
                     Message = ex.Message,
                     Detail = ex?.StackTrace,
                 };
-                // LogManager.Configuration.Variables["activityid"] = serverProblemDetails.Id;
                 Trace.CorrelationManager.ActivityId = serverProblemDetails.Id;
+                // LogManager.Configuration.Variables["activityid"] = serverProblemDetails.Id;
+                // GlobalDiagnosticsContext.Set("activityid", serverProblemDetails.Id);
+                // MappedDiagnosticsLogicalContext.Set("activityid", serverProblemDetails.Id);
+                // MappedDiagnosticsContext.Set("activityid", serverProblemDetails.Id);
                 _logger.LogError(serverProblemDetails.Title + "|" + serverProblemDetails.Message + "|" + serverProblemDetails.Detail );
                 return StatusCode(serverProblemDetails.Status.Value, serverProblemDetails);
             }
@@ -63,6 +66,9 @@ namespace BravoiSkill.API.Controllers
             {
                 Trace.CorrelationManager.ActivityId = Guid.NewGuid();
                 // LogManager.Configuration.Variables["activityid"] = Guid.NewGuid();
+                // GlobalDiagnosticsContext.Set("activityid", Guid.NewGuid());
+                // MappedDiagnosticsLogicalContext.Set("activityid", Guid.NewGuid());
+                // MappedDiagnosticsContext.Set("activityid", Guid.NewGuid());
                 _logger.LogError(ex.ToLogString());
                 return StatusCode(500, "Internal server error ");
             }
