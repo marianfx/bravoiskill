@@ -30,8 +30,8 @@ namespace BravoiSkill.API.Controllers
             }
             catch (Exception ex)
             {
-                Guid g = Guid.NewGuid();
-                _logger.LogError(g + "|" + ex.ToLogString());
+                Trace.CorrelationManager.ActivityId = Guid.NewGuid();
+                _logger.LogError(ex.ToLogString());
                 return StatusCode(500, "Internal server error ");
             }
         }

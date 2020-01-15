@@ -2,8 +2,11 @@
 using Microsoft.AspNetCore.Diagnostics;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Logging;
 using System;
 using System.Net;
+using System.Diagnostics;
+using NLog;
 
 // For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -11,7 +14,7 @@ namespace BravoiSkill.API.Controllers
 {
     public class ServerProblemDetails : ProblemDetails
     {
-        public string Id { get; set; }
+        public Guid Id { get; set; }
         public string Message { get; set; }
     }
 
@@ -20,31 +23,51 @@ namespace BravoiSkill.API.Controllers
     [Route("api/[controller]")]
     public class ErrorController : Controller
     {
+
+        private readonly ILogger<ErrorController> _logger;
+
+        public ErrorController(ILogger<ErrorController> logger)
+        {
+            _logger = logger;
+        }
+
         [Route("error-local-development")]
         public IActionResult ErrorLocalDevelopment([FromServices] IHostingEnvironment webHostEnvironment)
         {
-            if (!webHostEnvironment.IsDevelopment())
+            try
             {
-                throw new InvalidOperationException(
-                    "This shouldn't be invoked in non-development environments.");
+                if (!webHostEnvironment.IsDevelopment())
+                {
+                    throw new InvalidOperationException(
+                        "This shouldn't be invoked in non-development environments.");
+                }
+
+                var feature = HttpContext.Features.Get<IExceptionHandlerPathFeature>();
+                var ex = feature?.Error;
+
+                var serverProblemDetails = new ServerProblemDetails
+                {
+                    Id = Guid.NewGuid(),
+                    Status = (int)HttpStatusCode.InternalServerError,
+                    Instance = feature?.Path,
+                    Title = ex?.GetType().Name,
+                    Message = ex.Message,
+                    Detail = ex?.StackTrace,
+                };
+                // LogManager.Configuration.Variables["activityid"] = serverProblemDetails.Id;
+                Trace.CorrelationManager.ActivityId = serverProblemDetails.Id;
+                _logger.LogError(serverProblemDetails.Title + "|" + serverProblemDetails.Message + "|" + serverProblemDetails.Detail );
+                return StatusCode(serverProblemDetails.Status.Value, serverProblemDetails);
             }
-
-            var feature = HttpContext.Features.Get<IExceptionHandlerPathFeature>();
-            var ex = feature?.Error;
-
-            var serverProblemDetails = new ServerProblemDetails
+            catch(Exception ex)
             {
-                Id = Guid.NewGuid().ToString(),
-                Status = (int)HttpStatusCode.InternalServerError,
-                Instance = feature?.Path,
-                Title = ex?.GetType().Name,
-                Message = ex.Message,
-                Detail = ex?.StackTrace,
-            };
-
-            return StatusCode(serverProblemDetails.Status.Value, serverProblemDetails);
+                Trace.CorrelationManager.ActivityId = Guid.NewGuid();
+                // LogManager.Configuration.Variables["activityid"] = Guid.NewGuid();
+                _logger.LogError(ex.ToLogString());
+                return StatusCode(500, "Internal server error ");
+            }
         }
-
+ 
         [Route("error")]
         public ActionResult Error([FromServices] IHostingEnvironment webHostEnvironment)
         {
@@ -53,7 +76,7 @@ namespace BravoiSkill.API.Controllers
             var isDev = webHostEnvironment.IsDevelopment();
             var serverProblemDetails = new ServerProblemDetails
             {
-                Id = Guid.NewGuid().ToString(),
+                Id = Guid.NewGuid(),
                 Status = (int)HttpStatusCode.InternalServerError,
                 Instance = feature?.Path,
                 Title = isDev ? $"{ex.GetType().Name}: {ex.Message}" : "An error occurred.",
