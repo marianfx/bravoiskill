@@ -6,6 +6,7 @@ import { Department } from '../models/department';
 import { DepartmentService } from '../services/department.service';
 import { Skill } from '../../../shared/shared-models/skill';
 import { SkillService } from '../../../shared/shared-services/skill.service';
+import { ExportService } from '../services/export.service';
 
 @Component({
   selector: 'app-users-table',
@@ -49,7 +50,7 @@ export class UsersTableComponent implements OnInit {
 
   activeItem: MenuItem;
 
-  constructor(private uService: UserService, private dService: DepartmentService, private sService: SkillService) { }
+  constructor(private uService: UserService, private dService: DepartmentService, private sService: SkillService, private exportService: ExportService) { }
 
   ngOnInit() {
     this.uService.getAllUsers().subscribe(users => this.users = users);
@@ -313,4 +314,14 @@ export class UsersTableComponent implements OnInit {
     this.skill = null;
     this.displayDialogS1 = false;
   }
+  exportUsers(){
+    this.exportService.getAllUsers();
+  };
+  exportDepartments(){
+    this.exportService.getAllDepartments();
+  }
+  exportSkills(){
+    this.exportService.getAllSkills();
+  }
+
 }

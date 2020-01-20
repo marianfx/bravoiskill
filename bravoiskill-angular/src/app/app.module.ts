@@ -51,6 +51,7 @@ import { ToastModule } from 'primeng/toast';
 import { AlertToastComponent } from './shared/alert-toast/alert-toast.component';
 import { MessageService } from 'primeng/api';
 import { ServerErrorService } from './auth/service/servererror.service';
+import { ExportService } from './modules/users-table/services/export.service';
 
 @NgModule({
   declarations: [
@@ -110,6 +111,7 @@ import { ServerErrorService } from './auth/service/servererror.service';
     SkillService,
     UserService,
     MessageService,
+    ExportService,
     ServerErrorService,
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
     { provide: HTTP_INTERCEPTORS, useClass: AuthenticationErrorInterceptor, multi: true },

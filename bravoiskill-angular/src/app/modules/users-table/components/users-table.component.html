@@ -68,6 +68,9 @@
                 <div style="text-align:left">
                   <button type="button" pButton icon="fa fa-plus" (click)="showDialogToAddUser()"
                     label="Add User"></button>
+                    &nbsp;
+                    <button type="button" pButton icon="fa fa-download" (click) = "exportUsers()" label="Export as Excel" class="ui-button-danger"></button>
+
                 </div>
               </ng-template>
             </p-table>
@@ -127,6 +130,8 @@
                 <div style="text-align:left">
                   <button type="button" pButton icon="fa fa-plus" (click)="showDialogToAddDepartment()"
                     label="Add Department"></button>
+                  &nbsp;
+                  <button type="button" pButton icon="fa fa-download" (click) = "exportDepartments()" label="Export as Excel" class="ui-button-danger"></button>
                 </div>
               </ng-template>
             </p-table>
@@ -189,6 +194,8 @@
                 <div style="text-align:left">
                   <button type="button" pButton icon="fa fa-plus" (click)="showDialogToAddSkill()"
                     label="Add Skill"></button>
+                  &nbsp;
+                  <button type="button" pButton icon="fa fa-download" (click) = "exportSkills()" label="Export as Excel" class="ui-button-danger"></button>
                 </div>
               </ng-template>
             </p-table>
