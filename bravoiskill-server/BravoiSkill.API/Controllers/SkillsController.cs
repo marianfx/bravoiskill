@@ -1,6 +1,11 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using BravoiSkill.Application.Services.Interfaces;
 using System.Threading.Tasks;
+using System.Threading;
+using Microsoft.AspNetCore.Authorization;
+using System.IO;
+using OfficeOpenXml;
+using System;
 
 namespace BravoiSkill.API.Controllers
 {
@@ -67,6 +72,29 @@ namespace BravoiSkill.API.Controllers
         {
             _skillService.Delete(id);
             return Ok();
+        }
+        // GET api/skills/export
+        [AllowAnonymous]
+        [HttpGet("export")]
+        public async Task<IActionResult> ExportV2(CancellationToken cancellationToken)
+        {
+            // query data from database  
+            await Task.Yield();
+            var list = _skillService.GetAll();
+
+            var stream = new MemoryStream();
+
+            using (var package = new ExcelPackage(stream))
+            {
+                var workSheet = package.Workbook.Worksheets.Add("Sheet1");
+                workSheet.Cells.LoadFromCollection(list, true);
+                package.Save();
+            }
+            stream.Position = 0;
+            string excelName = $"SkillList-{DateTime.Now.ToString("yyyyMMddHHmmssfff")}.xlsx";
+
+            //return File(stream, "application/octet-stream", excelName);  
+            return File(stream, "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet", excelName);
         }
     }
 }

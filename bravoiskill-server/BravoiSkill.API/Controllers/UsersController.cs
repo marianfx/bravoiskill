@@ -7,6 +7,9 @@ using Microsoft.AspNetCore.Http;
 using System.IO;
 using System;
 using Microsoft.Extensions.Logging;
+using System.Threading;
+using System.Collections.Generic;
+using OfficeOpenXml;
 
 namespace BravoiSkill.API.Controllers
 {
@@ -191,6 +194,29 @@ namespace BravoiSkill.API.Controllers
         {
             _badgeService.Delete(id);
             return Ok();
+        }
+        // GET api/users/export
+        [AllowAnonymous]
+        [HttpGet("export")]
+        public async Task<IActionResult> ExportV2(CancellationToken cancellationToken)
+        {
+            // query data from database  
+            await Task.Yield();
+            var list = _userService.GetAll();
+    
+            var stream = new MemoryStream();
+
+            using (var package = new ExcelPackage(stream))
+            {
+                var workSheet = package.Workbook.Worksheets.Add("Sheet1");
+                workSheet.Cells.LoadFromCollection(list, true);
+                package.Save();
+            }
+            stream.Position = 0;
+            string excelName = $"UserList-{DateTime.Now.ToString("yyyyMMddHHmmssfff")}.xlsx";
+
+            //return File(stream, "application/octet-stream", excelName);  
+            return File(stream, "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet", excelName);
         }
     }
 }
