@@ -52,6 +52,8 @@ import { AlertToastComponent } from './shared/alert-toast/alert-toast.component'
 import { MessageService } from 'primeng/api';
 import { ServerErrorService } from './auth/service/servererror.service';
 import { ExportService } from './modules/users-table/services/export.service';
+import { CarouselModule } from 'primeng/carousel';
+import { DepartmentService } from './shared/shared-services/department.service';
 
 @NgModule({
   declarations: [
@@ -74,6 +76,7 @@ import { ExportService } from './modules/users-table/services/export.service';
     AlertToastComponent
   ],
   imports: [
+    CarouselModule,
     MatProgressSpinnerModule,
     BrowserModule,
     CommonModule,
@@ -110,6 +113,7 @@ import { ExportService } from './modules/users-table/services/export.service';
     { provide: HTTP_INTERCEPTORS, useClass: LoaderInterceptor, multi: true },
     SkillService,
     UserService,
+    DepartmentService,
     MessageService,
     ExportService,
     ServerErrorService,

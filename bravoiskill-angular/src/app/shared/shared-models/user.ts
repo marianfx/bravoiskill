@@ -10,4 +10,5 @@ export interface User {
   photo: string;
   profileId: number;
   badgeId: number;
+  departmentId: number;
 }

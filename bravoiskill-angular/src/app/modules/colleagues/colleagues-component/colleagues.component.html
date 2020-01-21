@@ -1,10 +1,16 @@
 <main>
-  <section class="section section-shaped section-lg">
+  <section class="section section-shaped section-md">
     <div class="shape shape-style-1 bg-gradient-default">
       <span *ngFor="let span of ' '.repeat(20).split('')"></span>
     </div>
     <div class="header pb-8 pt-5 pt-lg-8" style="background-size: cover; background-position: center top;">
-      <p>colleagues works!</p>
-    </div>
+      <p-carousel [value]="departments" [numVisible]="4" [circular]="false" [responsive]="responsiveOptions">
+        <div *ngFor="let department of departments">
+          <ng-template let-department pTemplate="department">
+                <app-department-card [department]="department"></app-department-card>
+          </ng-template>
+      </div>
+    </p-carousel>
+  </div>
   </section>
 </main>
