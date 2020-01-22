@@ -40,7 +40,6 @@
           <input *ngSwitchCase="'skype'" pInputText type="text" style="width:100%"
             (input)="tt.filter($event.target.value, col.field, col.filterMatchMode)">
         </th>
-        <th></th>
       </tr>
     </ng-template>
     <ng-template pTemplate="body" let-user let-rowData let-columns="colsUser">
