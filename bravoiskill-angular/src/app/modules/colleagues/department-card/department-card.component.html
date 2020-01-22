@@ -3,6 +3,9 @@
     <img src="assets/images/{{department.description}}.png" style="width: 12rem; height: 12rem;"
     onerror="this.src='assets/images/broken.png'" (click)="displayDialogColeagues = true"/>
   </div>
+  <div class="p-col-12">
+    <h2>{{department.description}}</h2>
+  </div>
 </div>
 
 <p-dialog header="{{department.description}}" [(visible)]="displayDialogColeagues" [responsive]="true" showEffect="fade"
