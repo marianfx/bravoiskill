@@ -30,3 +30,14 @@
 .carousel-demo .ui-carousel.ui-carousel-horizontal .ui-carousel-content .ui-carousel-item.ui-carousel-item-end .car-details > .p-grid {
   margin-right: 0.6em;
 }
+.p-nogutter{
+  padding-left: 6rem;
+  padding-right: 6rem;
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+}
+.cursor{
+  cursor: cell;
+}
+
+

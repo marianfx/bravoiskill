@@ -1,11 +1,7 @@
 <div class="p-grid p-nogutter">
-  <div class="p-col-12">
-    <img src="assets/images/{{department.description ? department.description : 'broken'}}.png" style="width: 12rem; height: 12rem;" />
-  </div>
-  <div class="p-col-12">
-    <div>{{department.description}}</div>
-    <button pButton type="button" (click)="displayDialogColeagues = true" class="ui-button-secondary"
-      icon="pi pi-search"></button>
+  <div class="p-col-12" class="cursor">
+    <img src="assets/images/{{department.description}}.png" style="width: 12rem; height: 12rem;"
+    onerror="this.src='assets/images/broken.png'" (click)="displayDialogColeagues = true"/>
   </div>
 </div>
 
