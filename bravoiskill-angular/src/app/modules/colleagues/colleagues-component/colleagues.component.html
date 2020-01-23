@@ -4,13 +4,13 @@
       <span *ngFor="let span of ' '.repeat(20).split('')"></span>
     </div>
     <div class="header pb-8 pt-5 pt-lg-8 custom-padding" style="background-size: cover; background-position: center top;">
-      <p-carousel [value]="departments" [numVisible]="4" [circular]="false" [responsive]="responsiveOptions">
+      <carousel [value]="departments" [numVisible]="4" [circular]="false" [responsiveOptions]="responsiveOptions">
         <div *ngFor="let department of departments">
           <ng-template let-department pTemplate="department">
                 <app-department-card [department]="department"></app-department-card>
           </ng-template>
       </div>
-    </p-carousel>
+    </carousel>
   </div>
   </section>
 </main>

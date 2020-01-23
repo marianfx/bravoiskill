@@ -36,7 +36,4 @@ departments: Department[] = [];
     this.depService.getAllDepartments().subscribe(x => this.departments = x);
   }
 
-
-
-
 }
