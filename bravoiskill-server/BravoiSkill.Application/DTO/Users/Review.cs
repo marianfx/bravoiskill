@@ -14,6 +14,5 @@ namespace BravoiSkill.Application.DTO.Users
         public User ReviewerUser { get; set; }
         
         public IList<SkillReview> ReviewSkills { get; set; }
-
     }
 }

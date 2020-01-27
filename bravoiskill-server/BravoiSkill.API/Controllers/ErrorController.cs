@@ -23,7 +23,6 @@ namespace BravoiSkill.API.Controllers
     [Route("api/[controller]")]
     public class ErrorController : Controller
     {
-
         private readonly ILogger<ErrorController> _logger;
 
         public ErrorController(ILogger<ErrorController> logger)

@@ -9,6 +9,7 @@ namespace BravoiSkill.Infrastructure.Repositories.Users
     public class UserRepository : IUserRepository
     {
         private BravoiSkillDbContext _context;
+
         public UserRepository(BravoiSkillDbContext context)
         {
             _context = context;
@@ -28,13 +29,13 @@ namespace BravoiSkill.Infrastructure.Repositories.Users
                       select us;
             return rez.FirstOrDefault();
         }
+
         public IQueryable<User> GetListOfUsersReviewersForReviewedUserById(int id)
         {
             var rez = from us in _context.Users join re in _context.Reviews
                       on us.ProfileId equals re.ReviewedUserId
                       where re.ReviewedUserId == id
-                      select us; 
-                   
+                      select us;     
             return rez;
         }
 

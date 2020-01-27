@@ -46,6 +46,7 @@ namespace BravoiSkill.API.Controllers
                 return BadRequest(new { message = "Username or password is incorrect" });
             return Ok(user);
         }
+
         // GET api/users/:id/userskills
         [HttpGet("{id}/userskills")]
         public IActionResult GetUserSkillsByUserId(int id)
@@ -53,6 +54,7 @@ namespace BravoiSkill.API.Controllers
             var user = _skillService.GetByUserId(id);
             return Ok(user);
         }
+
         // GET api/users
         [HttpGet]
         public IActionResult GetAll()
@@ -77,8 +79,8 @@ namespace BravoiSkill.API.Controllers
             return Ok();
         }
 
-        [HttpPut("{id}")]
         // PUT api/users/:id
+        [HttpPut("{id}")]
         public IActionResult Edit(int id, [FromBody]Application.DTO.Users.User user)
         {
             // _userService.Edit(id, user).GetAwaiter().GetResult(); // varianta transforma async in sync
@@ -86,8 +88,8 @@ namespace BravoiSkill.API.Controllers
             return Ok();
         }
 
-        [HttpDelete("{id}")]
         // DELETE api/users/:id
+        [HttpDelete("{id}")]
         public IActionResult DeleteUser(int id)
         {
             _userService.Delete(id);
@@ -163,6 +165,7 @@ namespace BravoiSkill.API.Controllers
                 return null;
             }
         }
+
         // GET api/users/:id/badges
         [Route("{id}/badges")]
         [HttpGet]
@@ -195,6 +198,7 @@ namespace BravoiSkill.API.Controllers
             _badgeService.Delete(id);
             return Ok();
         }
+
         // GET api/users/export
         [AllowAnonymous]
         [HttpGet("export")]

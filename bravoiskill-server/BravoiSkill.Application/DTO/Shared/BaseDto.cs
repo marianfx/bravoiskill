@@ -8,8 +8,7 @@ namespace BravoiSkill.Application.DTO.Shared
         public IList<string> Errors { get; set; } = new List<string>();
 
         public BaseDto()
-        {
-        }
+        { }
 
         public virtual IList<string> Validate()
         {

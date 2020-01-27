@@ -27,6 +27,7 @@ namespace BravoiSkill.API.Controllers
             var skills = _skillService.GetAll();
             return Ok(skills);
         }
+
         // GET api/skills/categories
         [HttpGet("categories")]
         public IActionResult GetAllCategories()
@@ -34,6 +35,7 @@ namespace BravoiSkill.API.Controllers
             var skills = _skillService.GetAllCategories();
             return Ok(skills);
         }
+
         // GET api/skills/subCategories
         [HttpGet("subCategories")]
         public IActionResult GetAllSubCategories()
@@ -58,21 +60,22 @@ namespace BravoiSkill.API.Controllers
             return Ok();
         }
 
-        [HttpPut("{id}")]
         // PUT api/skills/:id
+        [HttpPut("{id}")]
         public async Task<IActionResult> Edit(int id, [FromBody]Application.DTO.Users.Skill skill)
         {
             await _skillService.Edit(id, skill); // varianta cu async
             return Ok();
         }
 
-        [HttpDelete("{id}")]
         // DELETE api/skills/:id
+        [HttpDelete("{id}")]
         public IActionResult Delete(int id)
         {
             _skillService.Delete(id);
             return Ok();
         }
+
         // GET api/skills/export
         [AllowAnonymous]
         [HttpGet("export")]

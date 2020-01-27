@@ -49,7 +49,7 @@ namespace BravoiSkill.API.Controllers
         public async Task<IActionResult> Edit(int id, [FromBody]Application.DTO.Users.Department department)
         {
            await _departmentService.Edit(id, department); // varianta cu async
-            return Ok();
+           return Ok();
         }
 
         [HttpDelete("{id}")]
@@ -59,6 +59,7 @@ namespace BravoiSkill.API.Controllers
             _departmentService.Delete(id);
             return Ok();
         }
+
         // GET api/departments/export
         [AllowAnonymous]
         [HttpGet("export")]

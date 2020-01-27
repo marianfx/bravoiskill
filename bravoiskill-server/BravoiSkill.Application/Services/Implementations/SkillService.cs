@@ -30,6 +30,7 @@ namespace BravoiSkill.Application.Services.Implementations
 
             return skillsDto;
         }
+
         public IEnumerable<SkillCategory> GetAllCategories()
         {
             var categoriesDb = _skillRepository.GetAllSkillCategories();
@@ -39,6 +40,7 @@ namespace BravoiSkill.Application.Services.Implementations
 
             return categoriesDto;
         }
+        
         public IEnumerable<SkillCategory> GetAllSubCategories()
         {
             var categoriesDb = _skillRepository.GetAllSkillSubCategories();

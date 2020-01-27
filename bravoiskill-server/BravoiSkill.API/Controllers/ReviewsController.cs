@@ -1,8 +1,5 @@
 ﻿using BravoiSkill.Application.Services.Interfaces;
 using Microsoft.AspNetCore.Mvc;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 
 namespace BravoiSkill.API.Controllers
@@ -58,7 +55,6 @@ namespace BravoiSkill.API.Controllers
             _reviewService.Add(review);
             return Ok();
         }
-
 
         [HttpPut("{id}")]
         // PUT api/reviews/:id

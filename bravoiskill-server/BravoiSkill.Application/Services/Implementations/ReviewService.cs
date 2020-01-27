@@ -5,7 +5,6 @@ using BravoiSkill.Domain.Interfaces.Repositories.Users;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace BravoiSkill.Application.Services.Implementations
@@ -31,6 +30,7 @@ namespace BravoiSkill.Application.Services.Implementations
 
             return reviewsDto;
         }
+
         public IEnumerable<Review> GetAllFor(int id)
         {
             //var reviewsDb = _reviewRepository.GetListOfReviews().Where(x => x.ReviewedUserId == id);

@@ -5,7 +5,6 @@ using BravoiSkill.Domain.Interfaces.Repositories.Users;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace BravoiSkill.Application.Services.Implementations
@@ -63,7 +62,7 @@ namespace BravoiSkill.Application.Services.Implementations
                 throw new Exception("Badge does not exist in database");
             badge.BadgeId = badgeEntity.BadgeId;
 
-            _mapper.Map<Badge, Domain.Entities.Users.Badge>(badge, badgeEntity);
+            _mapper.Map(badge, badgeEntity);
             _badgeRepository.Update(badgeEntity);
         }
 
@@ -75,8 +74,6 @@ namespace BravoiSkill.Application.Services.Implementations
 
             _badgeRepository.Delete(badgeEntity);
         }
-
-       
     }
 }
 

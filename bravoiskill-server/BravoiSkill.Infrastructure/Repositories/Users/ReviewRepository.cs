@@ -1,17 +1,16 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using BravoiSkill.Domain.Entities.Users;
 using BravoiSkill.Domain.Interfaces.Repositories.Users;
-using System.Text;
 using BravoiSkill.Infrastructure.Database;
-using System.Linq;
-using BravoiSkill.Domain.Entities.Users;
 using Microsoft.EntityFrameworkCore;
+using System;
+using System.Linq;
 
 namespace BravoiSkill.Infrastructure.Repositories.Users
 {
     public class ReviewRepository : IReviewRepository
     {
         private BravoiSkillDbContext _context;
+
         public ReviewRepository(BravoiSkillDbContext context)
         {
             _context = context;
@@ -23,6 +22,7 @@ namespace BravoiSkill.Infrastructure.Repositories.Users
                       select d;
             return rez;
         }
+
         public IQueryable<Review> GetListOfReviewsFor(int id)
         {
             var rez = _context.Reviews
@@ -30,9 +30,7 @@ namespace BravoiSkill.Infrastructure.Repositories.Users
                 .Include(s => s.ReviewSkills)
                 .ThenInclude(s => s.Skill)
                 .Include(s => s.ReviewerUser);
-
             return rez;
-
         }
 
         public Review GetReviewById(int id)
@@ -62,6 +60,7 @@ namespace BravoiSkill.Infrastructure.Repositories.Users
             _context.Set<Review>().Remove(review);
             _context.SaveChanges();
         }
+
         public void AddReview(Review review)
         {
             // declare transaction
@@ -69,7 +68,6 @@ namespace BravoiSkill.Infrastructure.Repositories.Users
             {
                 try
                 {
-
                     // validari => exception
                     if (review != null)
                     {
@@ -80,9 +78,6 @@ namespace BravoiSkill.Infrastructure.Repositories.Users
 
                         transaction.Commit();
                     }
-
-
-
                 }
                 catch (Exception ex)
                 {

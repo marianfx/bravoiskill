@@ -12,6 +12,7 @@ namespace BravoiSkill.Infrastructure.Repositories.Users
     public class BadgeRepository : IBadgeRepository
     {
         private BravoiSkillDbContext _context;
+
         public BadgeRepository(BravoiSkillDbContext context)
         {
             _context = context;
@@ -23,6 +24,7 @@ namespace BravoiSkill.Infrastructure.Repositories.Users
                       select d;
             return rez;
         }
+
         public IQueryable<Badge> GetListOfBadgesFor(int id)
         {
             var rez = _context.UserBadges.Where(d => d.UserId == id).Include(s => s.Badge).Select(s => s.Badge);

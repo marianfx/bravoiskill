@@ -9,6 +9,7 @@ namespace BravoiSkill.Infrastructure.Repositories.Users
     public class DepartmentRepository : IDepartmentRepository
     {
         private BravoiSkillDbContext _context;
+
         public DepartmentRepository(BravoiSkillDbContext context)
         {
             _context = context;

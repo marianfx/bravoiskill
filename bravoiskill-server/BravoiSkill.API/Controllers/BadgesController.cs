@@ -22,7 +22,6 @@ namespace BravoiSkill.API.Controllers
             return Ok(badges);
         }
 
-        
         // POST api/badges
         [HttpPost]
         public IActionResult Create([FromBody]Application.DTO.Users.Badge badge)
@@ -30,8 +29,6 @@ namespace BravoiSkill.API.Controllers
             _badgeService.Create(badge);
             return Ok();
         }
-
-        
     }
 }
 

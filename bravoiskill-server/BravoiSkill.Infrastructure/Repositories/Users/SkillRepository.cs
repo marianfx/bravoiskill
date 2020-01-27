@@ -9,6 +9,7 @@ namespace BravoiSkill.Infrastructure.Repositories.Users
     public class SkillRepository : ISkillRepository
     {
         private BravoiSkillDbContext _context;
+
         public SkillRepository(BravoiSkillDbContext context)
         {
             _context = context;
@@ -27,11 +28,13 @@ namespace BravoiSkill.Infrastructure.Repositories.Users
                       select us;
             return rez.FirstOrDefault();
         }
-       public IQueryable<SkillCategory> GetAllSkillCategories()
+
+        public IQueryable<SkillCategory> GetAllSkillCategories()
         {
             var skillCategories = _context.SkillCategories.Where(x => x.ParentId == null);
             return skillCategories;
         }
+
         public IQueryable<SkillCategory> GetAllSkillSubCategories()
         {
             var skillSubCategories = _context.SkillCategories.Where(x => x.ParentId != null);
@@ -42,7 +45,6 @@ namespace BravoiSkill.Infrastructure.Repositories.Users
         {
             var rez = _context.UserSkills.Where(us => us.UserId == id).Include(b => b.Skill);
             return rez;
-
         }
 
         public Skill Create(Skill skill)
@@ -64,8 +66,6 @@ namespace BravoiSkill.Infrastructure.Repositories.Users
             _context.Set<Skill>().Remove(skill);
             _context.SaveChanges();
         }
-
-
     }
 }
 

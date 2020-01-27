@@ -1,10 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
-using System.IO;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
-using NLog;
 
 namespace BravoiSkill.API.Controllers
 {
@@ -18,6 +16,7 @@ namespace BravoiSkill.API.Controllers
         {
             _logger = logger;
         }
+
         // GET api/values
         [HttpGet]
         public ActionResult<IEnumerable<string>> Get()
@@ -38,7 +37,6 @@ namespace BravoiSkill.API.Controllers
 
         // GET api/values/:id
         [HttpGet("{id}")]
-
         public ActionResult<string> Get(int id)
         {
             throw new System.Exception("EXCEPTIE");
