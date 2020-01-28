@@ -15,8 +15,10 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.FileProviders;
 using Microsoft.IdentityModel.Tokens;
+using Microsoft.AspNetCore.Internal;
 using System.IO;
 using System.Text;
+using Microsoft.AspNetCore.Mvc;
 
 namespace BravoiSkill.API
 {
@@ -67,7 +69,7 @@ namespace BravoiSkill.API
             options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
 
             // web things
-            services.AddMvc(x => x.EnableEndpointRouting = false);
+            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
             services.AddCors();
 
             // app settings
