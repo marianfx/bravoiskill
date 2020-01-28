@@ -2,8 +2,9 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpRequest, HttpHandler } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 import * as FileSaver from 'file-saver';
-import { Observable } from 'rxjs';
+import { Observable, of } from 'rxjs';
 import { AuthenticationService } from 'src/app/auth/service/authentication.service';
+import { map, catchError } from 'rxjs/operators';
 
 @Injectable({ providedIn: 'root' })
 export class ExportService {
@@ -43,7 +44,20 @@ export class ExportService {
             }
         }
         xhr.send();
-
     });
 }
+
+  exportData(tableName: string, fileName: string){
+    return this.generateSpreadsheet(tableName)
+    .pipe(
+        map(data =>  {
+          FileSaver.saveAs((data as unknown) as Blob, fileName);
+          return data;
+         }),
+        catchError(error => {
+          console.log("Error downloading the file.");
+          return of(null);
+        })
+      );
+    }
 }

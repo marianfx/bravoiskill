@@ -318,18 +318,26 @@ export class UsersTableComponent implements OnInit {
     this.displayDialogS1 = false;
   }
   exportUsers(){
-      this.exportService.generateSpreadsheet("user")
-      .subscribe(
-        data =>  FileSaver.saveAs((data as unknown) as Blob, "UserList-"+ Date() + ".xls" ),
-        error => console.log("Error downloading the file."),
-        () => console.log('Completed file download.'));
+    // 1. Se executa apelul la server
+    // 2. Se executa ce e in pipe (map + catchError)
+    // 3. Se executa ce e in subscribe
+      this.exportService.exportData("user", "Users-" + new Date() + ".xlsx")
+        .subscribe(data => {
+          console.log("Completed successfully!");
+        });
     }
 
   exportDepartments(){
-    this.exportService.getAllDepartments();
+    this.exportService.exportData("department", "Departments-" + Date() + ".xlsx")
+    .subscribe(data => {
+      console.log("Completed succesfully!");
+    });
   }
   exportSkills(){
-    this.exportService.getAllSkills();
+    this.exportService.exportData("skill", "Skills-" + Date() + ".xlsx")
+    .subscribe(data => {
+      console.log("Completed succesfully!");
+    });
 
   }
 
