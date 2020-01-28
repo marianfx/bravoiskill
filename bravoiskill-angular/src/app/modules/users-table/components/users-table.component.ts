@@ -7,6 +7,7 @@ import { DepartmentService } from '../../../shared/shared-services/department.se
 import { Skill } from '../../../shared/shared-models/skill';
 import { SkillService } from '../../../shared/shared-services/skill.service';
 import { ExportService } from '../services/export.service';
+import * as FileSaver from "file-saver";
 
 @Component({
   selector: 'app-users-table',
@@ -14,6 +15,8 @@ import { ExportService } from '../services/export.service';
   styleUrls: ['./users-table.component.css']
 })
 export class UsersTableComponent implements OnInit {
+
+  data: any;
 
   items: MenuItem[];
 
@@ -315,13 +318,19 @@ export class UsersTableComponent implements OnInit {
     this.displayDialogS1 = false;
   }
   exportUsers(){
-    this.exportService.getAllUsers();
-  };
+      this.exportService.generateSpreadsheet("user")
+      .subscribe(
+        data =>  FileSaver.saveAs((data as unknown) as Blob, "UserList-"+ Date() + ".xls" ),
+        error => console.log("Error downloading the file."),
+        () => console.log('Completed file download.'));
+    }
+
   exportDepartments(){
     this.exportService.getAllDepartments();
   }
   exportSkills(){
     this.exportService.getAllSkills();
+
   }
 
 }

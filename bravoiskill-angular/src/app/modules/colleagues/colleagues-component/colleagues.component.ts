@@ -10,7 +10,7 @@ import { DepartmentService } from 'src/app/shared/shared-services/department.ser
 export class ColleaguesComponent implements OnInit {
 
 responsiveOptions;
-departments: Department[] = [];
+departments: Department[] = [{departmentId: 1, description: "Loading..." } as Department];
 
   constructor(private depService: DepartmentService) {
     this.responsiveOptions = [
