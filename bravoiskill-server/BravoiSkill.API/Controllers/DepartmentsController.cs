@@ -61,7 +61,6 @@ namespace BravoiSkill.API.Controllers
         }
 
         // GET api/departments/export
-        [AllowAnonymous]
         [HttpGet("export")]
         public async Task<IActionResult> ExportV2(CancellationToken cancellationToken)
         {
