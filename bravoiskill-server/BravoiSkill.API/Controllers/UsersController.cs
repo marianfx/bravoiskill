@@ -200,7 +200,6 @@ namespace BravoiSkill.API.Controllers
         }
 
         // GET api/users/export
-        [AllowAnonymous]
         [HttpGet("export")]
         public async Task<IActionResult> ExportV2(CancellationToken cancellationToken)
         {
@@ -219,7 +218,10 @@ namespace BravoiSkill.API.Controllers
             stream.Position = 0;
             string excelName = $"UserList-{DateTime.Now.ToString("yyyyMMddHHmmssfff")}.xlsx";
 
+            // return json ({ file = filename } )
             //return File(stream, "application/octet-stream", excelName);  
+            //stream.setContentType("application/vnd.openxmlformats-officedocument.spreadsheetml.sheet");
+            //stream.setHeader("Content-Disposition", "attachment; filename=deployment-definitions.xlsx");
             return File(stream, "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet", excelName);
         }
     }
