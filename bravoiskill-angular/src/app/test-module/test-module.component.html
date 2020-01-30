@@ -1,0 +1,116 @@
+<p>Test  module for Mock-up</p><br>
+<p-accordion expandIcon="null" collapseIcon="null">
+
+
+<p-accordionTab [selected]="true">
+  <p-header>
+    <p-toolbar>
+      <p class="ui-toolbar-group-left">
+          <button pButton type="button" label="New" icon="pi pi-plus"></button> &nbsp;
+          <p class="text-primary">Test projecty 1!      {{date}}</p>
+      <div class="ui-toolbar-group-right">
+          <button pButton type="button" icon="pi pi-search"></button>
+          <button pButton type="button" icon="pi pi-calendar" class="ui-button-success"></button>
+          <button pButton type="button" icon="pi pi-times" class="ui-button-danger"></button>
+      </div>
+      <mat-progress-bar expandmode="determinate" value="40"></mat-progress-bar> &nbsp;
+      <p class="text-danger">40%</p>
+  </p-toolbar>
+  </p-header>
+  <p-table [value]="cars">
+    <ng-template pTemplate="header">
+        <tr>
+            <th>Vin</th>
+            <th>Year</th>
+            <th>Brand</th>
+            <th>Color</th>
+        </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-car>
+        <tr>
+            <td>{{car.vin}}</td>
+            <td>{{car.year}}</td>
+            <td>{{car.brand}}</td>
+            <td>{{car.color}}</td>
+        </tr>
+    </ng-template>
+</p-table>
+</p-accordionTab>
+<p-accordionTab>
+  <p-header>
+    <p-toolbar>
+      <p class="ui-toolbar-group-left">
+          <button pButton type="button" label="New" icon="pi pi-plus"></button> &nbsp;
+          <p class="text-primary">Test projecty 2!      {{date}}</p>
+      <div class="ui-toolbar-group-right">
+          <button pButton type="button" icon="pi pi-search"></button>
+          <button pButton type="button" icon="pi pi-calendar" class="ui-button-success"></button>
+          <button pButton type="button" icon="pi pi-times" class="ui-button-danger"></button>
+      </div>
+      <mat-progress-bar expandmode="determinate" value="50" color ="accent"></mat-progress-bar> &nbsp;
+      <p class="text-danger">50%</p>
+  </p-toolbar>
+  </p-header>
+  <p-table [value]="cars">
+    <ng-template pTemplate="header">
+        <tr>
+            <th>Vin</th>
+            <th>Year</th>
+            <th>Brand</th>
+            <th>Color</th>
+        </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-car>
+        <tr>
+            <td>{{car.vin}}</td>
+            <td>{{car.year}}</td>
+            <td>{{car.brand}}</td>
+            <td>{{car.color}}</td>
+        </tr>
+    </ng-template>
+</p-table>
+</p-accordionTab>
+<p-accordionTab>
+  <p-header>
+    <p-toolbar>
+      <p class="ui-toolbar-group-left">
+          <button pButton type="button" label="New" icon="pi pi-plus"></button> &nbsp;
+          <p class="text-primary">Test projecty 3!      {{date}}</p>
+      <div class="ui-toolbar-group-right">
+          <button pButton type="button" icon="pi pi-search"></button>
+          <button pButton type="button" icon="pi pi-calendar" class="ui-button-success"></button>
+          <button pButton type="button" icon="pi pi-times" class="ui-button-danger"></button>
+      </div>
+      <mat-progress-bar expandmode="determinate" value="60" color ="warn"></mat-progress-bar> &nbsp;
+      <p class="text-danger">60%</p>
+  </p-toolbar>
+  </p-header>
+  <p-table [value]="cars">
+    <ng-template pTemplate="header">
+        <tr>
+            <th>Vin</th>
+            <th>Year</th>
+            <th>Brand</th>
+            <th>Color</th>
+        </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-car>
+        <tr>
+            <td>{{car.vin}}</td>
+            <td>{{car.year}}</td>
+            <td>{{car.brand}}</td>
+            <td>{{car.color}}</td>
+        </tr>
+    </ng-template>
+</p-table>
+</p-accordionTab>
+
+
+
+
+
+
+</p-accordion>
+
+
+

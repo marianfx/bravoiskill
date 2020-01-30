@@ -54,7 +54,10 @@ import { ServerErrorService } from './auth/service/servererror.service';
 import { ExportService } from './modules/users-table/services/export.service';
 import { CarouselModule } from 'primeng/carousel';
 import { DepartmentService } from './shared/shared-services/department.service';
-
+import { TestModuleComponent } from './test-module/test-module.component';
+import {FieldsetModule} from 'primeng/fieldset';
+import {ToolbarModule} from 'primeng/toolbar';
+import {MatProgressBarModule} from '@angular/material/progress-bar';
 @NgModule({
   declarations: [
     AppComponent,
@@ -73,7 +76,8 @@ import { DepartmentService } from './shared/shared-services/department.service';
     LoaderComponent,
     ColleaguesComponent,
     DepartmentCardComponent,
-    AlertToastComponent
+    AlertToastComponent,
+    TestModuleComponent
   ],
   imports: [
     CarouselModule,
@@ -104,7 +108,10 @@ import { DepartmentService } from './shared/shared-services/department.service';
     ChartsModule,
     CardModule,
     SliderModule,
-    ToastModule
+    ToastModule,
+    FieldsetModule,
+    ToolbarModule,
+    MatProgressBarModule
   ],
   exports: [],
   providers: [
