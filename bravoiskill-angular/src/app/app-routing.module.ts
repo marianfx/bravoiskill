@@ -12,7 +12,7 @@ import { ColleaguesComponent } from './modules/colleagues/colleagues-component/c
 
 const routes: Routes = [
   { path: '', component: HomeComponent, canActivate: [AuthGuard] },
-  { path: 'tables', component: UsersTableComponent, canActivate: [AuthAdmin]},
+  { path: 'tables', component: UsersTableComponent, canActivate: [AuthAdmin && AuthGuard]},
   { path: 'profile/:id', component: ProfileComponent, canActivate: [AuthGuard]},
   { path: 'login', component: LoginComponent},
   { path: 'colleagues', component: ColleaguesComponent, canActivate: [AuthGuard]},
