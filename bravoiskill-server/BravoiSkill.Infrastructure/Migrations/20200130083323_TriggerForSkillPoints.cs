@@ -9,7 +9,7 @@ namespace BravoiSkill.Infrastructure.Migrations
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.Sql(@"USE BravoiSkill
+            migrationBuilder.Sql(@"
 go
 
 IF OBJECT_ID(N'insert_skill_points', N'TR') IS NOT NULL
@@ -47,7 +47,7 @@ begin
 INSERT INTO BravoiSkill.dbo.UserSkills values (@skillId, @userid, @points)
 end
 END;
-USE BravoiSkill
+
 go
 
 IF OBJECT_ID(N'update_skill_points', N'TR') IS NOT NULL
