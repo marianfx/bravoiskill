@@ -45,8 +45,6 @@ import { LoaderComponent } from './shared/loader/loader.component';
 import { LoaderService } from './auth/service/loader.service';
 import { LoaderInterceptor } from './auth/interceptors/loader.interceptor';
 import { SkillPoints } from './modules/review-modules/skill-points.service';
-import { ColleaguesComponent } from './modules/colleagues/colleagues-component/colleagues.component';
-import { DepartmentCardComponent } from './modules/colleagues/department-card/department-card.component';
 import { ToastModule } from 'primeng/toast';
 import { AlertToastComponent } from './shared/alert-toast/alert-toast.component';
 import { MessageService } from 'primeng/api';
@@ -74,8 +72,6 @@ import {MatProgressBarModule} from '@angular/material/progress-bar';
     SkillCardComponent,
     SkillCategoryComponent,
     LoaderComponent,
-    ColleaguesComponent,
-    DepartmentCardComponent,
     AlertToastComponent,
     TestModuleComponent
   ],
@@ -111,7 +107,7 @@ import {MatProgressBarModule} from '@angular/material/progress-bar';
     ToastModule,
     FieldsetModule,
     ToolbarModule,
-    MatProgressBarModule
+    MatProgressBarModule,
   ],
   exports: [],
   providers: [
