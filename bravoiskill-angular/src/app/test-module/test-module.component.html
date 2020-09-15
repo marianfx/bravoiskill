@@ -1,6 +1,7 @@
-<h3>Filters</h3><hr>
+<h3>Filters</h3>
+<hr style="border-top: dotted 3px;" />
 
-  <div style="display:inline-block;margin-right:2vw;">
+  <div style="display:inline-block;margin-right: 2vw;">
     Date from:
     <mat-form-field appearance="fill">
       <mat-label>zz.ll.aaaa</mat-label>
@@ -20,14 +21,18 @@
   </div>
 
 <div>
-  <button type="button" class="btn btn-secondary"><i class="fa fa-close"></i>Cancel</button>
+  <button type="button" class="btn btn-secondary" style="margin-right: 2vw;"><i class="fa fa-close"></i>Cancel</button>
   <button type="button" class="btn btn-primary"><i class="fa fa-search"></i>Search</button>
 </div>
 
+<br>
 
+<h3 style="color: blue;">Document composition</h3>
+<hr style="border-top: dotted 3px; color: blue" />
 
 <br>
-<div>
+<div class="row">
+<div class="col">
   <div class="card">
     <p-table #dt [value]="customers" [(selection)]="selectedCustomers" dataKey="id" styleClass="p-datatable-customers" [rowHover]="true"
         [rows]="10" [showCurrentPageReport]="true" [rowsPerPageOptions]="[10,25,50]" [loading]="loading"
@@ -46,8 +51,8 @@
             <tr>
                 <th style="width: 3rem"></th>
                 <th pSortableColumn="date">Scan Date <p-sortIcon field="date"></p-sortIcon></th>
-                <th pSortableColumn="name">Name <p-sortIcon field="name"></p-sortIcon></th>
-                <th style="width: 8rem"></th>
+                <th pSortableColumn="name">File <p-sortIcon field="name"></p-sortIcon></th>
+                <th style="width: 8rem">Azioni</th>
             </tr>
             <tr>
                 <th>
@@ -57,7 +62,7 @@
                   <p-calendar (onSelect)="onDateSelect($event)" (onClearClick)="dt.filter('', 'date', 'equals')" [showButtonBar]="true" styleClass="p-column-filter" [panelStyle]="{'width':'21vw'}" placeholder="Registration Date" [readonlyInput]="true" dateFormat="yy-mm-dd"></p-calendar>
               </th>
                 <th>
-                    <input pInputText type="text" (input)="dt.filter($event.target.value, 'name', 'startsWith')" placeholder="Search by Name" class="p-column-filter">
+                    <input pInputText type="text" (input)="dt.filter($event.target.value, 'name', 'startsWith')" placeholder="Search by File" class="p-column-filter">
                 </th>
                 <th></th>
             </tr>
@@ -68,15 +73,15 @@
                     <p-tableCheckbox [value]="customer"></p-tableCheckbox>
                 </td>
                 <td>
-                  <span class="p-column-title">Date</span>
+                  <span class="p-column-title"></span>
                   {{customer.date}}
               </td>
                 <td>
-                    <span class="p-column-title">Name</span>
+                    <span class="p-column-title"></span>
                     {{customer.name}}
                 </td>
                 <td style="text-align: center">
-                    <button pButton type="button" class="p-button-secondary" icon="pi pi-cog"></button>
+                    <button pButton type="button" class="p-button-secondary" icon="fa fa-file"></button>
                 </td>
             </tr>
         </ng-template>
@@ -87,6 +92,14 @@
         </ng-template>
     </p-table>
 </div>
+</div>
 
+
+<div class="col">
+<ngx-doc-viewer [url]="'https://file-examples.com/wp-content/uploads/2017/02/file-sample_100kB.docx'"
+viewer="google" style="width:100%;height:50vh;"></ngx-doc-viewer>
+</div>
 
 </div>
+<br>
+<button type="button" class="btn btn-primary"><i class="fa fa-file"></i>&nbsp;Generate File</button>

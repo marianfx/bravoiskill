@@ -62,6 +62,7 @@ import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatInputModule} from '@angular/material';
 import {MultiSelectModule} from 'primeng/multiselect';
 import {ProgressBarModule} from 'primeng/progressbar';
+import { NgxDocViewerModule } from 'ngx-doc-viewer';
 @NgModule({
   declarations: [
     AppComponent,
@@ -120,6 +121,7 @@ import {ProgressBarModule} from 'primeng/progressbar';
     MatInputModule,
     MultiSelectModule,
     ProgressBarModule,
+    NgxDocViewerModule,
   ],
   exports: [],
   providers: [
