@@ -56,6 +56,12 @@ import { TestModuleComponent } from './test-module/test-module.component';
 import {FieldsetModule} from 'primeng/fieldset';
 import {ToolbarModule} from 'primeng/toolbar';
 import {MatProgressBarModule} from '@angular/material/progress-bar';
+import {MatDatepickerModule} from '@angular/material/datepicker';
+import { MatNativeDateModule } from '@angular/material/core';
+import {MatFormFieldModule} from '@angular/material/form-field';
+import {MatInputModule} from '@angular/material';
+import {MultiSelectModule} from 'primeng/multiselect';
+import {ProgressBarModule} from 'primeng/progressbar';
 @NgModule({
   declarations: [
     AppComponent,
@@ -108,6 +114,12 @@ import {MatProgressBarModule} from '@angular/material/progress-bar';
     FieldsetModule,
     ToolbarModule,
     MatProgressBarModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MultiSelectModule,
+    ProgressBarModule,
   ],
   exports: [],
   providers: [
